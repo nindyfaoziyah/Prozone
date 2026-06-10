@@ -4,6 +4,7 @@ requireLogin();
 require_once 'config/language.php';
 require_once 'includes/icons.php';
 require_once 'includes/FileUpload.php';
+require_once 'includes/rpg_system.php';
 
 require_once 'models/User.php';
 require_once 'models/Achievement.php';
@@ -125,7 +126,7 @@ if ($_POST && isset($_POST['action']) && $_POST['action'] === 'change_theme') {
 }
 
 // Get current preferences
-$query_pref = "SELECT language_preference, theme_preference, created_at FROM users WHERE id = :user_id";
+$query_pref = "SELECT language_preference, theme_preference, created_at, character_class FROM users WHERE id = :user_id";
 $stmt_pref = $db->prepare($query_pref);
 $stmt_pref->bindParam(':user_id', $_SESSION['user_id']);
 $stmt_pref->execute();
@@ -133,6 +134,26 @@ $preferences = $stmt_pref->fetch(PDO::FETCH_ASSOC);
 $current_language = $preferences['language_preference'] ?? 'id';
 $current_theme = $preferences['theme_preference'] ?? 'dark';
 $join_date = $preferences['created_at'] ?? date('Y-m-d');
+$active_char_slug = $preferences['character_class'] ?? 'code-warrior';
+$active_char_data = getClassData($active_char_slug);
+
+// Handle select_character POST
+if ($_POST && isset($_POST['action']) && $_POST['action'] === 'select_character') {
+    $slug = sanitizeInput($_POST['character_slug'] ?? '');
+    if (isValidClass($slug) && isClassUnlocked($slug, $user_xp > 0 ? (int)floor($user_xp / 100) + 1 : 1, $user_xp)) {
+        $s = $db->prepare("UPDATE users SET character_class = :cls WHERE id = :uid");
+        $s->bindParam(':cls', $slug);
+        $s->bindParam(':uid', $_SESSION['user_id']);
+        $s->execute();
+        $_SESSION['character_class'] = $slug;
+        $active_char_slug = $slug;
+        $active_char_data = getClassData($slug);
+        $_SESSION['flash_message'] = 'Karakter berhasil diaktifkan!';
+        $_SESSION['flash_type'] = 'success';
+    }
+    header('Location: profile.php?tab=character');
+    exit;
+}
 
 // Get data for Achievements tab
 $achievement = new Achievement($db);
@@ -246,8 +267,34 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/ui-enhancements.css">
     <link rel="stylesheet" href="assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="assets/css/components/button.css">
+    <link rel="stylesheet" href="assets/css/components/badge.css">
+    <style>
+        /* Profile Hero Custom Adjustments */
+        .profile-xp-bar {
+            background: rgba(30, 30, 55, 0.5);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .profile-xp-progress {
+            height: 8px;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .profile-xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+    </style>
     <style>
         /* Profile Hero Card */
         .profile-hero {
@@ -1220,539 +1267,458 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
     </style>
 </head>
-<body>
-    <?php require_once 'navbar.php'; ?>
+<body class="<?php echo getThemeClass(); ?> page-profile">
+    <?php include 'navbar.php'; ?>
 
-    <div class="dashboard-main-container">
+    <main class="page-wrapper dashboard-main-container">
         <div class="dashboard-content">
-            <div class="page-wrapper">
-                <?php if ($message): ?>
-                    <div class="alert alert-<?php echo $message_type; ?>">
-                        <?php if ($message_type === 'success'): ?>
-                            <?php icon('check-circle', 20); ?>
-                        <?php else: ?>
-                            <?php icon('alert-circle', 20); ?>
-                        <?php endif; ?>
-                        <?php echo $message; ?>
-                    </div>
-                <?php endif; ?>
-
-                <!-- Profile Hero Card -->
-                <div class="profile-hero">
-                    <div class="profile-hero-content">
-                        <div class="profile-avatar-section">
-                            <div class="profile-avatar-large">
-                                <?php if (!empty($user->avatar) && file_exists('assets/uploads/avatars/' . $user->avatar)): ?>
-                                    <img src="assets/uploads/avatars/<?php echo $user->avatar; ?>" alt="Avatar">
-                                <?php else: ?>
-                                    <?php echo strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?>
-                                <?php endif; ?>
-                                <div class="level-badge"><?php echo $user_level; ?></div>
-                            </div>
-                        </div>
-                        <div class="profile-info-section">
-                            <h1 class="profile-name">
-                                <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?>
-                                <span class="verified-badge"><?php icon('check', 10); ?> Verified</span>
-                            </h1>
-                            <div class="profile-username">@<?php echo htmlspecialchars($_SESSION['username']); ?></div>
-                            <div class="profile-meta">
-                                <div class="profile-meta-item">
-                                    <?php icon('mail', 14); ?>
-                                    <?php echo htmlspecialchars($_SESSION['email'] ?? 'No email'); ?>
-                                </div>
-                                <div class="profile-meta-item">
-                                    <?php icon('calendar', 14); ?>
-                                    Joined <?php echo date('M Y', strtotime($join_date)); ?>
-                                </div>
-                            </div>
-                            <div class="profile-xp-bar">
-                                <div class="profile-xp-header">
-                                    <span class="profile-xp-label">XP Progress to Level <?php echo $user_level + 1; ?></span>
-                                    <span class="profile-xp-value"><?php echo number_format($xp_current); ?> / <?php echo number_format($xp_progress); ?></span>
-                                </div>
-                                <div class="profile-xp-progress">
-                                    <div class="profile-xp-fill" style="width: <?php echo $xp_percent; ?>%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profile-quick-stats">
-                            <div class="quick-stat">
-                                <div class="quick-stat-value"><?php echo number_format($user_xp); ?></div>
-                                <div class="quick-stat-label">Total XP</div>
-                            </div>
-                            <div class="quick-stat">
-                                <div class="quick-stat-value">#<?php echo $user_rank; ?></div>
-                                <div class="quick-stat-label">Rank</div>
-                            </div>
-                            <div class="quick-stat">
-                                <div class="quick-stat-value"><?php echo $learning_streak; ?></div>
-                                <div class="quick-stat-label">Day Streak</div>
+            <!-- Profile Hero -->
+            <section class="glass-header mb-8">
+                <div class="flex items-center gap-8 flex-wrap">
+                    <div class="profile-avatar-section relative">
+                        <div class="glass-avatar-lg w-32 h-32 text-4xl" id="avatar-preview-container">
+                            <?php if (!empty($user->avatar) && file_exists('assets/uploads/avatars/' . $user->avatar)): ?>
+                                <img src="assets/uploads/avatars/<?php echo $user->avatar; ?>" alt="Avatar" id="avatar-preview-img" class="rounded-full w-full h-full object-cover">
+                            <?php else: ?>
+                                <span class="font-bold text-white"><?php echo strtoupper(substr($user->nama_lengkap, 0, 1)); ?></span>
+                            <?php endif; ?>
+                            <div class="level-badge absolute -bottom-2 -right-2 w-10 h-10 bg-warm rounded-full border-2 border-bg-elevated flex items-center justify-center font-bold text-sm text-white shadow-lg">
+                                <?php echo $user_level; ?>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Tab Navigation -->
-                <div class="profile-tabs">
-                    <button class="profile-tab <?php echo $active_tab === 'edit' ? 'active' : ''; ?>" onclick="switchTab('edit')">
-                        <?php icon('user', 18); ?>
-                        <span>Edit Profil</span>
-                    </button>
-                    <button class="profile-tab <?php echo $active_tab === 'analytics' ? 'active' : ''; ?>" onclick="switchTab('analytics')">
-                        <?php icon('bar-chart-2', 18); ?>
-                        <span>Analytics</span>
-                    </button>
-                    <button class="profile-tab <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>" onclick="switchTab('achievements')">
-                        <?php icon('award', 18); ?>
-                        <span>Achievement</span>
-                    </button>
-                    <button class="profile-tab <?php echo $active_tab === 'certificates' ? 'active' : ''; ?>" onclick="switchTab('certificates')">
-                        <?php icon('file-text', 18); ?>
-                        <span>Sertifikat</span>
-                    </button>
-                    <button class="profile-tab <?php echo $active_tab === 'settings' ? 'active' : ''; ?>" onclick="switchTab('settings')">
-                        <?php icon('settings', 18); ?>
-                        <span>Pengaturan</span>
-                    </button>
-                </div>
+                    <div class="profile-info-section flex-1 min-w-[300px]">
+                        <h1 class="text-3xl font-bold text-white flex items-center gap-3">
+                            <?php echo htmlspecialchars($user->nama_lengkap); ?>
+                            <span class="glass-badge glass-badge-primary text-xs py-1 px-2">Verified</span>
+                        </h1>
+                        <p class="text-brand font-medium mb-4">@<?php echo htmlspecialchars($user->username); ?></p>
+                        
+                        <div class="flex gap-6 flex-wrap mb-4 text-sm text-gray-400">
+                            <div class="flex items-center gap-2"><?php icon('mail', 14); ?> <?php echo htmlspecialchars($user->email); ?></div>
+                            <div class="flex items-center gap-2"><?php icon('calendar', 14); ?> Bergabung <?php echo date('M Y', strtotime($join_date)); ?></div>
+                        </div>
 
-                <!-- Tab: Edit Profile -->
-                <div id="tab-edit" class="tab-content <?php echo $active_tab === 'edit' ? 'active' : ''; ?>">
-                    <div class="profile-section">
-                        <h2><?php icon('user', 20); ?> Edit Profile</h2>
-                        <form method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-                            <input type="hidden" name="action" value="update_profile">
-                            
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('image', 16); ?> Foto Profil</label>
-                                <div class="avatar-upload-wrapper">
-                                    <div class="avatar-preview">
-                                        <?php if (!empty($user->avatar) && file_exists('assets/uploads/avatars/' . $user->avatar)): ?>
-                                            <img src="assets/uploads/avatars/<?php echo $user->avatar; ?>" alt="Avatar" id="avatarPreview">
-                                        <?php else: ?>
-                                            <span id="avatarInitial"><?php echo strtoupper(substr($user->nama_lengkap, 0, 1)); ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                    <label class="avatar-upload-area" for="avatarInput">
-                                        <div class="upload-icon"><?php icon('upload', 24); ?></div>
-                                        <div class="upload-text">
-                                            <span>Klik untuk upload</span> atau drag & drop
+                        <div class="profile-xp-bar">
+                            <div class="flex justify-between text-xs mb-2">
+                                <span class="text-gray-400">Level <?php echo $user_level; ?> Progress</span>
+                                <span class="text-brand font-bold"><?php echo number_format($xp_current); ?> / <?php echo number_format($xp_progress); ?> XP</span>
+                            </div>
+                            <div class="profile-xp-progress">
+                                <div class="profile-xp-fill" style="width: <?php echo $xp_percent; ?>%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <div class="glass-stat-card text-center p-4 min-w-[100px]">
+                            <div class="text-2xl font-bold text-brand"><?php echo number_format($user_coins); ?></div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500">Coins</div>
+                        </div>
+                        <div class="glass-stat-card text-center p-4 min-w-[100px]">
+                            <div class="text-2xl font-bold text-warm">#<?php echo $user_rank; ?></div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500">Global Rank</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Navigation -->
+            <nav class="glass-tabs mb-8">
+                <a href="?tab=edit" class="glass-tab <?php echo $active_tab === 'edit' ? 'active' : ''; ?>">
+                    <?php icon('user', 18); ?> Profil
+                </a>
+                <a href="?tab=analytics" class="glass-tab <?php echo $active_tab === 'analytics' ? 'active' : ''; ?>">
+                    <?php icon('trending-up', 18); ?> Analytics
+                </a>
+                <a href="?tab=character" class="glass-tab <?php echo $active_tab === 'character' ? 'active' : ''; ?>" style="position:relative">
+                    ⚔️ Karakter
+                </a>
+                <a href="?tab=achievements" class="glass-tab <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>">
+                    <?php icon('award', 18); ?> Achievement
+                </a>
+                <a href="?tab=certificates" class="glass-tab <?php echo $active_tab === 'certificates' ? 'active' : ''; ?>">
+                    <?php icon('file-text', 18); ?> Sertifikat
+                </a>
+                <a href="?tab=settings" class="glass-tab <?php echo $active_tab === 'settings' ? 'active' : ''; ?>">
+                    <?php icon('settings', 18); ?> Pengaturan
+                </a>
+            </nav>
+
+            <!-- Tab Contents -->
+            <div class="tab-contents">
+                <!-- Edit Profile Tab -->
+                <div class="tab-pane <?php echo $active_tab === 'edit' ? 'active' : ''; ?>">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <form action="" method="POST" enctype="multipart/form-data" class="glass-section">
+                                <input type="hidden" name="action" value="update_profile">
+                                <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
+                                
+                                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                    <?php icon('edit-3', 20); ?> Edit Informasi Profil
+                                </h2>
+
+                                <div class="mb-8">
+                                    <label class="block text-sm font-medium text-gray-300 mb-4">Foto Profil</label>
+                                    <div class="flex items-center gap-6 flex-wrap">
+                                        <div class="glass-avatar-lg w-20 h-20 text-2xl" id="avatar-preview-container-edit">
+                                            <?php if (!empty($user->avatar) && file_exists('assets/uploads/avatars/' . $user->avatar)): ?>
+                                                <img src="assets/uploads/avatars/<?php echo $user->avatar; ?>" alt="Avatar" id="avatar-preview-img-edit" class="rounded-full w-full h-full object-cover">
+                                            <?php else: ?>
+                                                <span class="text-white font-bold"><?php echo strtoupper(substr($user->nama_lengkap, 0, 1)); ?></span>
+                                            <?php endif; ?>
                                         </div>
-                                        <input type="file" name="avatar" accept="image/*" id="avatarInput">
-                                    </label>
-                                </div>
-                                <div class="form-hint"><?php icon('info', 12); ?> Format: JPG, PNG, GIF. Max: 2MB</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('user', 16); ?> Nama Lengkap</label>
-                                <input type="text" name="nama_lengkap" value="<?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?>" required class="form-input" placeholder="Masukkan nama lengkap">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('mail', 16); ?> Email</label>
-                                <input type="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email'] ?? ''); ?>" class="form-input" placeholder="Masukkan email">
-                            </div>
-
-                            <button type="submit" class="btn-submit">
-                                <?php icon('save', 18); ?>
-                                Simpan Perubahan
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="profile-section">
-                        <h2><?php icon('lock', 20); ?> Ubah Password</h2>
-                        <form method="POST" id="passwordForm">
-                            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-                            <input type="hidden" name="action" value="change_password">
-
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('key', 16); ?> Password Lama</label>
-                                <input type="password" name="old_password" required class="form-input" placeholder="Masukkan password lama">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('lock', 16); ?> Password Baru</label>
-                                <input type="password" name="new_password" id="newPassword" required minlength="6" class="form-input" placeholder="Masukkan password baru">
-                                <div class="password-strength" id="passwordStrength" style="display: none;">
-                                    <div class="strength-bar">
-                                        <div class="strength-fill" id="strengthFill"></div>
+                                        <div class="flex-1 min-w-[200px]">
+                                            <div class="glass-upload-area p-6 text-center cursor-pointer border-2 border-dashed border-gray-700 hover:border-brand transition rounded-xl bg-gray-900/30">
+                                                <input type="file" name="avatar" id="avatar-input" class="hidden" accept="image/*">
+                                                <label for="avatar-input" class="cursor-pointer">
+                                                    <div class="text-brand mb-2"><?php icon('upload', 24); ?></div>
+                                                    <p class="text-sm text-gray-400">Klik untuk unggah atau seret foto ke sini</p>
+                                                    <p class="text-xs text-gray-500 mt-1">JPG, PNG atau WebP (Max. 2MB)</p>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <span class="strength-text" id="strengthText"></span>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="form-label"><?php icon('check-circle', 16); ?> Konfirmasi Password</label>
-                                <input type="password" name="confirm_password" required minlength="6" class="form-input" placeholder="Konfirmasi password baru">
-                            </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                    <div class="form-group">
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Nama Lengkap</label>
+                                        <input type="text" name="nama_lengkap" class="glass-input" value="<?php echo htmlspecialchars($user->nama_lengkap); ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                        <input type="email" name="email" class="glass-input" value="<?php echo htmlspecialchars($user->email); ?>" required>
+                                    </div>
+                                </div>
 
-                            <button type="submit" class="btn-submit">
-                                <?php icon('refresh-cw', 18); ?>
-                                Ubah Password
-                            </button>
-                        </form>
+                                <button type="submit" class="glass-btn glass-btn-primary glass-btn-lg">
+                                    <?php icon('save', 18); ?> Simpan Perubahan
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="lg:col-span-1">
+                            <form action="" method="POST" class="glass-section" id="passwordForm">
+                                <input type="hidden" name="action" value="change_password">
+                                <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
+
+                                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                    <?php icon('lock', 20); ?> Keamanan
+                                </h2>
+
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Password Lama</label>
+                                    <input type="password" name="old_password" class="glass-input" required>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Password Baru</label>
+                                    <input type="password" name="new_password" id="newPassword" class="glass-input" required>
+                                    <div id="passwordStrength" class="mt-2" style="display: none;">
+                                        <div class="h-1 w-full bg-gray-800 rounded-full overflow-hidden">
+                                            <div id="strengthFill" class="h-full transition-all duration-300"></div>
+                                        </div>
+                                        <p id="strengthText" class="text-[10px] mt-1 font-bold uppercase"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-6">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Konfirmasi Password</label>
+                                    <input type="password" name="confirm_password" class="glass-input" required>
+                                </div>
+
+                                <button type="submit" class="glass-btn glass-btn-secondary w-full">
+                                    Ganti Password
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tab: Analytics -->
-                <div id="tab-analytics" class="tab-content <?php echo $active_tab === 'analytics' ? 'active' : ''; ?>">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon xp"><?php icon('star', 22); ?></div>
-                            <div class="stat-value"><?php echo number_format($user_xp); ?></div>
-                            <div class="stat-label">Total XP</div>
+                <!-- Analytics Tab -->
+                <div class="tab-pane <?php echo $active_tab === 'analytics' ? 'active' : ''; ?>">
+                    <div class="glass-stats-grid mb-8">
+                        <div class="glass-stat-card">
+                            <div class="text-3xl font-bold text-brand mb-1"><?php echo $completed_courses; ?></div>
+                            <div class="text-xs uppercase tracking-wider text-gray-500">Kursus Selesai</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon courses"><?php icon('book', 22); ?></div>
-                            <div class="stat-value"><?php echo count($enrolled_courses); ?></div>
-                            <div class="stat-label">Enrolled</div>
+                        <div class="glass-stat-card">
+                            <div class="text-3xl font-bold text-accent mb-1"><?php echo $total_lessons_completed; ?></div>
+                            <div class="text-xs uppercase tracking-wider text-gray-500">Lesson Selesai</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon lessons"><?php icon('check-circle', 22); ?></div>
-                            <div class="stat-value"><?php echo $total_lessons_completed; ?></div>
-                            <div class="stat-label">Lessons</div>
+                        <div class="glass-stat-card">
+                            <div class="text-3xl font-bold text-warm mb-1"><?php echo $learning_streak; ?></div>
+                            <div class="text-xs uppercase tracking-wider text-gray-500">Day Streak</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-icon streak"><?php icon('fire', 22); ?></div>
-                            <div class="stat-value"><?php echo $learning_streak; ?></div>
-                            <div class="stat-label">Day Streak</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon achievements"><?php icon('award', 22); ?></div>
-                            <div class="stat-value"><?php echo $earned_achievements; ?>/<?php echo $total_achievements_analytics; ?></div>
-                            <div class="stat-label">Achievements</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon rank"><?php icon('trending-up', 22); ?></div>
-                            <div class="stat-value">#<?php echo $user_rank; ?></div>
-                            <div class="stat-label">Rank</div>
+                        <div class="glass-stat-card">
+                            <div class="text-3xl font-bold text-info mb-1"><?php echo number_format($avg_progress, 0); ?>%</div>
+                            <div class="text-xs uppercase tracking-wider text-gray-500">Avg Progress</div>
                         </div>
                     </div>
 
-                    <div class="level-card">
-                        <div class="level-header">
-                            <div class="level-info">
-                                <div class="level-circle">
-                                    <span><?php echo $user_level; ?></span>
-                                </div>
-                                <div class="level-text">
-                                    <h3>Level <?php echo $user_level; ?></h3>
-                                    <p><?php echo number_format($user_xp); ?> Total XP</p>
-                                </div>
-                            </div>
-                            <div class="level-xp-needed">
-                                <div class="xp-value"><?php echo number_format($xp_progress - $xp_current); ?></div>
-                                <div class="xp-label">XP to Level <?php echo $user_level + 1; ?></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="glass-section">
+                            <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                                <?php icon('activity', 18); ?> Progress Belajar
+                            </h2>
+                            <div class="space-y-6">
+                                <?php if (empty($enrolled_courses)): ?>
+                                    <p class="text-gray-500 text-center py-4">Belum ada progress belajar.</p>
+                                <?php else: ?>
+                                    <?php foreach ($enrolled_courses as $prog): ?>
+                                    <div class="course-progress-item">
+                                        <div class="flex justify-between text-sm mb-2">
+                                            <span class="text-gray-300 font-medium"><?php echo htmlspecialchars($prog['judul_course']); ?></span>
+                                            <span class="text-brand font-bold"><?php echo number_format($prog['progress_percent'], 0); ?>%</span>
+                                        </div>
+                                        <div class="glass-progress">
+                                            <div class="glass-progress-bar" style="width: <?php echo $prog['progress_percent']; ?>%"></div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <div class="level-progress-bar">
-                            <div class="level-progress-fill" style="width: <?php echo $xp_percent; ?>%"></div>
+                        
+                        <div class="glass-section">
+                            <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+                                <?php icon('award', 18); ?> Ringkasan Achievement
+                            </h2>
+                            <div class="flex items-center gap-6 mb-8 p-6 bg-gray-900/30 rounded-2xl border border-gray-800">
+                                <div class="w-16 h-16 bg-brand-subtle text-brand rounded-full flex items-center justify-center text-3xl">
+                                    <?php icon('award', 32); ?>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-white"><?php echo $earned_achievements; ?> / <?php echo $total_achievements_analytics; ?></div>
+                                    <div class="text-sm text-gray-500">Achievement Terbuka</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <?php foreach (array_slice($achievements, 0, 4) as $ach): ?>
+                                <div class="glass-card-compact p-3 flex items-center gap-3 <?php echo $ach['earned_at'] ? '' : 'opacity-40 grayscale'; ?>">
+                                    <div class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-brand">
+                                        <?php icon('star', 14); ?>
+                                    </div>
+                                    <div class="text-xs font-bold text-gray-300 truncate"><?php echo htmlspecialchars($ach['judul_achievement']); ?></div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Achievements Tab -->
+                <div class="tab-pane <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>">
+                    <div class="glass-section">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <?php foreach ($achievements as $ach): ?>
+                            <div class="glass-card <?php echo $ach['earned_at'] ? '' : 'opacity-40 grayscale'; ?>">
+                                <div class="text-center p-6">
+                                    <div class="w-16 h-16 mx-auto mb-4 bg-gray-900/50 text-brand rounded-full flex items-center justify-center text-3xl">
+                                        <?php icon($ach['earned_at'] ? 'award' : 'lock', 32); ?>
+                                    </div>
+                                    <h3 class="font-bold text-white mb-1 text-sm"><?php echo htmlspecialchars($ach['judul_achievement']); ?></h3>
+                                    <p class="text-[10px] text-gray-500 mb-4 leading-relaxed"><?php echo htmlspecialchars($ach['deskripsi']); ?></p>
+                                    <?php if ($ach['earned_at']): ?>
+                                        <div class="text-[10px] text-brand font-bold uppercase tracking-wider">
+                                            Diterima: <?php echo date('d M Y', strtotime($ach['earned_at'])); ?>
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="text-[10px] text-gray-600 font-bold uppercase tracking-wider">Terkunci</div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="courses-progress-section">
-                        <h3><?php icon('book-open', 18); ?> Progress Kursus</h3>
-                        <?php if (empty($enrolled_courses)): ?>
-                            <div class="empty-state">
-                                <div class="empty-icon"><?php icon('book-open', 48); ?></div>
-                                <div class="empty-title">Belum ada kursus</div>
-                                <div class="empty-text">Mulai belajar dengan mendaftar ke kursus pertama Anda!</div>
-                                <a href="courses.php" class="btn-submit" style="text-decoration: none;">
-                                    <?php icon('search', 18); ?>
-                                    Jelajahi Kursus
-                                </a>
+                <!-- Certificates Tab -->
+                <div class="tab-pane <?php echo $active_tab === 'certificates' ? 'active' : ''; ?>">
+                    <div class="glass-section">
+                        <h2 class="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                            <?php icon('file-text', 20); ?> Sertifikat Kelulusan
+                        </h2>
+                        
+                        <?php if (empty($certificates)): ?>
+                            <div class="text-center py-12">
+                                <div class="mb-4 opacity-30"><?php icon('award', 48); ?></div>
+                                <p class="text-gray-500 mb-6 font-medium">Selesaikan kursus Anda untuk mendapatkan sertifikat resmi.</p>
+                                <a href="courses.php" class="glass-btn glass-btn-primary">Cari Kursus</a>
                             </div>
                         <?php else: ?>
-                            <?php foreach ($enrolled_courses as $course_item): ?>
-                                <div class="course-item">
-                                    <div class="course-header">
-                                        <div class="course-name"><?php echo htmlspecialchars($course_item['judul_course']); ?></div>
-                                        <div class="course-percent"><?php echo number_format($course_item['progress_percent'], 0); ?>%</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <?php foreach ($certificates as $cert): ?>
+                                    <div class="glass-card overflow-hidden transition-all hover:scale-[1.02]">
+                                        <div class="aspect-[1.4/1] bg-gradient-to-br from-gray-900 to-gray-800 p-4 border-b border-gray-800 flex items-center justify-center relative">
+                                            <div class="w-[90%] h-[90%] border border-brand/20 relative flex flex-col items-center justify-center text-center p-2">
+                                                <div class="absolute top-1 left-1 text-brand/30"><?php icon('award', 16); ?></div>
+                                                <div class="text-[8px] tracking-[4px] text-brand uppercase font-bold mb-1">CERTIFICATE</div>
+                                                <div class="text-[10px] font-bold text-white mb-2 leading-tight"><?php echo htmlspecialchars($cert['judul_course']); ?></div>
+                                                <div class="text-[6px] text-gray-500">PROZONE ACADEMY • <?php echo date('M Y', strtotime($cert['completed_at'])); ?></div>
+                                            </div>
+                                        </div>
+                                        <div class="p-5">
+                                            <h3 class="text-sm font-bold text-white mb-2 truncate"><?php echo htmlspecialchars($cert['judul_course']); ?></h3>
+                                            <div class="flex gap-2">
+                                                <a href="view_certificate.php?id=<?php echo $cert['id']; ?>" class="glass-btn glass-btn-primary flex-1 text-xs py-2">Lihat</a>
+                                                <a href="download_certificate.php?id=<?php echo $cert['id']; ?>" class="glass-btn glass-btn-secondary flex-1 text-xs py-2">Unduh</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="course-progress-bar">
-                                        <div class="course-progress-fill" style="width: <?php echo $course_item['progress_percent']; ?>%"></div>
-                                    </div>
-                                    <div class="course-meta">
-                                        <span><?php echo $course_item['completed_lessons']; ?> / <?php echo $course_item['total_lessons']; ?> lessons</span>
-                                        <?php if ($course_item['status'] == 'completed'): ?>
-                                            <span class="course-completed-badge"><?php icon('check-circle', 14); ?> Selesai</span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
 
-                <!-- Tab: Achievements -->
-                <div id="tab-achievements" class="tab-content <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>">
-                    <div class="profile-section">
-                        <h2><?php icon('award', 20); ?> Achievement</h2>
-                        <div class="stats-grid" style="margin-bottom: 1.5rem;">
-                            <div class="stat-card">
-                                <div class="stat-icon achievements"><?php icon('award', 22); ?></div>
-                                <div class="stat-value"><?php echo $earned_count; ?></div>
-                                <div class="stat-label">Diperoleh</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon courses"><?php icon('target', 22); ?></div>
-                                <div class="stat-value"><?php echo $total_achievements; ?></div>
-                                <div class="stat-label">Total</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-icon streak"><?php icon('percent', 22); ?></div>
-                                <div class="stat-value"><?php echo number_format($progress_percent, 0); ?>%</div>
-                                <div class="stat-label">Progress</div>
+                <!-- Settings Tab -->
+                <div class="tab-pane <?php echo $active_tab === 'settings' ? 'active' : ''; ?>">
+                    <div class="max-w-2xl mx-auto space-y-6">
+                        <div class="glass-section">
+                            <h2 class="text-xl font-bold text-white mb-6">Preferensi Pengguna</h2>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-gray-900/30 rounded-xl border border-gray-800">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-blue-500/20 text-blue-400 rounded-lg flex items-center justify-center">
+                                            <?php icon('globe', 20); ?>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-white text-sm">Bahasa</div>
+                                            <div class="text-xs text-gray-500">Pilih bahasa antarmuka</div>
+                                        </div>
+                                    </div>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="action" value="change_language">
+                                        <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
+                                        <div class="flex bg-gray-900 p-1 rounded-lg border border-gray-800">
+                                            <button name="language" value="id" class="px-3 py-1 text-[10px] rounded-md <?php echo $current_language === 'id' ? 'bg-brand text-white font-bold' : 'text-gray-500 hover:text-gray-300'; ?>">ID</button>
+                                            <button name="language" value="en" class="px-3 py-1 text-[10px] rounded-md <?php echo $current_language === 'en' ? 'bg-brand text-white font-bold' : 'text-gray-500 hover:text-gray-300'; ?>">EN</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="flex items-center justify-between p-4 bg-gray-900/30 rounded-xl border border-gray-800">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 bg-purple-500/20 text-purple-400 rounded-lg flex items-center justify-center">
+                                            <?php icon('moon', 20); ?>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-white text-sm">Tema Visual</div>
+                                            <div class="text-xs text-gray-500">Aktifkan mode gelap atau terang</div>
+                                        </div>
+                                    </div>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="action" value="change_theme">
+                                        <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
+                                        <div class="flex bg-gray-900 p-1 rounded-lg border border-gray-800">
+                                            <button name="theme" value="light" class="px-3 py-1 text-[10px] rounded-md <?php echo $current_theme === 'light' ? 'bg-brand text-white font-bold' : 'text-gray-500 hover:text-gray-300'; ?>"><?php icon('sun', 12); ?></button>
+                                            <button name="theme" value="dark" class="px-3 py-1 text-[10px] rounded-md <?php echo $current_theme === 'dark' ? 'bg-brand text-white font-bold' : 'text-gray-500 hover:text-gray-300'; ?>"><?php icon('moon', 12); ?></button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="achievements-grid">
-                            <?php if (empty($achievements)): ?>
-                                <div class="empty-state" style="grid-column: 1 / -1;">
-                                    <div class="empty-icon"><?php icon('trophy', 48); ?></div>
-                                    <div class="empty-title">Belum ada achievement</div>
-                                    <div class="empty-text">Selesaikan tantangan untuk mendapatkan achievement!</div>
-                                </div>
-                            <?php else: ?>
-                                <?php foreach ($achievements as $ach): ?>
-                                    <?php $is_earned = !empty($ach['earned_at']); ?>
-                                    <div class="achievement-card <?php echo $is_earned ? 'earned' : ''; ?>">
-                                        <?php if ($is_earned): ?>
-                                            <div class="achievement-badge">✓</div>
-                                        <?php endif; ?>
-                                        <div class="achievement-icon"><?php echo htmlspecialchars($ach['icon']); ?></div>
-                                        <div class="achievement-name"><?php echo htmlspecialchars($ach['nama_achievement']); ?></div>
-                                        <div class="achievement-desc"><?php echo htmlspecialchars($ach['deskripsi']); ?></div>
-                                        <div class="achievement-xp">+<?php echo $ach['xp_reward']; ?> XP</div>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Certificates -->
-                <div id="tab-certificates" class="tab-content <?php echo $active_tab === 'certificates' ? 'active' : ''; ?>">
-                    <div class="profile-section">
-                        <h2><?php icon('file-text', 20); ?> Sertifikat</h2>
-                        <div class="certificates-grid">
-                            <?php if (empty($certificates)): ?>
-                                <div class="empty-state" style="grid-column: 1 / -1;">
-                                    <div class="empty-icon"><?php icon('scroll', 48); ?></div>
-                                    <div class="empty-title">Belum ada sertifikat</div>
-                                    <div class="empty-text">Selesaikan kursus untuk mendapatkan sertifikat!</div>
-                                    <a href="courses.php" class="btn-submit" style="text-decoration: none;">
-                                        <?php icon('search', 18); ?>
-                                        Jelajahi Kursus
-                                    </a>
-                                </div>
-                            <?php else: ?>
-                                <?php foreach ($certificates as $cert): ?>
-                                    <div class="certificate-card">
-                                        <div class="certificate-icon"><?php icon('award', 36); ?></div>
-                                        <div class="certificate-title"><?php echo htmlspecialchars($cert['judul_course']); ?></div>
-                                        <div class="certificate-info">Level: <?php echo ucfirst($cert['level']); ?></div>
-                                        <div class="certificate-date"><?php echo date('d M Y', strtotime($cert['completed_at'])); ?></div>
-                                        <a href="certificates.php" class="btn-cert-download">
-                                            <?php icon('download', 16); ?>
-                                            Download
-                                        </a>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Settings -->
-                <div id="tab-settings" class="tab-content <?php echo $active_tab === 'settings' ? 'active' : ''; ?>">
-                    <div class="profile-section">
-                        <h2><?php icon('globe', 20); ?> Bahasa / Language</h2>
-                        <form method="POST">
-                            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-                            <input type="hidden" name="action" value="change_language">
-                            <input type="hidden" name="language" id="selectedLanguage" value="<?php echo $current_language; ?>">
-                            <div class="setting-item">
-                                <div class="setting-info">
-                                    <div class="setting-icon lang"><?php icon('globe', 20); ?></div>
-                                    <div>
-                                        <div class="setting-label">Bahasa Aplikasi</div>
-                                        <div class="setting-desc">Pilih bahasa yang ingin digunakan</div>
-                                    </div>
-                                </div>
-                                <div class="toggle-group">
-                                    <button type="button" class="toggle-btn <?php echo $current_language === 'id' ? 'active' : ''; ?>" onclick="selectLanguage('id')"><?php icon('globe', 14); ?> ID</button>
-                                    <button type="button" class="toggle-btn <?php echo $current_language === 'en' ? 'active' : ''; ?>" onclick="selectLanguage('en')"><?php icon('globe', 14); ?> EN</button>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-submit" style="margin-top: 1rem;">
-                                <?php icon('save', 18); ?>
-                                Simpan Bahasa
+                        <div class="glass-section border-red-900/30">
+                            <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                                <?php icon('alert-octagon', 20); ?> Zona Bahaya
+                            </h2>
+                            <p class="text-sm text-gray-400 mb-6">Tindakan ini bersifat permanen dan tidak dapat dibatalkan.</p>
+                            <button class="glass-btn border-red-500/50 text-red-500 hover:bg-red-500 hover:text-white w-full py-3">
+                                Nonaktifkan Akun Saya
                             </button>
-                        </form>
-                    </div>
-
-                    <div class="profile-section">
-                        <h2><?php icon('moon', 20); ?> Tema / Theme</h2>
-                        <form method="POST">
-                            <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-                            <input type="hidden" name="action" value="change_theme">
-                            <input type="hidden" name="theme" id="selectedTheme" value="<?php echo $current_theme; ?>">
-                            <div class="setting-item">
-                                <div class="setting-info">
-                                    <div class="setting-icon theme"><?php icon('moon', 20); ?></div>
-                                    <div>
-                                        <div class="setting-label">Tema Aplikasi</div>
-                                        <div class="setting-desc">Pilih tampilan light atau dark mode</div>
-                                    </div>
-                                </div>
-                                <div class="toggle-group">
-                                    <button type="button" class="toggle-btn <?php echo $current_theme === 'dark' ? 'active' : ''; ?>" onclick="selectTheme('dark')"><?php icon('moon', 14); ?> Dark</button>
-                                    <button type="button" class="toggle-btn <?php echo $current_theme === 'light' ? 'active' : ''; ?>" onclick="selectTheme('light')"><?php icon('sun', 14); ?> Light</button>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-submit" style="margin-top: 1rem;">
-                                <?php icon('save', 18); ?>
-                                Simpan Tema
-                            </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <?php include 'footer.php'; ?>
-    <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
 
     <script src="assets/js/navbar.js"></script>
     <script>
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.profile-tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById('tab-' + tab).classList.add('active');
-            event.target.closest('.profile-tab').classList.add('active');
-            
-            const url = new URL(window.location);
-            url.searchParams.set('tab', tab);
-            window.history.pushState({}, '', url);
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Avatar preview
+            const avatarInput = document.getElementById('avatar-input');
+            const avatarImg = document.getElementById('avatar-preview-img-edit');
+            const avatarContainer = document.getElementById('avatar-preview-container-edit');
 
-        function selectLanguage(lang) {
-            document.getElementById('selectedLanguage').value = lang;
-            document.querySelectorAll('.toggle-group .toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        function selectTheme(theme) {
-            document.getElementById('selectedTheme').value = theme;
-            document.querySelectorAll('.toggle-group .toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        // Avatar preview
-        document.getElementById('avatarInput')?.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.querySelector('.avatar-preview');
-                    const initial = document.getElementById('avatarInitial');
-                    if (initial) initial.style.display = 'none';
-                    
-                    let img = preview.querySelector('img');
-                    if (!img) {
-                        img = document.createElement('img');
-                        img.id = 'avatarPreview';
-                        preview.appendChild(img);
+            if (avatarInput) {
+                avatarInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            if (avatarImg) {
+                                avatarImg.src = event.target.result;
+                            } else {
+                                avatarContainer.innerHTML = `<img src="${event.target.result}" id="avatar-preview-img-edit" class="rounded-full w-full h-full object-cover">`;
+                            }
+                        };
+                        reader.readAsDataURL(file);
                     }
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
+                });
             }
-        });
 
-        // Password strength indicator
-        document.getElementById('newPassword')?.addEventListener('input', function(e) {
-            const password = e.target.value;
-            const strengthDiv = document.getElementById('passwordStrength');
+            // Password strength indicator
+            const pwdInput = document.getElementById('newPassword');
             const strengthFill = document.getElementById('strengthFill');
             const strengthText = document.getElementById('strengthText');
-            
-            if (password.length === 0) {
-                strengthDiv.style.display = 'none';
-                return;
-            }
-            
-            strengthDiv.style.display = 'block';
-            
-            let strength = 0;
-            if (password.length >= 6) strength++;
-            if (password.length >= 8) strength++;
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^a-zA-Z0-9]/.test(password)) strength++;
-            
-            const levels = ['', 'weak', 'fair', 'good', 'strong', 'strong'];
-            const texts = ['', 'Lemah', 'Cukup', 'Bagus', 'Kuat', 'Sangat Kuat'];
-            
-            strengthFill.className = 'strength-fill ' + levels[strength];
-            strengthText.className = 'strength-text ' + levels[strength];
-            strengthText.textContent = texts[strength];
-        });
+            const strengthContainer = document.getElementById('passwordStrength');
 
-        // Password confirmation validation
-        document.getElementById('passwordForm')?.addEventListener('submit', function(e) {
-            const newPassword = document.querySelector('input[name="new_password"]').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-            
-            if (newPassword !== confirmPassword) {
-                e.preventDefault();
-                if (typeof showToast === 'function') {
-                    showToast('Password baru dan konfirmasi tidak cocok!', 'error');
-                } else {
-                    alert('Password baru dan konfirmasi tidak cocok!');
+            if (pwdInput) {
+                pwdInput.addEventListener('input', function() {
+                    const val = this.value;
+                    if (val.length === 0) {
+                        strengthContainer.style.display = 'none';
+                        return;
+                    }
+                    strengthContainer.style.display = 'block';
+
+                    let score = 0;
+                    if (val.length >= 8) score++;
+                    if (/[A-Z]/.test(val)) score++;
+                    if (/[0-9]/.test(val)) score++;
+                    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+                    const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-blue-500', 'bg-brand'];
+                    const labels = ['Sangat Lemah', 'Lemah', 'Cukup', 'Kuat', 'Sangat Kuat'];
+                    const textColors = ['text-red-500', 'text-orange-500', 'text-yellow-500', 'text-blue-500', 'text-brand'];
+                    
+                    strengthFill.className = 'h-full transition-all duration-300 ' + colors[score];
+                    strengthFill.style.width = ((score + 1) * 20) + '%';
+                    strengthText.textContent = labels[score];
+                    strengthText.className = 'text-[10px] mt-1 font-bold uppercase ' + textColors[score];
+                });
+            }
+
+            // Password confirmation
+            document.getElementById('passwordForm')?.addEventListener('submit', function(e) {
+                const p1 = this.querySelector('input[name="new_password"]').value;
+                const p2 = this.querySelector('input[name="confirm_password"]').value;
+                if (p1 !== p2) {
+                    e.preventDefault();
+                    if (window.showToast) showToast('Konfirmasi password tidak cocok!', 'error');
+                    else alert('Konfirmasi password tidak cocok!');
                 }
-            }
-        });
+            });
 
-        // Animate XP bar on load
-        document.addEventListener('DOMContentLoaded', function() {
-            const xpFill = document.querySelector('.profile-xp-fill');
-            const levelFill = document.querySelector('.level-progress-fill');
-            
-            if (xpFill) {
-                const targetWidth = xpFill.style.width;
-                xpFill.style.width = '0%';
-                setTimeout(() => {
-                    xpFill.style.width = targetWidth;
-                }, 300);
-            }
-            
-            if (levelFill) {
-                const targetWidth = levelFill.style.width;
-                levelFill.style.width = '0%';
-                setTimeout(() => {
-                    levelFill.style.width = targetWidth;
-                }, 500);
-            }
+            // Animate progress on load
+            setTimeout(() => {
+                document.querySelectorAll('.profile-xp-fill, .glass-progress-bar').forEach(bar => {
+                    const w = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => bar.style.width = w, 100);
+                });
+            }, 300);
         });
     </script>
 </body>
+    <?php require_once 'navbar.php'; ?>
+
+    <div class="dashboard-main-container">
 </html>

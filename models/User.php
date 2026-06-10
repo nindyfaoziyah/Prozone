@@ -17,12 +17,12 @@ class User {
     }
 
     public function login($email, $password) {
-        $query = "SELECT id, username, password, nama_lengkap, email, role, nomor_hp
+        $query = "SELECT id, username, password, nama_lengkap, email, role
                   FROM " . $this->table_name . " 
-                  WHERE email = :email";
+                  WHERE email = :identifier OR username = :identifier";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':identifier', $email);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
@@ -32,7 +32,6 @@ class User {
                 $this->id = $row['id'];
                 $this->username = $row['username'];
                 $this->nama_lengkap = $row['nama_lengkap'];
-                $this->nomor_hp = $row['nomor_hp'];
                 $this->email = $row['email'];
                 $this->role = $row['role'];
                 return true;
@@ -44,7 +43,7 @@ class User {
     public function create() {
         $query = "INSERT INTO " . $this->table_name . "
                   SET username=:username, password=:password, nama_lengkap=:nama_lengkap, 
-                      email=:email, role=:role, nomor_hp=:nomor_hp";
+                      email=:email, role=:role";
 
         $stmt = $this->conn->prepare($query);
 
@@ -60,7 +59,6 @@ class User {
         $stmt->bindParam(':nama_lengkap', $this->nama_lengkap);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':role', $this->role);
-        $stmt->bindParam(':nomor_hp', $this->nomor_hp);
 
         if ($stmt->execute()) {
             return true;
@@ -80,7 +78,7 @@ class User {
     }
 
     public function readOne() {
-        $query = "SELECT id, username, nama_lengkap, email, role, avatar, nomor_hp
+        $query = "SELECT id, username, nama_lengkap, email, role, avatar
                   FROM " . $this->table_name . " 
                   WHERE id = :id";
 

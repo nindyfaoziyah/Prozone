@@ -3,10 +3,11 @@ require_once 'config/config.php';
 requireLogin();
 require_once 'includes/icons.php';
 require_once 'includes/language-icons.php';
+require_once 'includes/rpg_system.php';
 
 $page_title       = 'Dashboard';
 $page_description = 'Dashboard pembelajaran coding Prozone.';
-$page_css         = ['pages/dashboard.css'];
+$page_css         = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'rpg-system.css'];
 $body_class       = getThemeClass();
 require_once 'models/User.php';
 require_once 'models/Course.php';
@@ -56,8 +57,8 @@ if ($role === 'student') {
     $avg_progress = count($enrolled_courses) > 0 ? $total_progress / count($enrolled_courses) : 0;
     $total_enrolled = count($enrolled_courses);
 
-    // Get user XP, Level
-    $query_user = "SELECT total_xp, level, avatar FROM users WHERE id = :user_id";
+    // Get user XP, Level, Character
+    $query_user = "SELECT total_xp, level, avatar, character_class FROM users WHERE id = :user_id";
     $stmt_user = $db->prepare($query_user);
     $stmt_user->bindParam(':user_id', $_SESSION['user_id']);
     $stmt_user->execute();
@@ -65,6 +66,9 @@ if ($role === 'student') {
     $total_xp = $user_data['total_xp'] ?? 0;
     $level = $user_data['level'] ?? 1;
     $avatar = $user_data['avatar'] ?? null;
+    $char_slug = $user_data['character_class'] ?? 'code-warrior';
+    $char_data = getClassData($char_slug);
+    $next_unlock = getNextUnlock($level, $total_xp);
     
     // Calculate XP progress
     $xp_for_current_level = ($level - 1) * 100;
@@ -139,13 +143,17 @@ if ($role === 'admin' || $role === 'instructor') {
     }
     
     // Get admin user data
-    $query_user = "SELECT total_xp, level, avatar FROM users WHERE id = :user_id";
+    $query_user = "SELECT total_xp, level, avatar, character_class FROM users WHERE id = :user_id";
     $stmt_user = $db->prepare($query_user);
     $stmt_user->bindParam(':user_id', $_SESSION['user_id']);
     $stmt_user->execute();
     $user_data = $stmt_user->fetch(PDO::FETCH_ASSOC);
     $level = $user_data['level'] ?? 1;
     $avatar = $user_data['avatar'] ?? null;
+    $char_slug = $user_data['character_class'] ?? 'code-warrior';
+    $char_data = getClassData($char_slug);
+    $total_xp = $user_data['total_xp'] ?? 0;
+    $next_unlock = getNextUnlock($level, $total_xp);
 }
 ?>
 <!DOCTYPE html>
@@ -156,81 +164,95 @@ if ($role === 'admin' || $role === 'instructor') {
 <body class="<?php echo $body_class; ?>">
     <?php require_once 'navbar.php'; ?>
 
-    <div class="dashboard-main-container">
+    <div class="page-wrapper dashboard-main-container">
         <div class="dashboard-content">
-            <!-- Welcome Section -->
-            <div class="welcome-section">
-                <div class="welcome-left">
-                    <div class="welcome-avatar">
-                        <?php if (!empty($avatar) && file_exists('assets/uploads/avatars/' . $avatar)): ?>
-                            <img src="assets/uploads/avatars/<?php echo $avatar; ?>" alt="Avatar">
-                        <?php else: ?>
-                            <?php echo strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?>
-                        <?php endif; ?>
-                        <div class="welcome-badge"><?php echo $level ?? 1; ?></div>
+            <!-- Premium Hero Section -->
+            <div class="glass-header premium-hero">
+                <div class="hero-text-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Platform Coding #1 untuk Pemula
                     </div>
-                    <div class="welcome-text">
-                        <h1><?php icon($greeting_icon, 20); ?> <?php echo $greeting; ?>, <?php echo explode(' ', $_SESSION['nama_lengkap'])[0]; ?>!</h1>
-                        <p>Login sebagai <strong><?php echo ucfirst($_SESSION['user_role']); ?></strong></p>
+                    <h1>Belajar Coding dengan Cara <br><span class="text-accent-gradient">Menyenangkan</span></h1>
+                    <p class="hero-subtitle">
+                        Platform pembelajaran coding interaktif dengan clan, leaderboard, achievement, dan code editor langsung di browser. Tingkatkan skill programming Anda sambil bersenang-senang!
+                    </p>
+                    <div class="hero-actions">
+                        <a href="courses.php" class="glass-btn glass-btn-primary glass-btn-lg">Mulai Belajar Gratis →</a>
+                        <a href="courses.php" class="glass-btn glass-btn-secondary glass-btn-lg">
+                            Lihat Kursus <?php icon('play', 14); ?>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-illustration hide-mobile">
+                    <!-- Placeholder for illustration - in a real app this would be an SVG or 3D asset -->
+                    <div class="code-terminal-mockup illustration-mockup">
+                        <div class="terminal-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="line"><span class="cmd">></span> npm start</div>
+                            <div class="line success">✓ Server running...</div>
+                            <div class="line">✓ Ready to code!</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <?php if ($role === 'student'): ?>
             
-            <!-- Quick Links -->
-            <div class="quick-links">
-                <a href="courses.php" class="quick-link"><?php icon('book', 16); ?> Kursus</a>
-                <a href="leaderboard.php" class="quick-link"><?php icon('trophy', 16); ?> Leaderboard</a>
-                <a href="achievements.php" class="quick-link"><?php icon('award', 16); ?> Achievement</a>
-                <a href="certificates.php" class="quick-link"><?php icon('file-text', 16); ?> Sertifikat</a>
-            </div>
 
             <!-- Stats Grid -->
-            <div class="dash-stats-grid">
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-brand"><?php icon('star', 18); ?></div>
+            <div class="glass-stats-grid mb-10">
+                <div class="glass-stat-card">
+                    <div class="stat-icon-wrapper bg-accent-subtle">
+                        <?php icon('book', 24, 'text-accent'); ?>
                     </div>
-                    <div class="dash-stat-value"><?php echo number_format($total_xp ?? 0); ?></div>
-                    <div class="dash-stat-label">Total XP</div>
+                    <div class="stat-info">
+                        <div class="glass-stat-label">KURSUS</div>
+                        <div class="glass-stat-value"><?php echo number_format($total_courses ?? 0); ?>+</div>
+                        <div class="stat-desc">Kursus Interaktif</div>
+                    </div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-accent"><?php icon('check-circle', 18); ?></div>
+                <div class="glass-stat-card">
+                    <div class="stat-icon-wrapper bg-primary-subtle">
+                        <?php icon('users', 24, 'text-primary'); ?>
                     </div>
-                    <div class="dash-stat-value"><?php echo $completed_courses ?? 0; ?>/<?php echo $total_enrolled ?? 0; ?></div>
-                    <div class="dash-stat-label">Kursus Selesai</div>
+                    <div class="stat-info">
+                        <div class="glass-stat-label">STUDENTS</div>
+                        <div class="glass-stat-value"><?php echo number_format($total_enrolled ?? 0); ?>+</div>
+                        <div class="stat-desc">Pelajar Aktif</div>
+                    </div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-warning"><?php icon('fire', 18); ?></div>
+                <div class="glass-stat-card">
+                    <div class="stat-icon-wrapper bg-warning-subtle">
+                        <?php icon('award', 24, 'text-warning'); ?>
                     </div>
-                    <div class="dash-stat-value"><?php echo $streakDays ?? 0; ?></div>
-                    <div class="dash-stat-label">Day Streak</div>
-                </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-info"><?php icon('trending-up', 18); ?></div>
+                    <div class="stat-info">
+                        <div class="glass-stat-label">INSTRUCTORS</div>
+                        <div class="glass-stat-value">50+</div>
+                        <div class="stat-desc">Instruktur Ahli</div>
                     </div>
-                    <div class="dash-stat-value"><?php echo number_format($avg_progress ?? 0, 0); ?>%</div>
-                    <div class="dash-stat-label">Avg Progress</div>
                 </div>
             </div>
 
             <!-- Continue Learning -->
             <?php if (!empty($lastCourse)): ?>
-            <div class="continue-card">
-                <div class="continue-info">
-                    <div class="continue-icon"><?php icon('play', 22); ?></div>
-                    <div class="continue-text">
-                        <h3><?php echo htmlspecialchars($lastCourse['judul_course']); ?></h3>
-                        <p>Progress: <span><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
+            <div class="glass-card mb-8">
+                <div class="glass-card-content flex items-center justify-between gap-4 flex-wrap">
+                    <div class="continue-info flex items-center gap-4">
+                        <div class="continue-icon w-12 h-12 rounded-lg bg-brand flex items-center justify-center text-white"><?php icon('play', 22); ?></div>
+                        <div class="continue-text">
+                            <h3 class="text-lg font-bold text-white mb-1"><?php echo htmlspecialchars($lastCourse['judul_course']); ?></h3>
+                            <p class="text-sm text-gray-300">Progress: <span class="text-brand font-bold"><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
+                        </div>
                     </div>
+                    <a href="course.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
+                        <?php icon('play', 16); ?> Lanjutkan
+                    </a>
                 </div>
-                <a href="course.php?id=<?php echo $lastCourse['id']; ?>" class="btn-continue">
-                    <?php icon('play', 16); ?> Lanjutkan
-                </a>
             </div>
             <?php endif; ?>
 
@@ -272,74 +294,129 @@ if ($role === 'admin' || $role === 'instructor') {
 
             <?php endif; ?>
 
-            <!-- Courses Section -->
-            <div class="courses-section">
-                <div class="courses-header">
-                    <h3><?php icon('book', 18); ?> <?php echo ($role === 'student') ? 'Kursus Saya' : 'Pendaftaran Terbaru'; ?></h3>
-                    <a href="<?php echo ($role === 'student') ? 'courses.php' : 'admin/courses.php'; ?>">Lihat Semua →</a>
-                </div>
-                
-                <?php if ($role === 'student'): ?>
-                    <?php if (empty($enrolled_courses)): ?>
-                    <div class="empty-state">
-                        <?php icon('book-open', 40); ?>
-                        <p>Belum ada kursus yang diikuti</p>
-                        <a href="courses.php" class="btn-explore">
-                            <?php icon('search', 14); ?> Jelajahi Kursus
-                        </a>
+            <!-- Secondary Section: Learning & Challenges -->
+            <div class="dashboard-grid-secondary">
+                <!-- Lanjutkan Belajar -->
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>Lanjutkan Belajar</h3>
+                        <a href="courses.php" class="view-all-link">Lihat Semua</a>
                     </div>
-                    <?php else: ?>
-                        <?php foreach (array_slice($enrolled_courses, 0, 5) as $course_item): ?>
-                        <div class="course-item">
-                            <div class="course-info">
-                                <div class="course-logo">
+                    
+                    <div class="learning-tracks-list">
+                        <?php if (empty($enrolled_courses)): ?>
+                            <div class="glass-empty-state">
+                                <p>Cari kursus pertamamu!</p>
+                            </div>
+                        <?php else: ?>
+                            <?php foreach (array_slice($enrolled_courses, 0, 2) as $course_item): ?>
+                            <div class="course-item-horizontal">
+                                <div class="course-logo-circle">
                                     <?php $logo = getLanguageIcon($course_item['judul_course']); if ($logo): ?>
-                                    <img src="<?php echo $logo; ?>" alt="">
+                                    <img src="<?php echo $logo; ?>" alt="" style="width: 32px;">
                                     <?php else: ?>
-                                    <?php icon('code', 18); ?>
+                                    <?php icon('code', 24, 'text-primary'); ?>
                                     <?php endif; ?>
                                 </div>
-                                <div class="course-details">
-                                    <a href="course.php?id=<?php echo $course_item['course_id']; ?>" class="course-name">
+                                <div class="course-mini-info">
+                                    <a href="course.php?id=<?php echo $course_item['course_id']; ?>" class="track-name">
                                         <?php echo htmlspecialchars($course_item['judul_course']); ?>
                                     </a>
-                                    <div class="course-meta"><?php echo $course_item['completed_lessons']; ?>/<?php echo $course_item['total_lessons']; ?> lessons</div>
+                                    <div class="progress-container-mini">
+                                        <div class="progress-bar-bg">
+                                            <div class="progress-bar-fill" style="width: <?php echo $course_item['progress_percent']; ?>%"></div>
+                                        </div>
+                                        <span class="progress-label"><?php echo number_format($course_item['progress_percent'], 0); ?>%</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="course-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: <?php echo $course_item['progress_percent']; ?>%"></div>
-                                </div>
-                                <span class="progress-text"><?php echo number_format($course_item['progress_percent'], 0); ?>%</span>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+
+                        <!-- Tantangan Harian Placeholder -->
+                        <div class="section-title-row mt-8">
+                            <h3>Tantangan Harian <span class="glass-badge glass-badge-primary ml-2" style="font-size: 8px;">New</span></h3>
+                        </div>
+                        <div class="course-item-horizontal">
+                            <div class="course-logo-circle">
+                                <?php icon('code', 24, 'text-primary'); ?>
+                            </div>
+                            <div class="course-mini-info">
+                                <span class="track-name">Two Sum</span>
+                                <div class="text-xs text-muted">Selesaikan algoritma Two Sum</div>
                             </div>
                         </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                <?php endif; ?>
+                    </div>
+                </div>
 
-                <?php if ($role === 'admin' || $role === 'instructor'): ?>
-                    <?php if (empty($recent_enrollments)): ?>
-                    <div class="empty-state">
-                        <?php icon('clipboard', 40); ?>
-                        <p>Belum ada pendaftaran</p>
+                <!-- RPG Character Profile Card -->
+                <?php
+                $xp_for_next_lvl = ($level) * 100;
+                $xp_prev_lvl = ($level - 1) * 100;
+                $xp_in_lvl = $total_xp - $xp_prev_lvl;
+                $xp_needed = $xp_for_next_lvl - $xp_prev_lvl;
+                $lvl_pct = $xp_needed > 0 ? min(100, ($xp_in_lvl / $xp_needed) * 100) : 100;
+                $ring_offset = 314 - ($lvl_pct / 100) * 314;
+                $next_xp_pct = 0;
+                if ($next_unlock) {
+                    $next_xp_pct = $next_unlock['xp_required'] > 0
+                        ? min(100, ($total_xp / $next_unlock['xp_required']) * 100)
+                        : 100;
+                }
+                ?>
+                <div class="rpg-profile-card" style="--card-gradient:<?php echo $char_data['gradient']; ?>">
+                    <!-- XP Ring + Avatar -->
+                    <div class="rpg-xp-ring-wrapper">
+                        <svg class="rpg-xp-ring-svg" viewBox="0 0 44 44">
+                            <defs>
+                                <linearGradient id="epicGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#6C4CFD"/>
+                                    <stop offset="100%" stop-color="#EC4899"/>
+                                </linearGradient>
+                                <linearGradient id="legendaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#FF6B35"/>
+                                    <stop offset="50%" stop-color="#8B5CF6"/>
+                                    <stop offset="100%" stop-color="#06B6D4"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="rpg-ring-bg" cx="22" cy="22" r="18"/>
+                            <circle class="rpg-ring-fill rarity-fill-<?php echo $char_data['rarity']; ?>" cx="22" cy="22" r="18"
+                                style="stroke-dashoffset:<?php echo $ring_offset; ?>"/>
+                        </svg>
+                        <div class="rpg-avatar-circle">
+                            <img src="<?php echo htmlspecialchars($char_data['image']); ?>" alt="<?php echo htmlspecialchars($char_data['name']); ?>">
+                        </div>
+                    </div>
+
+                    <!-- Class Info -->
+                    <div class="rpg-class-badge"><?php echo $char_data['badge']; ?></div>
+                    <div class="rpg-class-name"><?php echo htmlspecialchars($char_data['name']); ?></div>
+                    <div class="rpg-class-title"><?php echo htmlspecialchars($char_data['title']); ?></div>
+                    <span class="rarity-badge rarity-<?php echo $char_data['rarity']; ?>">✦ <?php echo $char_data['rarity_label']; ?></span>
+
+                    <!-- Stats -->
+                    <div class="rpg-stats-row">
+                        <div class="rpg-stat-pill lvl">⭐ Lv.<?php echo $level; ?></div>
+                        <div class="rpg-stat-pill xp">⚡ <?php echo number_format($total_xp); ?> XP</div>
+                    </div>
+
+                    <!-- Next unlock preview -->
+                    <?php if ($next_unlock): ?>
+                    <div class="rpg-next-unlock">
+                        <div class="rpg-next-label"><?php echo $next_unlock['badge']; ?> Next: <?php echo htmlspecialchars($next_unlock['name']); ?></div>
+                        <div class="rpg-next-bar-bg">
+                            <div class="rpg-next-bar-fill" style="width:<?php echo $next_xp_pct; ?>%"></div>
+                        </div>
+                        <div class="rpg-next-hint"><?php echo number_format($total_xp); ?> / <?php echo number_format($next_unlock['xp_required']); ?> XP · Lv.<?php echo $next_unlock['level_required']; ?> required</div>
                     </div>
                     <?php else: ?>
-                        <?php foreach ($recent_enrollments as $row): ?>
-                        <div class="course-item">
-                            <div class="course-info">
-                                <div class="course-logo" style="background: var(--gradient-brand); color: var(--text-on-primary); font-weight: bold;">
-                                    <?php echo strtoupper(substr($row['nama_lengkap'], 0, 1)); ?>
-                                </div>
-                                <div class="course-details">
-                                    <span class="course-name" style="cursor: default;"><?php echo htmlspecialchars($row['nama_lengkap']); ?></span>
-                                    <div class="course-meta"><?php echo htmlspecialchars($row['judul_course']); ?></div>
-                                </div>
-                            </div>
-                            <span class="course-meta"><?php echo date('d M Y', strtotime($row['enrolled_at'])); ?></span>
-                        </div>
-                        <?php endforeach; ?>
+                    <div class="rpg-next-unlock" style="text-align:center">
+                        <div class="rpg-next-label" style="justify-content:center">🏆 Max Class Reached!</div>
+                    </div>
                     <?php endif; ?>
-                <?php endif; ?>
+
+                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">⚔️ Lihat Koleksi Karakter</a>
+                </div>
             </div>
         </div>
     </div>

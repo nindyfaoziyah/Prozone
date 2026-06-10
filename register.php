@@ -179,22 +179,7 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                     <?php endif; ?>
                 </div>
 
-                <div class="auth-field">
-                    <label for="nomor_hp" class="auth-field-label">Phone (optional)</label>
-                    <div class="auth-field-wrap">
-                        <span class="auth-field-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-                        </span>
-                        <input type="tel" id="nomor_hp" name="nomor_hp"
-                               class="auth-field-input <?php echo isset($errors['nomor_hp']) ? 'is-invalid' : ''; ?>"
-                               placeholder="08xxxxxxxxxx"
-                               value="<?php echo htmlspecialchars($old['nomor_hp'] ?? ''); ?>"
-                               pattern="[0-9+\-\s\(\)]{8,20}" maxlength="20">
-                    </div>
-                    <?php if (isset($errors['nomor_hp'])): ?>
-                        <p class="auth-field-error"><?php echo htmlspecialchars($errors['nomor_hp']); ?></p>
-                    <?php endif; ?>
-                </div>
+
 
                 <div class="auth-field">
                     <label for="password" class="auth-field-label">Password</label>
