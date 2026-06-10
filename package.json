@@ -1,0 +1,21 @@
+{
+  "name": "prozone-1",
+  "version": "1.0.0",
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)\r [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)\r [![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)\r [![Apache](https://img.shields.io/badge/Apache-mod_rewrite-D22128?logo=apache&logoColor=white)](https://httpd.apache.org/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "php -S localhost:8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paycode1313/Prozone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paycode1313/Prozone/issues"
+  },
+  "homepage": "https://github.com/paycode1313/Prozone#readme"
+}
