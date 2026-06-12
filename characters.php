@@ -89,7 +89,7 @@ $next = getNextUnlock($user_level, $user_xp);
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/rpg-system.css">
 </head>
-<body class="<?php echo $body_class; ?>">
+<body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
 <?php require_once 'navbar.php'; ?>
 
 <div class="page-wrapper dashboard-main-container">
@@ -199,7 +199,6 @@ $next = getNextUnlock($user_level, $user_xp);
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
 <?php include 'includes/loading.php'; ?>
 <?php include 'includes/toast.php'; ?>
 <script src="assets/js/navbar.js"></script>

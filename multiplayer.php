@@ -6,7 +6,7 @@ require_once 'includes/rpg_system.php';
 
 $page_title       = 'CodeQuest Arena';
 $page_description = 'Multiplayer Coding Battle Prozone.';
-$page_css         = ['sidebar-island.css', 'rpg-system.css', 'arena-v2.css'];
+$page_css         = ['sidebar-island.css', 'rpg-system.css', 'arena-v2.css', 'arena-battle-result.css'];
 // By injecting `arena-active`, we override the body to be overflow:hidden
 $body_class       = getThemeClass() . ' arena-active';
 
@@ -52,8 +52,10 @@ $enemy_char = getClassData('cyber-ninja');
         <!-- Challenge Header -->
         <div class="arena-challenge-header">
             <div class="challenge-title-group">
-                <a href="dashboard.php" class="btn-back-home" style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; color:#818cf8; text-decoration:none; font-weight:800; font-size:0.8rem; padding: 6px 12px; background:rgba(99,102,241,0.1); border-radius:8px; border:1px solid rgba(99,102,241,0.2); transition:all 0.2s;">
-                    &larr; HOME
+                <a href="dashboard.php" class="btn-back-home" aria-label="Kembali" style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; margin-right:12px; color:#818cf8; text-decoration:none; font-weight:800; font-size:0.9rem; padding: 0; background:rgba(99,102,241,0.1); border-radius:12px; border:1px solid rgba(99,102,241,0.2); transition:all 0.2s;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </a>
                 <h1 class="challenge-title">Array Profit Maximization</h1>
                 <span class="difficulty-badge">HARD</span>
@@ -95,11 +97,7 @@ $enemy_char = getClassData('cyber-ninja');
 
         <!-- Actions Bar -->
         <div class="arena-actions-bar">
-            <div class="test-results">
-                <span class="pending">Test cases pending execution...</span>
-            </div>
             <div class="action-buttons">
-                <button class="btn-neon-outline" id="btn-test">Run Code</button>
                 <button class="btn-neon-fill" id="btn-submit-code">Submit Solution</button>
             </div>
         </div>
@@ -174,8 +172,8 @@ $enemy_char = getClassData('cyber-ninja');
                 </div>
             </div>
             <div class="chat-input-box">
-                <input type="text" class="chat-input" placeholder="Type a message..." disabled>
-                <button class="chat-btn" disabled>➤</button>
+                <input type="text" id="chat-input" class="chat-input" placeholder="Type a message..." autocomplete="off">
+                <button id="chat-send-btn" class="chat-btn">➤</button>
             </div>
         </div>
 
@@ -183,6 +181,14 @@ $enemy_char = getClassData('cyber-ninja');
 
 </div>
 
+<script>
+    window.battleUserName = <?php echo json_encode($first_name); ?>;
+    window.battleUserAvatar = <?php echo json_encode($you_char['image']); ?>;
+</script>
 <script src="assets/js/arena.js"></script> <!-- Reuses existing JS timer & typing logic -->
+
+<!-- Battle Result Analysis Modal -->
+<?php require_once 'includes/battle-result-modal.php'; ?>
+
 </body>
 </html>

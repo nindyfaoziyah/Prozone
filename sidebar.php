@@ -36,8 +36,6 @@ $menu_items = [
     ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
     ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
     ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
-    ['label' => 'Digital Twin',      'icon' => 'user-check',  'link' => 'digital-twin.php'],
-    ['label' => 'Community',         'icon' => 'users',       'link' => 'community.php'],
     ['label' => 'Leaderboard & Achievement', 'icon' => 'award', 'link' => 'leaderboard.php'],
     ['label' => 'Settings',          'icon' => 'settings',    'link' => 'settings.php'],
 ];
@@ -53,12 +51,10 @@ $menu_items = [
     </defs>
 </svg>
 
-<!-- Sidebar Toggle Button -->
-<button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation">
-    <span id="toggle-icon">☰</span>
-</button>
-
 <nav class="sidebar-island-container" id="sidebar-island">
+    <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation" aria-label="Toggle Navigation">
+        <span id="toggle-icon">☰</span>
+    </button>
     <div class="sidebar-island-panel">
         <!-- Logo -->
         <div class="sidebar-logo">
@@ -124,19 +120,12 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar-island');
     const btn     = document.getElementById('sidebar-toggle');
     const icon    = document.getElementById('toggle-icon');
-    const wrapper = document.querySelector('.page-wrapper') || document.querySelector('.dashboard-main-container');
-    const header  = document.querySelector('.header-floating');
 
     sidebar.classList.toggle('sidebar-hidden');
+    btn.classList.toggle('sidebar-hidden');
+    document.body.classList.toggle('sidebar-hidden');
+
     const hidden = sidebar.classList.contains('sidebar-hidden');
-
     icon.textContent = hidden ? '☰' : '✕';
-
-    // Shift content left when sidebar hidden
-    const contentLeft = hidden ? '20px' : 'calc(240px + 40px)';
-    const headerLeft  = hidden ? '20px' : 'calc(240px + 40px + 20px)';
-    if (wrapper) wrapper.style.marginLeft = hidden ? '0' : '';
-    if (header)  header.style.left = headerLeft;
-    btn.style.left = hidden ? '20px' : 'calc(240px + 40px + 20px - 46px)';
 }
 </script>

@@ -130,6 +130,12 @@ function canRunLocally($language) {
             $check = @shell_exec("g++ --version 2>&1");
             return $check && stripos($check, 'g++') !== false;
             
+        case 'javascript':
+        case 'js':
+        case 'nodejs':
+            $check = @shell_exec("node --version 2>&1");
+            return $check && stripos($check, 'v') === 0;
+            
         default:
             return false;
     }
@@ -502,10 +508,24 @@ switch ($language) {
         $tempFile = tempnam(sys_get_temp_dir(), 'js_code_');
         file_put_contents($tempFile, $code);
         
-        $commands = ['node', 'nodejs', 'C:\Program Files\nodejs\node.exe'];
+        $commands = ['node', 'nodejs', 'where node 2>&1', 'where nodejs 2>&1', 'C:\\Program Files\\nodejs\\node.exe', 'C:\\laragon\\bin\\nodejs\\node-v18\\node.exe'];
         $success = false;
         
         foreach ($commands as $cmdName) {
+            if (stripos($cmdName, 'where ') === 0) {
+                $found = @shell_exec($cmdName);
+                if ($found) {
+                    $paths = array_filter(array_map('trim', preg_split('/[\r\n]+/', $found)));
+                    if (!empty($paths)) {
+                        $cmdName = $paths[0];
+                    } else {
+                        continue;
+                    }
+                } else {
+                    continue;
+                }
+            }
+
             $descriptors = [
                 0 => ["pipe", "r"],
                 1 => ["pipe", "w"],
@@ -529,8 +549,8 @@ switch ($language) {
                 fclose($pipes[2]);
                 $return_value = proc_close($process);
                 
-                if (strpos($stdout . $stderr, 'is not recognized') === false &&
-                    strpos($stdout . $stderr, 'not found') === false) {
+                $combined = trim($stdout . $stderr);
+                if ($combined !== '' && strpos($combined, 'is not recognized') === false && strpos($combined, 'not found') === false) {
                     $output = $stdout . $stderr;
                     $success = true;
                     break;
