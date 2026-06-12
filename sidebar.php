@@ -36,8 +36,6 @@ $menu_items = [
     ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
     ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
     ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
-    ['label' => 'Digital Twin',      'icon' => 'user-check',  'link' => 'digital-twin.php'],
-    ['label' => 'Community',         'icon' => 'users',       'link' => 'community.php'],
     ['label' => 'Leaderboard & Achievement', 'icon' => 'award', 'link' => 'leaderboard.php'],
     ['label' => 'Settings',          'icon' => 'settings',    'link' => 'settings.php'],
 ];
@@ -53,12 +51,10 @@ $menu_items = [
     </defs>
 </svg>
 
-<!-- Sidebar Toggle Button -->
-<button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation">
-    <span id="toggle-icon">☰</span>
-</button>
-
 <nav class="sidebar-island-container" id="sidebar-island">
+    <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation" aria-label="Toggle Navigation">
+        <span id="toggle-icon">☰</span>
+    </button>
     <div class="sidebar-island-panel">
         <!-- Logo -->
         <div class="sidebar-logo">
@@ -127,6 +123,7 @@ function toggleSidebar() {
 
     sidebar.classList.toggle('sidebar-hidden');
     btn.classList.toggle('sidebar-hidden');
+    document.body.classList.toggle('sidebar-hidden');
 
     const hidden = sidebar.classList.contains('sidebar-hidden');
     icon.textContent = hidden ? '☰' : '✕';

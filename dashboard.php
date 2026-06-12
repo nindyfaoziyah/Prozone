@@ -161,7 +161,7 @@ if ($role === 'admin' || $role === 'instructor') {
 <head>
     <?php require_once 'includes/head.php'; ?>
 </head>
-<body class="<?php echo $body_class; ?>">
+<body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
     <?php require_once 'navbar.php'; ?>
 
     <div class="page-wrapper dashboard-main-container">

@@ -1,16 +1,25 @@
 /* sidebar-island.css */
 .sidebar-island-container {
-    position: fixed;
+    position: sticky;
     top: 20px;
-    left: 20px;
-    bottom: 20px;
+    left: auto;
+    right: auto;
+    bottom: auto;
     width: var(--sidebar-width);
+        height: calc(100vh - 40px);
+        min-height: calc(100vh - 40px);
+        max-height: calc(100vh - 40px);
     z-index: 1000;
-    pointer-events: none;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+        align-self: stretch;
 }
 
 .sidebar-island-panel {
+    flex: 1 1 auto;
     height: 100%;
+    min-height: 0;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
@@ -60,6 +69,7 @@
     flex: 1;
     overflow-y: auto;
     padding-right: 5px;
+        min-height: 0;
 }
 
 .sidebar-menu::-webkit-scrollbar {
@@ -124,7 +134,12 @@
 /* Sidebar Footer & XP Orb */
 .sidebar-footer {
     padding-top: var(--space-8);
+    margin-top: auto;
+    width: 100%;
 }
+    .sidebar-footer .sidebar-xp-card {
+        width: 100%;
+    }
 
 .sidebar-xp-card {
     background: var(--bg-surface-soft);
