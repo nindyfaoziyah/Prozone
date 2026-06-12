@@ -6,6 +6,7 @@ if (isLoggedIn()) {
     exit();
 }
 
+$force_theme      = 'light';
 $page_title       = 'Daftar';
 $page_description = 'Daftar di ' . APP_NAME . ' - Platform pembelajaran coding interaktif';
 $page_css         = ['components/button.css', 'components/card.css', 'components/form.css', 'components/alert.css', 'components/badge.css', 'components/auth.css'];
@@ -31,6 +32,20 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
 <html lang="id">
 <head>
     <?php require_once 'includes/head.php'; ?>
+
+    <!-- SVG Symbol Definitions -->
+    <svg style="display: none;" aria-hidden="true">
+        <defs>
+            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366F1"/>
+                <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+        </defs>
+        <symbol id="brandLogo" viewBox="0 0 100 100">
+            <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGrad)"/>
+            <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGrad)"/>
+        </symbol>
+    </svg>
 </head>
 <body class="<?php echo $body_class; ?> auth-body">
     <div class="auth-wrapper auth-wrapper--register">
@@ -61,20 +76,20 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                     <span class="auth-welcome-brand-name"><?php echo APP_NAME; ?></span>
                 </a>
 
-                <h1 class="auth-welcome-heading">WELCOME!</h1>
-                <p class="auth-welcome-text">Already have an account? Log in and continue your coding journey.</p>
+                <h1 class="auth-welcome-heading">SELAMAT DATANG!</h1>
+                <p class="auth-welcome-text">Sudah punya akun? Masuk dan lanjutkan perjalanan coding Anda.</p>
 
-                <a href="login.php" class="auth-btn-signup">LOG IN</a>
+                <a href="login.php" class="auth-btn-signup">MASUK</a>
 
                 <div class="auth-welcome-stats">
                     <div class="auth-welcome-stat">
                         <strong>10K+</strong>
-                        <span>Students</span>
+                        <span>Siswa</span>
                     </div>
                     <div class="auth-welcome-stat-sep"></div>
                     <div class="auth-welcome-stat">
                         <strong>50+</strong>
-                        <span>Courses</span>
+                        <span>Kursus</span>
                     </div>
                     <div class="auth-welcome-stat-sep"></div>
                     <div class="auth-welcome-stat">
@@ -88,19 +103,19 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">50+ Interactive Courses</span>
+                        <span class="auth-welcome-feature-text">50+ Kursus Interaktif</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">XP, Levels & Achievements</span>
+                        <span class="auth-welcome-feature-text">XP, Level & Pencapaian</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Real-time Code Playground</span>
+                        <span class="auth-welcome-feature-text">Code Playground Real-time</span>
                     </div>
                 </div>
             </div>
@@ -108,7 +123,18 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
 
         <!-- RIGHT: Registration Form (white card) -->
         <div class="auth-form-panel">
-            <div class="auth-form-title">Create Account</div>
+            <div class="auth-form-brand">
+                <a href="index.php" class="auth-form-brand-link">
+                    <svg class="auth-form-brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <use href="#brandLogo"></use>
+                    </svg>
+                    <span class="auth-form-brand-name"><?php echo APP_NAME; ?></span>
+                </a>
+            </div>
+            <div class="auth-form-header">
+                <div class="auth-form-title">Buat Akun Baru</div>
+                <p class="auth-form-subtitle">Mulai perjalanan coding Anda sekarang</p>
+            </div>
             <span class="auth-form-title-underline"></span>
 
             <?php if (!empty($success)): ?>
@@ -124,9 +150,9 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
             <?php endif; ?>
 
             <form method="POST" id="registerForm" novalidate>
-                <div class="auth-form-row-2">
+                <div class="auth-form-row-2 stagger">
                     <div class="auth-field">
-                        <label for="nama_lengkap" class="auth-field-label">Full Name</label>
+                        <label for="nama_lengkap" class="auth-field-label">Nama Lengkap</label>
                         <div class="auth-field-wrap">
                             <span class="auth-field-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -157,13 +183,13 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                         <?php if (isset($errors['username'])): ?>
                             <p class="auth-field-error"><?php echo htmlspecialchars($errors['username']); ?></p>
                         <?php else: ?>
-                            <p class="auth-field-help">3-30 chars, letters, numbers & underscore only</p>
+                            <p class="auth-field-help">3-30 karakter, huruf, angka & garis bawah saja</p>
                         <?php endif; ?>
                     </div>
                 </div>
 
-                <div class="auth-field">
-                    <label for="email" class="auth-field-label">Email</label>
+                <div class="auth-field stagger">
+                    <label for="email" class="auth-field-label">Alamat Email</label>
                     <div class="auth-field-wrap">
                         <span class="auth-field-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
@@ -179,17 +205,15 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                     <?php endif; ?>
                 </div>
 
-
-
-                <div class="auth-field">
-                    <label for="password" class="auth-field-label">Password</label>
+                <div class="auth-field stagger">
+                    <label for="password" class="auth-field-label">Kata Sandi</label>
                     <div class="auth-field-wrap">
                         <span class="auth-field-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </span>
                         <input type="password" id="password" name="password"
                                class="auth-field-input <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
-                               placeholder="Minimum 8 characters"
+                               placeholder="Minimal 8 karakter"
                                required minlength="8" autocomplete="new-password">
                         <button type="button" class="auth-field-toggle" id="togglePassword" aria-label="Show password">
                             <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -201,58 +225,54 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                     </div>
                     <span class="auth-strength-text" id="strengthLabel"><?php echo $password_value ? $strengthLabel : ''; ?></span>
                     <ul class="auth-req-list" id="requirementList">
-                        <li data-req="length" class="<?php echo $hasMinLength ? 'met' : ''; ?>">Min 8 characters</li>
-                        <li data-req="case" class="<?php echo $hasUpperLower ? 'met' : ''; ?>">Upper & lowercase</li>
-                        <li data-req="number" class="<?php echo $hasNumber ? 'met' : ''; ?>">Contains number</li>
-                        <li data-req="special" class="<?php echo $hasSpecial ? 'met' : ''; ?>">Special character</li>
+                        <li data-req="length" class="<?php echo $hasMinLength ? 'met' : ''; ?>">Minimal 8 karakter</li>
+                        <li data-req="case" class="<?php echo $hasUpperLower ? 'met' : ''; ?>">Huruf besar & kecil</li>
+                        <li data-req="number" class="<?php echo $hasNumber ? 'met' : ''; ?>">Mengandung angka</li>
+                        <li data-req="special" class="<?php echo $hasSpecial ? 'met' : ''; ?>">Karakter khusus</li>
                     </ul>
                     <?php if (isset($errors['password'])): ?>
                         <p class="auth-field-error"><?php echo htmlspecialchars($errors['password']); ?></p>
                     <?php endif; ?>
                 </div>
 
-                <div class="auth-field">
-                    <label for="password_confirm" class="auth-field-label">Confirm Password</label>
+                <div class="auth-field stagger">
+                    <label for="password_confirm" class="auth-field-label">Konfirmasi Kata Sandi</label>
                     <div class="auth-field-wrap">
                         <span class="auth-field-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </span>
                         <input type="password" id="password_confirm" name="password_confirm"
                                class="auth-field-input <?php echo isset($errors['password_confirm']) ? 'is-invalid' : ''; ?>"
-                               placeholder="Repeat password"
+                               placeholder="Ulangi kata sandi"
                                required minlength="8" autocomplete="new-password">
                     </div>
-                    <p class="auth-field-error" id="matchFeedback" style="display:none">Passwords don't match</p>
+                    <p class="auth-field-error" id="matchFeedback" style="display:none">Kata sandi tidak cocok</p>
                     <?php if (isset($errors['password_confirm'])): ?>
                         <p class="auth-field-error"><?php echo htmlspecialchars($errors['password_confirm']); ?></p>
                     <?php endif; ?>
                 </div>
 
-                <div class="auth-field">
+                <div class="auth-field stagger">
                     <label class="auth-checkbox-row">
                         <input type="checkbox" name="terms" id="terms" required <?php echo !empty($old['terms']) ? 'checked' : ''; ?>>
-                        <span>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></span>
+                        <span>Saya menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a></span>
                     </label>
                     <?php if (isset($errors['terms'])): ?>
                         <p class="auth-field-error"><?php echo htmlspecialchars($errors['terms']); ?></p>
                     <?php endif; ?>
                 </div>
 
-                <button type="submit" class="auth-btn-primary" id="submitBtn">
+                <button type="submit" class="auth-btn-primary stagger" id="submitBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-                    <span class="btn-label">CREATE ACCOUNT</span>
+                    <span class="btn-label">DAFTAR</span>
                     <span class="btn-spinner" aria-hidden="true"></span>
                 </button>
             </form>
 
-            <div class="auth-divider-sm"><span>or</span></div>
+            <div class="auth-divider-sm stagger"><span>atau</span></div>
 
-            <div class="auth-form-footer">
-                Already have an account? <a href="login.php">Log in here</a>
-            </div>
-
-            <div style="text-align:center">
-                <a href="index.php" class="auth-home-link">&larr; Back to Home</a>
+            <div class="auth-form-footer stagger">
+                Sudah punya akun? <a href="login.php">Masuk di sini</a>
             </div>
         </div>
     </div>
@@ -282,7 +302,7 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
             confirm.type = isPassword ? 'text' : 'password';
             toggle.querySelector('.eye-open').style.display = isPassword ? 'none' : '';
             toggle.querySelector('.eye-closed').style.display = isPassword ? '' : 'none';
-            toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+            toggle.setAttribute('aria-label', isPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
         });
 
         function updateStrength() {
@@ -309,7 +329,7 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
             } else {
                 strengthBar.style.width = percents[score] + '%';
                 strengthBar.className = 'auth-strength-fill ' + classes[score];
-                strengthLabel.textContent = 'Strength: ' + labels[score];
+                strengthLabel.textContent = 'Kekuatan: ' + labels[score];
             }
         }
 
@@ -349,6 +369,23 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
         });
 
         updateStrength();
+
+        // Focus effect for input groups
+        document.querySelectorAll('.auth-field-wrap').forEach(function(wrap) {
+            var inp = wrap.querySelector('.auth-field-input');
+            if (!inp) return;
+            inp.addEventListener('focus', function() { wrap.classList.add('is-focused'); });
+            inp.addEventListener('blur', function() { wrap.classList.remove('is-focused'); });
+        });
+
+        // Stagger fallback
+        var stagers = document.querySelectorAll('.stagger');
+        if (stagers.length && !window.requestAnimationFrame) {
+            stagers.forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
     })();
     </script>
 </body>

@@ -10,6 +10,7 @@ if (!defined('PROZONE_ACCESS')) {
 
 require_once __DIR__ . '/config/config.php';
 
+$force_theme      = 'light';
 $page_title       = 'Fitur - ' . APP_NAME;
 $page_description = 'Temukan semua fitur Prozone: code editor interaktif, gamifikasi, clans, leaderboard, achievements, certificates, dan masih banyak lagi.';
 $page_css         = ['components/card.css', 'components/button.css', 'components/badge.css', 'components/avatar.css', 'pages/landing.css', 'pages/features.css'];

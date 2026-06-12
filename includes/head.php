@@ -24,6 +24,7 @@ $page_css         = $page_css ?? [];
 $page_description = $page_description ?? APP_DESCRIPTION;
 $hide_theme_toggle = $hide_theme_toggle ?? false;
 $body_class       = $body_class ?? '';
+$force_theme      = $force_theme ?? null; // 'light' | 'dark' | null (respect user pref)
 
 // Hitung body class (theme + tambahan)
 $theme_class = getThemeClass();
@@ -39,10 +40,10 @@ $full_body_class = trim($theme_class . ' ' . $body_class);
 <!-- Favicon -->
 <?php include __DIR__ . '/favicon.php'; ?>
 
-<!-- Fonts: Inter + JetBrains Mono -->
+<!-- Fonts: Plus Jakarta Sans + JetBrains Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <!-- === Design System (urutan penting) === -->
 <!-- 1. Design tokens (warna, spacing, typography) -->
@@ -70,11 +71,17 @@ $full_body_class = trim($theme_class . ' ' . $body_class);
 <script>
   (function() {
     try {
-      var stored = localStorage.getItem('prozone-theme');
-      var theme = stored;
-      if (!theme) {
-        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark' : 'light';
+      var forced = <?php echo $force_theme ? json_encode($force_theme) : 'null'; ?>;
+      var theme;
+      if (forced === 'light' || forced === 'dark') {
+        theme = forced;
+      } else {
+        var stored = localStorage.getItem('prozone-theme');
+        theme = stored;
+        if (!theme) {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+        }
       }
       document.documentElement.setAttribute('data-theme', theme);
       if (theme === 'dark') {
@@ -86,12 +93,16 @@ $full_body_class = trim($theme_class . ' ' . $body_class);
   })();
 </script>
 
-<!-- === Login flag untuk theme-toggle.js === -->
+<!-- === Login flag & forced theme untuk theme-toggle.js === -->
 <script>
   window.PROZONE_USER_LOGGED_IN = <?php echo isLoggedIn() ? 'true' : 'false'; ?>;
   window.APP_NAME = <?php echo json_encode(APP_NAME); ?>;
   window.BASE_URL = <?php echo json_encode(BASE_URL); ?>;
+  window.PROZONE_FORCED_THEME = <?php echo $force_theme ? json_encode($force_theme) : 'null'; ?>;
 </script>
 
 <!-- === Theme toggle script === -->
+<?php if ($hide_theme_toggle): ?>
+<style>.theme-toggle, [data-theme-toggle], #theme-toggle { display: none !important; }</style>
+<?php endif; ?>
 <script src="assets/js/theme-toggle.js" defer></script>

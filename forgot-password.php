@@ -95,6 +95,7 @@ if ($_POST) {
     }
 }
 
+$force_theme      = 'light';
 $page_title       = 'Lupa Password - ' . APP_NAME;
 $page_description = 'Reset password akun Prozone Anda';
 $page_css         = ['components/button.css', 'components/card.css', 'components/form.css', 'components/alert.css', 'components/badge.css', 'components/auth.css'];
@@ -105,6 +106,20 @@ $body_class       = getThemeClass();
 <head>
     <?php require_once 'includes/head.php'; ?>
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- SVG Symbol Definitions -->
+    <svg style="display: none;" aria-hidden="true">
+        <defs>
+            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366F1"/>
+                <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+        </defs>
+        <symbol id="brandLogo" viewBox="0 0 100 100">
+            <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGrad)"/>
+            <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGrad)"/>
+        </symbol>
+    </svg>
 </head>
 <body class="<?php echo $body_class; ?> auth-body">
     <div class="auth-wrapper">
@@ -116,24 +131,35 @@ $body_class       = getThemeClass();
         <div class="auth-form-panel">
             <a href="login.php" class="auth-back-link-top">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-                <span>Back to Login</span>
+                <span>Kembali ke Login</span>
             </a>
 
-            <div class="auth-form-title">Forgot Password?</div>
+            <div class="auth-form-brand">
+                <a href="index.php" class="auth-form-brand-link">
+                    <svg class="auth-form-brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <use href="#brandLogo"></use>
+                    </svg>
+                    <span class="auth-form-brand-name"><?php echo APP_NAME; ?></span>
+                </a>
+            </div>
+            <div class="auth-form-header">
+                <div class="auth-form-title">Lupa Password?</div>
+                <p class="auth-form-subtitle">Tenang, kami akan bantu Anda kembali</p>
+            </div>
             <span class="auth-form-title-underline"></span>
 
-            <p style="font-size:0.875rem; color:#6b7280; margin-bottom:1.5rem; line-height:1.6;">
-                Enter your email address and we'll send you a link to reset your password.
+            <p class="auth-forgot-desc stagger">
+                Masukkan alamat email Anda dan kami akan mengirimkan tautan untuk mereset kata sandi Anda.
             </p>
 
             <?php if ($error_message): ?>
-                <div class="alert alert-error" role="alert">
+                <div class="alert alert-error stagger" role="alert">
                     <?php echo $error_message; ?>
                 </div>
             <?php endif; ?>
 
             <?php if ($success_message): ?>
-                <div class="alert alert-success" role="status">
+                <div class="alert alert-success stagger" role="status">
                     <?php echo $success_message; ?>
                 </div>
             <?php endif; ?>
@@ -141,8 +167,8 @@ $body_class       = getThemeClass();
             <form method="POST" novalidate>
                 <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
 
-                <div class="auth-field">
-                    <label for="email" class="auth-field-label">Email Address</label>
+                <div class="auth-field stagger">
+                    <label for="email" class="auth-field-label">Alamat Email</label>
                     <div class="auth-field-wrap">
                         <span class="auth-field-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
@@ -155,20 +181,17 @@ $body_class       = getThemeClass();
                     </div>
                 </div>
 
-                <button type="submit" class="auth-btn-primary">
+                <button type="submit" class="auth-btn-primary stagger" id="submitBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-                    <span class="btn-label">SEND RESET LINK</span>
+                    <span class="btn-label">KIRIM TAUTAN RESET</span>
+                    <span class="btn-spinner" aria-hidden="true"></span>
                 </button>
             </form>
 
-            <div class="auth-divider-sm"><span>or</span></div>
+            <div class="auth-divider-sm stagger"><span>atau</span></div>
 
-            <div class="auth-form-footer">
-                Remember your password? <a href="login.php">Log in</a>
-            </div>
-
-            <div style="text-align:center">
-                <a href="index.php" class="auth-home-link">&larr; Back to Home</a>
+            <div class="auth-form-footer stagger">
+                Ingat kata sandi Anda? <a href="login.php">Masuk</a>
             </div>
         </div>
 
@@ -195,31 +218,68 @@ $body_class       = getThemeClass();
                     <span class="auth-welcome-brand-name"><?php echo APP_NAME; ?></span>
                 </a>
 
-                <h1 class="auth-welcome-heading" style="font-size:1.75rem;">DON'T WORRY!</h1>
-                <p class="auth-welcome-text">It happens to the best of us. We'll help you get back to your account safely.</p>
+                <h1 class="auth-welcome-heading">TENANG SAJA!</h1>
+                <p class="auth-welcome-text">Hal ini bisa terjadi pada siapa pun. Kami akan bantu Anda kembali ke akun dengan aman.</p>
 
                 <div class="auth-welcome-features">
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Secure & Encrypted</span>
+                        <span class="auth-welcome-feature-text">Aman & Terenkripsi</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Fast Reset Process</span>
+                        <span class="auth-welcome-feature-text">Proses Reset Cepat</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">New Password Works Instantly</span>
+                        <span class="auth-welcome-feature-text">Password Baru Langsung Aktif</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // Loading state
+        var form = document.getElementById('forgotForm');
+        if (!form) {
+            form = document.querySelector('.auth-form-panel form');
+        }
+        var btn = document.getElementById('submitBtn');
+        if (form && btn) {
+            form.addEventListener('submit', function() {
+                btn.classList.add('btn-loading');
+                btn.querySelector('.btn-label').textContent = 'Mengirim...';
+                btn.disabled = true;
+            });
+        }
+
+        // Focus effect
+        document.querySelectorAll('.auth-field-wrap').forEach(function(wrap) {
+            var inp = wrap.querySelector('.auth-field-input');
+            if (!inp) return;
+            inp.addEventListener('focus', function() { wrap.classList.add('is-focused'); });
+            inp.addEventListener('blur', function() { wrap.classList.remove('is-focused'); });
+        });
+
+        // Stagger fallback
+        var stagers = document.querySelectorAll('.stagger');
+        if (stagers.length && !window.requestAnimationFrame) {
+            stagers.forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

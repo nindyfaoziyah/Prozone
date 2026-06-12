@@ -10,6 +10,7 @@ if (!defined('PROZONE_ACCESS')) {
 
 require_once __DIR__ . '/config/config.php';
 
+$force_theme = 'light';
 $page_title = 'Kursus - ' . APP_NAME;
 $page_description = 'Jelajahi katalog kursus Prozone: HTML, CSS, JavaScript, Python, dan lainnya. Belajar coding interaktif dengan code editor langsung di browser.';
 $page_css = ['components/card.css', 'components/button.css', 'components/badge.css', 'components/avatar.css', 'components/form.css', 'components/progress.css', 'components/pagination.css', 'components/dropdown.css', 'components/tooltip.css', 'components/layout.css', 'pages/landing.css', 'pages/courses.css'];
@@ -34,18 +35,24 @@ try {
 $categoryFilter = isset($_GET['category']) ? (int)$_GET['category'] : 0;
 $searchQuery = isset($_GET['search']) ? sanitizeInput($_GET['search']) : '';
 
-$query = "SELECT c.*, cat.nama_kategori as category_name, cat.slug as category_slug FROM courses c LEFT JOIN course_categories cat ON c.kategori_id = cat.id WHERE c.is_published = 1";
+$sql  = "SELECT c.*, cat.nama_kategori as category_name, cat.slug as category_slug FROM courses c LEFT JOIN course_categories cat ON c.kategori_id = cat.id WHERE c.is_published = 1";
+$params = [];
 
 if ($categoryFilter > 0) {
-    $query .= " AND c.kategori_id = " . $categoryFilter;
+    $sql .= " AND c.kategori_id = ?";
+    $params[] = $categoryFilter;
 }
 if ($searchQuery !== '') {
-    $query .= " AND (c.judul_course LIKE '%". $searchQuery . "%' OR c.deskripsi LIKE '%". $searchQuery . "%')";
+    $sql .= " AND (c.judul_course LIKE ? OR c.deskripsi LIKE ?)";
+    $searchLike = '%' . $searchQuery . '%';
+    $params[] = $searchLike;
+    $params[] = $searchLike;
 }
-$query .= " ORDER BY c.created_at DESC";
+$sql .= " ORDER BY c.created_at DESC";
 
 try {
-    $stmt = $db->query($query);
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
     $courses = $stmt->fetchAll();
 } catch (PDOException $e) {
     $courses = [];

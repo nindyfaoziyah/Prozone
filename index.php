@@ -1,14 +1,17 @@
 <?php
 require_once 'config/config.php';
 
-if (isLoggedIn()) {
+// Redirect logged-in users to dashboard
+if (function_exists('isLoggedIn') && isLoggedIn()) {
     header('Location: dashboard.php');
     exit();
 }
 
+$force_theme      = 'light';
 $page_title       = 'Belajar Coding dengan Mudah';
 $page_description = 'Platform pembelajaran coding interaktif terbaik untuk pemula hingga ahli. Pelajari HTML, CSS, JavaScript, Python, dan banyak lagi.';
 $page_css         = ['components/button.css', 'components/badge.css', 'pages/landing.css'];
+$page_js          = ['landing.js'];
 $body_class       = getThemeClass();
 $current_page     = 'index.php';
 $nav_active       = function ($href) use ($current_page) {
@@ -20,6 +23,20 @@ $nav_active       = function ($href) use ($current_page) {
 <head>
     <?php require_once 'includes/head.php'; ?>
     <?php include 'includes/seo.php'; echo seo_meta($page_title, $page_description, 'belajar coding, programming, web development, html, css, javascript, python'); ?>
+    
+    <!-- SVG Symbol Definitions -->
+    <svg style="display: none;" aria-hidden="true">
+        <defs>
+            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366F1"/>
+                <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+        </defs>
+        <symbol id="brandLogo" viewBox="0 0 100 100">
+            <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGrad)"/>
+            <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGrad)"/>
+        </symbol>
+    </svg>
 </head>
 <body class="<?php echo $body_class; ?> landing-page">
 
@@ -28,14 +45,7 @@ $nav_active       = function ($href) use ($current_page) {
         <div class="nav-inner">
             <a href="index.php" class="brand" aria-label="Prozone Home">
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
-                            <stop offset="100%" stop-color="#10B981"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGrad)"/>
-                    <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGrad)"/>
+                    <use href="#brandLogo"></use>
                 </svg>
                 <span>Prozone</span>
             </a>
@@ -87,18 +97,18 @@ $nav_active       = function ($href) use ($current_page) {
                     </a>
                     <a href="login.php" class="btn btn-secondary btn-lg hero-btn-secondary">Sudah Punya Akun?</a>
                 </div>
-                <dl class="hero-trust reveal">
+                <dl class="hero-trust reveal" aria-label="Statistik platform">
                     <div class="hero-trust-item">
                         <dt class="hero-trust-label">Kursus</dt>
-                        <dd class="hero-trust-num" data-count="100">0+</dd>
+                        <dd class="hero-trust-num" data-count="100" aria-label="100 kursus tersedia">0+</dd>
                     </div>
                     <div class="hero-trust-item">
                         <dt class="hero-trust-label">Students</dt>
-                        <dd class="hero-trust-num" data-count="1000">0+</dd>
+                        <dd class="hero-trust-num" data-count="1000" aria-label="1000 siswa aktif">0+</dd>
                     </div>
                     <div class="hero-trust-item">
                         <dt class="hero-trust-label">Instructors</dt>
-                        <dd class="hero-trust-num" data-count="50">0+</dd>
+                        <dd class="hero-trust-num" data-count="50" aria-label="50 instruktur">0+</dd>
                     </div>
                 </dl>
             </div>
@@ -228,37 +238,37 @@ $nav_active       = function ($href) use ($current_page) {
                 <h2>Prozone dalam angka</h2>
                 <p>Platform yang terus bertumbuh bersama komunitas developer Indonesia.</p>
             </div>
-            <div class="grid grid-auto-sm stats-grid">
-                <div class="card stat-block reveal">
+            <div class="grid grid-auto-sm stats-grid" role="list" aria-label="Statistik platform">
+                <div class="card stat-block reveal" role="listitem">
                     <div class="stat-glow" aria-hidden="true"></div>
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="stat-value" data-count="100">0+</div>
+                    <div class="stat-value" data-count="100" aria-label="100 kursus">0+</div>
                     <div class="stat-label">Kursus Tersedia</div>
                 </div>
-                <div class="card stat-block reveal">
+                <div class="card stat-block reveal" role="listitem">
                     <div class="stat-glow" aria-hidden="true"></div>
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="stat-value" data-count="1000">0+</div>
+                    <div class="stat-value" data-count="1000" aria-label="1000 siswa aktif">0+</div>
                     <div class="stat-label">Student Aktif</div>
                 </div>
-                <div class="card stat-block reveal">
+                <div class="card stat-block reveal" role="listitem">
                     <div class="stat-glow" aria-hidden="true"></div>
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="stat-value" data-count="50">0+</div>
+                    <div class="stat-value" data-count="50" aria-label="50 instruktur">0+</div>
                     <div class="stat-label">Instruktur</div>
                 </div>
-                <div class="card stat-block reveal">
+                <div class="card stat-block reveal" role="listitem">
                     <div class="stat-glow" aria-hidden="true"></div>
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="stat-value">24/7</div>
+                    <div class="stat-value" aria-label="24 jam 7 hari seminggu">24/7</div>
                     <div class="stat-label">Akses Belajar</div>
                 </div>
             </div>
@@ -274,63 +284,63 @@ $nav_active       = function ($href) use ($current_page) {
                 <p>Ribuan developer sudah memulai perjalanan coding mereka bersama Prozone.</p>
             </div>
 
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal">
+            <div class="testimonials-grid" role="list" aria-label="Testimoni pengguna">
+                <article class="testimonial-card reveal" role="listitem">
                     <div class="testimonial-quote-mark" aria-hidden="true">"</div>
                     <div class="testimonial-stars" aria-label="5 dari 5 bintang">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                     </div>
                     <p class="testimonial-text">Prozone benar-benar mengubah cara saya belajar coding. Sistem XP dan achievement bikin saya selalu semangat untuk lanjut belajar setiap hari!</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"><span>A</span></div>
+                        <div class="testimonial-avatar" aria-label="Inisial Andi Pratama"><span>A</span></div>
                         <div>
                             <div class="testimonial-name">Andi Pratama</div>
                             <div class="testimonial-role">Mahasiswa Informatika</div>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="testimonial-card reveal">
+                <article class="testimonial-card reveal" role="listitem">
                     <div class="testimonial-quote-mark" aria-hidden="true">"</div>
                     <div class="testimonial-stars" aria-label="5 dari 5 bintang">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                     </div>
                     <p class="testimonial-text">Code editor langsung di browser itu game changer! Saya bisa langsung praktek tanpa perlu install apapun. Clan system-nya juga seru banget.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"><span>S</span></div>
+                        <div class="testimonial-avatar" aria-label="Inisial Sari Dewi"><span>S</span></div>
                         <div>
                             <div class="testimonial-name">Sari Dewi</div>
                             <div class="testimonial-role">Career Switcher</div>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="testimonial-card reveal">
+                <article class="testimonial-card reveal" role="listitem">
                     <div class="testimonial-quote-mark" aria-hidden="true">"</div>
                     <div class="testimonial-stars" aria-label="5 dari 5 bintang">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                     </div>
                     <p class="testimonial-text">Sebagai instructor, Prozone memudahkan saya membuat materi interaktif. Dashboard analytics-nya juga sangat membantu memantau progress siswa.</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar"><span>R</span></div>
+                        <div class="testimonial-avatar" aria-label="Inisial Rizki Ramadhan"><span>R</span></div>
                         <div>
                             <div class="testimonial-name">Rizki Ramadhan</div>
                             <div class="testimonial-role">Instructor & Senior Dev</div>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -360,14 +370,7 @@ $nav_active       = function ($href) use ($current_page) {
             <div class="landing-footer-brand">
                 <a href="index.php" class="brand" aria-label="Prozone Home">
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
-                        <defs>
-                            <linearGradient id="footerBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366F1"/>
-                                <stop offset="100%" stop-color="#10B981"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#footerBrandGrad)"/>
-                        <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#footerBrandGrad)"/>
+                        <use href="#brandLogo"></use>
                     </svg>
                     <span>Prozone</span>
                 </a>
@@ -421,86 +424,12 @@ $nav_active       = function ($href) use ($current_page) {
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        (function() {
-            const nav = document.getElementById('landingNav');
-            if (!nav) return;
-            const onScroll = () => {
-                if (window.scrollY > 16) nav.classList.add('is-scrolled');
-                else nav.classList.remove('is-scrolled');
-            };
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-        })();
+    <!-- Inter Font for Landing Page -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        // Mobile menu toggle
-        (function() {
-            const toggle = document.getElementById('navMobileToggle');
-            const menu = document.getElementById('navMenu');
-            if (!toggle || !menu) return;
-            toggle.addEventListener('click', function() {
-                const isOpen = menu.classList.toggle('is-mobile-open');
-                toggle.setAttribute('aria-expanded', isOpen);
-            });
-            document.addEventListener('click', function(e) {
-                if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-                    menu.classList.remove('is-mobile-open');
-                    toggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        })();
-
-        // Reveal-on-scroll
-        (function() {
-            const items = document.querySelectorAll('.reveal');
-            if (!('IntersectionObserver' in window)) {
-                items.forEach(el => el.classList.add('is-visible'));
-                return;
-            }
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const delay = Array.from(entry.target.parentElement.children)
-                            .filter(c => c.classList.contains('reveal'))
-                            .indexOf(entry.target) * 80;
-                        setTimeout(() => entry.target.classList.add('is-visible'), delay);
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            items.forEach(el => io.observe(el));
-        })();
-
-        // Animated counter
-        (function() {
-            const counters = document.querySelectorAll('[data-count]');
-            if (!counters.length) return;
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseInt(el.dataset.count);
-                        const suffix = '+';
-                        const duration = 1500;
-                        const start = 0;
-                        const startTime = performance.now();
-                        function update(now) {
-                            const elapsed = now - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            // easeOutExpo
-                            const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                            const current = Math.round(start + (target - start) * eased);
-                            el.textContent = current.toLocaleString('id-ID') + suffix;
-                            if (progress < 1) requestAnimationFrame(update);
-                        }
-                        requestAnimationFrame(update);
-                        io.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.3 });
-            counters.forEach(el => io.observe(el));
-        })();
-    </script>
+    <!-- Landing page scripts -->
+    <script src="assets/js/landing.js" defer></script>
 </body>
 </html>

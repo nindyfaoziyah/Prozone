@@ -2,54 +2,92 @@
    PROZONE DESIGN TOKENS - LIGHT MODE MODERN
    File: assets/css/tokens.css
    Version: 4.0 (Futuristic Gamified Vision)
-   ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+   NOTE: Fonts (Plus Jakarta Sans + JetBrains Mono) are
+   loaded via <link> in includes/head.php for parallel
+   download. Do NOT @import them here.
+   ============================================ */
 
 :root {
     /* Color Palette - Brand Primary (Purple) */
     --color-primary-50:  #F5F3FF;
     --color-primary-100: #EDE9FE;
-    --color-primary-500: #6C4CFD; 
+    --color-primary-500: #6C4CFD;
     --color-primary-600: #5A3FF5;
     --color-primary-light: #8B72FF;
-    
+
     /* Color Palette - Brand Secondary (Teal/Cyan) */
     --color-secondary-500: #20C7B7;
     --color-secondary-600: #0FAE9F;
     --color-secondary-cyan: #1EB9D4;
-    
+
     /* Semantic Colors */
     --color-warning: #FFC928;
     --color-success: #22C55E;
     --color-danger: #F43F5E;
     --color-orange: #F59E0B;
-    
+
     /* Text Colors - High Contrast */
     --text-primary: #0F172A; /* Slate 900 */
     --text-secondary: #64748B; /* Slate 500 */
     --text-muted: #94A3B8; /* Slate 400 */
     --text-on-primary: #FFFFFF;
-    
+
     /* Background & Surfaces */
     --bg-page: #F8FAFC;
     --bg-surface: #FFFFFF;
     --bg-surface-soft: #EEF5F9;
-    
+
     /* Glassmorphism Tokens */
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.5);
-    
+
     /* Shadows - Premium Depth */
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.03);
     --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.05);
     --shadow-hard: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
     --shadow-glow-purple: 0 0 20px rgba(108, 76, 253, 0.15);
     --shadow-glow-teal: 0 0 20px rgba(32, 199, 183, 0.15);
-    
-    /* Typography */
-    --font-primary: 'Plus Jakarta Sans', sans-serif;
+
+    /* Typography - Unified font system */
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-primary: var(--font-sans);
     --font-mono: 'JetBrains Mono', monospace;
+
+    /* Font weights */
+    --font-thin: 200;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    --font-black: 900;
+
+    /* Font sizes - Unified scale (16px base) */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+    --text-3xl: 1.875rem;   /* 30px */
+    --text-4xl: 2.25rem;    /* 36px */
+    --text-5xl: 3rem;       /* 48px */
+    --text-6xl: 3.75rem;    /* 60px */
+
+    /* Line heights */
+    --leading-tight: 1.2;
+    --leading-snug: 1.35;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.65;
+
+    /* Letter spacing */
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.02em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
     
     /* Border Radius - Extra Large */
     --radius-sm: 8px;
@@ -63,14 +101,85 @@
     --space-2: 0.5rem;
     --space-3: 0.75rem;
     --space-4: 1rem;
+    --space-5: 1.25rem;
     --space-6: 1.5rem;
+    --space-7: 1.75rem;
     --space-8: 2rem;
     --space-10: 2.5rem;
     --space-12: 3rem;
-    
+    --space-14: 3.5rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+
     /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* Semantic brand tokens (used widely across components) */
+    --brand: #6366F1;
+    --brand-hover: #4F46E5;
+    --brand-active: #3730A3;
+    --brand-text: #A5B4FC;
+    --brand-subtle: rgba(99, 102, 241, 0.10);
+    --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+
+    /* Accent */
+    --accent: #10B981;
+    --accent-subtle: rgba(16, 185, 129, 0.10);
+
+    /* Surface tokens */
+    --bg-subtle: #F1F5F9;
+    --bg-elevated: #FFFFFF;
+    --bg-muted: #E2E8F0;
+    --bg-hover: #F8FAFC;
+    --bg-input: #F9FAFB;
+    --bg-code: #F1F5F9;
+    --bg-code-block: #1E293B;
+
+    /* Border tokens */
+    --border-default: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --border-focus: #6366F1;
+
+    /* Status tokens */
+    --color-info: #3B82F6;
+    --color-error: #EF4444;
+    --color-error-dark: #DC2626;
+    --color-xp: #F59E0B;
+    --color-coin: #10B981;
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.06), 0 8px 10px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.10);
+    --shadow-primary: 0 4px 16px rgba(79, 70, 229, 0.15);
+    --shadow-primary-lg: 0 8px 24px rgba(79, 70, 229, 0.25);
+    --shadow-accent: 0 4px 16px rgba(16, 185, 129, 0.15);
+
+    /* Border radius */
+    --radius-2xl: 40px;
+
+    /* Container widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1200px;
+    --container-2xl: 1280px;
+
+    /* Z-index scale */
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 1000;
+    --z-modal-backdrop: 1100;
+    --z-modal: 1200;
+    --z-popover: 1300;
+    --z-toast: 1400;
+    --z-tooltip: 1500;
     
     /* Custom Navigation Island Tokens */
     --sidebar-width: 280px;
@@ -81,8 +190,11 @@
 body {
     background-color: var(--bg-page);
     color: var(--text-primary);
-    font-family: var(--font-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 

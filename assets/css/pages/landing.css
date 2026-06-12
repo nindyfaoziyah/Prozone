@@ -25,15 +25,67 @@
   right: 0;
   z-index: var(--z-fixed, 1000);
   background-color: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
   border-bottom: 1px solid var(--border-default);
   transition: all var(--transition-smooth);
 }
-.landing-nav.is-scrolled {
-  background-color: var(--bg-elevated);
-  box-shadow: 0 4px 30px rgba(99, 102, 241, 0.12);
+
+/* Dark mode: navbar border must blend (darker than light-mode border) */
+body.dark-mode .landing-nav {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+body.dark-mode .landing-nav.is-scrolled {
   border-bottom-color: transparent;
+  background-color: rgba(15, 23, 42, 0.85);
+}
+
+/* Light mode: make glass more opaque so logo pops */
+body:not(.dark-mode) .landing-nav {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+body:not(.dark-mode) .landing-nav.is-scrolled {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode: navbar text/icons must be visible on dark bg */
+body.dark-mode .landing-nav .brand {
+  color: #f1f5f9;
+}
+body.dark-mode .landing-nav .nav-link {
+  color: #cbd5e1;
+}
+body.dark-mode .landing-nav .nav-link:hover,
+body.dark-mode .landing-nav .nav-link.active {
+  color: #f1f5f9;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .landing-nav .dropdown-btn,
+body.dark-mode .landing-nav .dropdown-item {
+  color: #cbd5e1;
+}
+body.dark-mode .landing-nav .dropdown-item:hover {
+  color: #f1f5f9;
+}
+body.dark-mode .landing-nav .hamburger span {
+  background-color: #cbd5e1;
+}
+body.dark-mode .landing-nav .hamburger.is-active span:nth-child(1) {
+  transform: rotate(45deg) translateY(20px);
+  background-color: #f1f5f9;
+}
+body.dark-mode .landing-nav .hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+body.dark-mode .landing-nav .hamburger.is-active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-20px);
+  background-color: #f1f5f9;
+}
+body.dark-mode .landing-nav .theme-toggle {
+  color: #cbd5e1;
 }
 .landing-nav .nav-inner {
   max-width: 1200px;
@@ -64,9 +116,19 @@
   flex-shrink: 0;
   filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.3));
   transition: filter var(--transition-smooth);
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  padding: 2px;
+}
+body.dark-mode .landing-nav .brand-logo {
+  background-color: rgba(255, 255, 255, 0.04);
+  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.45));
 }
 .landing-nav .brand:hover .brand-logo {
   filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.5));
+}
+body.dark-mode .landing-nav .brand:hover .brand-logo {
+  filter: drop-shadow(0 4px 14px rgba(99, 102, 241, 0.7));
 }
 .landing-nav .nav-menu {
   display: flex;

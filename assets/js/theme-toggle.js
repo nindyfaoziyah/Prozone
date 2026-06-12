@@ -21,6 +21,11 @@
    * Prioritas: localStorage > system preference > server-side (body class) > 'light'
    */
   function getInitialTheme() {
+    // 0. Jika server memaksa tema (force_theme), gunakan itu
+    if (window.PROZONE_FORCED_THEME === 'light' || window.PROZONE_FORCED_THEME === 'dark') {
+      return window.PROZONE_FORCED_THEME;
+    }
+
     // 1. Check localStorage (user explicit choice)
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && THEMES.includes(stored)) {

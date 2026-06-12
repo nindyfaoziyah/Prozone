@@ -11,6 +11,7 @@ if (!defined('PROZONE_ACCESS')) {
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/config/database.php';
 
+$force_theme      = 'light';
 $page_title       = 'Tentang Kami - ' . APP_NAME;
 $page_description = 'Pelajari misi Prozone dalam membuat pembelajaran coding interaktif untuk developer Indonesia. Bergabunglah dengan komunitas pembelajar kami.';
 $page_css         = ['components/card.css', 'components/button.css', 'components/badge.css', 'components/avatar.css', 'components/alert.css', 'components/layout.css', 'pages/landing.css', 'pages/about.css'];
