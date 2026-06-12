@@ -91,6 +91,30 @@ define('BASE_URL', 'http://localhost/ProzoneWeb/');
 
 Buka browser: `http://localhost/ProzoneWeb/`
 
+### 5b. Development Server (Optional) / Server Development (Opsional)
+
+Untuk development lokal tanpa Apache, gunakan PHP built-in server:
+
+**Windows (Command Prompt):**
+```bash
+run-dev.bat
+```
+
+**Windows (PowerShell):**
+```powershell
+.\run-dev.ps1
+```
+
+**macOS/Linux (Bash):**
+```bash
+chmod +x run-dev.sh
+./run-dev.sh
+```
+
+Kemudian buka: `http://localhost:8000`
+
+> ℹ️ **Note:** Script ini otomatis mendeteksi dan navigate ke folder root yang benar, bahkan jika Anda menjalankannya dari subfolder.
+
 ### 6. Default Login / Login Default
 
 | Username       | Password   | Role        |

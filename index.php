@@ -8,7 +8,7 @@ if (isLoggedIn()) {
 
 $page_title       = 'Belajar Coding dengan Mudah';
 $page_description = 'Platform pembelajaran coding interaktif terbaik untuk pemula hingga ahli. Pelajari HTML, CSS, JavaScript, Python, dan banyak lagi.';
-$page_css         = ['components/button.css', 'components/badge.css', 'pages/landing.css'];
+$page_css         = ['components/button.css', 'components/badge.css', 'pages/landing.css', 'pages/landing-improvements.css'];
 $body_class       = getThemeClass();
 $current_page     = 'index.php';
 $nav_active       = function ($href) use ($current_page) {

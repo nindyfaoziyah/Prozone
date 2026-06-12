@@ -103,7 +103,7 @@ a:hover { color: #5A3FF5; }
     top: 20px;
     left: 20px;
     bottom: 20px;
-    width: 240px;
+    width: var(--sidebar-width);
     z-index: 500;
 }
 
@@ -273,7 +273,7 @@ a:hover { color: #5A3FF5; }
 .header-floating {
     position: fixed;
     top: 20px;
-    left: calc(240px + 40px + 20px); /* past the sidebar island */
+    left: calc(var(--sidebar-width) + var(--sidebar-gap));
     right: 20px;
     height: 64px;
     background: rgba(255,255,255,0.85);
@@ -404,8 +404,8 @@ a:hover { color: #5A3FF5; }
    MAIN CONTENT AREA (pushed past sidebar + header)
    ============================================ */
 .page-wrapper.dashboard-main-container {
-    margin-left: calc(240px + 40px) !important; /* sidebar + gap */
-    padding-top: calc(64px + 40px) !important; /* header + gap */
+    margin-left: calc(var(--sidebar-width) + var(--sidebar-gap)) !important;
+    padding-top: calc(64px + var(--sidebar-gap)) !important;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 60px;
@@ -769,8 +769,8 @@ a:hover { color: #5A3FF5; }
    ============================================ */
 #sidebar-toggle {
     position: fixed;
-    top: 28px;
-    left: calc(240px + 40px + 20px - 44px); /* aligns just past sidebar edge */
+    top: calc(20px + 8px);
+    left: calc(var(--sidebar-width) + var(--sidebar-gap) + 20px - 44px); /* aligns just past sidebar edge */
     width: 36px;
     height: 36px;
     background: white;
@@ -795,7 +795,7 @@ a:hover { color: #5A3FF5; }
 
 /* Sidebar hidden state */
 .sidebar-island-container.sidebar-hidden {
-    transform: translateX(calc(-240px - 40px));
+    transform: translateX(calc(-1 * (var(--sidebar-width) + var(--sidebar-gap))));
     opacity: 0;
     pointer-events: none;
 }

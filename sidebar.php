@@ -124,19 +124,11 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar-island');
     const btn     = document.getElementById('sidebar-toggle');
     const icon    = document.getElementById('toggle-icon');
-    const wrapper = document.querySelector('.page-wrapper') || document.querySelector('.dashboard-main-container');
-    const header  = document.querySelector('.header-floating');
 
     sidebar.classList.toggle('sidebar-hidden');
+    btn.classList.toggle('sidebar-hidden');
+
     const hidden = sidebar.classList.contains('sidebar-hidden');
-
     icon.textContent = hidden ? '☰' : '✕';
-
-    // Shift content left when sidebar hidden
-    const contentLeft = hidden ? '20px' : 'calc(240px + 40px)';
-    const headerLeft  = hidden ? '20px' : 'calc(240px + 40px + 20px)';
-    if (wrapper) wrapper.style.marginLeft = hidden ? '0' : '';
-    if (header)  header.style.left = headerLeft;
-    btn.style.left = hidden ? '20px' : 'calc(240px + 40px + 20px - 46px)';
 }
 </script>

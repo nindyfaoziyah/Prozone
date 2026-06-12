@@ -3,6 +3,17 @@
    Premium Dashboard Navigation (8-point grid)
    ============================================ */
 
+@import url("sidebar-island.css");
+
+:root {
+    --sidebar-width: 280px;
+    --sidebar-gap: 40px;
+    --sidebar-offset: calc(var(--sidebar-width) + var(--sidebar-gap));
+    --header-floating-height: 64px;
+    --header-floating-offset: 20px;
+    --layout-gutter: 20px;
+}
+
 /* Dashboard Navbar - Compact */
 .dashboard-navbar {
     background: linear-gradient(135deg, 
@@ -219,10 +230,103 @@
     box-shadow: 0 3px 12px rgba(139, 92, 246, 0.4);
 }
 
-.user-info-nav {
+/* ============================================
+   SHARED DASHBOARD LAYOUT
+   Ensures all pages with navbar.css use a consistent sidebar/header layout.
+   ============================================ */
+
+.sidebar-island-container {
+    position: fixed;
+    top: var(--header-floating-offset);
+    left: var(--layout-gutter);
+    bottom: var(--layout-gutter);
+    width: var(--sidebar-width);
+    z-index: 900;
+}
+
+.header-floating {
+    position: fixed;
+    top: var(--header-floating-offset);
+    left: var(--sidebar-offset);
+    right: var(--layout-gutter);
+    height: var(--header-floating-height);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(108, 76, 253, 0.07);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(108, 76, 253, 0.06);
+    z-index: 800;
+}
+
+.sidebar-island-container.sidebar-hidden {
+    transform: translateX(calc(-1 * var(--sidebar-offset)));
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-island-container.sidebar-hidden ~ .header-floating {
+    left: var(--layout-gutter);
+}
+
+.sidebar-island-container.sidebar-hidden ~ .page-wrapper.dashboard-main-container {
+    margin-left: 0;
+}
+
+#sidebar-toggle {
+    position: fixed;
+    top: calc(var(--header-floating-offset) + 8px);
+    left: calc(var(--sidebar-offset) + 20px - 44px);
+    width: 36px;
+    height: 36px;
+    background: white;
+    border: 1.5px solid #E0E7FF;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    line-height: 1.2;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 950;
+    font-size: 1rem;
+    color: #6C4CFD;
+    box-shadow: 0 4px 12px rgba(108, 76, 253, 0.1);
+    transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+#sidebar-toggle:hover {
+    background: #F5F3FF;
+    transform: scale(1.05);
+}
+
+#sidebar-toggle.sidebar-hidden {
+    left: var(--layout-gutter);
+}
+
+.page-wrapper.dashboard-main-container {
+    margin-left: var(--sidebar-offset);
+    padding-top: calc(var(--header-floating-height) + var(--sidebar-gap));
+    padding-left: var(--layout-gutter);
+    padding-right: var(--layout-gutter);
+    padding-bottom: 60px;
+    min-height: 100vh;
+    background: transparent;
+    max-width: none;
+}
+
+@media (max-width: 1024px) {
+    .sidebar-island-container,
+    #sidebar-toggle {
+        display: none;
+    }
+    .header-floating {
+        left: var(--layout-gutter);
+        right: var(--layout-gutter);
+    }
+    .page-wrapper.dashboard-main-container {
+        margin-left: 0;
+        padding-left: var(--layout-gutter);
+    }
 }
 
 .user-name-nav {
