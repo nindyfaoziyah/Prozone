@@ -10,12 +10,8 @@ if (function_exists('isLoggedIn') && isLoggedIn()) {
 $force_theme      = 'light';
 $page_title       = 'Belajar Coding dengan Mudah';
 $page_description = 'Platform pembelajaran coding interaktif terbaik untuk pemula hingga ahli. Pelajari HTML, CSS, JavaScript, Python, dan banyak lagi.';
-<<<<<<< HEAD
-$page_css         = ['components/button.css', 'components/badge.css', 'pages/landing.css'];
-$page_js          = ['landing.js'];
-=======
 $page_css         = ['components/button.css', 'components/badge.css', 'pages/landing.css', 'pages/landing-improvements.css'];
->>>>>>> fa8a1caa1776343e826359bf81046b97c548f654
+$page_js          = ['landing.js'];
 $body_class       = getThemeClass();
 $current_page     = 'index.php';
 $nav_active       = function ($href) use ($current_page) {
