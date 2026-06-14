@@ -175,7 +175,7 @@ function getLanguageColor($title) {
     if (strpos($title, 'laravel') !== false) return '#FF2D20';
     if (strpos($title, 'mysql') !== false || strpos($title, 'database') !== false) return '#4479A1';
     
-    return '#8b5cf6'; // Default purple
+    return '#14B8A6'; // Default purple
 }
 
 /**

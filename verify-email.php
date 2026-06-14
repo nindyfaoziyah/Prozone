@@ -82,7 +82,7 @@ if (isset($_GET['token'])) {
             background: rgba(30, 30, 63, 0.8);
             border-radius: 16px;
             padding: 3rem 2rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .verify-icon {
             font-size: 4rem;
@@ -102,7 +102,7 @@ if (isset($_GET['token'])) {
         }
         .btn-login {
             display: inline-block;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 8px;
@@ -112,14 +112,14 @@ if (isset($_GET['token'])) {
         }
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
         }
     </style>
 </head>
 <body>
     <div class="verify-container">
         <div class="verify-icon <?php echo $message_type; ?>">
-            <?php echo $message_type === 'success' ? '✓' : '✗'; ?>
+            <?php echo $message_type === 'success' ? 'âœ“' : 'âœ—'; ?>
         </div>
         <h1 class="verify-title">
             <?php echo $message_type === 'success' ? 'Email Terverifikasi!' : 'Verifikasi Gagal'; ?>

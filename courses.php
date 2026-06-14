@@ -29,10 +29,9 @@ $level_filter = sanitizeInput($_GET['level'] ?? '');
 // Get all courses with filters
 $where_clause = ($_SESSION['user_role'] === 'student') ? "WHERE c.is_published = 1" : "WHERE 1=1";
 
-$query = "SELECT c.*, cc.nama_kategori, u.nama_lengkap as instructor_name
+$query = "SELECT c.*, cc.nama_kategori
           FROM courses c
           LEFT JOIN course_categories cc ON c.kategori_id = cc.id
-          LEFT JOIN users u ON c.instructor_id = u.id
           " . $where_clause;
 
 $params = [];
@@ -151,7 +150,7 @@ $page_css = ['assets/css/pages/courses.css'];
             background: rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
             border: 1px solid rgba(var(--accent-primary-rgb, 99,102,241), 0.15);
             border-radius: 100px;
-            color: var(--accent-primary, #6366f1);
+            color: var(--accent-primary, #3B82F6);
             font-size: 0.82rem;
             font-weight: 700;
             margin-bottom: 1rem;
@@ -256,7 +255,7 @@ $page_css = ['assets/css/pages/courses.css'];
         }
         .premium-input:focus {
             outline: none;
-            border-color: var(--accent-primary, #6366f1);
+            border-color: var(--accent-primary, #3B82F6);
             box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
         }
 
@@ -279,12 +278,12 @@ $page_css = ['assets/css/pages/courses.css'];
         }
         .premium-select:focus {
             outline: none;
-            border-color: var(--accent-primary, #6366f1);
+            border-color: var(--accent-primary, #3B82F6);
             box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
         }
 
         .btn-search {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #3B82F6, #14B8A6);
             color: white;
             border: none;
             border-radius: 12px;
@@ -334,7 +333,7 @@ $page_css = ['assets/css/pages/courses.css'];
         .course-thumbnail {
             position: relative;
             height: var(--thumb-height);
-            background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.1));
+            background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(20,184,166,0.1));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -348,7 +347,7 @@ $page_css = ['assets/css/pages/courses.css'];
             pointer-events: none;
         }
         .dark-mode .course-thumbnail {
-            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(20,184,166,0.04));
         }
         .dark-mode .course-thumbnail::after {
             background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.04) 0%, transparent 60%);
@@ -422,7 +421,7 @@ $page_css = ['assets/css/pages/courses.css'];
         .course-cat {
             font-size: 0.72rem;
             font-weight: 700;
-            color: var(--accent-primary, #6366f1);
+            color: var(--accent-primary, #3B82F6);
             text-transform: uppercase;
             letter-spacing: 0.08em;
             margin-bottom: 0.35rem;
@@ -503,7 +502,7 @@ $page_css = ['assets/css/pages/courses.css'];
             background: rgba(var(--accent-primary-rgb, 99,102,241), 0.03);
         }
         .btn-course-premium.enrolled {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #3B82F6, #14B8A6);
             color: white;
             border: none;
         }
@@ -532,7 +531,7 @@ $page_css = ['assets/css/pages/courses.css'];
         }
         .progress-fill-premium {
             height: 100%;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            background: linear-gradient(90deg, #3B82F6, #14B8A6);
             border-radius: 100px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -554,7 +553,7 @@ $page_css = ['assets/css/pages/courses.css'];
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.25rem;
-            color: var(--accent-primary, #6366f1);
+            color: var(--accent-primary, #3B82F6);
         }
         .empty-title-courses {
             font-size: 1.3rem;
@@ -580,7 +579,7 @@ $page_css = ['assets/css/pages/courses.css'];
             color: var(--text-primary);
         }
         .results-info a {
-            color: var(--accent-primary, #6366f1);
+            color: var(--accent-primary, #3B82F6);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.82rem;
@@ -600,7 +599,7 @@ $page_css = ['assets/css/pages/courses.css'];
                 <!-- Hero Section -->
                 <div class="courses-hero reveal">
                     <div class="hero-badge">
-                        <span>📚</span>
+                        <span>ðŸ“š</span>
                         <span>Katalog Kursus</span>
                     </div>
                     <h1 class="hero-title">Jelajahi Skill Baru</h1>

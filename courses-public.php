@@ -100,14 +100,14 @@ $is_logged_in = isLoggedIn();
     <?php require_once 'includes/head.php'; ?>
 </head>
 <body class="<?php echo $body_class; ?> landing-page page-courses">
-    <!-- Public navbar (glass) — same as index.php -->
+    <!-- Public navbar (glass) â€” same as index.php -->
     <nav class="landing-nav" id="landingNav" aria-label="Navigasi utama">
         <div class="nav-inner">
             <a href="index.php" class="brand" aria-label="Prozone Home">
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -132,7 +132,7 @@ $is_logged_in = isLoggedIn();
         </div>
     </nav>
 
-    <!-- Hero — matching index.php hero style -->
+    <!-- Hero â€” matching index.php hero style -->
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-content">
@@ -153,7 +153,7 @@ $is_logged_in = isLoggedIn();
                 <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="coursesGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -394,7 +394,7 @@ $is_logged_in = isLoggedIn();
     </section>
     <?php endif; ?>
 
-    <!-- Footer — same as index.php -->
+    <!-- Footer â€” same as index.php -->
     <footer class="landing-footer">
         <div class="landing-footer-grid">
             <div class="landing-footer-brand">
@@ -402,7 +402,7 @@ $is_logged_in = isLoggedIn();
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
                         <defs>
                             <linearGradient id="footerBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366F1"/>
+                                <stop offset="0%" stop-color="#3B82F6"/>
                                 <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                         </defs>

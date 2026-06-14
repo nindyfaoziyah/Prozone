@@ -1,9 +1,9 @@
 <!-- WYSIWYG Content Editor Component -->
 <style>
 .wysiwyg-editor {
-    background: #1e1e32;
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
     overflow: hidden;
 }
 
@@ -12,8 +12,8 @@
     flex-wrap: wrap;
     gap: 0.25rem;
     padding: 0.5rem;
-    background: rgba(15, 15, 35, 0.6);
-    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border-default);
 }
 
 .toolbar-group {
@@ -21,7 +21,7 @@
     gap: 0.25rem;
     padding-right: 0.5rem;
     margin-right: 0.5rem;
-    border-right: 1px solid rgba(139, 92, 246, 0.1);
+    border-right: 1px solid var(--border-default);
 }
 
 .toolbar-group:last-child {
@@ -39,19 +39,19 @@
     background: transparent;
     border: none;
     border-radius: 4px;
-    color: #94a3b8;
+    color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .toolbar-btn:hover {
-    background: rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
+    background: var(--bg-hover);
+    color: var(--text-primary);
 }
 
 .toolbar-btn.active {
-    background: rgba(139, 92, 246, 0.3);
-    color: #8b5cf6;
+    background: var(--bg-hover);
+    color: var(--brand);
 }
 
 .toolbar-btn svg {
@@ -61,10 +61,10 @@
 
 .toolbar-select {
     padding: 0.25rem 0.5rem;
-    background: rgba(15, 15, 35, 0.6);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-default);
     border-radius: 4px;
-    color: #e2e8f0;
+    color: var(--text-primary);
     font-size: 0.8rem;
     cursor: pointer;
 }
@@ -72,17 +72,17 @@
 .wysiwyg-content {
     min-height: 300px;
     padding: 1rem;
-    color: #e2e8f0;
+    color: var(--text-primary);
     outline: none;
     line-height: 1.7;
 }
 
 .wysiwyg-content:focus {
-    box-shadow: inset 0 0 0 2px rgba(139, 92, 246, 0.2);
+    box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
 .wysiwyg-content h1, .wysiwyg-content h2, .wysiwyg-content h3 {
-    color: #e2e8f0;
+    color: var(--text-primary);
     margin: 1rem 0 0.5rem;
 }
 
@@ -95,11 +95,11 @@
 }
 
 .wysiwyg-content a {
-    color: #8b5cf6;
+    color: var(--brand);
 }
 
 .wysiwyg-content code {
-    background: rgba(139, 92, 246, 0.1);
+    background: var(--bg-subtle);
     padding: 0.125rem 0.375rem;
     border-radius: 4px;
     font-family: 'Fira Code', monospace;
@@ -107,7 +107,7 @@
 }
 
 .wysiwyg-content pre {
-    background: rgba(15, 15, 35, 0.8);
+    background: var(--bg-subtle);
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
@@ -120,10 +120,10 @@
 }
 
 .wysiwyg-content blockquote {
-    border-left: 3px solid #8b5cf6;
+    border-left: 3px solid var(--brand);
     padding-left: 1rem;
     margin: 1rem 0;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-style: italic;
 }
 
@@ -144,13 +144,13 @@
 }
 
 .wysiwyg-content th, .wysiwyg-content td {
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--border-default);
     padding: 0.5rem;
     text-align: left;
 }
 
 .wysiwyg-content th {
-    background: rgba(139, 92, 246, 0.1);
+    background: var(--bg-subtle);
 }
 
 /* Link Dialog */
@@ -159,13 +159,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #1e1e32;
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
     z-index: 1000;
     min-width: 350px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-lg);
     display: none;
 }
 
@@ -196,7 +196,7 @@
 }
 
 .dialog-header h3 {
-    color: #e2e8f0;
+    color: var(--text-primary);
     margin: 0;
     font-size: 1rem;
 }
@@ -204,7 +204,7 @@
 .dialog-close {
     background: none;
     border: none;
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 1.25rem;
     cursor: pointer;
 }
@@ -212,16 +212,16 @@
 .dialog-input {
     width: 100%;
     padding: 0.75rem;
-    background: rgba(15, 15, 35, 0.6);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-default);
     border-radius: 6px;
-    color: #e2e8f0;
+    color: var(--text-primary);
     margin-bottom: 1rem;
 }
 
 .dialog-input:focus {
     outline: none;
-    border-color: #8b5cf6;
+    border-color: var(--brand);
 }
 
 .dialog-actions {
@@ -235,19 +235,23 @@
     border-radius: 6px;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
 }
 
 .dialog-btn-primary {
-    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    background: linear-gradient(135deg, var(--brand), var(--brand-hover));
     color: white;
     border: none;
 }
 
 .dialog-btn-secondary {
     background: transparent;
-    color: #94a3b8;
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: var(--text-muted);
+    border: 1px solid var(--border-default);
+}
+.dialog-btn-secondary:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
 }
 </style>
 

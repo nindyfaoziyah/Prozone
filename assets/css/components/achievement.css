@@ -175,7 +175,7 @@
 .achievement-card[data-rarity="common"] { --rarity-color: #94a3b8; }
 .achievement-card[data-rarity="uncommon"] { --rarity-color: #10b981; }
 .achievement-card[data-rarity="rare"] { --rarity-color: #3b82f6; }
-.achievement-card[data-rarity="epic"] { --rarity-color: #a855f7; }
+.achievement-card[data-rarity="epic"] { --rarity-color: #14B8A6; }
 .achievement-card[data-rarity="legendary"] {
   --rarity-color: #f59e0b;
   background: linear-gradient(135deg, var(--surface-card) 0%, rgba(251, 191, 36, 0.08) 100%);
@@ -220,7 +220,7 @@
 }
 
 .achievement-card[data-rarity="uncommon"] .achievement-badge {
-  background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #60A5FA 0%, #14B8A6 100%);
 }
 
 .achievement-card[data-rarity="rare"] .achievement-badge {
@@ -228,7 +228,7 @@
 }
 
 .achievement-card[data-rarity="epic"] .achievement-badge {
-  background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #60A5FA 0%, #14B8A6 100%);
 }
 
 .achievement-card[data-rarity="legendary"] .achievement-badge {
@@ -370,7 +370,7 @@
 }
 
 .achievement-card[data-rarity="uncommon"] .achievement-progress-fill {
-  background: linear-gradient(90deg, #c084fc 0%, #a855f7 100%);
+  background: linear-gradient(90deg, #60A5FA 0%, #14B8A6 100%);
 }
 
 .achievement-card[data-rarity="rare"] .achievement-progress-fill {
@@ -378,7 +378,7 @@
 }
 
 .achievement-card[data-rarity="epic"] .achievement-progress-fill {
-  background: linear-gradient(90deg, #c084fc 0%, #a855f7 100%);
+  background: linear-gradient(90deg, #60A5FA 0%, #14B8A6 100%);
 }
 
 .achievement-card[data-rarity="legendary"] .achievement-progress-fill {

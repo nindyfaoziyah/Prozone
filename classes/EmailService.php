@@ -252,13 +252,13 @@ class EmailService {
             'verification' => '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); color: #e2e8f0; padding: 40px; border-radius: 12px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #8b5cf6; margin: 0;">PROZONE</h1>
+                        <h1 style="color: #14B8A6; margin: 0;">PROZONE</h1>
                         <p style="color: #94a3b8; margin: 5px 0;">Learning Management System</p>
                     </div>
                     <h2 style="color: #e2e8f0;">Halo, {name}!</h2>
                     <p style="color: #cbd5e1; line-height: 1.6;">Terima kasih telah mendaftar di Prozone. Untuk menyelesaikan pendaftaran, silakan verifikasi email Anda dengan mengklik tombol di bawah ini:</p>
                     <div style="text-align: center; margin: 30px 0;">
-                        <a href="{verify_link}" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Verifikasi Email</a>
+                        <a href="{verify_link}" style="background: linear-gradient(135deg, #0284C7, #14B8A6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Verifikasi Email</a>
                     </div>
                     <p style="color: #94a3b8; font-size: 14px;">Link ini akan kedaluwarsa dalam {expiry_hours} jam.</p>
                     <p style="color: #64748b; font-size: 12px; margin-top: 30px; border-top: 1px solid #2d2d5a; padding-top: 20px;">Jika Anda tidak mendaftar di Prozone, abaikan email ini.</p>
@@ -267,12 +267,12 @@ class EmailService {
             'password_reset' => '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); color: #e2e8f0; padding: 40px; border-radius: 12px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #8b5cf6; margin: 0;">PROZONE</h1>
+                        <h1 style="color: #14B8A6; margin: 0;">PROZONE</h1>
                     </div>
                     <h2 style="color: #e2e8f0;">Reset Password</h2>
                     <p style="color: #cbd5e1; line-height: 1.6;">Halo {name}, Anda menerima email ini karena ada permintaan reset password untuk akun Anda.</p>
                     <div style="text-align: center; margin: 30px 0;">
-                        <a href="{reset_link}" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Reset Password</a>
+                        <a href="{reset_link}" style="background: linear-gradient(135deg, #0284C7, #14B8A6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Reset Password</a>
                     </div>
                     <p style="color: #94a3b8; font-size: 14px;">Link ini akan kedaluwarsa dalam {expiry_minutes} menit.</p>
                     <p style="color: #64748b; font-size: 12px; margin-top: 30px; border-top: 1px solid #2d2d5a; padding-top: 20px;">Jika Anda tidak meminta reset password, abaikan email ini.</p>
@@ -281,25 +281,25 @@ class EmailService {
             'progress_reminder' => '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); color: #e2e8f0; padding: 40px; border-radius: 12px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #8b5cf6; margin: 0;">PROZONE</h1>
+                        <h1 style="color: #14B8A6; margin: 0;">PROZONE</h1>
                     </div>
                     <h2 style="color: #e2e8f0;">Kami merindukanmu, {name}!</h2>
                     <p style="color: #cbd5e1; line-height: 1.6;">Sudah {last_activity} sejak aktivitas terakhir Anda. Jangan biarkan progress belajar Anda terhenti!</p>
-                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #8b5cf6;">
-                        <p style="margin: 0; color: #a78bfa;">Lanjutkan kursus: <strong>{course_name}</strong></p>
+                    <div style="background: rgba(20, 184, 166, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #14B8A6;">
+                        <p style="margin: 0; color: #2DD4BF;">Lanjutkan kursus: <strong>{course_name}</strong></p>
                     </div>
                     <div style="text-align: center; margin: 30px 0;">
-                        <a href="{dashboard_link}" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Lanjutkan Belajar</a>
+                        <a href="{dashboard_link}" style="background: linear-gradient(135deg, #0284C7, #14B8A6); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Lanjutkan Belajar</a>
                     </div>
                 </div>
             ',
             'achievement' => '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); color: #e2e8f0; padding: 40px; border-radius: 12px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #8b5cf6; margin: 0;">PROZONE</h1>
+                        <h1 style="color: #14B8A6; margin: 0;">PROZONE</h1>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 64px; margin: 20px 0;">🏆</div>
+                        <div style="font-size: 64px; margin: 20px 0;">ðŸ†</div>
                         <h2 style="color: #fbbf24;">Selamat, {name}!</h2>
                         <p style="color: #cbd5e1; font-size: 18px;">Anda mendapatkan achievement baru:</p>
                         <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid rgba(251, 191, 36, 0.3);">
@@ -312,12 +312,12 @@ class EmailService {
             'course_update' => '
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); color: #e2e8f0; padding: 40px; border-radius: 12px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #8b5cf6; margin: 0;">PROZONE</h1>
+                        <h1 style="color: #14B8A6; margin: 0;">PROZONE</h1>
                     </div>
                     <h2 style="color: #e2e8f0;">Halo {name}!</h2>
                     <p style="color: #cbd5e1; line-height: 1.6;">Ada update baru pada kursus yang Anda ikuti:</p>
-                    <div style="background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #8b5cf6;">
-                        <p style="margin: 0; color: #a78bfa;"><strong>{course_name}</strong></p>
+                    <div style="background: rgba(20, 184, 166, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #14B8A6;">
+                        <p style="margin: 0; color: #2DD4BF;"><strong>{course_name}</strong></p>
                         <p style="margin: 10px 0 0 0; color: #94a3b8;">{update_type}</p>
                     </div>
                 </div>

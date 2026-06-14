@@ -113,10 +113,6 @@ if ($_POST) {
                             <span><?php echo $course_data['durasi_jam']; ?> Jam</span>
                         </div>
                         <div class="course-meta-item">
-                            <span><?php icon('user', 16); ?></span>
-                            <span><?php echo htmlspecialchars($course_data['instructor_name']); ?></span>
-                        </div>
-                        <div class="course-meta-item">
                             <span><?php icon('chart', 16); ?></span>
                             <span><?php echo ucfirst($course_data['level']); ?> Level</span>
                         </div>

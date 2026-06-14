@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once 'config/config.php';
 requireLogin();
 require_once 'includes/icons.php';
@@ -13,7 +13,7 @@ $themeColors = [
     'css' => '#2563EB',
     'js' => '#F59E0B',
     'react' => '#22C55E',
-    'backend' => '#8B5CF6',
+    'backend' => '#14B8A6',
     'api' => '#EC4899',
     'database' => '#0EA5E9',
     'fullstack' => '#10B981',
@@ -230,8 +230,8 @@ $roles = [
         'name' => 'Backend Developer',
         'icon' => '&#128295;',
         'description' => 'Kuasai logika server, API, database, dan arsitektur aplikasi yang scalable dan aman.',
-        'color' => '#8B5CF6',
-        'gradient' => 'linear-gradient(135deg, #8B5CF6, #EC4899)',
+        'color' => '#14B8A6',
+        'gradient' => 'linear-gradient(135deg, #14B8A6, #EC4899)',
         'levels' => [5, 6, 7],
     ],
     'fullstack' => [
@@ -249,7 +249,7 @@ $roles = [
         'icon' => '&#129302;',
         'description' => 'Olah data, bangun pipeline, dan ciptakan sistem cerdas dengan machine learning.',
         'color' => '#06B6D4',
-        'gradient' => 'linear-gradient(135deg, #06B6D4, #6366F1)',
+        'gradient' => 'linear-gradient(135deg, #06B6D4, #3B82F6)',
         'levels' => [3, 5, 6, 7],
     ],
 ];
@@ -586,7 +586,7 @@ $overallProgress = round(array_sum(array_column($learningPath, 'progress')) / $t
             card.className = 'lp-card ' + (level.status || 'locked');
             card.dataset.level = level.level;
 
-            const color = themeColors[level.theme] || '#6366f1';
+            const color = themeColors[level.theme] || '#3B82F6';
 
             card.innerHTML =
                 '<div class="lp-card-header">' +
@@ -664,7 +664,7 @@ $overallProgress = round(array_sum(array_column($learningPath, 'progress')) / $t
         placeholder.style.display = 'none';
         content.style.display = 'block';
 
-        const color = themeColors[level.theme] || '#6366f1';
+        const color = themeColors[level.theme] || '#3B82F6';
         detailIcon.innerHTML = level.icon;
         detailIcon.style.background = 'linear-gradient(135deg, ' + color + ', ' + color + 'dd)';
         detailLevel.textContent = 'Level ' + level.level;

@@ -9,12 +9,12 @@
    ============================================ */
 
 :root {
-    /* Color Palette - Brand Primary (Purple) */
-    --color-primary-50:  #F5F3FF;
-    --color-primary-100: #EDE9FE;
-    --color-primary-500: #6C4CFD;
-    --color-primary-600: #5A3FF5;
-    --color-primary-light: #8B72FF;
+    /* Color Palette - Brand Primary (Blue) */
+    --color-primary-50:  #EFF6FF;
+    --color-primary-100: #DBEAFE;
+    --color-primary-500: #3B82F6;
+    --color-primary-600: #2563EB;
+    --color-primary-light: #0EA5E9;
 
     /* Color Palette - Brand Secondary (Teal/Cyan) */
     --color-secondary-500: #20C7B7;
@@ -117,7 +117,7 @@
     --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    /* Semantic brand tokens — Blue→Teal gradient */
+    /* Semantic brand tokens â€” Blueâ†’Teal gradient */
     --brand: #3b82f6;
     --brand-hover: #0ea5e9;
     --brand-active: #14b8a6;
@@ -125,7 +125,7 @@
     --brand-subtle: rgba(59, 130, 246, 0.10);
     --gradient-brand: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%);
 
-    /* Accent — Teal */
+    /* Accent â€” Teal */
     --accent: #14b8a6;
     --accent-subtle: rgba(20, 184, 166, 0.10);
 

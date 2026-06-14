@@ -2,8 +2,7 @@
 // API endpoint untuk save progress (AJAX) dengan validasi XP
 require_once '../config/config.php';
 requireLogin();
-// Allow all roles to save progress (students, instructors, admins)
-// Instructors and admins may need to test lessons
+// Allow authenticated users to save progress
 
 header('Content-Type: application/json');
 

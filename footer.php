@@ -9,11 +9,11 @@
 				</div>
 				<p class="footer-tagline">Platform pembelajaran coding interaktif dengan sistem gamifikasi RPG. Belajar, berkompetisi, dan raih prestasi bersama komunitas developer Indonesia.</p>
 				<div class="footer-socials">
-					<a href="https://twitter.com" class="social-icon" title="Twitter">𝕏</a>
+					<a href="https://twitter.com" class="social-icon" title="Twitter">ð•</a>
 					<a href="https://facebook.com" class="social-icon" title="Facebook">f</a>
-					<a href="https://instagram.com" class="social-icon" title="Instagram">📷</a>
+					<a href="https://instagram.com" class="social-icon" title="Instagram">ðŸ“·</a>
 					<a href="https://linkedin.com" class="social-icon" title="LinkedIn">in</a>
-					<a href="https://github.com" class="social-icon" title="GitHub">⚙</a>
+					<a href="https://github.com" class="social-icon" title="GitHub">âš™</a>
 				</div>
 			</div>
 
@@ -45,15 +45,15 @@
 			<div class="footer-col">
 				<h3 class="footer-col-title">Contact Info</h3>
 				<div class="contact-item">
-					<span class="contact-label">📍 Office:</span>
+					<span class="contact-label">ðŸ“ Office:</span>
 					<p>Jakarta, Indonesia</p>
 				</div>
 				<div class="contact-item">
-					<span class="contact-label">📞 Phone:</span>
+					<span class="contact-label">ðŸ“ž Phone:</span>
 					<p>+62 (21) XXXX-XXXX</p>
 				</div>
 				<div class="contact-item">
-					<span class="contact-label">✉️ Email:</span>
+					<span class="contact-label">âœ‰ï¸ Email:</span>
 					<p><a href="mailto:hello@prozone.id">hello@prozone.id</a></p>
 				</div>
 			</div>
@@ -72,12 +72,12 @@
 		<!-- Footer Bottom -->
 		<div class="footer-bottom">
 			<div class="footer-bottom-content">
-				<p class="copyright">&copy; <?php echo date('Y'); ?> <strong>Prozone</strong>. All rights reserved. | Built with ❤️ for developers in Indonesia</p>
+				<p class="copyright">&copy; <?php echo date('Y'); ?> <strong>Prozone</strong>. All rights reserved. | Built with â¤ï¸ for developers in Indonesia</p>
 				<div class="footer-bottom-links">
 					<a href="#privacy">Privacy</a>
-					<span class="divider">•</span>
+					<span class="divider">â€¢</span>
 					<a href="#terms">Terms</a>
-					<span class="divider">•</span>
+					<span class="divider">â€¢</span>
 					<a href="#cookies">Cookies</a>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 </footer>
 
 <style>
-	.site-footer{background:#1a1a2e;color:#f0f0f0;padding:48px 20px 32px;margin-top:48px;border-top:1px solid #6C4CFD;position:relative}
+	.site-footer{background:#1a1a2e;color:#f0f0f0;padding:48px 20px 32px;margin-top:48px;border-top:1px solid #3B82F6;position:relative}
 	.footer-wrapper{max-width:1400px;margin:0 auto}
 	.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-bottom:40px}
 	
@@ -98,26 +98,26 @@
 	.footer-tagline{font-size:0.9rem;color:#b0b0b0;line-height:1.6;margin:12px 0 0 0;padding-right:12px}
 	
 	.footer-socials{display:flex;gap:12px;margin-top:20px}
-	.social-icon{width:36px;height:36px;border:1.5px solid #6C4CFD;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#6C4CFD;text-decoration:none;font-weight:600;font-size:0.85rem;transition:all 0.3s ease;background:transparent}
-	.social-icon:hover{background:#6C4CFD;color:#fff;transform:translateY(-2px)}
+	.social-icon{width:36px;height:36px;border:1.5px solid #3B82F6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#3B82F6;text-decoration:none;font-weight:600;font-size:0.85rem;transition:all 0.3s ease;background:transparent}
+	.social-icon:hover{background:#3B82F6;color:#fff;transform:translateY(-2px)}
 	
 	.footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
 	.footer-links a{color:#b0b0b0;text-decoration:none;font-size:0.95rem;transition:color 0.3s ease}
-	.footer-links a:hover{color:#6C4CFD}
+	.footer-links a:hover{color:#3B82F6}
 	
 	.contact-item{margin-bottom:14px}
-	.contact-label{color:#6C4CFD;font-weight:600;font-size:0.9rem;display:block;margin-bottom:4px}
+	.contact-label{color:#3B82F6;font-weight:600;font-size:0.9rem;display:block;margin-bottom:4px}
 	.contact-item p{margin:0;color:#b0b0b0;font-size:0.95rem}
-	.contact-item a{color:#6C4CFD;text-decoration:none}
+	.contact-item a{color:#3B82F6;text-decoration:none}
 	.contact-item a:hover{text-decoration:underline}
 	
 	.newsletter-desc{font-size:0.9rem;color:#b0b0b0;margin:0 0 12px 0}
 	.newsletter-form{display:flex;gap:8px}
-	.newsletter-input{flex:1;padding:10px 14px;background:#252540;border:1.5px solid #6C4CFD;border-radius:6px;color:#f0f0f0;font-size:0.9rem;outline:none;transition:all 0.3s}
+	.newsletter-input{flex:1;padding:10px 14px;background:#252540;border:1.5px solid #3B82F6;border-radius:6px;color:#f0f0f0;font-size:0.9rem;outline:none;transition:all 0.3s}
 	.newsletter-input::placeholder{color:#808080}
-	.newsletter-input:focus{background:#2a2a45;box-shadow:0 0 12px rgba(108,76,253,0.2)}
-	.newsletter-btn{padding:10px 18px;background:#6C4CFD;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;font-size:0.9rem;transition:all 0.3s}
-	.newsletter-btn:hover{background:#5a3ff5;transform:translateY(-2px);box-shadow:0 6px 16px rgba(108,76,253,0.3)}
+	.newsletter-input:focus{background:#2a2a45;box-shadow:0 0 12px rgba(59,130,246,0.2)}
+	.newsletter-btn{padding:10px 18px;background:#3B82F6;color:#fff;border:none;border-radius:6px;font-weight:600;cursor:pointer;font-size:0.9rem;transition:all 0.3s}
+	.newsletter-btn:hover{background:#2563EB;transform:translateY(-2px);box-shadow:0 6px 16px rgba(59,130,246,0.3)}
 	
 	.footer-bottom{border-top:1px solid #333;padding-top:24px}
 	.footer-bottom-content{text-align:center}
@@ -125,7 +125,7 @@
 	.copyright strong{color:#fff}
 	.footer-bottom-links{display:flex;justify-content:center;gap:12px;margin-top:12px;font-size:0.9rem}
 	.footer-bottom-links a{color:#808080;text-decoration:none;transition:color 0.3s}
-	.footer-bottom-links a:hover{color:#6C4CFD}
+	.footer-bottom-links a:hover{color:#3B82F6}
 	.divider{color:#555}
 	
 	/* Place footer in the dashboard main column */

@@ -36,8 +36,8 @@
     .spinner {
         width: 50px;
         height: 50px;
-        border: 3px solid rgba(139, 92, 246, 0.2);
-        border-top-color: #8b5cf6;
+        border: 3px solid rgba(20, 184, 166, 0.2);
+        border-top-color: #14B8A6;
         border-radius: 50%;
         animation: spin 1s linear infinite;
         margin: 0 auto 1rem;
@@ -50,7 +50,7 @@
     }
 
     .loading-text {
-        color: #a78bfa;
+        color: #2DD4BF;
         font-size: 0.9rem;
         font-weight: 500;
         margin: 0;
@@ -85,9 +85,9 @@
     /* Skeleton Loading */
     .skeleton {
         background: linear-gradient(90deg, 
-            rgba(139, 92, 246, 0.1) 25%, 
-            rgba(139, 92, 246, 0.2) 50%, 
-            rgba(139, 92, 246, 0.1) 75%);
+            rgba(20, 184, 166, 0.1) 25%, 
+            rgba(20, 184, 166, 0.2) 50%, 
+            rgba(20, 184, 166, 0.1) 75%);
         background-size: 200% 100%;
         animation: skeleton-loading 1.5s infinite;
         border-radius: 4px;

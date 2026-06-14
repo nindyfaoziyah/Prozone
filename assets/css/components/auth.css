@@ -648,21 +648,13 @@ body.auth-page {
   to { width: 40px; opacity: 1; }
 }
 
-/* Stagger entrance animation */
+/* Stagger entrance animation — all at once */
 .stagger {
   opacity: 0;
   transform: translateY(12px);
-  animation: staggerIn 0.5s ease both;
+  animation: staggerIn 0.4s ease both;
+  animation-delay: 0.1s;
 }
-
-.stagger:nth-child(1) { animation-delay: 0.05s; }
-.stagger:nth-child(2) { animation-delay: 0.10s; }
-.stagger:nth-child(3) { animation-delay: 0.15s; }
-.stagger:nth-child(4) { animation-delay: 0.20s; }
-.stagger:nth-child(5) { animation-delay: 0.25s; }
-.stagger:nth-child(6) { animation-delay: 0.30s; }
-.stagger:nth-child(7) { animation-delay: 0.35s; }
-.stagger:nth-child(8) { animation-delay: 0.40s; }
 
 @keyframes staggerIn {
   to { opacity: 1; transform: translateY(0); }
@@ -1657,77 +1649,77 @@ body.auth-page {
   height: 70%;
 }
 
-/* Individual floating items — varied sizes, positions, speeds */
+/* Individual floating items — same delay so they appear together */
 .auth-floating-tech .tech-icon:nth-child(1) {
   width: 48px; height: 48px;
   left: 5%; top: 12%;
-  animation-duration: 18s; animation-delay: 0s;
+  animation-duration: 18s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(2) {
   width: 42px; height: 42px;
   left: 15%; top: 65%;
-  animation-duration: 22s; animation-delay: 2s;
+  animation-duration: 22s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(3) {
   width: 44px; height: 44px;
   left: 25%; top: 30%;
-  animation-duration: 20s; animation-delay: 4s;
+  animation-duration: 20s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(4) {
   width: 50px; height: 50px;
   left: 75%; top: 15%;
-  animation-duration: 19s; animation-delay: 1s;
+  animation-duration: 19s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(5) {
   width: 40px; height: 40px;
   left: 85%; top: 55%;
-  animation-duration: 24s; animation-delay: 3s;
+  animation-duration: 24s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(6) {
   width: 46px; height: 46px;
   left: 60%; top: 75%;
-  animation-duration: 21s; animation-delay: 5s;
+  animation-duration: 21s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(7) {
   width: 38px; height: 38px;
   left: 45%; top: 8%;
-  animation-duration: 17s; animation-delay: 6s;
+  animation-duration: 17s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(8) {
   width: 44px; height: 44px;
   left: 92%; top: 35%;
-  animation-duration: 23s; animation-delay: 7s;
+  animation-duration: 23s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(9) {
   width: 36px; height: 36px;
   left: 8%; top: 85%;
-  animation-duration: 25s; animation-delay: 8s;
+  animation-duration: 25s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(10) {
   width: 42px; height: 42px;
   left: 35%; top: 80%;
-  animation-duration: 20s; animation-delay: 9s;
+  animation-duration: 20s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(11) {
   width: 40px; height: 40px;
   left: 68%; top: 45%;
-  animation-duration: 22s; animation-delay: 10s;
+  animation-duration: 22s;
 }
 
 .auth-floating-tech .tech-icon:nth-child(12) {
   width: 36px; height: 36px;
   left: 50%; top: 50%;
-  animation-duration: 26s; animation-delay: 11s;
+  animation-duration: 26s;
 }
 
 /* Dark mode — slightly more visible icons */

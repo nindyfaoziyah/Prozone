@@ -28,7 +28,7 @@ $nav_active       = function ($href) use ($current_page) {
     <svg style="display: none;" aria-hidden="true">
         <defs>
             <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366F1"/>
+                <stop offset="0%" stop-color="#3B82F6"/>
                 <stop offset="100%" stop-color="#10B981"/>
             </linearGradient>
         </defs>
@@ -43,7 +43,7 @@ $nav_active       = function ($href) use ($current_page) {
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="brandGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -110,8 +110,8 @@ $nav_active       = function ($href) use ($current_page) {
                         <dd class="hero-trust-num" data-count="1000" aria-label="1000 siswa aktif">0+</dd>
                     </div>
                     <div class="hero-trust-item">
-                        <dt class="hero-trust-label">Instructors</dt>
-                        <dd class="hero-trust-num" data-count="50" aria-label="50 instruktur">0+</dd>
+                        <dt class="hero-trust-label">Courses</dt>
+                        <dd class="hero-trust-num" data-count="200" aria-label="200 courses">0+</dd>
                     </div>
                 </dl>
             </div>
@@ -120,11 +120,11 @@ $nav_active       = function ($href) use ($current_page) {
                 <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="heroGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                         <linearGradient id="heroGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#6366F1" stop-opacity="0.6"/>
+                            <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.6"/>
                             <stop offset="100%" stop-color="#10B981" stop-opacity="0.6"/>
                         </linearGradient>
                         <filter id="heroGlow">
@@ -158,8 +158,8 @@ $nav_active       = function ($href) use ($current_page) {
                         <circle cx="55" cy="15" r="5" fill="#10B981"/>
                         <line class="hero-terminal-divider" x1="20" y1="40" x2="180" y2="40" stroke-width="2" opacity="0.5"/>
                         <text class="hero-terminal-cmd" x="20" y="65"  font-family="monospace" font-size="14" font-weight="bold">&gt; npm start</text>
-                        <text class="hero-terminal-ok"  x="20" y="90"  font-family="monospace" font-size="12">✓ Server running...</text>
-                        <text class="hero-terminal-dim" x="20" y="115" font-family="monospace" font-size="12">✓ Ready to code!</text>
+                        <text class="hero-terminal-ok"  x="20" y="90"  font-family="monospace" font-size="12">âœ“ Server running...</text>
+                        <text class="hero-terminal-dim" x="20" y="115" font-family="monospace" font-size="12">âœ“ Ready to code!</text>
                     </g>
                     <!-- XP badge -->
                     <g transform="translate(480, 160)" filter="url(#heroGlow)">
@@ -340,7 +340,7 @@ $nav_active       = function ($href) use ($current_page) {
                         <div class="testimonial-avatar" aria-label="Inisial Rizki Ramadhan"><span>R</span></div>
                         <div>
                             <div class="testimonial-name">Rizki Ramadhan</div>
-                            <div class="testimonial-role">Instructor & Senior Dev</div>
+                            <div class="testimonial-role">Senior Developer</div>
                         </div>
                     </div>
                 </article>
@@ -375,7 +375,7 @@ $nav_active       = function ($href) use ($current_page) {
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
                         <defs>
                             <linearGradient id="brandGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366F1"/>
+                                <stop offset="0%" stop-color="#3B82F6"/>
                                 <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                         </defs>

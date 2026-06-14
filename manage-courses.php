@@ -25,15 +25,15 @@ if ($_POST) {
     } elseif (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'create':
-                $course->kode_course = sanitizeInput($_POST['kode_course']);
-                $course->judul_course = sanitizeInput($_POST['judul_course']);
+                $course->kode_course = sanitizeInput($_POST['kode_course'] ?? '');
+                $course->judul_course = sanitizeInput($_POST['judul_course'] ?? '');
                 $course->slug = ''; // Will be auto-generated in model
-                $course->kategori_id = sanitizeInput($_POST['kategori_id']) ?: null;
+                $course->kategori_id = sanitizeInput($_POST['kategori_id'] ?? '') ?: null;
                 $course->admin_id = $_SESSION['user_id'];
                 $course->deskripsi = $_POST['deskripsi'] ?? '';
-                $course->level = sanitizeInput($_POST['level']);
-                $course->durasi_jam = sanitizeInput($_POST['durasi_jam']);
-                $course->harga = sanitizeInput($_POST['harga']);
+                $course->level = sanitizeInput($_POST['level'] ?? '');
+                $course->durasi_jam = sanitizeInput($_POST['durasi_jam'] ?? 0);
+                $course->harga = sanitizeInput($_POST['harga'] ?? 0);
                 $course->is_free = isset($_POST['is_free']) ? 1 : 0;
                 $course->is_published = isset($_POST['is_published']) ? 1 : 0;
                 $course->xp_reward = sanitizeInput($_POST['xp_reward'] ?? 100);
@@ -56,16 +56,16 @@ if ($_POST) {
                 break;
 
             case 'update':
-                $course->id = sanitizeInput($_POST['id']);
-                $course->kode_course = sanitizeInput($_POST['kode_course']);
-                $course->judul_course = sanitizeInput($_POST['judul_course']);
+                $course->id = sanitizeInput($_POST['id'] ?? 0);
+                $course->kode_course = sanitizeInput($_POST['kode_course'] ?? '');
+                $course->judul_course = sanitizeInput($_POST['judul_course'] ?? '');
                 $course->slug = ''; // Will be auto-generated in model
-                $course->kategori_id = sanitizeInput($_POST['kategori_id']) ?: null;
+                $course->kategori_id = sanitizeInput($_POST['kategori_id'] ?? '') ?: null;
                 $course->admin_id = $_SESSION['user_id'];
                 $course->deskripsi = $_POST['deskripsi'] ?? '';
-                $course->level = sanitizeInput($_POST['level']);
-                $course->durasi_jam = sanitizeInput($_POST['durasi_jam']);
-                $course->harga = sanitizeInput($_POST['harga']);
+                $course->level = sanitizeInput($_POST['level'] ?? '');
+                $course->durasi_jam = sanitizeInput($_POST['durasi_jam'] ?? 0);
+                $course->harga = sanitizeInput($_POST['harga'] ?? 0);
                 $course->is_free = isset($_POST['is_free']) ? 1 : 0;
                 $course->is_published = isset($_POST['is_published']) ? 1 : 0;
                 $course->xp_reward = sanitizeInput($_POST['xp_reward'] ?? 100);
@@ -88,7 +88,7 @@ if ($_POST) {
                 break;
 
             case 'delete':
-                $course->id = sanitizeInput($_POST['id']);
+                $course->id = sanitizeInput($_POST['id'] ?? 0);
                 if ($course->delete()) {
                     $message = 'Kursus berhasil dihapus!';
                     $message_type = 'success';
@@ -114,22 +114,15 @@ $categories = [];
 while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
     $categories[$row['id']] = $row;
 }
-?>
 
+$page_title = 'Kelola Kursus';
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$body_class = getThemeClass();
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta('Kelola Kursus - ' . APP_NAME, 'Manajemen kursus untuk admin', 'admin, courses, management'); ?>
-    <title>Kelola Kursus - <?php echo APP_NAME; ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/ui-enhancements.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-        <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <?php require_once 'includes/head.php'; ?>
     <style>
         .form-row {
             display: grid;
@@ -143,95 +136,91 @@ while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: rgba(139, 92, 246, 0.8);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
         }
         .form-group input[type="text"],
         .form-group input[type="number"],
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 0.5rem;
-            background: rgba(15, 15, 35, 0.6);
-            color: #e0e7ff;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            padding: 0.625rem 0.875rem;
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
         }
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: rgba(124, 58, 237, 0.5);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
-            background: rgba(15, 15, 35, 0.8);
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px var(--brand-subtle);
         }
         .form-group textarea {
             resize: vertical;
             font-family: inherit;
+            min-height: 100px;
         }
         .form-group input[type="checkbox"] {
             margin-right: 0.5rem;
             width: auto;
         }
-        .btn-primary {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        .admin-modal-inner {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--border-default);
+            box-shadow: var(--shadow-xl);
         }
-        .btn-secondary {
-            padding: 0.75rem 1.5rem;
-            background: rgba(139, 92, 246, 0.1);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background: rgba(139, 92, 246, 0.2);
-        }
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
+        .admin-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-default);
         }
-        .alert-success {
-            background: rgba(16, 185, 129, 0.2);
-            border-left: 4px solid #10b981;
-            color: #10b981;
+        .admin-modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
         }
-        .alert-error {
-            background: rgba(239, 68, 68, 0.2);
-            border-left: 4px solid #ef4444;
-            color: #ef4444;
+        .admin-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            line-height: 1;
+            transition: color 0.2s;
         }
+        .admin-modal-close:hover { color: var(--text-primary); }
+        .dark-mode .admin-modal-inner { background: var(--bg-elevated); border-color: var(--border-color); }
+        .dark-mode .form-group input, .dark-mode .form-group select, .dark-mode .form-group textarea { background: var(--bg-tertiary); }
     </style>
 </head>
-<body>
-    <!-- Navbar -->
+<body class="dashboard-layout <?php echo $body_class; ?>">
     <?php require_once 'navbar.php'; ?>
 
-    <!-- Main Content -->
-    <div class="dashboard-main-container">
+    <div class="dashboard-container">
         <div class="dashboard-content">
-            <div class="dashboard-header">
-                <h1>Kelola Kursus</h1>
-                <p>Kelola semua kursus di platform</p>
-            </div>
 
             <div class="content">
                 <?php if ($message): ?>
@@ -241,91 +230,87 @@ while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
                 <?php endif; ?>
 
                 <!-- Add Course Button -->
-                <div style="margin-bottom: 2rem; text-align: right;">
-                    <button onclick="showCreateForm()" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);">➕ Tambah Kursus</button>
+                <div class="admin-header" style="margin-bottom:1rem;">
+                    <div></div>
+                    <button onclick="showCreateForm()" class="admin-action-btn lessons" style="padding:0.6rem 1.25rem;font-size:0.85rem;"><?php echo getIcon('plus', 16); ?> Tambah Kursus</button>
                 </div>
 
                 <!-- Courses Table -->
-                <div style="background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; padding: 1.75rem; border: 1px solid rgba(124, 58, 237, 0.2); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(124, 58, 237, 0.1);">
-                    <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(124, 58, 237, 0.2);">
-                        <h2 style="color: #e0e7ff; margin: 0; background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Daftar Kursus</h2>
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Daftar Kursus</h3>
+                        <span class="card-badge"><?php echo count($courses); ?> total</span>
                     </div>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse;">
+                    <div class="admin-table-wrap">
+                        <table class="admin-table compact">
                             <thead>
-                                <tr style="border-bottom: 1px solid rgba(124, 58, 237, 0.2);">
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Kode</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Judul</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Kategori</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Level</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Instructor</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Status</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Students</th>
-                                    <th style="padding: 1rem 0.75rem; text-align: left; color: rgba(139, 92, 246, 0.8); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Aksi</th>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Judul</th>
+                                    <th>Kategori</th>
+                                    <th>Level</th>
+                                    <th>Status</th>
+                                    <th>Students</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (empty($courses)): ?>
                                     <tr>
-                                        <td colspan="8" style="text-align: center; padding: 3rem 2rem;">
-                                            <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"><?php icon('book', 48); ?></div>
-                                            <p style="color: rgba(139, 92, 246, 0.7); font-size: 1rem; margin-bottom: 0.5rem;">Belum ada kursus.</p>
-                                            <p style="color: rgba(139, 92, 246, 0.5); font-size: 0.9rem;">Klik "Tambah Kursus" untuk membuat kursus baru.</p>
+                                        <td colspan="8">
+                                            <div class="admin-empty-state">
+                                                <div class="empty-icon">📚</div>
+                                                <div class="empty-text">Belum ada kursus. Klik "Tambah Kursus" untuk membuat kursus baru.</div>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php else: ?>
                                     <?php foreach ($courses as $course_item): ?>
-                                        <tr style="border-bottom: 1px solid rgba(124, 58, 237, 0.1); transition: all 0.2s ease;" onmouseover="this.style.background='rgba(139, 92, 246, 0.05)'" onmouseout="this.style.background='transparent'">
-                                                                                        <td style="padding: 0.75rem 0.5rem; color: #e0e7ff; font-weight: 500;"><?php echo htmlspecialchars($course_item['kode_course']); ?></td>
-                                            <td style="padding: 1.25rem 0.75rem;">
-                                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <tr>
+                                            <td style="font-weight:600;"><?php echo htmlspecialchars($course_item['kode_course']); ?></td>
+                                            <td>
+                                                <div style="display:flex;align-items:center;gap:0.5rem;">
                                                     <?php $logo = getLanguageIcon($course_item['judul_course']); if ($logo): ?>
-                                                    <img src="<?php echo $logo; ?>" alt="" style="width: 28px; height: 28px; object-fit: contain;">
+                                                    <img src="<?php echo $logo; ?>" alt="" style="width:24px;height:24px;object-fit:contain;flex-shrink:0;">
                                                     <?php endif; ?>
-                                                    <strong style="color: #a78bfa; font-weight: 600;"><?php echo htmlspecialchars($course_item['judul_course']); ?></strong>
+                                                    <strong><?php echo htmlspecialchars($course_item['judul_course']); ?></strong>
                                                 </div>
                                             </td>
-                                            <td style="padding: 0.75rem 0.5rem; color: rgba(139, 92, 246, 0.7); font-size: 0.85rem;">
+                                            <td style="color:var(--text-muted);font-size:0.8125rem;">
                                                 <?php 
                                                 if ($course_item['kategori_id'] && isset($categories[$course_item['kategori_id']])) {
                                                     echo htmlspecialchars($categories[$course_item['kategori_id']]['nama_kategori']);
-                                                } else {
-                                                    echo '<span style="color: rgba(139, 92, 246, 0.5);">-</span>';
-                                                }
+                                                } else { echo '-'; }
                                                 ?>
                                             </td>
-                                            <td style="padding: 0.75rem 0.5rem;">
-                                                <span style="padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; display: inline-block; text-transform: capitalize; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3);">
-                                                    <?php echo htmlspecialchars($course_item['level']); ?>
-                                                </span>
+                                            <td>
+                                                <span class="admin-badge info"><?php echo htmlspecialchars($course_item['level']); ?></span>
                                             </td>
-                                            <td style="padding: 0.75rem 0.5rem; color: #e0e7ff; font-size: 0.85rem;"><?php echo htmlspecialchars($course_item['instructor_name'] ?? '-'); ?></td>
-                                            <td style="padding: 0.75rem 0.5rem;">
+                                            <td>
                                                 <?php if ($course_item['is_published']): ?>
-                                                    <span style="padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; display: inline-block; background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">Published</span>
+                                                    <span class="admin-badge success">Published</span>
                                                 <?php else: ?>
-                                                    <span style="padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; display: inline-block; background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3);">Draft</span>
+                                                    <span class="admin-badge warning">Draft</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td style="padding: 0.75rem 0.5rem; color: #e0e7ff; font-weight: 500; font-size: 0.85rem;"><?php echo $course_item['total_students']; ?></td>
-                                            <td style="padding: 0.75rem 0.5rem;">
-                                                <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                                            <td style="font-weight:600;"><?php echo $course_item['total_students']; ?></td>
+                                             <td>
+                                                <div style="display:flex;gap:0.35rem;flex-wrap:wrap;">
                                                     <button onclick="editCourse(<?php echo htmlspecialchars(json_encode($course_item)); ?>)" 
-                                                            style="padding: 0.35rem 0.75rem; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3); font-size: 0.75rem;">
-                                                        <?php icon('edit', 12); ?> Edit
+                                                            class="admin-action-btn edit">
+                                                        <?php icon('edit', 14); ?> Edit
                                                     </button>
                                                     <a href="manage-lessons.php?course_id=<?php echo $course_item['id']; ?>" 
-                                                       style="padding: 0.35rem 0.75rem; background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; border: none; border-radius: 0.375rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3); display: inline-block; font-size: 0.75rem;">
-                                                        <?php icon('file', 12); ?> Lessons
+                                                       class="admin-action-btn lessons">
+                                                        <?php icon('file', 14); ?> Lessons
                                                     </a>
-                                                    <form method="POST" style="display: inline;" 
+                                                    <form method="POST" style="display:inline;" 
                                                           onsubmit="return confirm('Yakin ingin menghapus kursus ini?');">
                                                         <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                                                         <input type="hidden" name="action" value="delete">
                                                         <input type="hidden" name="id" value="<?php echo $course_item['id']; ?>">
-                                                        <button type="submit" 
-                                                                style="padding: 0.35rem 0.75rem; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3); font-size: 0.75rem;">
-                                                            <?php icon('trash', 12); ?> Hapus
+                                                        <button type="submit" class="admin-action-btn delete">
+                                                            <?php icon('trash', 14); ?> Hapus
                                                         </button>
                                                     </form>
                                                 </div>
@@ -339,14 +324,11 @@ while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
                 </div>
 
                 <!-- Create/Edit Form Modal -->
-                <div id="courseModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-                     background: rgba(0,0,0,0.7); z-index: 2000; overflow-y: auto; padding: 2rem;">
-                    <div style="max-width: 900px; margin: 2rem auto; background: linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; 
-                         padding: 2rem; border: 1px solid rgba(124, 58, 237, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(124, 58, 237, 0.1);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(124, 58, 237, 0.2);">
-                            <h2 style="color: #e0e7ff; margin: 0; background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="modalTitle">Tambah Kursus</h2>
-                            <button onclick="closeModal()" style="background: none; border: none; color: #94a3b8; 
-                                    font-size: 1.5rem; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#e0e7ff'" onmouseout="this.style.color='#94a3b8'">&times;</button>
+                <div id="courseModal" class="admin-modal">
+                    <div class="admin-modal-inner">
+                        <div class="admin-modal-header">
+                            <h2 id="modalTitle">Tambah Kursus</h2>
+                            <button onclick="closeModal()" class="admin-modal-close">&times;</button>
                         </div>
                         <form method="POST" id="courseForm" enctype="multipart/form-data">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
@@ -430,8 +412,8 @@ while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
                             </div>
 
                             <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
-                                <button type="button" onclick="closeModal()" class="btn btn-secondary">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="button" onclick="closeModal()" style="padding:0.6rem 1.25rem;background:var(--bg-subtle);color:var(--text-secondary);border:1px solid var(--border-default);border-radius:var(--radius-md);font-weight:600;cursor:pointer;transition:all var(--transition-fast);font-size:0.85rem;">Batal</button>
+                                <button type="submit" class="admin-action-btn lessons" style="padding:0.6rem 1.5rem;font-size:0.85rem;">Simpan</button>
                             </div>
                         </form>
                     </div>

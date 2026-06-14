@@ -16,7 +16,7 @@
         width: 100%;
         padding: 0.75rem 1rem 0.75rem 2.75rem;
         background: rgba(15, 15, 35, 0.6);
-        border: 1px solid rgba(124, 58, 237, 0.2);
+        border: 1px solid rgba(59, 130, 246, 0.2);
         border-radius: 12px;
         color: #e0e7ff;
         font-size: 0.9rem;
@@ -25,19 +25,19 @@
     }
 
     .search-input::placeholder {
-        color: rgba(139, 92, 246, 0.5);
+        color: rgba(20, 184, 166, 0.5);
     }
 
     .search-input:focus {
-        border-color: rgba(124, 58, 237, 0.5);
-        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         background: rgba(15, 15, 35, 0.8);
     }
 
     .search-icon {
         position: absolute;
         left: 1rem;
-        color: rgba(139, 92, 246, 0.6);
+        color: rgba(20, 184, 166, 0.6);
         pointer-events: none;
     }
 
@@ -46,7 +46,7 @@
         right: 0.75rem;
         background: none;
         border: none;
-        color: rgba(139, 92, 246, 0.6);
+        color: rgba(20, 184, 166, 0.6);
         cursor: pointer;
         padding: 0.25rem;
         display: none;
@@ -71,10 +71,10 @@
 
     .filter-btn {
         padding: 0.5rem 1rem;
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.2);
+        background: rgba(20, 184, 166, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
         border-radius: 20px;
-        color: #a78bfa;
+        color: #2DD4BF;
         font-size: 0.8rem;
         font-weight: 500;
         cursor: pointer;
@@ -82,12 +82,12 @@
     }
 
     .filter-btn:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(124, 58, 237, 0.4);
+        background: rgba(20, 184, 166, 0.2);
+        border-color: rgba(59, 130, 246, 0.4);
     }
 
     .filter-btn.active {
-        background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%);
         border-color: transparent;
         color: white;
     }
@@ -103,7 +103,7 @@
     }
 
     .search-results-count {
-        color: #a78bfa;
+        color: #2DD4BF;
         font-weight: 600;
     }
 

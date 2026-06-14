@@ -47,12 +47,12 @@ class User {
 
         $stmt = $this->conn->prepare($query);
 
-        $this->username = htmlspecialchars(strip_tags($this->username ?? ''));
+        $this->username = strip_tags($this->username ?? '');
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-        $this->nama_lengkap = htmlspecialchars(strip_tags($this->nama_lengkap ?? ''));
-        $this->email = htmlspecialchars(strip_tags($this->email ?? ''));
-        $this->role = htmlspecialchars(strip_tags($this->role ?? ''));
-        $this->nomor_hp = htmlspecialchars(strip_tags($this->nomor_hp ?? ''));
+        $this->nama_lengkap = strip_tags($this->nama_lengkap ?? '');
+        $this->email = strip_tags($this->email ?? '');
+        $this->role = strip_tags($this->role ?? '');
+        $this->nomor_hp = strip_tags($this->nomor_hp ?? '');
 
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':password', $this->password);
@@ -100,27 +100,33 @@ class User {
 
     public function update() {
         $query = "UPDATE " . $this->table_name . "
-                  SET nama_lengkap=:nama_lengkap, 
-                      email=:email";
-        
+                  SET username=:username,
+                      nama_lengkap=:nama_lengkap, 
+                      email=:email,
+                      role=:role";
+
         if (!empty($this->avatar)) {
             $query .= ", avatar=:avatar";
         }
-        
+
         $query .= " WHERE id=:id";
 
         $stmt = $this->conn->prepare($query);
 
-        $this->nama_lengkap = htmlspecialchars(strip_tags($this->nama_lengkap ?? ''));
-        $this->email = htmlspecialchars(strip_tags($this->email ?? ''));
-        $this->id = htmlspecialchars(strip_tags($this->id ?? ''));
+        $this->username = strip_tags($this->username ?? '');
+        $this->nama_lengkap = strip_tags($this->nama_lengkap ?? '');
+        $this->email = strip_tags($this->email ?? '');
+        $this->role = strip_tags($this->role ?? '');
+        $this->id = strip_tags($this->id ?? '');
 
+        $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':nama_lengkap', $this->nama_lengkap);
         $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':role', $this->role);
         $stmt->bindParam(':id', $this->id);
-        
+
         if (!empty($this->avatar)) {
-            $this->avatar = htmlspecialchars(strip_tags($this->avatar ?? ''));
+            $this->avatar = strip_tags($this->avatar ?? '');
             $stmt->bindParam(':avatar', $this->avatar);
         }
 
@@ -134,7 +140,7 @@ class User {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
-        $this->id = htmlspecialchars(strip_tags($this->id ?? ''));
+        $this->id = strip_tags($this->id ?? '');
         $stmt->bindParam(':id', $this->id);
 
         if ($stmt->execute()) {

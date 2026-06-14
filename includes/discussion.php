@@ -27,7 +27,7 @@
                     <div class="comment-actions">
                         <span class="reply-indicator" id="replyIndicator" style="display: none;">
                             Membalas <strong id="replyToName"></strong>
-                            <button type="button" onclick="cancelReply()" class="cancel-reply">×</button>
+                            <button type="button" onclick="cancelReply()" class="cancel-reply">Ã—</button>
                         </span>
                         <button type="submit" class="btn-send-comment">Kirim</button>
                     </div>
@@ -48,7 +48,7 @@
     border-radius: 12px;
     padding: 1.5rem;
     margin-top: 1.5rem;
-    border: 1px solid rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(20, 184, 166, 0.15);
 }
 
 .discussion-header {
@@ -57,7 +57,7 @@
     justify-content: space-between;
     margin-bottom: 1.25rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.1);
 }
 
 .discussion-header h3 {
@@ -85,7 +85,7 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    background: linear-gradient(135deg, #0284C7, #14B8A6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +112,7 @@
 .comment-input-box textarea {
     width: 100%;
     background: rgba(15, 15, 35, 0.6);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(20, 184, 166, 0.2);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     color: #e2e8f0;
@@ -123,8 +123,8 @@
 
 .comment-input-box textarea:focus {
     outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
 .comment-actions {
@@ -143,7 +143,7 @@
 }
 
 .reply-indicator strong {
-    color: #a78bfa;
+    color: #2DD4BF;
 }
 
 .cancel-reply {
@@ -156,7 +156,7 @@
 }
 
 .btn-send-comment {
-    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    background: linear-gradient(135deg, #0284C7, #14B8A6);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -169,7 +169,7 @@
 
 .btn-send-comment:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
 }
 
 .comments-list {
@@ -190,19 +190,19 @@
     padding: 1rem;
     background: rgba(15, 15, 35, 0.4);
     border-radius: 8px;
-    border: 1px solid rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(20, 184, 166, 0.08);
 }
 
 .comment-item.reply {
     margin-left: 2.5rem;
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(20, 184, 166, 0.05);
 }
 
 .comment-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #3B82F6, #14B8A6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,18 +240,15 @@
 }
 
 .comment-role {
-    background: rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
+    background: rgba(20, 184, 166, 0.2);
+    color: #2DD4BF;
     padding: 0.15rem 0.5rem;
     border-radius: 4px;
     font-size: 0.7rem;
     font-weight: 500;
 }
 
-.comment-role.instructor {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
-}
+
 
 .comment-time {
     color: #64748b;
@@ -285,7 +282,7 @@
 }
 
 .comment-action:hover {
-    color: #a78bfa;
+    color: #2DD4BF;
 }
 
 .no-comments {
@@ -343,9 +340,8 @@ function renderComment(comment, isReply = false) {
         ? `<img src="assets/uploads/avatars/${comment.avatar}" alt="${comment.nama_lengkap}">`
         : `<span>${comment.nama_lengkap.charAt(0).toUpperCase()}</span>`;
     
-    const roleClass = comment.role === 'instructor' ? 'instructor' : '';
     const roleBadge = comment.role !== 'student' 
-        ? `<span class="comment-role ${roleClass}">${comment.role}</span>` 
+        ? `<span class="comment-role">${comment.role}</span>` 
         : '';
     
     const timeAgo = formatTimeAgo(comment.created_at);

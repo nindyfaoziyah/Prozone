@@ -60,7 +60,7 @@ foreach ($certificates as $cert) {
         /* Hero Section */
         .certificates-hero {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.2) 0%, 
+                rgba(20, 184, 166, 0.2) 0%, 
                 rgba(59, 130, 246, 0.15) 50%,
                 rgba(236, 72, 153, 0.1) 100%);
             border-radius: 24px;
@@ -68,7 +68,7 @@ foreach ($certificates as $cert) {
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .certificates-hero::before {
             content: '';
@@ -77,7 +77,7 @@ foreach ($certificates as $cert) {
             right: -10%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             animation: float-bg 6s ease-in-out infinite;
         }
@@ -152,7 +152,7 @@ foreach ($certificates as $cert) {
             font-weight: 800;
             color: #e2e8f0;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, #c4b5fd 100%);
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, #5EEAD4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -174,7 +174,7 @@ foreach ($certificates as $cert) {
             background: rgba(30, 30, 55, 0.5);
             padding: 0.75rem 1.25rem;
             border-radius: 12px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .hero-stat-icon {
             width: 40px;
@@ -186,7 +186,7 @@ foreach ($certificates as $cert) {
             color: white;
         }
         .hero-stat-icon.gold { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
-        .hero-stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .hero-stat-icon.purple { background: linear-gradient(135deg, #14B8A6, #2DD4BF); }
         .hero-stat-value {
             font-size: 1.5rem;
             font-weight: 700;
@@ -212,7 +212,7 @@ foreach ($certificates as $cert) {
             background: linear-gradient(145deg, rgba(30, 30, 55, 0.8) 0%, rgba(40, 40, 70, 0.6) 100%);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             animation: fadeInUp 0.5s ease-out backwards;
@@ -305,7 +305,7 @@ foreach ($certificates as $cert) {
         }
         .cert-course {
             font-size: 0.85rem;
-            color: #7c3aed;
+            color: #0284C7;
             font-weight: 600;
             margin-top: 0.5rem;
         }
@@ -323,7 +323,7 @@ foreach ($certificates as $cert) {
             box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
         .cert-seal::before {
-            content: '✓';
+            content: 'âœ“';
             color: white;
             font-size: 1.25rem;
             font-weight: bold;
@@ -345,8 +345,8 @@ foreach ($certificates as $cert) {
             display: inline-flex;
             align-items: center;
             gap: 0.375rem;
-            background: rgba(139, 92, 246, 0.15);
-            color: #a78bfa;
+            background: rgba(20, 184, 166, 0.15);
+            color: #2DD4BF;
             padding: 0.375rem 0.75rem;
             border-radius: 8px;
             font-size: 0.8rem;
@@ -390,9 +390,9 @@ foreach ($certificates as $cert) {
             justify-content: center;
             gap: 0.5rem;
             padding: 0.75rem 1rem;
-            background: rgba(139, 92, 246, 0.15);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(20, 184, 166, 0.15);
+            color: #2DD4BF;
+            border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: 10px;
             font-weight: 600;
             font-size: 0.85rem;
@@ -400,8 +400,8 @@ foreach ($certificates as $cert) {
             transition: all 0.3s ease;
         }
         .btn-share:hover {
-            background: rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(20, 184, 166, 0.25);
+            border-color: rgba(20, 184, 166, 0.5);
             transform: translateY(-2px);
         }
 
@@ -412,13 +412,13 @@ foreach ($certificates as $cert) {
             padding: 4rem 2rem;
             background: linear-gradient(145deg, rgba(30, 30, 55, 0.5) 0%, rgba(40, 40, 70, 0.3) 100%);
             border-radius: 24px;
-            border: 2px dashed rgba(139, 92, 246, 0.3);
+            border: 2px dashed rgba(20, 184, 166, 0.3);
         }
         .empty-icon-wrapper {
             width: 120px;
             height: 120px;
             margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -453,18 +453,18 @@ foreach ($certificates as $cert) {
             align-items: center;
             gap: 0.5rem;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 700;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
         }
         .btn-explore:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.4);
         }
 
         /* Share Modal */
@@ -495,7 +495,7 @@ foreach ($certificates as $cert) {
             padding: 2rem;
             max-width: 450px;
             width: 90%;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             animation: slideUp 0.3s ease;
         }
@@ -557,17 +557,17 @@ foreach ($certificates as $cert) {
             align-items: center;
             gap: 0.5rem;
             padding: 1.25rem 0.75rem;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
             color: #e2e8f0;
         }
         .share-option:hover {
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             transform: translateY(-3px);
-            border-color: rgba(139, 92, 246, 0.4);
+            border-color: rgba(20, 184, 166, 0.4);
         }
         .share-option svg {
             width: 28px;
@@ -622,7 +622,7 @@ foreach ($certificates as $cert) {
         .cert-logo {
             font-size: 28px;
             font-weight: bold;
-            color: #7c3aed;
+            color: #0284C7;
             margin-bottom: 10px;
             letter-spacing: 3px;
         }
@@ -657,7 +657,7 @@ foreach ($certificates as $cert) {
         .cert-course-name {
             font-size: 32px;
             font-weight: bold;
-            color: #7c3aed;
+            color: #0284C7;
             margin-bottom: 40px;
         }
         .cert-date-text {
@@ -771,7 +771,7 @@ foreach ($certificates as $cert) {
         <div class="cert-footer">
             <div class="cert-signature">
                 <div class="cert-signature-line"></div>
-                <div class="cert-signature-text">Course Instructor</div>
+                <div class="cert-signature-text">Prozone Admin</div>
             </div>
             <div class="cert-signature">
                 <div class="cert-signature-line"></div>
@@ -779,7 +779,7 @@ foreach ($certificates as $cert) {
             </div>
         </div>
         <div class="cert-seal-pdf">
-            <span>✓</span>
+            <span>âœ“</span>
             <span>Verified</span>
         </div>
     </div>
@@ -792,12 +792,12 @@ foreach ($certificates as $cert) {
                 <div class="certificates-hero">
                     <div class="hero-content">
                         <div class="hero-icon-wrapper">
-                            <div class="hero-icon">🏆</div>
+                            <div class="hero-icon">ðŸ†</div>
                             <div class="hero-sparkles">
-                                <span class="sparkle">✨</span>
-                                <span class="sparkle">⭐</span>
-                                <span class="sparkle">✨</span>
-                                <span class="sparkle">⭐</span>
+                                <span class="sparkle">âœ¨</span>
+                                <span class="sparkle">â­</span>
+                                <span class="sparkle">âœ¨</span>
+                                <span class="sparkle">â­</span>
                             </div>
                         </div>
                         <div class="hero-info">
@@ -832,7 +832,7 @@ foreach ($certificates as $cert) {
                     <?php if (empty($certificates)): ?>
                         <div class="empty-state">
                             <div class="empty-icon-wrapper">
-                                <div class="empty-icon">📜</div>
+                                <div class="empty-icon">ðŸ“œ</div>
                             </div>
                             <h2 class="empty-title">Belum Ada Sertifikat</h2>
                             <p class="empty-text">Selesaikan kursus pertama Anda untuk mendapatkan sertifikat penyelesaian yang dapat diunduh dan dibagikan!</p>
@@ -896,8 +896,8 @@ foreach ($certificates as $cert) {
     <div class="share-modal" id="shareModal">
         <div class="share-modal-content">
             <div class="share-modal-header">
-                <h3>🔗 Bagikan Sertifikat</h3>
-                <button class="share-modal-close" onclick="closeShareModal()">×</button>
+                <h3>ðŸ”— Bagikan Sertifikat</h3>
+                <button class="share-modal-close" onclick="closeShareModal()">Ã—</button>
             </div>
             <p class="share-modal-desc">Bagikan pencapaian Anda ke media sosial:</p>
             <div class="share-options">
@@ -958,7 +958,7 @@ foreach ($certificates as $cert) {
         });
 
         function getShareText() {
-            return `🎓 Saya baru saja menyelesaikan kursus "${currentShareCourse}" di <?php echo APP_NAME; ?>! #Learning #Achievement #Certificate`;
+            return `ðŸŽ“ Saya baru saja menyelesaikan kursus "${currentShareCourse}" di <?php echo APP_NAME; ?>! #Learning #Achievement #Certificate`;
         }
 
         function getShareUrl() {

@@ -1,11 +1,11 @@
 /* ============================================
    PROZONE - COURSE DETAIL PAGE
-   course.php — Detail page for a single course
+   course.php â€” Detail page for a single course
    ============================================ */
 
 /* --- Header --- */
 .course-header {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #14B8A6 50%, #2DD4BF 100%);
   color: white;
   padding: 1.5rem;
   margin-top: 70px;
@@ -176,7 +176,7 @@
 }
 
 .progress-badge {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
   color: white;
   padding: 0.4rem 1rem;
   border-radius: 100px;
@@ -204,7 +204,7 @@
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 60%, #a78bfa 100%);
+  background: linear-gradient(90deg, #3B82F6 0%, #14B8A6 60%, #2DD4BF 100%);
   border-radius: 10px;
   position: relative;
   transition: width 1s ease-out;
@@ -235,7 +235,7 @@
 }
 
 .progress-text strong {
-  color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #3B82F6);
   font-weight: 700;
 }
 
@@ -282,7 +282,7 @@
 .stat-value {
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #3B82F6);
   line-height: 1.2;
 }
 
@@ -323,7 +323,7 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,7 +342,7 @@
 
 .quick-action-title {
   font-weight: 700;
-  color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #3B82F6);
   font-size: 0.9rem;
   margin-bottom: 0.15rem;
 }
@@ -353,7 +353,7 @@
 }
 
 .quick-action-arrow {
-  color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #3B82F6);
   flex-shrink: 0;
   display: flex;
   transition: transform 0.25s ease;
@@ -422,7 +422,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  background: linear-gradient(180deg, #3B82F6, #14B8A6);
   transform: scaleY(0);
   transition: transform 0.25s ease;
 }
@@ -440,7 +440,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
   color: white;
   display: flex;
   align-items: center;
@@ -503,7 +503,7 @@
   align-items: center;
   padding: 0.2rem 0.55rem;
   background: rgba(99,102,241,0.08);
-  color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #3B82F6);
   border-radius: 4px;
   font-size: 0.68rem;
   font-weight: 700;
@@ -534,7 +534,7 @@
 
 .lesson-badge.progress-badge {
   background: rgba(99,102,241,0.1);
-  color: #6366f1;
+  color: #3B82F6;
   animation: badge-pulse 2s ease-in-out infinite;
 }
 
@@ -564,7 +564,7 @@
 }
 
 .btn-start {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
   color: white;
   box-shadow: 0 4px 12px rgba(99,102,241,0.2);
 }

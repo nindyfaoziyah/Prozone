@@ -98,13 +98,13 @@ function mapRarity($rarity) {
 // Trophy emoji per tier
 function trophyIcon($rarity) {
     $icons = [
-        'common' => '🥉',
-        'uncommon' => '🥈',
-        'rare' => '🥇',
-        'epic' => '🏆',
-        'legendary' => '👑',
+        'common' => 'ðŸ¥‰',
+        'uncommon' => 'ðŸ¥ˆ',
+        'rare' => 'ðŸ¥‡',
+        'epic' => 'ðŸ†',
+        'legendary' => 'ðŸ‘‘',
     ];
-    return $icons[$rarity] ?? '🏅';
+    return $icons[$rarity] ?? 'ðŸ…';
 }
 ?>
 <!DOCTYPE html>
@@ -121,7 +121,7 @@ function trophyIcon($rarity) {
 
         <?php if ($message): ?>
         <div class="rpg-alert rpg-alert-<?php echo $message_type; ?>">
-            <span><?php echo $message_type === 'success' ? '✅' : '❌'; ?></span>
+            <span><?php echo $message_type === 'success' ? 'âœ…' : 'âŒ'; ?></span>
             <?php echo htmlspecialchars($message); ?>
         </div>
         <?php endif; ?>
@@ -129,7 +129,7 @@ function trophyIcon($rarity) {
         <!-- Header -->
         <div class="achievement-header">
             <div class="ach-header-text">
-                <div class="page-eyebrow">🏆 Achievement System</div>
+                <div class="page-eyebrow">ðŸ† Achievement System</div>
                 <h1>Trophy <span class="text-accent-gradient">Collection</span></h1>
                 <p>Kumpulkan trophy dengan terus belajar dan naik level. Setiap trophy menandai pencapaian baru dalam perjalanan coding-mu!</p>
             </div>
@@ -152,7 +152,7 @@ function trophyIcon($rarity) {
         <!-- Progress Bar -->
         <div class="ach-progress-section">
             <div class="ach-progress-header">
-                <h3>🏅 Overall Progress</h3>
+                <h3>ðŸ… Overall Progress</h3>
                 <strong><?php echo $progress_percent; ?>%</strong>
             </div>
             <div class="ach-progress-track">
@@ -181,14 +181,14 @@ function trophyIcon($rarity) {
                     <div class="ach-next-label">Next Trophy</div>
                     <div class="ach-next-badge"><?php echo trophyIcon($next['rarity']); ?></div>
                     <div class="ach-next-name"><?php echo htmlspecialchars($next['name']); ?></div>
-                    <div class="ach-next-req">Lv.<?php echo $next['level_required']; ?> · <?php echo number_format($next['xp_required']); ?> XP</div>
+                    <div class="ach-next-req">Lv.<?php echo $next['level_required']; ?> Â· <?php echo number_format($next['xp_required']); ?> XP</div>
                 </div>
             </div>
             <?php endif; ?>
         </div>
 
         <!-- Achievement Grid -->
-        <div class="ach-section-title">🏆 All Trophies</div>
+        <div class="ach-section-title">ðŸ† All Trophies</div>
         <div class="ach-grid">
             <?php foreach (RPG_CLASSES as $slug => $cls):
                 $unlocked = isClassUnlocked($slug, $user_level, $user_xp);
@@ -200,14 +200,14 @@ function trophyIcon($rarity) {
                 <div class="ach-card-image">
                     <div class="ach-trophy-icon"><?php echo trophyIcon($cls['rarity']); ?></div>
                     <?php if ($is_active): ?>
-                    <div class="ach-earned-badge" style="background:linear-gradient(135deg,#6C4CFD,#5A3FF5);">✦ ACTIVE</div>
+                    <div class="ach-earned-badge" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">âœ¦ ACTIVE</div>
                     <?php elseif ($unlocked): ?>
-                    <div class="ach-earned-badge">✓ EARNED</div>
+                    <div class="ach-earned-badge">âœ“ EARNED</div>
                     <?php endif; ?>
                     <?php if (!$unlocked): ?>
                     <div class="ach-lock-overlay">
-                        <div class="ach-lock-icon">🔒</div>
-                        <div class="ach-lock-text">Lv.<?php echo $cls['level_required']; ?> · <?php echo number_format($cls['xp_required']); ?> XP</div>
+                        <div class="ach-lock-icon">ðŸ”’</div>
+                        <div class="ach-lock-text">Lv.<?php echo $cls['level_required']; ?> Â· <?php echo number_format($cls['xp_required']); ?> XP</div>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -218,12 +218,12 @@ function trophyIcon($rarity) {
                     <div class="ach-card-desc"><?php echo htmlspecialchars($cls['description']); ?></div>
                     <div class="ach-card-req <?php echo $is_met ? 'met' : ''; ?>">
                         <?php icon('star', 12); ?>
-                        <?php if ($is_met): ?>✅<?php endif; ?>
-                        Lv.<span><?php echo $cls['level_required']; ?></span> · <span><?php echo number_format($cls['xp_required']); ?></span> XP
+                        <?php if ($is_met): ?>âœ…<?php endif; ?>
+                        Lv.<span><?php echo $cls['level_required']; ?></span> Â· <span><?php echo number_format($cls['xp_required']); ?></span> XP
                     </div>
 
                     <?php if ($is_active): ?>
-                    <div class="ach-card-status ach-status-active">✦ Current Rank</div>
+                    <div class="ach-card-status ach-status-active">âœ¦ Current Rank</div>
                     <?php elseif ($unlocked): ?>
                     <form method="POST">
                         <input type="hidden" name="action" value="activate_rank">
@@ -232,7 +232,7 @@ function trophyIcon($rarity) {
                         <button type="submit" class="ach-card-status ach-status-unlocked">Activate Rank</button>
                     </form>
                     <?php else: ?>
-                    <div class="ach-card-status ach-status-locked">🔒 Locked</div>
+                    <div class="ach-card-status ach-status-locked">ðŸ”’ Locked</div>
                     <?php endif; ?>
                 </div>
             </div>

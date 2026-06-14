@@ -30,14 +30,14 @@ $user = $is_logged_in ? getCurrentUser() : null;
     <?php require_once 'includes/head.php'; ?>
 </head>
 <body class="<?php echo $body_class; ?> landing-page page-about">
-    <!-- Public navbar (glass) — same as index.php -->
+    <!-- Public navbar (glass) â€” same as index.php -->
     <nav class="landing-nav" id="landingNav" aria-label="Navigasi utama">
         <div class="nav-inner">
             <a href="index.php" class="brand" aria-label="Prozone Home">
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -62,7 +62,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
         </div>
     </nav>
 
-    <!-- Hero — matching index.php hero style -->
+    <!-- Hero â€” matching index.php hero style -->
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-content">
@@ -84,7 +84,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
                 <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="aboutGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -337,7 +337,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
                             <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3>2024 — Awal Mula</h3>
+                    <h3>2024 â€” Awal Mula</h3>
                     <p>Prozone lahir dari keprihatinan terhadap kurangnya platform belajar coding yang menarik dan terstruktur untuk pelajar Indonesia.</p>
                 </div>
 
@@ -348,7 +348,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
                             <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3>2025 — Beta Launch</h3>
+                    <h3>2025 â€” Beta Launch</h3>
                     <p>Peluncuran beta dengan 100+ lessons dan 1000+ pengguna pertama. Sistem gamifikasi diperkenalkan untuk meningkatkan motivasi belajar.</p>
                 </div>
 
@@ -362,7 +362,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
                             <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3>2026 — Ekspansi Fitur</h3>
+                    <h3>2026 â€” Ekspansi Fitur</h3>
                     <p>Menambahkan clan, leaderboard, achievements, dan sistem sertifikat. Code editor multi-bahasa dan lesson interaktif resmi dirilis.</p>
                 </div>
 
@@ -398,7 +398,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
         </div>
     </section>
 
-    <!-- Footer — same as index.php -->
+    <!-- Footer â€” same as index.php -->
     <footer class="landing-footer">
         <div class="landing-footer-grid">
             <div class="landing-footer-brand">
@@ -406,7 +406,7 @@ $user = $is_logged_in ? getCurrentUser() : null;
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
                         <defs>
                             <linearGradient id="footerBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366F1"/>
+                                <stop offset="0%" stop-color="#3B82F6"/>
                                 <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                         </defs>
