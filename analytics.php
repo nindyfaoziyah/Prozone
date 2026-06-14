@@ -306,7 +306,6 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
 

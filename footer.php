@@ -25,7 +25,7 @@
 					<li><a href="playground.php">Code Playground</a></li>
 					<li><a href="multiplayer.php">Multiplayer Battle</a></li>
 					<li><a href="leaderboard.php">Leaderboard</a></li>
-					<li><a href="characters.php">My Characters</a></li>
+					<li><a href="characters.php">Achievements</a></li>
 				</ul>
 			</div>
 

@@ -32,7 +32,7 @@ $menu_items = [
     ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
     ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
     ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
-    ['label' => 'Characters',        'icon' => 'user',        'link' => 'characters.php', 'badge' => 'RPG'],
+    ['label' => 'Achievements',      'icon' => 'award',       'link' => 'characters.php', 'badge' => 'RPG'],
     ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
     ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
     ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],

@@ -1134,7 +1134,6 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
 

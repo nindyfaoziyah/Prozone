@@ -188,7 +188,7 @@ function renderQuickActionsWidget() {
             <div class="quick-action-icon purple"><?php icon('book', 20); ?></div>
             <span>Kursus Saya</span>
         </a>
-        <a href="achievements.php" class="quick-action">
+        <a href="characters.php" class="quick-action">
             <div class="quick-action-icon green"><?php icon('medal', 20); ?></div>
             <span>Achievements</span>
         </a>
