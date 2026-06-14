@@ -143,7 +143,53 @@ if ($role === 'admin') {
     $completions_data = $stmt_completions->fetch(PDO::FETCH_ASSOC);
     $total_completions = $completions_data['total'] ?? 0;
     
-    // Get recent enrollments
+    // Get total achievements
+    $total_achievements = $db->query("SELECT COUNT(*) FROM user_achievements")->fetchColumn();
+    
+    // Get total certificates
+    $total_certificates = $db->query("SELECT COUNT(*) FROM certificates")->fetchColumn();
+    
+    // Get total comments
+    $total_comments = $db->query("SELECT COUNT(*) FROM comments")->fetchColumn();
+    
+    // User growth last 30 days
+    $user_growth = [];
+    $stmt_ug = $db->query("SELECT DATE(created_at) as date, COUNT(*) as total FROM users WHERE role = 'student' AND created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY DATE(created_at) ORDER BY date");
+    $growth_data = [];
+    while ($row = $stmt_ug->fetch(PDO::FETCH_ASSOC)) {
+        $growth_data[$row['date']] = (int)$row['total'];
+    }
+    $start = new DateTime('-30 days');
+    $end = new DateTime();
+    $cumulative = 0;
+    $initial_users = $db->query("SELECT COUNT(*) FROM users WHERE role = 'student' AND created_at < DATE_SUB(CURDATE(), INTERVAL 30 DAY)")->fetchColumn();
+    $cumulative = (int)$initial_users;
+    for ($d = clone $start; $d <= $end; $d->modify('+1 day')) {
+        $date = $d->format('Y-m-d');
+        $cumulative += $growth_data[$date] ?? 0;
+        $user_growth[] = ['date' => $date, 'total' => $cumulative];
+    }
+    
+    // Popular courses (top 5)
+    $popular_courses = [];
+    $stmt_pc = $db->query("SELECT c.judul_course, COUNT(e.id) as enrollment_count FROM courses c LEFT JOIN enrollments e ON c.id = e.course_id GROUP BY c.id ORDER BY enrollment_count DESC LIMIT 5");
+    while ($row = $stmt_pc->fetch(PDO::FETCH_ASSOC)) {
+        $popular_courses[] = $row;
+    }
+    
+    // Enrollment trends last 30 days
+    $enrollment_trends = [];
+    $stmt_et = $db->query("SELECT DATE(enrolled_at) as date, COUNT(*) as total FROM enrollments WHERE enrolled_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY DATE(enrolled_at) ORDER BY date");
+    $et_data = [];
+    while ($row = $stmt_et->fetch(PDO::FETCH_ASSOC)) {
+        $et_data[$row['date']] = (int)$row['total'];
+    }
+    for ($d = clone $start; $d <= $end; $d->modify('+1 day')) {
+        $date = $d->format('Y-m-d');
+        $enrollment_trends[] = ['date' => $date, 'total' => $et_data[$date] ?? 0];
+    }
+    
+    // Recent enrollments
     $query_recent = "SELECT e.*, c.judul_course, u.nama_lengkap, u.avatar
                      FROM enrollments e
                      JOIN courses c ON e.course_id = c.id
@@ -156,7 +202,7 @@ if ($role === 'admin') {
         $recent_enrollments[] = $row;
     }
     
-    // Get recent registrations
+    // Recent registrations
     $query_new_users = "SELECT id, nama_lengkap, username, email, created_at 
                         FROM users WHERE role = 'student' 
                         ORDER BY created_at DESC LIMIT 5";
@@ -165,6 +211,13 @@ if ($role === 'admin') {
     $recent_users = [];
     while ($row = $stmt_new_users->fetch(PDO::FETCH_ASSOC)) {
         $recent_users[] = $row;
+    }
+    
+    // Recent activity log
+    $recent_activities = [];
+    $stmt_act = $db->query("SELECT al.*, u.nama_lengkap FROM activity_log al JOIN users u ON al.user_id = u.id ORDER BY al.created_at DESC LIMIT 5");
+    while ($row = $stmt_act->fetch(PDO::FETCH_ASSOC)) {
+        $recent_activities[] = $row;
     }
     
     // Get admin user data
@@ -185,6 +238,15 @@ if ($role === 'admin') {
 <html lang="id">
 <head>
     <?php require_once 'includes/head.php'; ?>
+    <style>
+        .dashboard-grid-secondary.mb-8 { margin-bottom:2rem; }
+        .mb-8 { margin-bottom:2rem; }
+        .admin-stats-mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+        .mini-stat { background:var(--bg-subtle); border-radius:var(--radius-md); padding:1rem; text-align:center; }
+        .mini-stat-value { font-size:1.5rem; font-weight:700; color:var(--brand); }
+        .mini-stat-label { font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem; }
+        canvas { max-height:200px; }
+    </style>
 </head>
 <body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
     <?php require_once 'navbar.php'; ?>
@@ -482,9 +544,63 @@ if ($role === 'admin') {
                 </div>
             </div>
 
+            <!-- Charts Row -->
+            <div class="dashboard-grid-secondary mb-8">
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>Pertumbuhan User (30 hari)</h3>
+                    </div>
+                    <div style="padding:1rem 0;">
+                        <canvas id="userGrowthChart" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>Kursus Terpopuler</h3>
+                    </div>
+                    <div style="padding:1rem 0;">
+                        <canvas id="popularCoursesChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid-secondary mb-8">
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>Pendaftaran per Hari (30 hari)</h3>
+                    </div>
+                    <div style="padding:1rem 0;">
+                        <canvas id="enrollmentTrendChart" height="180"></canvas>
+                    </div>
+                </div>
+                <div class="learning-section-card">
+                    <div class="admin-stats-mini-grid">
+                        <div class="mini-stat">
+                            <div class="mini-stat-value"><?php echo $total_achievements; ?></div>
+                            <div class="mini-stat-label">Achievement Diraih</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value"><?php echo $total_certificates; ?></div>
+                            <div class="mini-stat-label">Sertifikat Diterbitkan</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value"><?php echo $total_comments; ?></div>
+                            <div class="mini-stat-label">Komentar</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value"><?php echo $total_completions; ?></div>
+                            <div class="mini-stat-label">Kursus Selesai</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:1rem;">
+                        <a href="manage-enrollments.php" class="admin-action-btn" style="width:100%;justify-content:center;padding:0.6rem;font-size:0.85rem;">Kelola Enrollment</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Admin Quick Actions -->
             <div class="admin-quick-actions">
-                <h3 class="admin-section-title"><?php icon('zap', 18); ?> Akses Cepat</h3>
+                <h3 class="admin-section-title">Akses Cepat</h3>
                 <div class="admin-nav-cards">
                     <a href="manage-courses.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('book', 20); ?></div>
@@ -502,11 +618,67 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-clans.php" class="admin-nav-card">
-                        <div class="admin-nav-icon"><?php icon('zap', 20); ?></div>
+                    <a href="manage-enrollments.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('clipboard', 20); ?></div>
                         <div class="admin-nav-info">
-                            <div class="admin-nav-label">Kelola Clan</div>
-                            <div class="admin-nav-desc">Monitor & kelola clan</div>
+                            <div class="admin-nav-label">Enrollments</div>
+                            <div class="admin-nav-desc">Kelola pendaftaran kursus</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-achievements.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('award', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Achievements</div>
+                            <div class="admin-nav-desc">Kelola achievement</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-categories.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('tag', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Kategori Kursus</div>
+                            <div class="admin-nav-desc">Atur kategori</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-comments.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('message-circle', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Komentar</div>
+                            <div class="admin-nav-desc">Moderasi komentar</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-certificates.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('certificate', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Sertifikat</div>
+                            <div class="admin-nav-desc">Lihat & kelola sertifikat</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-notifications.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('send', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Broadcast</div>
+                            <div class="admin-nav-desc">Kirim notifikasi</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-logs.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('scroll', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Log Aktivitas</div>
+                            <div class="admin-nav-desc">Riwayat aktivitas admin</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="manage-backup.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('save', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Backup DB</div>
+                            <div class="admin-nav-desc">Backup & restore database</div>
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
@@ -514,7 +686,15 @@ if ($role === 'admin') {
                         <div class="admin-nav-icon"><?php icon('bar-chart-2', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Analytics</div>
-                            <div class="admin-nav-desc">Statistik & laporan</div>
+                            <div class="admin-nav-desc">Statistik & laporan detail</div>
+                        </div>
+                        <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
+                    </a>
+                    <a href="export.php" class="admin-nav-card">
+                        <div class="admin-nav-icon"><?php icon('download', 20); ?></div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Export Data</div>
+                            <div class="admin-nav-desc">Export CSV/Excel</div>
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
@@ -522,11 +702,12 @@ if ($role === 'admin') {
             </div>
 
             <!-- Recent Activity -->
-            <div class="dashboard-grid-secondary">
+            <div class="dashboard-grid-secondary" style="grid-template-columns:1fr 1fr 1fr;">
                 <!-- Recent Enrollments -->
                 <div class="learning-section-card">
                     <div class="section-title-row">
-                        <h3><?php icon('clipboard', 18); ?> Pendaftaran Terbaru</h3>
+                        <h3>Pendaftaran Terbaru</h3>
+                        <a href="manage-enrollments.php" class="view-all-link">Lihat Semua</a>
                     </div>
                     <?php if (empty($recent_enrollments)): ?>
                         <div class="glass-empty-state"><p>Belum ada pendaftaran.</p></div>
@@ -549,26 +730,113 @@ if ($role === 'admin') {
                 <!-- Recent Registrations -->
                 <div class="learning-section-card">
                     <div class="section-title-row">
-                        <h3><?php icon('user-plus', 18); ?> Student Baru</h3>
+                        <h3>Student Baru</h3>
+                        <a href="users.php" class="view-all-link">Lihat Semua</a>
                     </div>
                     <?php if (empty($recent_users)): ?>
                         <div class="glass-empty-state"><p>Belum ada student baru.</p></div>
                     <?php else: ?>
                         <?php foreach ($recent_users as $ru): ?>
                         <div class="admin-activity-item">
-                            <div class="activity-avatar">
-                                <?php echo strtoupper(substr($ru['nama_lengkap'], 0, 1)); ?>
-                            </div>
+                            <div class="activity-avatar"><?php echo strtoupper(substr($ru['nama_lengkap'], 0, 1)); ?></div>
                             <div class="activity-info">
                                 <div class="activity-name"><?php echo htmlspecialchars($ru['nama_lengkap']); ?></div>
-                                <div class="activity-detail">@<?php echo htmlspecialchars($ru['username']); ?> Â· <?php echo htmlspecialchars($ru['email']); ?></div>
+                                <div class="activity-detail">@<?php echo htmlspecialchars($ru['username']); ?></div>
                             </div>
                             <div class="activity-time"><?php echo date('d/m/Y', strtotime($ru['created_at'])); ?></div>
                         </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
+
+                <!-- Recent Activity Log -->
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>Aktivitas Terbaru</h3>
+                        <a href="manage-logs.php" class="view-all-link">Lihat Semua</a>
+                    </div>
+                    <?php if (empty($recent_activities)): ?>
+                        <div class="glass-empty-state"><p>Belum ada aktivitas.</p></div>
+                    <?php else: ?>
+                        <?php foreach ($recent_activities as $act): ?>
+                        <div class="admin-activity-item">
+                            <div class="activity-avatar"><?php echo strtoupper(substr($act['nama_lengkap'], 0, 1)); ?></div>
+                            <div class="activity-info">
+                                <div class="activity-name"><?php echo htmlspecialchars($act['nama_lengkap']); ?></div>
+                                <div class="activity-detail" style="font-size:0.75rem;"><?php echo htmlspecialchars($act['description'] ?: $act['action']); ?></div>
+                            </div>
+                            <div class="activity-time"><?php echo date('d/m/Y', strtotime($act['created_at'])); ?></div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
+
+            <!-- Chart JS -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const isDark = document.body.classList.contains('dark-mode');
+                const textColor = isDark ? '#94a3b8' : '#64748b';
+                const gridColor = isDark ? 'rgba(148,163,184,0.1)' : 'rgba(0,0,0,0.06)';
+
+                new Chart(document.getElementById('userGrowthChart'), {
+                    type: 'line',
+                    data: {
+                        labels: <?php echo json_encode(array_column($user_growth, 'date')); ?>,
+                        datasets: [{
+                            label: 'Total User',
+                            data: <?php echo json_encode(array_column($user_growth, 'total')); ?>,
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59,130,246,0.1)',
+                            fill: true, tension: 0.3, pointRadius: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { color: textColor, font: { size: 10 }, maxTicksLimit: 10 }, grid: { color: gridColor } },
+                            y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+                        }
+                    }
+                });
+
+                new Chart(document.getElementById('popularCoursesChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: <?php echo json_encode(array_column($popular_courses, 'judul_course')); ?>,
+                        datasets: [{
+                            data: <?php echo json_encode(array_column($popular_courses, 'enrollment_count')); ?>,
+                            backgroundColor: ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6']
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { color: textColor, font: { size: 10 }, boxWidth: 12 } } }
+                    }
+                });
+
+                new Chart(document.getElementById('enrollmentTrendChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: <?php echo json_encode(array_column($enrollment_trends, 'date')); ?>,
+                        datasets: [{
+                            label: 'Pendaftaran',
+                            data: <?php echo json_encode(array_column($enrollment_trends, 'total')); ?>,
+                            backgroundColor: 'rgba(16,185,129,0.5)',
+                            borderColor: '#10B981', borderWidth: 1, borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { color: textColor, font: { size: 10 }, maxTicksLimit: 10 }, grid: { color: gridColor } },
+                            y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+                        }
+                    }
+                });
+            </script>
 
             <?php endif; ?>
 

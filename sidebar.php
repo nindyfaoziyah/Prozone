@@ -31,9 +31,12 @@ $avatar_emoji = $sidebar_cls['badge']; // Fallback label / title attribute
 // Check user role
 $user_role = $_SESSION['user_role'] ?? 'student';
 
-$menu_items = [
-    ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
-];
+// Default menu (non-admin)
+if ($user_role !== 'admin') {
+    $menu_items = [
+        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
+    ];
+}
 
 // Student menu items
 if ($user_role === 'student') {
@@ -51,15 +54,30 @@ if ($user_role === 'student') {
 
 // Admin menu items
 if ($user_role === 'admin') {
-    $menu_items = array_merge($menu_items, [
-        ['label' => 'Admin',             'icon' => '',            'link' => '', 'type' => 'label'],
+    $menu_items = [
+        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php', 'badge' => 'ADMIN'],
+        ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
+        ['label' => 'Konten',            'icon' => '',            'link' => '', 'type' => 'label'],
         ['label' => 'Kelola Kursus',     'icon' => 'book',        'link' => 'manage-courses.php', 'badge' => 'ADMIN'],
+        ['label' => 'Lessons',           'icon' => 'file-text',   'link' => 'manage-lessons.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kategori Kursus',   'icon' => 'tag',         'link' => 'manage-categories.php', 'badge' => 'ADMIN'],
+        ['label' => 'Achievements',      'icon' => 'award',       'link' => 'manage-achievements.php', 'badge' => 'ADMIN'],
+        ['label' => 'Sertifikat',        'icon' => 'certificate', 'link' => 'manage-certificates.php', 'badge' => 'ADMIN'],
+        ['label' => 'Komentar',          'icon' => 'message-circle', 'link' => 'manage-comments.php', 'badge' => 'ADMIN'],
+        ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
+        ['label' => 'Pengguna',          'icon' => '',            'link' => '', 'type' => 'label'],
         ['label' => 'Kelola User',       'icon' => 'users',       'link' => 'users.php', 'badge' => 'ADMIN'],
         ['label' => 'Kelola Clan',       'icon' => 'zap',         'link' => 'manage-clans.php', 'badge' => 'ADMIN'],
+        ['label' => 'Enrollments',       'icon' => 'clipboard',   'link' => 'manage-enrollments.php', 'badge' => 'ADMIN'],
+        ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
+        ['label' => 'Sistem',            'icon' => '',            'link' => '', 'type' => 'label'],
+        ['label' => 'Broadcast',         'icon' => 'send',        'link' => 'manage-notifications.php', 'badge' => 'ADMIN'],
+        ['label' => 'Log Aktivitas',     'icon' => 'activity',    'link' => 'manage-logs.php', 'badge' => 'ADMIN'],
+        ['label' => 'Export Data',       'icon' => 'download',    'link' => 'export.php', 'badge' => 'ADMIN'],
+        ['label' => 'Backup DB',         'icon' => 'shield',      'link' => 'manage-backup.php', 'badge' => 'ADMIN'],
         ['label' => 'Analytics',         'icon' => 'bar-chart',   'link' => 'admin_analytics.php', 'badge' => 'ADMIN'],
         ['label' => 'Settings',          'icon' => 'settings',    'link' => 'pengaturan.php'],
-        ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
-    ]);
+    ];
 } else {
     // Common menu
     $menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'pengaturan.php'];
@@ -77,9 +95,6 @@ if ($user_role === 'admin') {
 </svg>
 
 <nav class="sidebar-island-container" id="sidebar-island">
-    <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation" aria-label="Toggle Navigation">
-        <span id="toggle-icon">â˜°</span>
-    </button>
     <div class="sidebar-island-panel">
         <!-- Logo -->
         <div class="sidebar-logo">
@@ -102,14 +117,18 @@ if ($user_role === 'admin') {
                     <?php 
                     $is_active = ($item['link'] === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
                     $extra_class = '';
+                    $is_admin = false;
                     if (!empty($item['badge']) && strtolower($item['badge']) === 'admin') {
                         $extra_class = ' admin-item';
+                        $is_admin = true;
                     }
                     ?>
                     <a href="<?php echo $item['link']; ?>" class="menu-item <?php echo $is_active . $extra_class; ?>">
                         <span class="menu-icon"><?php icon($item['icon'], 18); ?></span>
                         <span class="menu-label"><?php echo $item['label']; ?></span>
-                        <?php if (!empty($item['badge'])): ?>
+                        <?php if ($is_admin): ?>
+                            <span class="menu-badge admin-dot"></span>
+                        <?php elseif (!empty($item['badge'])): ?>
                             <span class="menu-badge <?php echo strtolower($item['badge']); ?>"><?php echo $item['badge']; ?></span>
                         <?php endif; ?>
                     </a>
@@ -117,10 +136,10 @@ if ($user_role === 'admin') {
             <?php endforeach; ?>
         </div>
 
-        <!-- XP Card with Avatar -->
+        <!-- XP Card with Avatar (non-admin) -->
+        <?php if ($user_role !== 'admin'): ?>
         <div class="sidebar-footer">
             <div class="sidebar-xp-card">
-                <!-- Avatar Character + Ring -->
                 <div class="xp-avatar-ring" style="width: 48px; height: 48px; position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
                     <svg class="xp-ring-svg" viewBox="0 0 36 36" style="position: absolute; top:0; left:0; width:100%; height:100%;">
                         <path class="xp-ring-bg"  d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #E2E8F0; stroke-width: 2.5;"/>
@@ -132,7 +151,6 @@ if ($user_role === 'admin') {
                     </div>
                 </div>
 
-                <!-- Stats -->
                 <div class="xp-info">
                     <div class="xp-name"><?php echo htmlspecialchars($first_name); ?></div>
                     <div class="xp-level-badge">Level <?php echo $user_level; ?></div>
@@ -145,6 +163,7 @@ if ($user_role === 'admin') {
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </nav>
 
@@ -155,16 +174,38 @@ if ($user_role === 'admin') {
 </div>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar-island');
-    const btn     = document.getElementById('sidebar-toggle');
-    const icon    = document.getElementById('toggle-icon');
+(function() {
+    var sidebar = document.getElementById('sidebar-island');
 
-    sidebar.classList.toggle('sidebar-hidden');
-    btn.classList.toggle('sidebar-hidden');
-    document.body.classList.toggle('sidebar-hidden');
+    function applyState(hidden) {
+        if (hidden) {
+            sidebar.classList.add('sidebar-hidden');
+            document.body.classList.add('sidebar-hidden');
+        } else {
+            sidebar.classList.remove('sidebar-hidden');
+            document.body.classList.remove('sidebar-hidden');
+        }
+    }
 
-    const hidden = sidebar.classList.contains('sidebar-hidden');
-    icon.textContent = hidden ? 'â˜°' : 'âœ•';
-}
+    var stored = localStorage.getItem('sidebar-collapsed');
+    if (stored === null) {
+        applyState(true);
+        localStorage.setItem('sidebar-collapsed', 'true');
+    } else if (stored === 'true') {
+        applyState(true);
+    }
+
+    window.toggleSidebar = function() {
+        var btn  = document.getElementById('sidebar-toggle');
+        var icon = document.getElementById('toggle-icon');
+
+        sidebar.classList.toggle('sidebar-hidden');
+        document.body.classList.toggle('sidebar-hidden');
+        if (btn) btn.classList.toggle('sidebar-hidden');
+
+        var hidden = sidebar.classList.contains('sidebar-hidden');
+        if (icon) icon.textContent = hidden ? '\u2630' : '\u2715';
+        localStorage.setItem('sidebar-collapsed', hidden);
+    };
+})();
 </script>

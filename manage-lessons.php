@@ -14,18 +14,25 @@ $course = new Course($db);
 $lesson = new Lesson($db);
 
 $course_id = isset($_GET['course_id']) ? (int)$_GET['course_id'] : 0;
+
+// If no course_id, show course selection
+$show_course_selector = false;
 if ($course_id > 0) {
     $course->id = $course_id;
     $course_data = $course->readOne();
     if (!$course_data) {
-        header('Location: manage-courses.php');
-        exit();
+        $show_course_selector = true;
     }
 } else {
-    header('Location: manage-courses.php');
-    exit();
+    $show_course_selector = true;
 }
 
+// Get all courses for selector
+$all_courses_stmt = $course->readAll();
+$all_courses = [];
+while ($row = $all_courses_stmt->fetch(PDO::FETCH_ASSOC)) {
+    $all_courses[] = $row;
+}
 
 $message = '';
 $message_type = '';
@@ -291,14 +298,40 @@ $body_class = getThemeClass();
             <div class="admin-header">
                 <div>
                     <h1>Kelola Lesson</h1>
-                    <p style="color:var(--text-muted);margin-top:0.25rem;">Kelola lesson untuk kursus: <?php echo htmlspecialchars($course_data['judul_course']); ?></p>
+                    <?php if (!$show_course_selector && isset($course_data)): ?>
+                        <p style="color:var(--text-muted);margin-top:0.25rem;">Kelola lesson untuk kursus: <?php echo htmlspecialchars($course_data['judul_course']); ?></p>
+                    <?php else: ?>
+                        <p style="color:var(--text-muted);margin-top:0.25rem;">Pilih kursus untuk mengelola lesson</p>
+                    <?php endif; ?>
                 </div>
                 <a href="manage-courses.php" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;">&larr; Kembali ke Daftar Kursus</a>
             </div>
 
             <div class="content">
+                <?php if ($show_course_selector): ?>
+                    <div class="lesson-card">
+                        <div class="lesson-card-header">
+                            <h2 style="margin:0;color:var(--text-primary);font-size:1.125rem;font-weight:700;">Pilih Kursus</h2>
+                        </div>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+                            <?php foreach ($all_courses as $c): ?>
+                                <a href="manage-lessons.php?course_id=<?php echo $c['id']; ?>" style="display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:var(--radius-lg);text-decoration:none;transition:all var(--transition-fast);color:var(--text-primary);">
+                                    <div style="width:48px;height:48px;border-radius:var(--radius-md);background:var(--brand-gradient,linear-gradient(135deg,#3B82F6,#20C7B7));display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:700;color:#fff;flex-shrink:0;"><?php echo strtoupper(substr($c['judul_course'],0,1)); ?></div>
+                                    <div>
+                                        <div style="font-weight:600;margin-bottom:0.25rem;"><?php echo htmlspecialchars($c['judul_course']); ?></div>
+                                        <div style="font-size:0.8125rem;color:var(--text-muted);"><?php echo $c['total_lessons']; ?> lesson | <?php echo ucfirst($c['level']); ?></div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                            <?php if (empty($all_courses)): ?>
+                                <p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:2rem;">Belum ada kursus. Buat kursus terlebih dahulu.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+
                 <div style="margin-bottom: 1rem;">
-                    <a href="manage-courses.php" style="color: var(--brand); text-decoration: none;">← Kembali ke Daftar Kursus</a>
+                    <a href="manage-lessons.php" style="color: var(--brand); text-decoration: none;">← Pilih Kursus Lain</a>
                 </div>
 
                 <?php if ($message): ?>
@@ -477,6 +510,7 @@ $body_class = getThemeClass();
                         </form>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
