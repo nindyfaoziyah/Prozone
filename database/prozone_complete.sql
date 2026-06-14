@@ -49,8 +49,8 @@ USE `prozone`;
 -- =====================================================
 
 -- ---------- USERS ----------
+DROP TABLE IF EXISTS `activity_log`;
 DROP TABLE IF EXISTS `user_achievements`;
-DROP TABLE IF EXISTS `user_items`;
 DROP TABLE IF EXISTS `private_messages`;
 DROP TABLE IF EXISTS `friends`;
 DROP TABLE IF EXISTS `notifications`;
@@ -70,7 +70,6 @@ DROP TABLE IF EXISTS `lessons`;
 DROP TABLE IF EXISTS `courses`;
 DROP TABLE IF EXISTS `course_categories`;
 DROP TABLE IF EXISTS `achievements`;
-DROP TABLE IF EXISTS `shop_items`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `pengaturan`;
 
@@ -343,27 +342,18 @@ CREATE TABLE `user_achievements` (
     UNIQUE KEY `unique_user_achievement` (`user_id`, `achievement_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- ---------- SHOP ITEMS ----------
-CREATE TABLE `shop_items` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(100) NOT NULL,
-    `description` TEXT,
-    `cost` INT NOT NULL,
-    `type` VARCHAR(50) NOT NULL,
-    `value` VARCHAR(255) NOT NULL,
-    `icon` VARCHAR(50),
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- ---------- USER ITEMS (Inventory) ----------
-CREATE TABLE `user_items` (
+-- ---------- ACTIVITY LOG ----------
+CREATE TABLE `activity_log` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT NOT NULL,
-    `item_id` INT NOT NULL,
-    `is_equipped` TINYINT(1) DEFAULT 0,
-    `purchased_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `action` VARCHAR(100) NOT NULL,
+    `description` TEXT,
+    `ip_address` VARCHAR(45),
+    `user_agent` TEXT,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`item_id`) REFERENCES `shop_items`(`id`) ON DELETE CASCADE
+    INDEX `idx_action` (`action`),
+    INDEX `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------- CERTIFICATES ----------

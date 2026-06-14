@@ -194,14 +194,14 @@ while ($row = $enrollment_stmt->fetch(PDO::FETCH_ASSOC)) {
 
 $avg_progress = count($enrolled_courses) > 0 ? $total_progress / count($enrolled_courses) : 0;
 
-$query_user = "SELECT total_xp, level, coins FROM users WHERE id = :user_id";
+$query_user = "SELECT total_xp, level FROM users WHERE id = :user_id";
 $stmt_user = $db->prepare($query_user);
 $stmt_user->bindParam(':user_id', $user_id);
 $stmt_user->execute();
 $user_data = $stmt_user->fetch(PDO::FETCH_ASSOC);
 $user_xp = $user_data['total_xp'] ?? 0;
 $user_level = $user_data['level'] ?? 1;
-$user_coins = $user_data['coins'] ?? 0;
+
 
 $xp_for_current_level = ($user_level - 1) * 100;
 $xp_for_next_level = $user_level * 100;
@@ -1312,10 +1312,6 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
                     </div>
 
                     <div class="flex gap-3">
-                        <div class="glass-stat-card text-center p-4 min-w-[100px]">
-                            <div class="text-2xl font-bold text-brand"><?php echo number_format($user_coins); ?></div>
-                            <div class="text-[10px] uppercase tracking-wider text-gray-500">Coins</div>
-                        </div>
                         <div class="glass-stat-card text-center p-4 min-w-[100px]">
                             <div class="text-2xl font-bold text-warm">#<?php echo $user_rank; ?></div>
                             <div class="text-[10px] uppercase tracking-wider text-gray-500">Global Rank</div>

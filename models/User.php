@@ -163,22 +163,5 @@ class User {
         }
         return false;
     }
-
-    public function getCoins($id) {
-        $query = "SELECT coins FROM " . $this->table_name . " WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row['coins'] ?? 0;
-    }
-
-    public function addCoins($id, $amount) {
-        $query = "UPDATE " . $this->table_name . " SET coins = coins + :amount WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':amount', $amount);
-        $stmt->bindParam(':id', $id);
-        return $stmt->execute();
-    }
 }
 ?>

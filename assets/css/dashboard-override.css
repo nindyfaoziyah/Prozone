@@ -104,7 +104,7 @@ body.dashboard-layout {
         "sidebar main";
     gap: 20px;
     padding: 20px;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 body.sidebar-hidden.dashboard-layout {
@@ -379,10 +379,10 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
    HEADER
    ============================================ */
 .header-floating {
-    grid-area: header;
-    position: sticky;
-    top: 0;
-    width: 100%;
+    position: fixed;
+    top: 20px;
+    left: 320px;
+    right: 20px;
     height: 64px;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px);
@@ -390,6 +390,10 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(59,130,246,0.06);
     z-index: 400;
+}
+
+body.sidebar-hidden .header-floating {
+    left: 20px;
 }
 
 .header-inner {
@@ -400,7 +404,7 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
     padding: 0 20px;
 }
 
-.header-search { flex: 1; }
+.header-search { flex: 1; margin-left: 12px; }
 
 .search-container {
     display: flex;
@@ -452,6 +456,8 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
 .xp-pill svg { color: #3B82F6; }
 .streak-pill { background: #FFF7ED; color: #F59E0B; border: 1px solid #FDE68A; }
 .streak-pill svg { color: #F59E0B; }
+.online-pill { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+.online-pill svg { color: #059669; }
 
 .header-btn {
     width: 40px; height: 40px;
@@ -467,11 +473,130 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
 .header-btn:hover { border-color: #3B82F6; color: #3B82F6; }
 .notification-badge {
     position: absolute;
-    top: 8px; right: 8px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
+    top: 2px; right: 2px;
+    min-width: 18px; height: 18px;
+    border-radius: 99px;
     background: #EF4444;
     border: 2px solid white;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 1;
+}
+.notification-wrapper {
+    position: relative;
+}
+.notification-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 380px;
+    max-height: 480px;
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+.notification-dropdown.open {
+    display: flex;
+}
+.notif-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid #E2E8F0;
+}
+.notif-header h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0F172A;
+}
+.notif-mark-read {
+    background: none;
+    border: none;
+    color: #3B82F6;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.notif-mark-read:hover {
+    background: #EFF6FF;
+}
+.notif-list {
+    overflow-y: auto;
+    flex: 1;
+    max-height: 360px;
+}
+.notif-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F1F5F9;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.notif-item:hover {
+    background: #F8FAFC;
+}
+.notif-item.unread {
+    background: #EFF6FF;
+}
+.notif-item.unread:hover {
+    background: #DBEAFE;
+}
+.notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+.notif-icon.system { background: #EFF6FF; color: #3B82F6; }
+.notif-icon.achievement { background: #FFF7ED; color: #F59E0B; }
+.notif-icon.course { background: #ECFDF5; color: #10B981; }
+.notif-icon.clan { background: #F5F3FF; color: #8B5CF6; }
+.notif-body {
+    flex: 1;
+    min-width: 0;
+}
+.notif-body p {
+    margin: 0 0 2px;
+    font-size: 0.8125rem;
+    color: #1E293B;
+    line-height: 1.4;
+}
+.notif-body .notif-time {
+    font-size: 0.7rem;
+    color: #94A3B8;
+}
+.notif-loading, .notif-empty {
+    text-align: center;
+    padding: 32px 16px;
+    color: #94A3B8;
+    font-size: 0.875rem;
+}
+.notif-footer {
+    padding: 10px 16px;
+    border-top: 1px solid #E2E8F0;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    text-align: center;
 }
 
 .header-user-card {
@@ -876,12 +1001,9 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
 .menu-item.active svg { color: inherit; }
 
 /* ============================================
-   SIDEBAR TOGGLE BUTTON
+   SIDEBAR TOGGLE BUTTON (in header)
    ============================================ */
 #sidebar-toggle {
-    position: absolute;
-    top: 20px;
-    right: -44px;
     width: 36px;
     height: 36px;
     background: white;
@@ -891,11 +1013,11 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 800;
+    flex-shrink: 0;
     font-size: 1rem;
     color: #3B82F6;
     box-shadow: 0 4px 12px rgba(59,130,246,0.1);
-    transition: transform 0.3s ease, right 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     padding: 0;
     line-height: 1;
 }
@@ -911,10 +1033,6 @@ body.dashboard-layout .sidebar-island-container.sidebar-hidden {
 .sidebar-island-container.sidebar-hidden .sidebar-island-panel {
     opacity: 0;
     pointer-events: none;
-}
-
-#sidebar-toggle.sidebar-hidden {
-    right: -44px;
 }
 
 body.sidebar-hidden.dashboard-layout {
@@ -937,11 +1055,7 @@ body.sidebar-hidden.dashboard-layout .page-wrapper.dashboard-main-container {
     margin-left: 0 !important;
 }
 
-body.sidebar-hidden.dashboard-layout .header-floating {
-    left: auto !important;
-    right: auto !important;
-    width: 100% !important;
-}
+
 
 /* ============================================
    XP AVATAR CARD (new sidebar-footer card)
@@ -1081,11 +1195,18 @@ body.sidebar-hidden.dashboard-layout .header-floating {
     }
 
     .header-floating {
-        position: sticky !important;
-        top: 0 !important;
-        left: auto !important;
-        right: auto !important;
-        width: 100% !important;
+        position: fixed !important;
+        top: 16px !important;
+        left: 16px !important;
+        right: 16px !important;
+        width: auto !important;
+    }
+
+    body.dashboard-layout .dashboard-container {
+        left: 16px;
+        right: 16px;
+        top: 96px;
+        bottom: 16px;
     }
 
     .page-wrapper.dashboard-main-container {
@@ -1124,23 +1245,40 @@ body.dashboard-layout .sidebar-island-panel {
 }
 
 body.dashboard-layout .header-floating {
-    grid-area: header !important;
-    position: sticky !important;
-    top: 0 !important;
-    left: auto !important;
-    right: auto !important;
-    width: 100% !important;
+    position: fixed !important;
+    top: 20px !important;
+    left: 320px !important;
+    right: 20px !important;
+    width: auto !important;
+}
+
+body.sidebar-hidden.dashboard-layout .header-floating {
+    left: 20px !important;
+}
+
+body.dashboard-layout .dashboard-container {
+    position: fixed;
+    top: 104px;
+    left: 320px;
+    right: 20px;
+    bottom: 20px;
+    overflow-y: auto;
+    min-width: 0;
+}
+
+body.sidebar-hidden .dashboard-container {
+    left: 20px !important;
 }
 
 body.dashboard-layout .page-wrapper.dashboard-main-container {
     grid-area: main !important;
     margin: 0 !important;
-    padding: 20px 0 60px !important;
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
     min-width: 0 !important;
     width: auto !important;
+}
+
+body.dashboard-layout .dashboard-main-container {
+    padding: 90px 20px 60px !important;
 }
 
 body.dashboard-layout .dashboard-content {
@@ -1150,7 +1288,8 @@ body.dashboard-layout .dashboard-content {
 
 body.dashboard-layout .sidebar-island-container,
 body.dashboard-layout .page-wrapper.dashboard-main-container,
-body.dashboard-layout .header-floating {
+body.dashboard-layout .header-floating,
+body.dashboard-layout .dashboard-container {
     transition: all 0.28s ease !important;
 }
 

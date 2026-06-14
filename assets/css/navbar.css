@@ -270,9 +270,6 @@
 }
 
 #sidebar-toggle {
-    position: fixed;
-    top: calc(var(--header-floating-offset) + 8px);
-    left: calc(var(--sidebar-offset) + 20px - 44px);
     width: 36px;
     height: 36px;
     background: white;
@@ -289,15 +286,12 @@
     transition: all 0.3s ease;
     padding: 0;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 #sidebar-toggle:hover {
     background: #eff6ff;
     transform: scale(1.05);
-}
-
-#sidebar-toggle.sidebar-hidden {
-    left: var(--layout-gutter);
 }
 
 .page-wrapper.dashboard-main-container {

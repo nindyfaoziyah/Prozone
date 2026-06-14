@@ -24,7 +24,6 @@
     min-height: 0;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     display: flex;
     flex-direction: column;
@@ -33,7 +32,19 @@
     pointer-events: auto;
     position: relative;
     overflow: hidden;
-    /* Organic wave effect using clip-path could be added here, but for now we focus on the island look */
+}
+
+.sidebar-island-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(180deg, #3B82F6, #20C7B7);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 /* Sidebar Logo */
@@ -158,32 +169,67 @@
 
 .menu-badge.new { background: var(--color-accent-100); color: var(--color-accent-600); }
 .menu-badge.live { background: var(--color-danger); color: white; animation: pulse 2s infinite; }
-.menu-badge.admin {
-    background: linear-gradient(135deg, #3B82F6, #14B8A6);
-    color: #fff;
-    font-size: 0.6rem;
-    padding: 0.15rem 0.45rem;
-    letter-spacing: 0.03em;
+.menu-badge.admin-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent-500);
+    margin-left: auto;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+.menu-item.admin-item:hover .menu-badge.admin-dot {
+    opacity: 0.8;
+}
+.menu-item.admin-item.active .menu-badge.admin-dot {
+    opacity: 1;
+    background: var(--color-primary-500);
 }
 
 /* Admin menu items - distinct styling */
 .menu-item.admin-item {
     position: relative;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), rgba(20, 184, 166, 0.02));
-    border-left: 2.5px solid transparent;
+    padding-left: 1rem;
+    background: transparent;
+    border-left: 3px solid transparent;
     transition: all 0.25s ease;
+    margin-bottom: 0.1rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+.menu-item.admin-item .menu-icon {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    color: var(--text-muted);
 }
 .menu-item.admin-item:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(20, 184, 166, 0.08));
-    border-left-color: #14B8A6;
-    transform: translateX(4px);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(20, 184, 166, 0.04));
+    border-left-color: var(--color-accent-500);
+    transform: translateX(3px);
+    color: var(--color-primary-500);
 }
 .menu-item.admin-item:hover .menu-icon {
-    transform: scale(1.15);
+    opacity: 1;
+    transform: scale(1.05);
+    color: var(--color-primary-500);
 }
 .menu-item.admin-item.active {
-    background: linear-gradient(135deg, #3B82F6, #14B8A6);
+    background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
     border-left-color: #fff;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+.menu-item.admin-item.active .menu-icon {
+    opacity: 1;
+    color: #fff;
+}
+.menu-item.admin-item.active::before {
+    display: none;
+}
+.menu-item.admin-item.active .menu-badge.admin-dot {
+    opacity: 1;
+    background: #fff;
 }
 
 /* Admin section label */
@@ -191,35 +237,29 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem 0.35rem;
-    font-size: 0.65rem;
-    font-weight: 700;
+    padding: 1rem 1.25rem 0.25rem;
+    font-size: 0.6rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-}
-.sidebar-section-label:hover {
-    opacity: 0.9;
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
 }
 .sidebar-section-label .label-line {
     flex: 1;
     height: 1px;
     background: var(--border-default);
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
-}
-.sidebar-section-label:hover .label-line {
-    opacity: 0.8;
+    opacity: 0.25;
 }
 
 /* Section divider */
 .sidebar-divider {
     height: 1px;
-    background: var(--border-default);
-    margin: 0.25rem 1.25rem;
-    opacity: 0.3;
+    background: linear-gradient(90deg, var(--border-default), transparent);
+    margin: 0.4rem 1.25rem;
+    opacity: 0.4;
 }
 
 @keyframes pulse {
