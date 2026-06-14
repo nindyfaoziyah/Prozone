@@ -46,8 +46,8 @@
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.03);
     --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.05);
     --shadow-hard: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-    --shadow-glow-purple: 0 0 20px rgba(108, 76, 253, 0.15);
-    --shadow-glow-teal: 0 0 20px rgba(32, 199, 183, 0.15);
+    --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.18);
+    --shadow-glow-teal: 0 0 20px rgba(20, 184, 166, 0.18);
 
     /* Typography - Unified font system */
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -117,17 +117,17 @@
     --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    /* Semantic brand tokens (used widely across components) */
-    --brand: #6366F1;
-    --brand-hover: #4F46E5;
-    --brand-active: #3730A3;
-    --brand-text: #A5B4FC;
-    --brand-subtle: rgba(99, 102, 241, 0.10);
-    --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    /* Semantic brand tokens — Blue→Teal gradient */
+    --brand: #3b82f6;
+    --brand-hover: #0ea5e9;
+    --brand-active: #14b8a6;
+    --brand-text: #7dd3fc;
+    --brand-subtle: rgba(59, 130, 246, 0.10);
+    --gradient-brand: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%);
 
-    /* Accent */
-    --accent: #10B981;
-    --accent-subtle: rgba(16, 185, 129, 0.10);
+    /* Accent — Teal */
+    --accent: #14b8a6;
+    --accent-subtle: rgba(20, 184, 166, 0.10);
 
     /* Surface tokens */
     --bg-subtle: #F1F5F9;
@@ -141,14 +141,14 @@
     /* Border tokens */
     --border-default: #E2E8F0;
     --border-strong: #CBD5E1;
-    --border-focus: #6366F1;
+    --border-focus: #3b82f6;
 
     /* Status tokens */
     --color-info: #3B82F6;
     --color-error: #EF4444;
     --color-error-dark: #DC2626;
     --color-xp: #F59E0B;
-    --color-coin: #10B981;
+    --color-coin: #14b8a6;
 
     /* Shadows */
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -157,9 +157,9 @@
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03);
     --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.06), 0 8px 10px rgba(0, 0, 0, 0.04);
     --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.10);
-    --shadow-primary: 0 4px 16px rgba(79, 70, 229, 0.15);
-    --shadow-primary-lg: 0 8px 24px rgba(79, 70, 229, 0.25);
-    --shadow-accent: 0 4px 16px rgba(16, 185, 129, 0.15);
+    --shadow-primary: 0 4px 16px rgba(59, 130, 246, 0.18);
+    --shadow-primary-lg: 0 8px 24px rgba(59, 130, 246, 0.28);
+    --shadow-accent: 0 4px 16px rgba(14, 165, 233, 0.18);
 
     /* Border radius */
     --radius-2xl: 40px;

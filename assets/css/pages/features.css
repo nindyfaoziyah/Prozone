@@ -93,7 +93,7 @@
 }
 .code-preview:hover {
   border-color: var(--brand);
-  box-shadow: 0 12px 32px -8px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
 }
 .code-preview-header {
   display: flex;
@@ -138,7 +138,7 @@
   display: block;
   padding: 0;
 }
-.code-keyword { color: #c084fc; }
+.code-keyword { color: #34d399; }
 .code-function { color: #60a5fa; }
 .code-string { color: #34d399; }
 .code-var { color: var(--text-primary); }
@@ -178,7 +178,7 @@
 }
 .xp-card:hover {
   border-color: var(--brand);
-  box-shadow: 0 12px 32px -8px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
 }
 .xp-card-header {
   display: flex;
@@ -267,7 +267,7 @@
 }
 .clan-card:hover {
   border-color: var(--brand);
-  box-shadow: 0 12px 32px -8px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
 }
 .clan-card-header {
   display: flex;
@@ -284,7 +284,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.30);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.30);
 }
 .clan-card-emblem svg {
   width: 24px;
@@ -370,7 +370,7 @@
 }
 .clan-leaderboard-mini:hover {
   border-color: var(--brand);
-  box-shadow: 0 12px 32px -8px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(16, 185, 129, 0.15);
 }
 .clan-lb-row {
   display: flex;
@@ -389,7 +389,7 @@
 }
 .clan-lb-row-you {
   background: var(--brand-subtle);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   color: var(--brand-text);
   font-weight: var(--font-semibold);
 }

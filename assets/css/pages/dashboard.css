@@ -8,7 +8,7 @@
   padding-top: calc(var(--navbar-height) + var(--space-8));
   padding-bottom: var(--space-12);
   min-height: 100vh;
-  background: radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.05) 0%, transparent 40%),
+  background: radial-gradient(circle at 10% 10%, rgba(5, 150, 105, 0.05) 0%, transparent 40%),
               radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
 }
 
@@ -141,7 +141,7 @@
 }
 
 .terminal-body .cmd {
-  color: #a78bfa;
+  color: #34d399;
   margin-right: 8px;
 }
 
@@ -326,7 +326,7 @@
 .xp-asset-mockup {
     width: 140px;
     height: 140px;
-    filter: drop-shadow(0 10px 20px rgba(124, 58, 237, 0.2));
+    filter: drop-shadow(0 10px 20px rgba(5, 150, 105, 0.2));
 }
 
 .xp-upsell-card h3 {

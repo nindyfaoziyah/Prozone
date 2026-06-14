@@ -71,6 +71,86 @@ class Clan {
         return $stmt;
     }
 
+    /**
+     * Admin: Read ALL clans (public + private) with member counts
+     */
+    public function readAllAdmin() {
+        $query = "SELECT c.*, u.nama_lengkap as leader_name,
+                         (SELECT COUNT(*) FROM clan_members WHERE clan_id = c.id) as member_count
+                  FROM " . $this->table_name . " c
+                  LEFT JOIN users u ON c.leader_id = u.id
+                  ORDER BY c.total_xp DESC";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    /**
+     * Admin: Search clans by name
+     */
+    public function search($keyword) {
+        $query = "SELECT c.*, u.nama_lengkap as leader_name,
+                         (SELECT COUNT(*) FROM clan_members WHERE clan_id = c.id) as member_count
+                  FROM " . $this->table_name . " c
+                  LEFT JOIN users u ON c.leader_id = u.id
+                  WHERE c.nama_clan LIKE :keyword
+                     OR c.deskripsi LIKE :keyword
+                     OR u.nama_lengkap LIKE :keyword
+                  ORDER BY c.total_xp DESC";
+
+        $stmt = $this->conn->prepare($query);
+        $keyword = '%' . $keyword . '%';
+        $stmt->bindParam(':keyword', $keyword);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    /**
+     * Admin: Update clan info
+     */
+    public function update() {
+        $query = "UPDATE " . $this->table_name . "
+                  SET nama_clan=:nama_clan, slug=:slug, deskripsi=:deskripsi,
+                      is_public=:is_public, max_members=:max_members
+                  WHERE id=:id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->nama_clan = htmlspecialchars(strip_tags($this->nama_clan));
+        $this->slug = $this->generateSlug($this->nama_clan);
+        $this->deskripsi = htmlspecialchars(strip_tags($this->deskripsi));
+        $this->is_public = isset($this->is_public) ? 1 : 0;
+        $this->max_members = htmlspecialchars(strip_tags($this->max_members ?? 50));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $stmt->bindParam(':nama_clan', $this->nama_clan);
+        $stmt->bindParam(':slug', $this->slug);
+        $stmt->bindParam(':deskripsi', $this->deskripsi);
+        $stmt->bindParam(':is_public', $this->is_public);
+        $stmt->bindParam(':max_members', $this->max_members);
+        $stmt->bindParam(':id', $this->id);
+
+        return $stmt->execute();
+    }
+
+    /**
+     * Admin: Delete clan and all members
+     */
+    public function delete() {
+        // First delete all members
+        $query_members = "DELETE FROM clan_members WHERE clan_id = :id";
+        $stmt_members = $this->conn->prepare($query_members);
+        $stmt_members->bindParam(':id', $this->id);
+        $stmt_members->execute();
+
+        // Then delete the clan
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $this->id);
+        return $stmt->execute();
+    }
+
     public function readOne() {
         $query = "SELECT c.*, u.nama_lengkap as leader_name
                   FROM " . $this->table_name . " c

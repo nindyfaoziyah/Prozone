@@ -1,16 +1,16 @@
 /* ============================================
-   PROZONE DARK THEME - PREMIUM PURPLE
+   PROZONE DARK THEME - PREMIUM BLUE TEAL
    Consistent Dark Mode Styling
    ============================================ */
 
 :root {
-    /* Purple Theme Colors */
-    --primary: #8b5cf6;
-    --primary-dark: #7c3aed;
-    --primary-light: #a78bfa;
-    --primary-lighter: #c4b5fd;
-    --secondary: #a78bfa;
-    --accent: #c4b5fd;
+    /* Blue-Teal Theme Colors */
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --primary-light: #38bdf8;
+    --primary-lighter: #7dd3fc;
+    --secondary: #0ea5e9;
+    --accent: #14b8a6;
     
     /* Background Colors */
     --bg-primary: #0f0f1a;
@@ -26,9 +26,9 @@
     --text-muted: #94a3b8;
     
     /* Border Colors */
-    --border-color: rgba(139, 92, 246, 0.12);
+    --border-color: rgba(59, 130, 246, 0.12);
     --border-light: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(139, 92, 246, 0.25);
+    --border-hover: rgba(59, 130, 246, 0.25);
     
     /* Status Colors */
     --success: #10b981;
@@ -37,8 +37,8 @@
     --info: #3b82f6;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-    --gradient-secondary: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+    --gradient-secondary: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
     --gradient-card: linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(35, 35, 60, 0.95) 100%);
 }
 
@@ -121,7 +121,7 @@ body {
     color: var(--text-primary);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
                 0 2px 4px -1px rgba(0, 0, 0, 0.06),
-                0 0 0 1px rgba(139, 92, 246, 0.05);
+                0 0 0 1px rgba(59, 130, 246, 0.05);
 }
 
 .dark-mode .dashboard-card:hover,
@@ -132,9 +132,9 @@ body {
 .course-card:hover,
 .feature-card:hover,
 .card:hover {
-    box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.15),
-                0 4px 6px -2px rgba(139, 92, 246, 0.1),
-                0 0 0 1px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.15),
+                0 4px 6px -2px rgba(59, 130, 246, 0.1),
+                0 0 0 1px rgba(59, 130, 246, 0.15);
     border-color: var(--border-hover);
 }
 
@@ -174,7 +174,7 @@ body {
 
 .dark-mode .table th,
 .table th {
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(59, 130, 246, 0.05);
     color: var(--text-muted);
     border-bottom: 1px solid var(--border-color);
 }
@@ -187,7 +187,7 @@ body {
 
 .dark-mode .table tbody tr:hover,
 .table tbody tr:hover {
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(59, 130, 246, 0.05);
 }
 
 /* Form Elements */
@@ -217,7 +217,7 @@ select:focus,
 textarea:focus {
     border-color: var(--primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     background: var(--bg-elevated);
 }
 
@@ -226,13 +226,13 @@ textarea:focus {
 .btn-primary {
     background: var(--gradient-primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
 }
 
 .dark-mode .btn-primary:hover,
 .btn-primary:hover {
     background: var(--gradient-secondary);
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
 }
 
 .dark-mode .btn-secondary,
@@ -281,9 +281,9 @@ textarea:focus {
 /* Badges */
 .dark-mode .badge-primary,
 .badge-primary {
-    background: rgba(139, 92, 246, 0.2);
+    background: rgba(59, 130, 246, 0.2);
     color: var(--primary-light);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .dark-mode .badge-success,
@@ -317,7 +317,7 @@ textarea:focus {
 .dark-mode .progress-bar,
 .progress-bar {
     background: var(--gradient-primary);
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
 /* Modal */
@@ -332,7 +332,7 @@ textarea:focus {
     background: var(--gradient-card);
     border: 1px solid var(--border-color);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(139, 92, 246, 0.15);
+                0 0 30px rgba(59, 130, 246, 0.15);
 }
 
 .dark-mode .modal-header,
@@ -360,7 +360,7 @@ textarea:focus {
 
 .dark-mode .dropdown-item:hover,
 .dropdown-item:hover {
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--text-primary);
 }
 
@@ -439,7 +439,7 @@ textarea:focus {
 
 /* Selection */
 ::selection {
-    background: rgba(139, 92, 246, 0.3);
+    background: rgba(59, 130, 246, 0.3);
     color: white;
 }
 
@@ -478,7 +478,7 @@ pre {
 .dark-mode .avatar,
 .avatar {
     background: var(--gradient-primary);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 /* Headers */
@@ -562,7 +562,7 @@ hr {
 .dark-mode .profile-avatar,
 .profile-avatar {
     background: var(--gradient-primary);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
 }
 
 .dark-mode .stat-value,
@@ -602,7 +602,7 @@ hr {
 
 .dark-mode .achievement-card:hover,
 .achievement-card:hover {
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
 }
 
 .dark-mode .achievement-title,
@@ -636,7 +636,7 @@ hr {
 
 .dark-mode .lesson-list-item.active,
 .lesson-list-item.active {
-    background: rgba(139, 92, 246, 0.15);
+    background: rgba(59, 130, 246, 0.15);
     color: var(--primary-light);
 }
 
@@ -663,7 +663,7 @@ hr {
 .dark-mode .search-input:focus,
 .search-input:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .dark-mode .search-icon,

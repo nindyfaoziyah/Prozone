@@ -129,6 +129,20 @@ if ($role === 'admin') {
     $lessons_data = $stmt_lessons->fetch(PDO::FETCH_ASSOC);
     $total_lessons = $lessons_data['total'] ?? 0;
     
+    // Get total clans
+    $query_clans = "SELECT COUNT(*) as total FROM clans";
+    $stmt_clans = $db->prepare($query_clans);
+    $stmt_clans->execute();
+    $clans_data = $stmt_clans->fetch(PDO::FETCH_ASSOC);
+    $total_clans = $clans_data['total'] ?? 0;
+    
+    // Get total completions
+    $query_completions = "SELECT COUNT(*) as total FROM enrollments WHERE status = 'completed'";
+    $stmt_completions = $db->prepare($query_completions);
+    $stmt_completions->execute();
+    $completions_data = $stmt_completions->fetch(PDO::FETCH_ASSOC);
+    $total_completions = $completions_data['total'] ?? 0;
+    
     // Get recent enrollments
     $query_recent = "SELECT e.*, c.judul_course, u.nama_lengkap, u.avatar
                      FROM enrollments e
@@ -140,6 +154,17 @@ if ($role === 'admin') {
     $recent_enrollments = [];
     while ($row = $stmt_recent->fetch(PDO::FETCH_ASSOC)) {
         $recent_enrollments[] = $row;
+    }
+    
+    // Get recent registrations
+    $query_new_users = "SELECT id, nama_lengkap, username, email, created_at 
+                        FROM users WHERE role = 'student' 
+                        ORDER BY created_at DESC LIMIT 5";
+    $stmt_new_users = $db->prepare($query_new_users);
+    $stmt_new_users->execute();
+    $recent_users = [];
+    while ($row = $stmt_new_users->fetch(PDO::FETCH_ASSOC)) {
+        $recent_users[] = $row;
     }
     
     // Get admin user data
@@ -260,35 +285,145 @@ if ($role === 'admin') {
 
             <?php if ($role === 'admin'): ?>
             
-            <!-- Admin Stats -->
-            <div class="dash-stats-grid">
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-brand"><?php icon('book', 18); ?></div>
-                    </div>
-                    <div class="dash-stat-value"><?php echo $total_courses ?? 0; ?></div>
-                    <div class="dash-stat-label">Total Kursus</div>
+            <!-- Admin Welcome Banner -->
+            <div class="admin-welcome-banner">
+                <div class="admin-welcome-text">
+                    <h2>🛡️ Admin Panel</h2>
+                    <p>Selamat datang kembali, <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?>! Kelola platform Prozone dari sini.</p>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-info"><?php icon('users', 18); ?></div>
+            </div>
+
+            <!-- Admin Stats Grid -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-brand">📚</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_courses ?? 0; ?></div>
+                        <div class="stat-label">Total Kursus</div>
                     </div>
-                    <div class="dash-stat-value"><?php echo $total_students ?? 0; ?></div>
-                    <div class="dash-stat-label">Siswa Aktif</div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-accent"><?php icon('user', 18); ?></div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-info">📖</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_lessons ?? 0; ?></div>
+                        <div class="stat-label">Total Lesson</div>
                     </div>
-                    <div class="dash-stat-value"><?php echo $total_users ?? 0; ?></div>
-                    <div class="dash-stat-label">Total User</div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-header">
-                        <div class="dash-stat-icon icon-warning"><?php icon('book-open', 18); ?></div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-accent">👥</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_users ?? 0; ?></div>
+                        <div class="stat-label">Total Student</div>
                     </div>
-                    <div class="dash-stat-value"><?php echo $total_lessons ?? 0; ?></div>
-                    <div class="dash-stat-label">Total Lesson</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-warning">⚔️</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_clans ?? 0; ?></div>
+                        <div class="stat-label">Total Clan</div>
+                    </div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-success">✅</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_completions ?? 0; ?></div>
+                        <div class="stat-label">Kursus Selesai</div>
+                    </div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon icon-brand">🎓</div>
+                    <div class="admin-stat-info">
+                        <div class="stat-value"><?php echo $total_students ?? 0; ?></div>
+                        <div class="stat-label">Siswa Aktif</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Quick Actions -->
+            <div class="admin-quick-actions">
+                <h3 class="admin-section-title">⚡ Akses Cepat</h3>
+                <div class="admin-nav-cards">
+                    <a href="manage-courses.php" class="admin-nav-card">
+                        <div class="admin-nav-icon">📚</div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Kelola Kursus</div>
+                            <div class="admin-nav-desc">Tambah, edit, hapus kursus</div>
+                        </div>
+                        <span class="admin-nav-arrow">→</span>
+                    </a>
+                    <a href="users.php" class="admin-nav-card">
+                        <div class="admin-nav-icon">👥</div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Kelola User</div>
+                            <div class="admin-nav-desc">Manajemen student & admin</div>
+                        </div>
+                        <span class="admin-nav-arrow">→</span>
+                    </a>
+                    <a href="manage-clans.php" class="admin-nav-card">
+                        <div class="admin-nav-icon">⚔️</div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Kelola Clan</div>
+                            <div class="admin-nav-desc">Monitor & kelola clan</div>
+                        </div>
+                        <span class="admin-nav-arrow">→</span>
+                    </a>
+                    <a href="admin_analytics.php" class="admin-nav-card">
+                        <div class="admin-nav-icon">📊</div>
+                        <div class="admin-nav-info">
+                            <div class="admin-nav-label">Analytics</div>
+                            <div class="admin-nav-desc">Statistik & laporan</div>
+                        </div>
+                        <span class="admin-nav-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-grid-secondary">
+                <!-- Recent Enrollments -->
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>📝 Pendaftaran Terbaru</h3>
+                    </div>
+                    <?php if (empty($recent_enrollments)): ?>
+                        <div class="glass-empty-state"><p>Belum ada pendaftaran.</p></div>
+                    <?php else: ?>
+                        <?php foreach ($recent_enrollments as $re): ?>
+                        <div class="admin-activity-item">
+                            <div class="activity-avatar">
+                                <?php echo strtoupper(substr($re['nama_lengkap'], 0, 1)); ?>
+                            </div>
+                            <div class="activity-info">
+                                <div class="activity-name"><?php echo htmlspecialchars($re['nama_lengkap']); ?></div>
+                                <div class="activity-detail">Mendaftar: <?php echo htmlspecialchars($re['judul_course']); ?></div>
+                            </div>
+                            <div class="activity-time"><?php echo date('d/m/Y', strtotime($re['enrolled_at'])); ?></div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Recent Registrations -->
+                <div class="learning-section-card">
+                    <div class="section-title-row">
+                        <h3>🆕 Student Baru</h3>
+                    </div>
+                    <?php if (empty($recent_users)): ?>
+                        <div class="glass-empty-state"><p>Belum ada student baru.</p></div>
+                    <?php else: ?>
+                        <?php foreach ($recent_users as $ru): ?>
+                        <div class="admin-activity-item">
+                            <div class="activity-avatar">
+                                <?php echo strtoupper(substr($ru['nama_lengkap'], 0, 1)); ?>
+                            </div>
+                            <div class="activity-info">
+                                <div class="activity-name"><?php echo htmlspecialchars($ru['nama_lengkap']); ?></div>
+                                <div class="activity-detail">@<?php echo htmlspecialchars($ru['username']); ?> · <?php echo htmlspecialchars($ru['email']); ?></div>
+                            </div>
+                            <div class="activity-time"><?php echo date('d/m/Y', strtotime($ru['created_at'])); ?></div>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
 

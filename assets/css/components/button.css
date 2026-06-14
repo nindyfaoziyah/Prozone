@@ -382,7 +382,7 @@
 }
 .btn-fab:hover {
   transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 12px 36px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 12px 36px rgba(59, 130, 246, 0.35);
 }
 .btn-fab:active {
   transform: scale(0.95);

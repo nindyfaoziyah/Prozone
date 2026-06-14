@@ -50,7 +50,7 @@
 
 [data-theme="dark"] .breadcrumb-link:hover {
   color: var(--color-primary-300);
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   text-decoration: none;
 }
 

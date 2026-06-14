@@ -23,7 +23,7 @@ body.light-mode {
 
   /* Subtle gradient untuk hero */
   --hero-gradient: linear-gradient(135deg,
-    rgba(99, 102, 241, 0.08) 0%,
+    rgba(16, 185, 129, 0.08) 0%,
     rgba(16, 185, 129, 0.06) 50%,
     rgba(255, 255, 255, 0) 100%);
 
@@ -33,8 +33,8 @@ body.light-mode {
     rgba(248, 250, 252, 1) 100%);
 
   /* Hover state untuk interactive elements */
-  --hover-overlay: rgba(99, 102, 241, 0.04);
-  --active-overlay: rgba(99, 102, 241, 0.08);
+  --hover-overlay: rgba(16, 185, 129, 0.04);
+  --active-overlay: rgba(16, 185, 129, 0.08);
 }
 
 /* === Light mode typography enhancements === */

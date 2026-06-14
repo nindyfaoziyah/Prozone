@@ -35,7 +35,7 @@
 .rarity-rare      { background: var(--rarity-rare-bg);      color: var(--rarity-rare); }
 .rarity-epic      { background: var(--rarity-epic-bg);      color: var(--rarity-epic); }
 .rarity-legendary {
-    background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(139,92,246,0.15));
+    background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(16,185,129,0.15));
     color: var(--rarity-legendary);
     animation: legendary-shimmer 3s ease-in-out infinite;
 }

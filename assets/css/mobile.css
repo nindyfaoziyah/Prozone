@@ -77,9 +77,9 @@
         margin-bottom: 1.25rem;
         border-radius: 16px;
         background: linear-gradient(135deg, 
-            rgba(109, 40, 217, 0.12) 0%, 
-            rgba(139, 92, 246, 0.08) 50%,
-            rgba(167, 139, 250, 0.04) 100%);
+            rgba(4, 120, 87, 0.12) 0%, 
+            rgba(16, 185, 129, 0.08) 50%,
+            rgba(52, 211, 153, 0.04) 100%);
     }
     
     .dashboard-header h1 {

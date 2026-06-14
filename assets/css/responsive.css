@@ -242,7 +242,7 @@ img, video, iframe {
         padding: 1rem;
         flex-direction: column;
         gap: 0.5rem;
-        border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+        border-bottom: 1px solid rgba(5, 150, 105, 0.2);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;

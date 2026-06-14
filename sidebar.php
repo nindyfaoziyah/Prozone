@@ -28,17 +28,39 @@ if (isset($db) && isset($_SESSION['user_id'])) {
 }
 $avatar_emoji = $sidebar_cls['badge']; // Fallback label / title attribute
 
+// Check user role
+$user_role = $_SESSION['user_role'] ?? 'student';
+
 $menu_items = [
     ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
-    ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
-    ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
-    ['label' => 'Characters',        'icon' => 'user',        'link' => 'characters.php', 'badge' => 'RPG'],
-    ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
-    ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
-    ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
-    ['label' => 'Leaderboard & Achievement', 'icon' => 'award', 'link' => 'leaderboard.php'],
-    ['label' => 'Settings',          'icon' => 'settings',    'link' => 'settings.php'],
 ];
+
+// Student menu items
+if ($user_role === 'student') {
+    $menu_items = array_merge($menu_items, [
+        ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
+        ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
+        ['label' => 'Characters',        'icon' => 'user',        'link' => 'characters.php', 'badge' => 'RPG'],
+        ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
+        ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
+        ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
+        ['label' => 'Clan',             'icon' => 'users',       'link' => 'clan.php'],
+        ['label' => 'Leaderboard & Achievement', 'icon' => 'award', 'link' => 'leaderboard.php'],
+    ]);
+}
+
+// Admin menu items
+if ($user_role === 'admin') {
+    $menu_items = array_merge($menu_items, [
+        ['label' => 'Kelola Kursus',     'icon' => 'book',        'link' => 'manage-courses.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kelola User',       'icon' => 'users',       'link' => 'users.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kelola Clan',       'icon' => 'zap',         'link' => 'manage-clans.php', 'badge' => 'ADMIN'],
+        ['label' => 'Analytics',         'icon' => 'bar-chart',   'link' => 'admin_analytics.php', 'badge' => 'ADMIN'],
+    ]);
+}
+
+// Common menu
+$menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'settings.php'];
 ?>
 
 <!-- Hidden SVG defs for XP ring gradient -->
