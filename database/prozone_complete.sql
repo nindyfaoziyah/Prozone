@@ -1,4 +1,4 @@
--- =====================================================
+﻿-- =====================================================
 -- PROZONE - COMPLETE DATABASE SETUP (SINGLE FILE)
 -- =====================================================
 -- File: database/prozone_complete.sql
@@ -434,12 +434,12 @@ INSERT INTO `users` (`username`, `password`, `nama_lengkap`, `email`, `role`, `t
 -- 5. SEED DATA - COURSE CATEGORIES
 -- =====================================================
 INSERT INTO `course_categories` (`nama_kategori`, `slug`, `deskripsi`, `icon`) VALUES
-('HTML & CSS',           'html-css',  'Pelajari dasar-dasar HTML dan CSS untuk membuat website yang menarik', '🌐'),
-('JavaScript',           'javascript','Pelajari JavaScript dari dasar hingga advanced untuk membuat website interaktif', '⚡'),
-('PHP',                  'php',       'Pelajari PHP untuk membuat aplikasi web dinamis dan backend', '🐘'),
-('Python',               'python',    'Pelajari Python untuk data science, web development, dan automation', '🐍'),
-('Database',             'database',  'Pelajari MySQL dan database management untuk aplikasi web', '💾'),
-('Framework',            'framework', 'Pelajari framework modern seperti Laravel, React, dan Vue.js', '⚙️'),
+('HTML & CSS',           'html-css',  'Pelajari dasar-dasar HTML dan CSS untuk membuat website yang menarik', 'ðŸŒ'),
+('JavaScript',           'javascript','Pelajari JavaScript dari dasar hingga advanced untuk membuat website interaktif', 'âš¡'),
+('PHP',                  'php',       'Pelajari PHP untuk membuat aplikasi web dinamis dan backend', 'ðŸ˜'),
+('Python',               'python',    'Pelajari Python untuk data science, web development, dan automation', 'ðŸ'),
+('Database',             'database',  'Pelajari MySQL dan database management untuk aplikasi web', 'ðŸ’¾'),
+('Framework',            'framework', 'Pelajari framework modern seperti Laravel, React, dan Vue.js', 'âš™ï¸'),
 ('Backend Development',  'backend',   'Server-side programming dan database', 'server'),
 ('Python Programming',   'python-pro','Belajar Python dari dasar hingga mahir', 'terminal'),
 ('PHP Development',      'php-dev',   'Web development dengan PHP', 'code'),
@@ -826,7 +826,7 @@ INSERT INTO `lessons` (`course_id`, `judul_lesson`, `slug`, `tipe`, `konten`, `u
 -- ----- COURSE 6: Python untuk Pemula (8 lessons) -----
 INSERT INTO `lessons` (`course_id`, `judul_lesson`, `slug`, `tipe`, `konten`, `urutan`, `durasi_menit`, `kode_contoh`, `kode_solusi`, `xp_reward`) VALUES
 (6, 'Pengenalan Python', 'pengenalan-python', 'theory',
- '# Selamat Datang di Python! 🐍\n\nPython adalah bahasa pemrograman yang mudah dipelajari dan sangat powerful.\n\n```python\nprint("Hello, World!")\n```', 1, 15,
+ '# Selamat Datang di Python! ðŸ\n\nPython adalah bahasa pemrograman yang mudah dipelajari dan sangat powerful.\n\n```python\nprint("Hello, World!")\n```', 1, 15,
  '# Hello World in Python\nprint("Hello, World!")',
  'print("Hello, World!")\nprint("Selamat belajar Python!")', 15),
 
@@ -1142,35 +1142,35 @@ INSERT INTO `clans` (`nama_clan`, `slug`, `deskripsi`, `leader_id`, `total_membe
 -- 9. SEED DATA - ACHIEVEMENTS
 -- =====================================================
 INSERT INTO `achievements` (`kode_achievement`, `nama_achievement`, `deskripsi`, `icon`, `xp_reward`, `tipe`, `requirement_value`) VALUES
-('first_lesson',   'First Steps',         'Selesaikan lesson pertama Anda',         '🎯', 50,  'lesson_complete', 1),
-('ten_lessons',    'Getting Started',     'Selesaikan 10 lesson',                    '⭐', 100, 'lesson_complete', 10),
-('fifty_lessons',  'Half Century',        'Selesaikan 50 lesson',                    '🌟', 300, 'lesson_complete', 50),
-('hundred_lessons','Century Master',      'Selesaikan 100 lesson',                   '💫', 500, 'lesson_complete', 100),
-('first_course',   'Course Master',       'Selesaikan 1 kursus lengkap',             '🏆', 200, 'course_complete', 1),
-('five_courses',   'Multi-Course Expert', 'Selesaikan 5 kursus lengkap',             '🎓', 400, 'course_complete', 5),
-('ten_courses',    'Ultimate Learner',    'Selesaikan 10 kursus lengkap',            '👑', 750, 'course_complete', 10),
-('level_5',        'Level 5 Achiever',    'Capai level 5',                           '📈', 150, 'special', 5),
-('level_10',       'Level 10 Master',     'Capai level 10',                          '📊', 300, 'special', 10),
-('level_20',       'Level 20 Legend',     'Capai level 20',                          '🌟', 600, 'special', 20),
-('xp_1000',        'XP Collector',        'Kumpulkan 1000 XP',                       '💎', 200, 'special', 1000),
-('xp_5000',        'XP Master',           'Kumpulkan 5000 XP',                       '💍', 500, 'special', 5000),
-('xp_10000',       'XP Legend',           'Kumpulkan 10000 XP',                      '👑', 1000,'special', 10000),
-('week_warrior',   'Week Warrior',        'Belajar 7 hari berturut-turut',           '🔥', 150, 'streak', 7),
-('clan_leader',    'Clan Leader',         'Buat clan pertama Anda',                  '💜', 100, 'clan', 1),
-('code_ninja',     'Code Ninja',          'Selesaikan 50 lesson',                    '🥷', 500, 'lesson_complete', 50);
+('first_lesson',   'First Steps',         'Selesaikan lesson pertama Anda',         'ðŸŽ¯', 50,  'lesson_complete', 1),
+('ten_lessons',    'Getting Started',     'Selesaikan 10 lesson',                    'â­', 100, 'lesson_complete', 10),
+('fifty_lessons',  'Half Century',        'Selesaikan 50 lesson',                    'ðŸŒŸ', 300, 'lesson_complete', 50),
+('hundred_lessons','Century Master',      'Selesaikan 100 lesson',                   'ðŸ’«', 500, 'lesson_complete', 100),
+('first_course',   'Course Master',       'Selesaikan 1 kursus lengkap',             'ðŸ†', 200, 'course_complete', 1),
+('five_courses',   'Multi-Course Expert', 'Selesaikan 5 kursus lengkap',             'ðŸŽ“', 400, 'course_complete', 5),
+('ten_courses',    'Ultimate Learner',    'Selesaikan 10 kursus lengkap',            'ðŸ‘‘', 750, 'course_complete', 10),
+('level_5',        'Level 5 Achiever',    'Capai level 5',                           'ðŸ“ˆ', 150, 'special', 5),
+('level_10',       'Level 10 Master',     'Capai level 10',                          'ðŸ“Š', 300, 'special', 10),
+('level_20',       'Level 20 Legend',     'Capai level 20',                          'ðŸŒŸ', 600, 'special', 20),
+('xp_1000',        'XP Collector',        'Kumpulkan 1000 XP',                       'ðŸ’Ž', 200, 'special', 1000),
+('xp_5000',        'XP Master',           'Kumpulkan 5000 XP',                       'ðŸ’', 500, 'special', 5000),
+('xp_10000',       'XP Legend',           'Kumpulkan 10000 XP',                      'ðŸ‘‘', 1000,'special', 10000),
+('week_warrior',   'Week Warrior',        'Belajar 7 hari berturut-turut',           'ðŸ”¥', 150, 'streak', 7),
+('clan_leader',    'Clan Leader',         'Buat clan pertama Anda',                  'ðŸ’œ', 100, 'clan', 1),
+('code_ninja',     'Code Ninja',          'Selesaikan 50 lesson',                    'ðŸ¥·', 500, 'lesson_complete', 50);
 
 -- =====================================================
 -- 10. SEED DATA - SHOP ITEMS
 -- =====================================================
 INSERT INTO `shop_items` (`name`, `description`, `cost`, `type`, `value`, `icon`) VALUES
-('Novice Coder',    'Gelar untuk pemula yang bersemangat',            100,  'title', 'Novice Coder',                                '🌱'),
-('Bug Hunter',      'Pemburu bug yang handal',                          500,  'title', 'Bug Hunter',                                  '🐛'),
-('Code Wizard',     'Penyihir kode legendaris',                        2000, 'title', 'Code Wizard',                                 '🧙‍♂️'),
-('Neon Frame',      'Bingkai avatar neon yang keren',                  1000, 'frame', 'border: 3px solid #00ff00; box-shadow: 0 0 10px #00ff00;', '🖼️'),
-('Gold Frame',      'Bingkai emas mewah',                              5000, 'frame', 'border: 3px solid #ffd700; box-shadow: 0 0 10px #ffd700;', '👑'),
-('Novice Title',    'Title for beginners',                             100,  'title', 'Novice',                                      '🏅'),
-('Golden Frame',    'A shiny golden frame for your avatar',            500,  'frame', 'border-gold',                                 '🖼️'),
-('Dark Blue Theme', 'A cool dark blue theme',                          1000, 'theme', 'theme-dark-blue',                             '🌙');
+('Novice Coder',    'Gelar untuk pemula yang bersemangat',            100,  'title', 'Novice Coder',                                'ðŸŒ±'),
+('Bug Hunter',      'Pemburu bug yang handal',                          500,  'title', 'Bug Hunter',                                  'ðŸ›'),
+('Code Wizard',     'Penyihir kode legendaris',                        2000, 'title', 'Code Wizard',                                 'ðŸ§™â€â™‚ï¸'),
+('Neon Frame',      'Bingkai avatar neon yang keren',                  1000, 'frame', 'border: 3px solid #00ff00; box-shadow: 0 0 10px #00ff00;', 'ðŸ–¼ï¸'),
+('Gold Frame',      'Bingkai emas mewah',                              5000, 'frame', 'border: 3px solid #ffd700; box-shadow: 0 0 10px #ffd700;', 'ðŸ‘‘'),
+('Novice Title',    'Title for beginners',                             100,  'title', 'Novice',                                      'ðŸ…'),
+('Golden Frame',    'A shiny golden frame for your avatar',            500,  'frame', 'border-gold',                                 'ðŸ–¼ï¸'),
+('Dark Blue Theme', 'A cool dark blue theme',                          1000, 'theme', 'theme-dark-blue',                             'ðŸŒ™');
 
 -- =====================================================
 -- 11. SEED DATA - PENGATURAN
@@ -1179,8 +1179,8 @@ INSERT INTO `pengaturan` (`kunci`, `nilai`) VALUES
 ('nama_platform',     'Prozone'),
 ('deskripsi_platform','Platform pembelajaran coding interaktif dengan fitur clan, leaderboard, dan achievement'),
 ('email_platform',    'info@prozone.com'),
-('warna_primary',     '#8b5cf6'),
-('warna_secondary',   '#a78bfa'),
+('warna_primary',     '#14B8A6'),
+('warna_secondary',   '#2DD4BF'),
 ('warna_success',     '#10b981'),
 ('warna_danger',      '#ef4444'),
 ('warna_warning',     '#f59e0b'),
@@ -1197,7 +1197,7 @@ SET `total_lessons` = (SELECT COUNT(*) FROM `lessons` WHERE `course_id` = c.id);
 -- =====================================================
 SET FOREIGN_KEY_CHECKS = 1;
 
-SELECT '✅ Database Prozone berhasil di-setup!' AS status;
+SELECT 'âœ… Database Prozone berhasil di-setup!' AS status;
 SELECT CONCAT('Total courses: ', COUNT(*)) AS info FROM courses;
 SELECT CONCAT('Total lessons: ', COUNT(*)) AS info FROM lessons;
 SELECT CONCAT('Total users:   ', COUNT(*)) AS info FROM users;

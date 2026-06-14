@@ -35,7 +35,7 @@ require_once 'includes/icons.php';
             bottom: 0;
             background: 
                 radial-gradient(circle at 30% 70%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 70% 30%, rgba(20, 184, 166, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
         
@@ -113,7 +113,7 @@ require_once 'includes/icons.php';
         }
         
         .error-actions .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #0284C7 100%);
         }
         
         .error-info {

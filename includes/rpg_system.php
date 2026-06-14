@@ -17,9 +17,9 @@ define('RPG_CLASSES', [
         'level_required' => 1,
         'xp_required'    => 0,
         'description'    => 'Setiap perjalanan epik dimulai dengan satu baris kode.',
-        'color'          => '#6C4CFD',
-        'gradient'       => 'linear-gradient(135deg, #6C4CFD, #8B72FF)',
-        'badge'          => '⚔️',
+        'color'          => '#3B82F6',
+        'gradient'       => 'linear-gradient(135deg, #3B82F6, #0EA5E9)',
+        'badge'          => 'âš”ï¸',
         'image'          => 'assets/img/characters/code-warrior.png',
     ],
     'bug-hunter' => [
@@ -33,7 +33,7 @@ define('RPG_CLASSES', [
         'description'    => 'Tidak ada error yang lolos dari pengamatanmu!',
         'color'          => '#20C7B7',
         'gradient'       => 'linear-gradient(135deg, #20C7B7, #0FAE9F)',
-        'badge'          => '🔍',
+        'badge'          => 'ðŸ”',
         'image'          => 'assets/img/characters/bug-hunter.png',
     ],
     'web-developer' => [
@@ -47,7 +47,7 @@ define('RPG_CLASSES', [
         'description'    => 'HTML, CSS, dan JavaScript adalah senjatamu!',
         'color'          => '#3B82F6',
         'gradient'       => 'linear-gradient(135deg, #3B82F6, #60A5FA)',
-        'badge'          => '🌐',
+        'badge'          => 'ðŸŒ',
         'image'          => 'assets/img/characters/web-developer.png',
     ],
     'ai-engineer' => [
@@ -59,9 +59,9 @@ define('RPG_CLASSES', [
         'level_required' => 15,
         'xp_required'    => 1400,
         'description'    => 'Neural network dan machine learning adalah duniamu!',
-        'color'          => '#8B5CF6',
-        'gradient'       => 'linear-gradient(135deg, #8B5CF6, #A78BFA)',
-        'badge'          => '🤖',
+        'color'          => '#14B8A6',
+        'gradient'       => 'linear-gradient(135deg, #14B8A6, #2DD4BF)',
+        'badge'          => 'ðŸ¤–',
         'image'          => 'assets/img/characters/ai-engineer.png',
     ],
     'data-scientist' => [
@@ -75,7 +75,7 @@ define('RPG_CLASSES', [
         'description'    => 'Kamu mengubah angka-angka menjadi wawasan yang mengubah dunia!',
         'color'          => '#F59E0B',
         'gradient'       => 'linear-gradient(135deg, #F59E0B, #FBBF24)',
-        'badge'          => '📊',
+        'badge'          => 'ðŸ“Š',
         'image'          => 'assets/img/characters/data-scientist.png',
     ],
     'cyber-ninja' => [
@@ -89,7 +89,7 @@ define('RPG_CLASSES', [
         'description'    => 'Keamanan siber dan penetration testing adalah spesialisasimu!',
         'color'          => '#06B6D4',
         'gradient'       => 'linear-gradient(135deg, #0F172A, #06B6D4)',
-        'badge'          => '🥷',
+        'badge'          => 'ðŸ¥·',
         'image'          => 'assets/img/characters/cyber-ninja.png',
     ],
     'fullstack-master' => [
@@ -102,8 +102,8 @@ define('RPG_CLASSES', [
         'xp_required'    => 2900,
         'description'    => 'Frontend dan backend tunduk padamu!',
         'color'          => '#EC4899',
-        'gradient'       => 'linear-gradient(135deg, #6C4CFD, #EC4899)',
-        'badge'          => '👑',
+        'gradient'       => 'linear-gradient(135deg, #3B82F6, #EC4899)',
+        'badge'          => 'ðŸ‘‘',
         'image'          => 'assets/img/characters/fullstack-master.png',
     ],
     'tech-wizard' => [
@@ -116,8 +116,8 @@ define('RPG_CLASSES', [
         'xp_required'    => 4900,
         'description'    => 'Teknologi terdalam pun terbuka untukmu. Kode adalah mantramu!',
         'color'          => '#FF6B35',
-        'gradient'       => 'linear-gradient(135deg, #FF6B35, #8B5CF6, #06B6D4)',
-        'badge'          => '🧙',
+        'gradient'       => 'linear-gradient(135deg, #FF6B35, #14B8A6, #06B6D4)',
+        'badge'          => 'ðŸ§™',
         'image'          => 'assets/img/characters/tech-wizard.png',
     ],
 ]);
@@ -193,7 +193,7 @@ function syncCharacterClass($db, int $user_id, int $level, int $xp, string $curr
     if (isClassUnlocked($current_class, $level, $xp)) {
         return $current_class;
     }
-    // Current class is now unlocked or user has lower class — upgrade to highest
+    // Current class is now unlocked or user has lower class â€” upgrade to highest
     $stmt = $db->prepare("UPDATE users SET character_class = :cls WHERE id = :uid");
     $stmt->bindParam(':cls', $highest);
     $stmt->bindParam(':uid', $user_id);

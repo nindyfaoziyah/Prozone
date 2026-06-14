@@ -359,7 +359,7 @@ if ($_POST) {
 
             $enrollment->updateProgress($_SESSION['user_id'], $course_id);
             
-            $_SESSION['success_message'] = '🎉 Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
+            $_SESSION['success_message'] = 'ðŸŽ‰ Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
             unset($_SESSION['xp_earned']);
             
             if ($next_lesson) {
@@ -422,10 +422,10 @@ unset($_SESSION['error_message']);
            ============================================ */
         :root {
             /* Enhanced Color Palette - Vibrant & Modern */
-            --primary-purple: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
-            --primary-glow: rgba(139, 92, 246, 0.5);
+            --primary-purple: #14B8A6;
+            --primary-dark: #0284C7;
+            --primary-light: #2DD4BF;
+            --primary-glow: rgba(20, 184, 166, 0.5);
             --accent-cyan: #06b6d4;
             --accent-pink: #ec4899;
             --accent-green: #10b981;
@@ -445,16 +445,16 @@ unset($_SESSION['error_message']);
             --text-primary: #f8fafc;
             --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
-            --text-accent: #c4b5fd;
+            --text-accent: #5EEAD4;
             
             /* Borders & Effects */
-            --border-subtle: rgba(139, 92, 246, 0.15);
-            --border-glow: rgba(139, 92, 246, 0.3);
+            --border-subtle: rgba(20, 184, 166, 0.15);
+            --border-glow: rgba(20, 184, 166, 0.3);
             --border-dark: rgba(255, 255, 255, 0.06);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
             --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.6);
-            --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.2);
+            --shadow-glow: 0 0 40px rgba(20, 184, 166, 0.2);
             --shadow-glow-cyan: 0 0 30px rgba(6, 182, 212, 0.15);
             
             /* 8-point spacing scale */
@@ -494,7 +494,7 @@ unset($_SESSION['error_message']);
         body {
             background: var(--bg-dark);
             background-image: 
-                radial-gradient(ellipse at 0% 0%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 0% 0%, rgba(20, 184, 166, 0.12) 0%, transparent 50%),
                 radial-gradient(ellipse at 100% 100%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.03) 0%, transparent 70%);
             color: var(--text-primary);
@@ -519,16 +519,16 @@ unset($_SESSION['error_message']);
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, 
-                rgba(139, 92, 246, 0.6) 0%, 
+                rgba(20, 184, 166, 0.6) 0%, 
                 rgba(109, 40, 217, 0.5) 100%);
             border-radius: 3px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, 
                 rgba(167, 139, 250, 0.7) 0%, 
-                rgba(139, 92, 246, 0.6) 100%);
+                rgba(20, 184, 166, 0.6) 100%);
         }
 
         ::-webkit-scrollbar-corner {
@@ -537,7 +537,7 @@ unset($_SESSION['error_message']);
 
         /* Selection styling */
         ::selection {
-            background: rgba(139, 92, 246, 0.4);
+            background: rgba(20, 184, 166, 0.4);
             color: #fff;
         }
 
@@ -551,8 +551,8 @@ unset($_SESSION['error_message']);
         .lesson-header {
             background: linear-gradient(135deg, 
                 rgba(109, 40, 217, 0.98) 0%, 
-                rgba(124, 58, 237, 0.95) 35%,
-                rgba(139, 92, 246, 0.92) 100%);
+                rgba(59, 130, 246, 0.95) 35%,
+                rgba(20, 184, 166, 0.92) 100%);
             backdrop-filter: blur(20px);
             color: white;
             padding: var(--space-3) var(--space-5);
@@ -713,7 +713,7 @@ unset($_SESSION['error_message']);
             min-height: calc(100vh - 56px);
             padding: var(--space-6);
             overflow-x: hidden;
-            background: radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+            background: radial-gradient(ellipse at center top, rgba(20, 184, 166, 0.06) 0%, transparent 60%);
         }
 
         /* ============================================
@@ -748,12 +748,12 @@ unset($_SESSION['error_message']);
             cursor: pointer;
             transition: all var(--transition-normal);
             font-size: var(--text-sm);
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.35);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.35);
         }
 
         .slide-nav-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.45);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.45);
         }
 
         .slide-nav-btn:active:not(:disabled) {
@@ -794,7 +794,7 @@ unset($_SESSION['error_message']);
             border-radius: 3px;
             transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             width: 0%;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
         }
 
         .slides-wrapper {
@@ -1041,7 +1041,7 @@ unset($_SESSION['error_message']);
 
         .code-example.highlight {
             border-color: var(--primary-purple);
-            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
         }
 
         .shorthand-rules {
@@ -1068,13 +1068,13 @@ unset($_SESSION['error_message']);
             background: var(--bg-card);
             border-radius: 0.5rem;
             border-left: 3px solid var(--primary-purple);
-            box-shadow: 0 1px 4px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 1px 4px rgba(20, 184, 166, 0.1);
             transition: all 0.2s ease;
         }
 
         .rule-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.15);
         }
 
         .rule-item strong {
@@ -1114,7 +1114,7 @@ unset($_SESSION['error_message']);
             left: 0;
             right: 0;
             height: 150px;
-            background: linear-gradient(180deg, rgba(139, 92, 246, 0.06) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(20, 184, 166, 0.06) 0%, transparent 100%);
             pointer-events: none;
             z-index: 0;
         }
@@ -1171,10 +1171,10 @@ unset($_SESSION['error_message']);
         /* Instruction highlight box - Enhanced */
         .instruction-box {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.12) 0%, 
+                rgba(20, 184, 166, 0.12) 0%, 
                 rgba(109, 40, 217, 0.08) 50%,
                 rgba(6, 182, 212, 0.04) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-left: 3px solid var(--primary-purple);
             padding: var(--space-3) var(--space-4);
             border-radius: 0 0.625rem 0.625rem 0;
@@ -1198,18 +1198,18 @@ unset($_SESSION['error_message']);
             justify-content: center;
             font-size: 10px;
             font-weight: 700;
-            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 2px 10px rgba(20, 184, 166, 0.5);
             border: 2px solid var(--bg-secondary);
         }
 
         .instruction-box:hover {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.18) 0%, 
+                rgba(20, 184, 166, 0.18) 0%, 
                 rgba(109, 40, 217, 0.12) 50%,
                 rgba(6, 182, 212, 0.06) 100%);
-            border-color: rgba(139, 92, 246, 0.25);
+            border-color: rgba(20, 184, 166, 0.25);
             transform: translateX(2px);
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.15);
         }
 
         .instruction-box p {
@@ -1250,13 +1250,13 @@ unset($_SESSION['error_message']);
         }
 
         .instruction-box strong {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-weight: 600;
         }
 
         .instruction-box code {
-            background: rgba(139, 92, 246, 0.15);
-            color: #c4b5fd;
+            background: rgba(20, 184, 166, 0.15);
+            color: #5EEAD4;
             padding: 2px 6px;
             border-radius: 4px;
             font-family: 'Courier New', monospace;
@@ -1265,7 +1265,7 @@ unset($_SESSION['error_message']);
 
         .instruction-box pre {
             background: rgba(15, 15, 35, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: 0.5rem;
             padding: var(--space-3);
             overflow-x: auto;
@@ -1334,7 +1334,7 @@ unset($_SESSION['error_message']);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #0284C7 100%);
             color: white;
             border-radius: 0.25rem;
             font-size: var(--text-xs);
@@ -1355,12 +1355,12 @@ unset($_SESSION['error_message']);
             gap: var(--space-1);
             margin-top: var(--space-3);
             padding: var(--space-1) var(--space-3);
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
             color: white;
             border-radius: 0.375rem;
             font-size: var(--text-xs);
             font-weight: 500;
-            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 2px 4px rgba(20, 184, 166, 0.3);
         }
 
         .code-snippet {
@@ -1381,12 +1381,12 @@ unset($_SESSION['error_message']);
             justify-content: space-between;
             align-items: center;
             padding: var(--space-2) var(--space-3);
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(20, 184, 166, 0.15);
             border-bottom: 1px solid var(--border-dark);
         }
 
         .code-label {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-size: var(--text-xs);
             font-weight: 500;
             text-transform: uppercase;
@@ -1401,7 +1401,7 @@ unset($_SESSION['error_message']);
         }
 
         .copy-btn {
-            background: #8b5cf6;
+            background: #14B8A6;
             color: white;
             border: none;
             padding: var(--space-1) var(--space-2);
@@ -1413,7 +1413,7 @@ unset($_SESSION['error_message']);
         }
 
         .copy-btn:hover {
-            background: #7c3aed;
+            background: #0284C7;
         }
 
         /* Instruction Section Styling */
@@ -1437,7 +1437,7 @@ unset($_SESSION['error_message']);
             line-height: 1.7;
             margin-bottom: var(--space-4);
             padding: var(--space-3);
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             border-left: 3px solid var(--primary-purple);
             border-radius: 0 0.5rem 0.5rem 0;
         }
@@ -1462,7 +1462,7 @@ unset($_SESSION['error_message']);
         .file-info {
             margin-top: var(--space-3);
             padding-top: var(--space-2);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-top: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .file-info .file-label {
@@ -1503,7 +1503,7 @@ unset($_SESSION['error_message']);
         }
 
         .tip-list li::before {
-            content: '✓';
+            content: 'âœ“';
             position: absolute;
             left: -1.5rem;
             color: #10b981;
@@ -1513,9 +1513,9 @@ unset($_SESSION['error_message']);
         /* How to Complete Section */
         .how-to-complete-section {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.12) 0%, 
+                rgba(20, 184, 166, 0.12) 0%, 
                 rgba(109, 40, 217, 0.08) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-left: 4px solid var(--primary-purple);
             border-radius: 0 0.75rem 0.75rem 0;
             padding: var(--space-4);
@@ -1541,7 +1541,7 @@ unset($_SESSION['error_message']);
         .completion-steps li {
             margin: var(--space-2) 0;
             padding: var(--space-2) var(--space-3);
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             border-radius: 0.5rem;
             color: var(--text-secondary);
             font-size: var(--text-sm);
@@ -1589,14 +1589,14 @@ unset($_SESSION['error_message']);
             align-items: flex-start;
             gap: 1rem;
             padding: 1rem;
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             border-radius: 0.75rem;
             border-left: 4px solid var(--primary-purple);
             transition: all 0.3s ease;
         }
 
         .visual-step:hover {
-            background: rgba(139, 92, 246, 0.12);
+            background: rgba(20, 184, 166, 0.12);
             transform: translateX(4px);
         }
 
@@ -1612,7 +1612,7 @@ unset($_SESSION['error_message']);
             font-size: 1rem;
             font-weight: 700;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
         }
 
         .visual-step-content {
@@ -1645,9 +1645,9 @@ unset($_SESSION['error_message']);
             gap: 1rem;
             padding: 1rem 1.25rem;
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.15) 0%, 
+                rgba(20, 184, 166, 0.15) 0%, 
                 rgba(109, 40, 217, 0.1) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.25);
+            border: 1px solid rgba(20, 184, 166, 0.25);
             border-left: 4px solid var(--primary-purple);
             border-radius: 0 0.75rem 0.75rem 0;
             margin-bottom: 1.5rem;
@@ -1678,7 +1678,7 @@ unset($_SESSION['error_message']);
             gap: var(--space-2);
             margin-bottom: var(--space-2);
             padding: var(--space-2);
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.1);
             border-radius: 0.5rem;
         }
 
@@ -1712,7 +1712,7 @@ unset($_SESSION['error_message']);
         }
 
         .instruction-bullet::before {
-            content: '→';
+            content: 'â†’';
             position: absolute;
             left: 0;
             color: var(--primary-purple);
@@ -1726,7 +1726,7 @@ unset($_SESSION['error_message']);
             gap: var(--space-2);
             margin-top: var(--space-2);
             padding: var(--space-2) var(--space-3);
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             border-radius: 0.5rem;
             color: var(--text-secondary);
             font-size: var(--text-xs);
@@ -1864,7 +1864,7 @@ unset($_SESSION['error_message']);
         .back-to-slide-btn {
             width: 100%;
             padding: var(--space-2) var(--space-3);
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #0284C7 100%);
             color: white;
             border: none;
             border-radius: 0.375rem;
@@ -1872,13 +1872,13 @@ unset($_SESSION['error_message']);
             font-size: var(--text-xs);
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.3);
         }
 
         .back-to-slide-btn:hover {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
         }
 
         /* ============================================
@@ -2024,7 +2024,7 @@ unset($_SESSION['error_message']);
            PRACTICE TIPS
            ============================================ */
         .practice-tips {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(34, 211, 238, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(34, 211, 238, 0.05) 100%);
             border: 1px solid var(--border-subtle);
             border-left: 3px solid var(--accent-cyan);
             padding: var(--space-2) var(--space-3);
@@ -2067,7 +2067,7 @@ unset($_SESSION['error_message']);
             background: linear-gradient(180deg, #0a0a14 0%, #08080f 100%);
             display: flex;
             flex-direction: column;
-            border-right: 1px solid rgba(139, 92, 246, 0.1);
+            border-right: 1px solid rgba(20, 184, 166, 0.1);
             overflow: hidden;
             position: relative;
         }
@@ -2080,7 +2080,7 @@ unset($_SESSION['error_message']);
             right: 0;
             height: 100%;
             background: 
-                radial-gradient(ellipse at 0% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 0% 50%, rgba(20, 184, 166, 0.03) 0%, transparent 50%),
                 radial-gradient(ellipse at 100% 80%, rgba(6, 182, 212, 0.02) 0%, transparent 40%);
             pointer-events: none;
             z-index: 0;
@@ -2089,7 +2089,7 @@ unset($_SESSION['error_message']);
         .editor-tabs {
             display: flex;
             background: linear-gradient(180deg, rgba(20, 20, 35, 0.95) 0%, rgba(15, 15, 25, 0.95) 100%);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.15);
             padding: 0;
             gap: 0;
             position: relative;
@@ -2113,7 +2113,7 @@ unset($_SESSION['error_message']);
 
         .editor-tab.active {
             color: #ffffff;
-            background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%);
+            background: linear-gradient(180deg, rgba(20, 184, 166, 0.15) 0%, transparent 100%);
             border-bottom-color: transparent;
         }
 
@@ -2129,7 +2129,7 @@ unset($_SESSION['error_message']);
 
         .editor-tab:hover:not(.active) {
             color: var(--text-secondary);
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
         }
 
         .editor-content {
@@ -2162,12 +2162,12 @@ unset($_SESSION['error_message']);
 
         .CodeMirror-gutters {
             background: linear-gradient(180deg, rgba(10, 10, 20, 0.8), rgba(5, 5, 12, 0.9)) !important;
-            border-right: 1px solid rgba(139, 92, 246, 0.1) !important;
+            border-right: 1px solid rgba(20, 184, 166, 0.1) !important;
             padding-right: 10px;
         }
 
         .CodeMirror-linenumber {
-            color: rgba(139, 92, 246, 0.4) !important;
+            color: rgba(20, 184, 166, 0.4) !important;
             font-size: 11px;
             padding-right: 8px;
         }
@@ -2184,11 +2184,11 @@ unset($_SESSION['error_message']);
         }
 
         .CodeMirror-selected {
-            background: rgba(139, 92, 246, 0.2) !important;
+            background: rgba(20, 184, 166, 0.2) !important;
         }
 
         .CodeMirror-activeline-background {
-            background: rgba(139, 92, 246, 0.06) !important;
+            background: rgba(20, 184, 166, 0.06) !important;
         }
 
         .CodeMirror-matchingbracket {
@@ -2204,7 +2204,7 @@ unset($_SESSION['error_message']);
         .editor-actions {
             padding: var(--space-2) var(--space-3);
             background: linear-gradient(180deg, rgba(15, 15, 25, 0.98) 0%, rgba(10, 10, 18, 0.98) 100%);
-            border-top: 1px solid rgba(139, 92, 246, 0.12);
+            border-top: 1px solid rgba(20, 184, 166, 0.12);
             display: flex;
             gap: var(--space-3);
             position: relative;
@@ -2353,7 +2353,7 @@ unset($_SESSION['error_message']);
             background: linear-gradient(180deg, 
                 rgba(20, 20, 35, 0.98) 0%, 
                 rgba(12, 12, 22, 0.98) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 1.25rem;
             padding: 2.5rem 2rem;
             max-width: 420px;
@@ -2361,7 +2361,7 @@ unset($_SESSION['error_message']);
             text-align: center;
             box-shadow: 
                 0 25px 80px rgba(0, 0, 0, 0.6),
-                0 0 80px rgba(139, 92, 246, 0.1),
+                0 0 80px rgba(20, 184, 166, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
             animation: modalSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
@@ -2490,10 +2490,10 @@ unset($_SESSION['error_message']);
         }
 
         .success-modal-btn.primary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #0284C7 50%, #0369A1 100%);
             color: white;
             box-shadow: 
-                0 4px 20px rgba(139, 92, 246, 0.35),
+                0 4px 20px rgba(20, 184, 166, 0.35),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
@@ -2513,24 +2513,24 @@ unset($_SESSION['error_message']);
         }
 
         .success-modal-btn.primary:hover {
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 50%, #0284C7 100%);
             transform: translateY(-2px);
             box-shadow: 
-                0 8px 30px rgba(139, 92, 246, 0.45),
+                0 8px 30px rgba(20, 184, 166, 0.45),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .success-modal-btn.secondary {
             background: rgba(25, 25, 45, 0.9);
             color: var(--text-secondary);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             backdrop-filter: blur(10px);
         }
 
         .success-modal-btn.secondary:hover {
             background: rgba(35, 35, 60, 0.95);
             color: var(--text-primary);
-            border-color: rgba(139, 92, 246, 0.3);
+            border-color: rgba(20, 184, 166, 0.3);
             transform: translateY(-1px);
         }
 
@@ -2546,11 +2546,11 @@ unset($_SESSION['error_message']);
                 rgba(15, 15, 28, 0.97) 0%, 
                 rgba(10, 10, 20, 0.98) 100%);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 1rem;
             box-shadow: 
                 0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(139, 92, 246, 0.08),
+                0 0 60px rgba(20, 184, 166, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.03);
             z-index: 100;
             overflow: hidden;
@@ -2573,7 +2573,7 @@ unset($_SESSION['error_message']);
             align-items: center;
             padding: 14px 16px;
             background: linear-gradient(180deg, rgba(25, 25, 45, 0.8) 0%, rgba(15, 15, 30, 0.6) 100%);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.1);
         }
 
         .validation-icon {
@@ -2627,7 +2627,7 @@ unset($_SESSION['error_message']);
 
         .validation-close:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(139, 92, 246, 0.3);
+            border-color: rgba(20, 184, 166, 0.3);
             color: var(--text-primary);
             transform: scale(1.05);
         }
@@ -2683,7 +2683,7 @@ unset($_SESSION['error_message']);
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 100%);
             border-radius: 0.75rem;
             padding: var(--space-3);
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
         }
 
         .validation-hints ul {
@@ -2734,7 +2734,7 @@ unset($_SESSION['error_message']);
             background: linear-gradient(180deg, 
                 rgba(20, 20, 35, 0.98) 0%, 
                 rgba(12, 12, 22, 0.98) 100%);
-            border: 2px solid rgba(139, 92, 246, 0.3);
+            border: 2px solid rgba(20, 184, 166, 0.3);
             border-radius: 1rem;
             max-width: 600px;
             width: 100%;
@@ -2742,7 +2742,7 @@ unset($_SESSION['error_message']);
             overflow-y: auto;
             box-shadow: 
                 0 25px 80px rgba(0, 0, 0, 0.7),
-                0 0 80px rgba(139, 92, 246, 0.2),
+                0 0 80px rgba(20, 184, 166, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
             animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
@@ -2753,7 +2753,7 @@ unset($_SESSION['error_message']);
             align-items: center;
             justify-content: space-between;
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
             background: linear-gradient(180deg, rgba(25, 25, 45, 0.8) 0%, rgba(15, 15, 30, 0.6) 100%);
             position: sticky;
             top: 0;
@@ -2832,7 +2832,7 @@ unset($_SESSION['error_message']);
             color: var(--text-primary);
             margin-bottom: 1.25rem;
             padding: 0.75rem;
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.1);
             border-radius: 0.5rem;
             border-left: 4px solid var(--primary-purple);
             font-weight: 500;
@@ -2859,7 +2859,7 @@ unset($_SESSION['error_message']);
         .comparison-item {
             padding: 1rem;
             border-radius: 0.75rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .comparison-label {
@@ -3020,7 +3020,7 @@ unset($_SESSION['error_message']);
             display: flex;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-top: 1px solid rgba(20, 184, 166, 0.2);
             background: linear-gradient(180deg, rgba(15, 15, 30, 0.6) 0%, rgba(10, 10, 20, 0.8) 100%);
             position: sticky;
             bottom: 0;
@@ -3056,13 +3056,13 @@ unset($_SESSION['error_message']);
         .modal-action-btn.secondary {
             background: rgba(25, 25, 45, 0.9);
             color: var(--text-secondary);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
         }
 
         .modal-action-btn.secondary:hover {
             background: rgba(35, 35, 60, 0.95);
             color: var(--text-primary);
-            border-color: rgba(139, 92, 246, 0.3);
+            border-color: rgba(20, 184, 166, 0.3);
         }
 
         .modal-action-btn svg {
@@ -3089,9 +3089,9 @@ unset($_SESSION['error_message']);
         .validation-checks {
             margin: var(--space-4) 0;
             padding: var(--space-3);
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             border-radius: 0.75rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .checks-title {
@@ -3304,7 +3304,7 @@ unset($_SESSION['error_message']);
             height: 100%;
             background: 
                 radial-gradient(ellipse at 100% 0%, rgba(6, 182, 212, 0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 0% 100%, rgba(139, 92, 246, 0.03) 0%, transparent 40%);
+                radial-gradient(ellipse at 0% 100%, rgba(20, 184, 166, 0.03) 0%, transparent 40%);
             pointer-events: none;
             z-index: 0;
         }
@@ -3333,7 +3333,7 @@ unset($_SESSION['error_message']);
         }
 
         .preview-header h3::before {
-            content: '👁️';
+            content: 'ðŸ‘ï¸';
             font-size: 0.875rem;
         }
 
@@ -3527,11 +3527,11 @@ unset($_SESSION['error_message']);
                 rgba(20, 20, 35, 0.97) 0%, 
                 rgba(12, 12, 22, 0.97) 100%);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 0.875rem;
             box-shadow: 
                 0 15px 50px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(139, 92, 246, 0.08);
+                0 0 40px rgba(20, 184, 166, 0.08);
             z-index: 10001;
             animation: notificationSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-size: var(--text-sm);
@@ -3613,8 +3613,8 @@ unset($_SESSION['error_message']);
             border: 2px solid transparent;
             border-radius: 1.5rem;
             box-shadow: 
-                0 0 0 1px rgba(139, 92, 246, 0.3),
-                0 0 80px rgba(139, 92, 246, 0.6),
+                0 0 0 1px rgba(20, 184, 166, 0.3),
+                0 0 80px rgba(20, 184, 166, 0.6),
                 0 0 120px rgba(251, 191, 36, 0.3),
                 0 30px 80px rgba(0, 0, 0, 0.6),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -3629,7 +3629,7 @@ unset($_SESSION['error_message']);
             inset: 0;
             background: 
                 radial-gradient(ellipse at 30% 0%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 100%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+                radial-gradient(ellipse at 70% 100%, rgba(20, 184, 166, 0.2) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -3675,13 +3675,13 @@ unset($_SESSION['error_message']);
         }
 
         .xp-title {
-            color: #c4b5fd;
+            color: #5EEAD4;
             font-size: var(--text-sm);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: var(--space-2);
-            text-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+            text-shadow: 0 2px 10px rgba(20, 184, 166, 0.5);
         }
 
         .xp-amount {
@@ -3787,7 +3787,7 @@ unset($_SESSION['error_message']);
             left: 0;
             right: 0;
             height: 250px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -3796,7 +3796,7 @@ unset($_SESSION['error_message']);
             font-weight: 800;
             margin-bottom: var(--space-6);
             line-height: 1.3;
-            background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #5EEAD4 0%, #2DD4BF 50%, #14B8A6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -3811,7 +3811,7 @@ unset($_SESSION['error_message']);
             margin-top: var(--space-10);
             margin-bottom: var(--space-5);
             padding-bottom: var(--space-4);
-            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+            border-bottom: 2px solid rgba(20, 184, 166, 0.3);
             position: relative;
             display: flex;
             align-items: center;
@@ -3819,7 +3819,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content h2::before {
-            content: '◆';
+            content: 'â—†';
             color: var(--primary-purple);
             font-size: var(--text-md);
         }
@@ -3831,7 +3831,7 @@ unset($_SESSION['error_message']);
             left: 0;
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #8b5cf6 0%, #22d3ee 50%, transparent 100%);
+            background: linear-gradient(90deg, #14B8A6 0%, #22d3ee 50%, transparent 100%);
         }
 
         .theory-content h3 {
@@ -3842,14 +3842,14 @@ unset($_SESSION['error_message']);
             margin-bottom: var(--space-4);
             padding-left: var(--space-5);
             border-left: 4px solid transparent;
-            border-image: linear-gradient(180deg, #8b5cf6, #22d3ee) 1;
+            border-image: linear-gradient(180deg, #14B8A6, #22d3ee) 1;
             display: flex;
             align-items: center;
             gap: var(--space-3);
         }
 
         .theory-content h3::before {
-            content: '▸';
+            content: 'â–¸';
             color: var(--accent-cyan);
             font-size: var(--text-md);
         }
@@ -3866,7 +3866,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content h4::before {
-            content: '•';
+            content: 'â€¢';
             color: var(--accent-pink);
             font-size: 1.25em;
         }
@@ -3896,7 +3896,7 @@ unset($_SESSION['error_message']);
         .theory-content ul li::marker {
             color: var(--accent-cyan);
             font-weight: bold;
-            content: '✦ ';
+            content: 'âœ¦ ';
         }
 
         .theory-content ol li {
@@ -3910,18 +3910,18 @@ unset($_SESSION['error_message']);
 
         .theory-content blockquote {
             border-left: 5px solid transparent;
-            border-image: linear-gradient(180deg, #8b5cf6, #f472b6) 1;
+            border-image: linear-gradient(180deg, #14B8A6, #f472b6) 1;
             padding: var(--space-5) var(--space-6);
             margin: var(--space-6) 0;
             color: var(--text-secondary);
             font-style: italic;
             font-size: 1.0625rem;
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.08) 0%, 
+                rgba(20, 184, 166, 0.08) 0%, 
                 rgba(244, 114, 182, 0.05) 100%);
             border-radius: 0 1rem 1rem 0;
             box-shadow: 
-                0 4px 16px rgba(139, 92, 246, 0.1),
+                0 4px 16px rgba(20, 184, 166, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.03);
             position: relative;
             backdrop-filter: blur(10px);
@@ -3945,17 +3945,17 @@ unset($_SESSION['error_message']);
             border-radius: 1rem;
             margin: var(--space-5) 0;
             box-shadow: 
-                0 8px 32px rgba(139, 92, 246, 0.15),
-                0 0 0 1px rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+                0 8px 32px rgba(20, 184, 166, 0.15),
+                0 0 0 1px rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             transition: all var(--transition-normal);
         }
 
         .theory-content img:hover {
             transform: scale(1.02);
             box-shadow: 
-                0 12px 40px rgba(139, 92, 246, 0.25),
-                0 0 0 1px rgba(139, 92, 246, 0.3);
+                0 12px 40px rgba(20, 184, 166, 0.25),
+                0 0 0 1px rgba(20, 184, 166, 0.3);
         }
 
         .theory-content pre {
@@ -3968,7 +3968,7 @@ unset($_SESSION['error_message']);
             font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 0.95rem;
             line-height: 1.8;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.03);
@@ -3981,7 +3981,7 @@ unset($_SESSION['error_message']);
             top: 14px;
             right: 18px;
             font-size: var(--text-sm);
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #14B8A6, #22d3ee);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -3990,14 +3990,14 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content code {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(34, 211, 238, 0.1));
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(34, 211, 238, 0.1));
             color: var(--accent-cyan);
             padding: 0.25rem 0.6rem;
             border-radius: 0.4rem;
             font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 0.95em;
             font-weight: 500;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .theory-content pre code {
@@ -4015,11 +4015,11 @@ unset($_SESSION['error_message']);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
             border-radius: 1rem;
             overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         .theory-content table th {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 50%, #5b21b6 100%);
             color: white;
             padding: var(--space-4) var(--space-5);
             text-align: left;
@@ -4031,7 +4031,7 @@ unset($_SESSION['error_message']);
 
         .theory-content table td {
             padding: var(--space-4) var(--space-5);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.1);
             background: var(--bg-card);
             color: var(--text-secondary);
             font-size: 1rem;
@@ -4039,7 +4039,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content table tr:hover td {
-            background: rgba(139, 92, 246, 0.05);
+            background: rgba(20, 184, 166, 0.05);
         }
 
         .theory-content table tr:last-child td {
@@ -4079,7 +4079,7 @@ unset($_SESSION['error_message']);
         .theory-navigation {
             background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 26, 0.95) 100%);
             padding: var(--space-5);
-            border-top: 1px solid rgba(139, 92, 246, 0.15);
+            border-top: 1px solid rgba(20, 184, 166, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -4097,12 +4097,12 @@ unset($_SESSION['error_message']);
             transform: translateX(-50%);
             width: 200px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.5), transparent);
         }
 
         .theory-nav-btn {
             padding: var(--space-3) var(--space-5);
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #0284C7 100%);
             color: white;
             border: none;
             border-radius: 0.75rem;
@@ -4115,7 +4115,7 @@ unset($_SESSION['error_message']);
             gap: var(--space-2);
             font-size: var(--text-sm);
             box-shadow: 
-                0 4px 20px rgba(139, 92, 246, 0.3),
+                0 4px 20px rgba(20, 184, 166, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
@@ -4131,10 +4131,10 @@ unset($_SESSION['error_message']);
         }
 
         .theory-nav-btn:hover {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
             transform: translateY(-2px);
             box-shadow: 
-                0 8px 30px rgba(139, 92, 246, 0.4),
+                0 8px 30px rgba(20, 184, 166, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
@@ -4145,14 +4145,14 @@ unset($_SESSION['error_message']);
         .theory-nav-btn.secondary {
             background: var(--bg-glass);
             color: var(--text-primary);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
 
         .theory-nav-btn.secondary:hover {
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(20, 184, 166, 0.15);
             border-color: var(--primary-purple);
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 8px 24px rgba(20, 184, 166, 0.2);
         }
 
         @media (max-width: 1024px) {
@@ -4228,7 +4228,7 @@ unset($_SESSION['error_message']);
         .instructions-panel::-webkit-scrollbar-thumb,
         .theory-content::-webkit-scrollbar-thumb,
         .preview-body::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+            background: linear-gradient(180deg, #14B8A6, #0284C7);
             border-radius: 4px;
             border: 2px solid var(--bg-secondary);
         }
@@ -4236,7 +4236,7 @@ unset($_SESSION['error_message']);
         .instructions-panel::-webkit-scrollbar-thumb:hover,
         .theory-content::-webkit-scrollbar-thumb:hover,
         .preview-body::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #a78bfa, #8b5cf6);
+            background: linear-gradient(180deg, #2DD4BF, #14B8A6);
         }
 
         /* Quiz Styles - Premium */
@@ -4246,7 +4246,7 @@ unset($_SESSION['error_message']);
                 rgba(26, 26, 46, 0.98) 100%) !important;
             padding: 2.5rem !important;
             border-radius: 1.5rem !important;
-            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+            border: 1px solid rgba(20, 184, 166, 0.2) !important;
             box-shadow: 
                 0 8px 40px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
@@ -4261,12 +4261,12 @@ unset($_SESSION['error_message']);
             left: 0;
             right: 0;
             height: 150px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .quiz-container h2 {
-            background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #5EEAD4 0%, #2DD4BF 50%, #14B8A6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -4277,17 +4277,17 @@ unset($_SESSION['error_message']);
         }
 
         .quiz-question {
-            background: rgba(139, 92, 246, 0.05);
+            background: rgba(20, 184, 166, 0.05);
             padding: 1.5rem !important;
             border-radius: 1rem;
             margin-bottom: 1.5rem !important;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
             transition: all var(--transition-normal);
         }
 
         .quiz-question:hover {
-            border-color: rgba(139, 92, 246, 0.3);
-            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(20, 184, 166, 0.3);
+            background: rgba(20, 184, 166, 0.08);
         }
 
         .quiz-question p {
@@ -4298,15 +4298,15 @@ unset($_SESSION['error_message']);
 
         .quiz-options label {
             background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 0.75rem !important;
             padding: 1rem !important;
             transition: all var(--transition-normal) !important;
         }
 
         .quiz-options label:hover {
-            background: rgba(139, 92, 246, 0.1) !important;
-            border-color: rgba(139, 92, 246, 0.4) !important;
+            background: rgba(20, 184, 166, 0.1) !important;
+            border-color: rgba(20, 184, 166, 0.4) !important;
             transform: translateX(5px);
         }
 
@@ -4314,7 +4314,7 @@ unset($_SESSION['error_message']);
             appearance: none;
             width: 20px;
             height: 20px;
-            border: 2px solid rgba(139, 92, 246, 0.5);
+            border: 2px solid rgba(20, 184, 166, 0.5);
             border-radius: 50%;
             background: transparent;
             cursor: pointer;
@@ -4323,8 +4323,8 @@ unset($_SESSION['error_message']);
         }
 
         .quiz-options input[type="radio"]:checked {
-            border-color: #8b5cf6;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border-color: #14B8A6;
+            background: linear-gradient(135deg, #14B8A6, #0284C7);
         }
 
         .quiz-options input[type="radio"]:checked::after {
@@ -4340,10 +4340,10 @@ unset($_SESSION['error_message']);
         }
 
         #quizResult {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(34, 211, 238, 0.05));
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(34, 211, 238, 0.05));
             padding: 2rem;
             border-radius: 1.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
 
         #scoreDisplay {
@@ -4375,7 +4375,7 @@ unset($_SESSION['error_message']);
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(139, 92, 246, 0.2);
+            border: 3px solid rgba(20, 184, 166, 0.2);
             border-top: 3px solid var(--primary-purple);
             border-radius: 50%;
             animation: spinnerRotate 0.8s linear infinite;
@@ -4416,7 +4416,7 @@ unset($_SESSION['error_message']);
         .progress-indicator {
             width: 100%;
             height: 3px;
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(20, 184, 166, 0.15);
             border-radius: 2px;
             overflow: hidden;
             position: relative;
@@ -4428,7 +4428,7 @@ unset($_SESSION['error_message']);
             inset: 0;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(139, 92, 246, 0.1), 
+                rgba(20, 184, 166, 0.1), 
                 transparent);
             animation: progressShimmer 2s ease-in-out infinite;
         }
@@ -4479,10 +4479,10 @@ unset($_SESSION['error_message']);
             opacity: 0;
             pointer-events: none;
             transition: all var(--transition-normal);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             box-shadow: 
                 0 8px 25px rgba(0, 0, 0, 0.4),
-                0 0 20px rgba(139, 92, 246, 0.1);
+                0 0 20px rgba(20, 184, 166, 0.1);
             z-index: 1000;
             backdrop-filter: blur(10px);
             letter-spacing: 0.2px;
@@ -4499,7 +4499,7 @@ unset($_SESSION['error_message']);
         a:focus-visible {
             outline: 2px solid var(--primary-purple);
             outline-offset: 2px;
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15);
         }
 
         /* Smooth page transitions */
@@ -4517,9 +4517,9 @@ unset($_SESSION['error_message']);
         /* Loading skeleton */
         .skeleton {
             background: linear-gradient(90deg, 
-                rgba(139, 92, 246, 0.1) 25%, 
-                rgba(139, 92, 246, 0.2) 50%, 
-                rgba(139, 92, 246, 0.1) 75%);
+                rgba(20, 184, 166, 0.1) 25%, 
+                rgba(20, 184, 166, 0.2) 50%, 
+                rgba(20, 184, 166, 0.1) 75%);
             background-size: 200% 100%;
             animation: skeletonShimmer 1.5s ease-in-out infinite;
             border-radius: 4px;
@@ -4569,7 +4569,7 @@ unset($_SESSION['error_message']);
                     <?php endif; ?>
                     <h1><?php echo htmlspecialchars($lesson_data['judul_lesson']); ?></h1>
                 </div>
-                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> • Lesson <?php echo $lesson_data['urutan']; ?></p>
+                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> â€¢ Lesson <?php echo $lesson_data['urutan']; ?></p>
             </div>
             
             
@@ -4577,19 +4577,19 @@ unset($_SESSION['error_message']);
                 <?php if ($prev_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $prev_lesson['id']; ?>" 
                        class="nav-btn">
-                        ← Sebelumnya
+                        â† Sebelumnya
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>← Sebelumnya</button>
+                    <button class="nav-btn" disabled>â† Sebelumnya</button>
                 <?php endif; ?>
                 
                 <?php if ($next_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $next_lesson['id']; ?>" 
                        class="nav-btn">
-                        Selanjutnya →
+                        Selanjutnya â†’
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>Selanjutnya →</button>
+                    <button class="nav-btn" disabled>Selanjutnya â†’</button>
                 <?php endif; ?>
             </div>
         </div>
@@ -4737,16 +4737,16 @@ unset($_SESSION['error_message']);
                 <!-- Slide Navigation -->
                 <div class="slide-navigation">
                     <button class="slide-nav-btn prev-btn" onclick="previousSlide()" id="prevBtn">
-                        ← Sebelumnya
+                        â† Sebelumnya
                     </button>
                     <div class="slide-indicator">
                         <span id="currentSlide">1</span> / <span id="totalSlides"><?php echo count($slides); ?></span>
                     </div>
                     <button class="slide-nav-btn next-btn" onclick="nextSlide()" id="nextBtn">
-                        Selanjutnya →
+                        Selanjutnya â†’
                     </button>
                     <button class="slide-nav-btn next-btn" onclick="completeTheory()" id="finishBtn" style="display: none; background: #10b981; border-color: #10b981; color: white;">
-                        Selesai & Lanjut →
+                        Selesai & Lanjut â†’
                     </button>
                 </div>
                 
@@ -4789,7 +4789,7 @@ unset($_SESSION['error_message']);
                                                         <div class="box-label">Padding</div>
                                                         <div class="box-content">
                                                             <div class="box-label">Content</div>
-                                                            <div class="box-content-text">Width × Height</div>
+                                                            <div class="box-content-text">Width Ã— Height</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4841,7 +4841,7 @@ margin-left: 20px;
                                                     </code>
                                                 </div>
                                             </div>
-                                            <div class="shorthand-arrow">→</div>
+                                            <div class="shorthand-arrow">â†’</div>
                                             <div class="shorthand-short">
                                                 <h3>Shorthand (Pendek)</h3>
                                                 <div class="code-example highlight">
@@ -4854,16 +4854,16 @@ margin: 10px 20px;
                                         <div class="shorthand-rules">
                                             <h4>Aturan Shorthand:</h4>
                                             <div class="rule-item">
-                                                <strong>1 nilai:</strong> <code>margin: 10px;</code> → semua sisi
+                                                <strong>1 nilai:</strong> <code>margin: 10px;</code> â†’ semua sisi
                                             </div>
                                             <div class="rule-item">
-                                                <strong>2 nilai:</strong> <code>margin: 10px 20px;</code> → vertikal horizontal
+                                                <strong>2 nilai:</strong> <code>margin: 10px 20px;</code> â†’ vertikal horizontal
                                             </div>
                                             <div class="rule-item">
-                                                <strong>3 nilai:</strong> <code>margin: 10px 20px 15px;</code> → atas horizontal bawah
+                                                <strong>3 nilai:</strong> <code>margin: 10px 20px 15px;</code> â†’ atas horizontal bawah
                                             </div>
                                             <div class="rule-item">
-                                                <strong>4 nilai:</strong> <code>margin: 10px 20px 15px 25px;</code> → atas kanan bawah kiri
+                                                <strong>4 nilai:</strong> <code>margin: 10px 20px 15px 25px;</code> â†’ atas kanan bawah kiri
                                             </div>
                                         </div>
                                     </div>
@@ -4912,21 +4912,21 @@ margin: 10px 20px;
             
             <div class="theory-navigation">
                 <a href="course.php?id=<?php echo $course_id; ?>" class="theory-nav-btn secondary">
-                    ← Kembali ke Course
+                    â† Kembali ke Course
                 </a>
                 
                 <div style="display: flex; gap: 1rem;">
                     <?php if ($prev_lesson): ?>
                         <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $prev_lesson['id']; ?>" 
                            class="theory-nav-btn secondary">
-                            ← Lesson Sebelumnya
+                            â† Lesson Sebelumnya
                         </a>
                     <?php endif; ?>
                     
                     <?php if ($next_lesson): ?>
                         <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $next_lesson['id']; ?>" 
                            class="theory-nav-btn">
-                            Lesson Selanjutnya →
+                            Lesson Selanjutnya â†’
                         </a>
                     <?php endif; ?>
                 </div>
@@ -4951,7 +4951,7 @@ margin: 10px 20px;
                     if ($has_konten): 
                     ?>
                     <div class="material-section">
-                        <h3 class="material-title">📚 Materi Pembelajaran</h3>
+                        <h3 class="material-title">ðŸ“š Materi Pembelajaran</h3>
                         <div class="instruction-box markdown-content material-box" id="konten-markdown">
                             <div class="loading-content">
                                 <div class="loading-spinner"></div>
@@ -5028,51 +5028,51 @@ margin: 10px 20px;
                         </script>
                     <?php elseif (!empty($instructions)): ?>
                         <div class="instruction-section">
-                            <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                            <h3 class="instruction-section-title">âœ… Tugas Praktik</h3>
                             
                             <!-- Cara Menyelesaikan Section -->
                             <div class="how-to-complete-section">
-                                <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                                <h4 class="how-to-title">ðŸ“‹ Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                                 <div class="visual-steps">
                                     <div class="visual-step">
                                         <div class="visual-step-number">1</div>
                                         <div class="visual-step-content">
-                                            <strong>📖 Baca Instruksi</strong>
+                                            <strong>ðŸ“– Baca Instruksi</strong>
                                             <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">2</div>
                                         <div class="visual-step-content">
-                                            <strong>📋 Salin Kode</strong>
+                                            <strong>ðŸ“‹ Salin Kode</strong>
                                             <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">3</div>
                                         <div class="visual-step-content">
-                                            <strong>📝 Tempel di Editor</strong>
+                                            <strong>ðŸ“ Tempel di Editor</strong>
                                             <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">4</div>
                                         <div class="visual-step-content">
-                                            <strong>✏️ Modifikasi Kode</strong>
+                                            <strong>âœï¸ Modifikasi Kode</strong>
                                             <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">5</div>
                                         <div class="visual-step-content">
-                                            <strong>▶️ Test dengan Run</strong>
+                                            <strong>â–¶ï¸ Test dengan Run</strong>
                                             <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">6</div>
                                         <div class="visual-step-content">
-                                            <strong>✅ Kirim Jawaban</strong>
+                                            <strong>âœ… Kirim Jawaban</strong>
                                             <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                         </div>
                                     </div>
@@ -5080,7 +5080,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-intro-enhanced">
-                                <div class="intro-icon">🎯</div>
+                                <div class="intro-icon">ðŸŽ¯</div>
                                 <div class="intro-content">
                                     <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                                 </div>
@@ -5114,7 +5114,7 @@ margin: 10px 20px;
                                         <?php if (!empty($clean_text)): ?>
                                             <div class="instruction-text">
                                                 <div class="instruction-action">
-                                                    <span class="action-icon">📝</span>
+                                                    <span class="action-icon">ðŸ“</span>
                                                     <span class="action-text"><strong>Instruksi Langkah <?php echo $index + 1; ?>:</strong></span>
                                                 </div>
                                                 <div class="instruction-content-text">
@@ -5125,8 +5125,8 @@ margin: 10px 20px;
                                                         $line = trim($line);
                                                         if (empty($line)) {
                                                             echo '<br>';
-                                                        } elseif (preg_match('/^[-*•]\s*(.+)$/', $line, $matches)) {
-                                                            echo '<div class="instruction-bullet">• ' . htmlspecialchars($matches[1]) . '</div>';
+                                                        } elseif (preg_match('/^[-*â€¢]\s*(.+)$/', $line, $matches)) {
+                                                            echo '<div class="instruction-bullet">â€¢ ' . htmlspecialchars($matches[1]) . '</div>';
                                                         } elseif (preg_match('/^\d+[\.\)]\s*(.+)$/', $line, $matches)) {
                                                             echo '<div class="instruction-bullet">' . htmlspecialchars($line) . '</div>';
                                                         } else {
@@ -5152,7 +5152,7 @@ margin: 10px 20px;
                                             <code><?php echo htmlspecialchars($step['code']); ?></code>
                                         </div>
                                         <div class="code-instruction">
-                                            <span class="code-instruction-icon">💡</span>
+                                            <span class="code-instruction-icon">ðŸ’¡</span>
                                             <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                         </div>
                                     <?php endif; ?>
@@ -5177,7 +5177,7 @@ margin: 10px 20px;
                             
                             <!-- Completion Guide -->
                             <div class="completion-guide">
-                                <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                                <h4 class="guide-title">ðŸŽ¯ Cara Menyelesaikan:</h4>
                                 <div class="guide-steps">
                                     <div class="guide-step">
                                         <div class="guide-step-number">1</div>
@@ -5207,7 +5207,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-tip">
-                                <strong>💡 Tips Penting:</strong>
+                                <strong>ðŸ’¡ Tips Penting:</strong>
                                 <ul class="tip-list">
                                     <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                                     <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -5218,34 +5218,34 @@ margin: 10px 20px;
 
                             <!-- Help Section for Validation Errors -->
                             <div class="help-section">
-                                <h4 class="help-title">❓ Jika Validasi Error atau Output Belum Sesuai:</h4>
+                                <h4 class="help-title">â“ Jika Validasi Error atau Output Belum Sesuai:</h4>
                                 <div class="help-content">
                                     <div class="help-step">
-                                        <div class="help-step-icon">1️⃣</div>
+                                        <div class="help-step-icon">1ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Detail Validasi</strong> - Setelah klik "Kirim", panel validasi akan muncul dengan detail pengecekan. Lihat elemen mana yang belum sesuai.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">2️⃣</div>
+                                        <div class="help-step-icon">2ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Bandingkan dengan Target</strong> - Klik tab "Target" di preview untuk melihat contoh hasil yang benar. Bandingkan dengan hasil Anda.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">3️⃣</div>
+                                        <div class="help-step-icon">3ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Ikuti Hints</strong> - Panel validasi akan memberikan hints spesifik tentang apa yang perlu diperbaiki. Ikuti petunjuk tersebut.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">4️⃣</div>
+                                        <div class="help-step-icon">4ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Kembali Instruksi</strong> - Baca ulang setiap langkah instruksi. Pastikan Anda tidak melewatkan langkah apapun.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">5️⃣</div>
+                                        <div class="help-step-icon">5ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Test dengan Run</strong> - Setelah memperbaiki, klik "Run" untuk melihat hasil baru sebelum mengirim lagi.
                                         </div>
@@ -5255,51 +5255,51 @@ margin: 10px 20px;
                         </div>
                     <?php else: ?>
                         <div class="instruction-section">
-                            <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                            <h3 class="instruction-section-title">âœ… Tugas Praktik</h3>
                             
                             <!-- Cara Menyelesaikan Section -->
                             <div class="how-to-complete-section">
-                                <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                                <h4 class="how-to-title">ðŸ“‹ Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                                 <div class="visual-steps">
                                     <div class="visual-step">
                                         <div class="visual-step-number">1</div>
                                         <div class="visual-step-content">
-                                            <strong>📖 Baca Instruksi</strong>
+                                            <strong>ðŸ“– Baca Instruksi</strong>
                                             <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">2</div>
                                         <div class="visual-step-content">
-                                            <strong>📋 Salin Kode</strong>
+                                            <strong>ðŸ“‹ Salin Kode</strong>
                                             <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">3</div>
                                         <div class="visual-step-content">
-                                            <strong>📝 Tempel di Editor</strong>
+                                            <strong>ðŸ“ Tempel di Editor</strong>
                                             <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">4</div>
                                         <div class="visual-step-content">
-                                            <strong>✏️ Modifikasi Kode</strong>
+                                            <strong>âœï¸ Modifikasi Kode</strong>
                                             <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">5</div>
                                         <div class="visual-step-content">
-                                            <strong>▶️ Test dengan Run</strong>
+                                            <strong>â–¶ï¸ Test dengan Run</strong>
                                             <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">6</div>
                                         <div class="visual-step-content">
-                                            <strong>✅ Kirim Jawaban</strong>
+                                            <strong>âœ… Kirim Jawaban</strong>
                                             <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                         </div>
                                     </div>
@@ -5307,7 +5307,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-intro-enhanced">
-                                <div class="intro-icon">🎯</div>
+                                <div class="intro-icon">ðŸŽ¯</div>
                                 <div class="intro-content">
                                     <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                                 </div>
@@ -5315,10 +5315,10 @@ margin: 10px 20px;
                             
                             <?php if (!empty($lesson_data['instruksi'])): ?>
                                 <div class="instruction-box">
-                                    <div class="instruction-number">📝</div>
+                                    <div class="instruction-number">ðŸ“</div>
                                     <div class="instruction-text">
                                         <div class="instruction-action">
-                                            <span class="action-icon">📝</span>
+                                            <span class="action-icon">ðŸ“</span>
                                             <span class="action-text"><strong>Instruksi:</strong></span>
                                         </div>
                                         <div class="instruction-content-text">
@@ -5335,8 +5335,8 @@ margin: 10px 20px;
                                                 $line = trim($line);
                                                 if (empty($line)) {
                                                     echo '<br>';
-                                                } elseif (preg_match('/^[-*•]\s*(.+)$/', $line, $matches)) {
-                                                    echo '<div class="instruction-bullet">• ' . htmlspecialchars($matches[1]) . '</div>';
+                                                } elseif (preg_match('/^[-*â€¢]\s*(.+)$/', $line, $matches)) {
+                                                    echo '<div class="instruction-bullet">â€¢ ' . htmlspecialchars($matches[1]) . '</div>';
                                                 } elseif (preg_match('/^\d+[\.\)]\s*(.+)$/', $line, $matches)) {
                                                     echo '<div class="instruction-bullet">' . htmlspecialchars($line) . '</div>';
                                                 } else {
@@ -5362,14 +5362,14 @@ margin: 10px 20px;
                                     <code><?php echo htmlspecialchars($lesson_data['kode_contoh']); ?></code>
                                 </div>
                                 <div class="code-instruction">
-                                    <span class="code-instruction-icon">💡</span>
+                                    <span class="code-instruction-icon">ðŸ’¡</span>
                                     <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                 </div>
                             <?php endif; ?>
                             
                             <!-- Completion Guide -->
                             <div class="completion-guide">
-                                <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                                <h4 class="guide-title">ðŸŽ¯ Cara Menyelesaikan:</h4>
                                 <div class="guide-steps">
                                     <div class="guide-step">
                                         <div class="guide-step-number">1</div>
@@ -5399,7 +5399,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-tip">
-                                <strong>💡 Tips Penting:</strong>
+                                <strong>ðŸ’¡ Tips Penting:</strong>
                                 <ul class="tip-list">
                                     <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                                     <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -5410,34 +5410,34 @@ margin: 10px 20px;
 
                             <!-- Help Section for Validation Errors -->
                             <div class="help-section">
-                                <h4 class="help-title">❓ Jika Validasi Error atau Output Belum Sesuai:</h4>
+                                <h4 class="help-title">â“ Jika Validasi Error atau Output Belum Sesuai:</h4>
                                 <div class="help-content">
                                     <div class="help-step">
-                                        <div class="help-step-icon">1️⃣</div>
+                                        <div class="help-step-icon">1ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Detail Validasi</strong> - Setelah klik "Kirim", panel validasi akan muncul dengan detail pengecekan. Lihat elemen mana yang belum sesuai.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">2️⃣</div>
+                                        <div class="help-step-icon">2ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Bandingkan dengan Target</strong> - Klik tab "Target" di preview untuk melihat contoh hasil yang benar. Bandingkan dengan hasil Anda.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">3️⃣</div>
+                                        <div class="help-step-icon">3ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Ikuti Hints</strong> - Panel validasi akan memberikan hints spesifik tentang apa yang perlu diperbaiki. Ikuti petunjuk tersebut.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">4️⃣</div>
+                                        <div class="help-step-icon">4ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Kembali Instruksi</strong> - Baca ulang setiap langkah instruksi. Pastikan Anda tidak melewatkan langkah apapun.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">5️⃣</div>
+                                        <div class="help-step-icon">5ï¸âƒ£</div>
                                         <div class="help-step-text">
                                             <strong>Test dengan Run</strong> - Setelah memperbaiki, klik "Run" untuk melihat hasil baru sebelum mengirim lagi.
                                         </div>
@@ -5480,7 +5480,7 @@ margin: 10px 20px;
                             </div>
                             <div class="task-step">
                                 <span class="task-num">4</span>
-                                <span>Klik <strong>Run</strong> → bandingkan "Hasil Anda" dengan "Target"</span>
+                                <span>Klik <strong>Run</strong> â†’ bandingkan "Hasil Anda" dengan "Target"</span>
                             </div>
                             <div class="task-step">
                                 <span class="task-num">5</span>
@@ -5495,17 +5495,17 @@ margin: 10px 20px;
                         <div class="criteria-info">
                             <ul>
                                 <?php if (in_array($file_ext, ['.html', '.htm'])): ?>
-                                <li><span class="check-icon">☐</span> Elemen HTML sesuai (tag & struktur)</li>
-                                <li><span class="check-icon">☐</span> Properti CSS lengkap</li>
-                                <li><span class="check-icon">☐</span> Hasil mirip dengan "Target"</li>
+                                <li><span class="check-icon">â˜</span> Elemen HTML sesuai (tag & struktur)</li>
+                                <li><span class="check-icon">â˜</span> Properti CSS lengkap</li>
+                                <li><span class="check-icon">â˜</span> Hasil mirip dengan "Target"</li>
                                 <?php else: ?>
-                                <li><span class="check-icon">☐</span> Output program benar</li>
-                                <li><span class="check-icon">☐</span> Struktur kode sesuai</li>
-                                <li><span class="check-icon">☐</span> Logika berjalan benar</li>
+                                <li><span class="check-icon">â˜</span> Output program benar</li>
+                                <li><span class="check-icon">â˜</span> Struktur kode sesuai</li>
+                                <li><span class="check-icon">â˜</span> Logika berjalan benar</li>
                                 <?php endif; ?>
                             </ul>
                             <div class="score-info">
-                                <span class="score-badge success">≥80%</span> = Lulus
+                                <span class="score-badge success">â‰¥80%</span> = Lulus
                             </div>
                         </div>
                     </div>
@@ -5523,7 +5523,7 @@ margin: 10px 20px;
 
                 <div class="instructions-footer">
                     <button class="back-to-slide-btn" onclick="window.location.href='course.php?id=<?php echo $course_id; ?>'">
-                        ← Kembali ke Course
+                        â† Kembali ke Course
                     </button>
                 </div>
             </div>
@@ -5583,13 +5583,13 @@ margin: 10px 20px;
                     <div class="validation-modal">
                         <div class="validation-modal-header">
                             <div class="validation-modal-title-section">
-                                <span class="validation-modal-icon">⚠️</span>
+                                <span class="validation-modal-icon">âš ï¸</span>
                                 <div>
                                     <h3 class="validation-modal-title">Hasil Validasi</h3>
                                     <p class="validation-modal-subtitle">Skor: <span id="modalScore" class="modal-score-text">0%</span></p>
                                 </div>
                             </div>
-                            <button class="validation-modal-close" type="button" aria-label="Tutup" onclick="window.closeValidationModal && window.closeValidationModal(); event.stopPropagation(); return false;">×</button>
+                            <button class="validation-modal-close" type="button" aria-label="Tutup" onclick="window.closeValidationModal && window.closeValidationModal(); event.stopPropagation(); return false;">Ã—</button>
                         </div>
                         
                         <div class="validation-modal-body">
@@ -5597,14 +5597,14 @@ margin: 10px 20px;
                             
                             <!-- Comparison Section -->
                             <div id="comparisonSection" class="comparison-section" style="display: none;">
-                                <h4 class="comparison-title">📊 Perbandingan:</h4>
+                                <h4 class="comparison-title">ðŸ“Š Perbandingan:</h4>
                                 <div class="comparison-grid">
                                     <div class="comparison-item">
-                                        <div class="comparison-label">✅ Yang Sudah Benar</div>
+                                        <div class="comparison-label">âœ… Yang Sudah Benar</div>
                                         <div id="passedChecks" class="comparison-content passed"></div>
                                     </div>
                                     <div class="comparison-item">
-                                        <div class="comparison-label">❌ Yang Perlu Diperbaiki</div>
+                                        <div class="comparison-label">âŒ Yang Perlu Diperbaiki</div>
                                         <div id="failedChecks" class="comparison-content failed"></div>
                                     </div>
                                 </div>
@@ -5612,13 +5612,13 @@ margin: 10px 20px;
                             
                             <!-- Action Items -->
                             <div id="actionItems" class="action-items-section">
-                                <h4 class="action-items-title">🎯 Yang Harus Anda Lakukan:</h4>
+                                <h4 class="action-items-title">ðŸŽ¯ Yang Harus Anda Lakukan:</h4>
                                 <div id="actionItemsList" class="action-items-list"></div>
                             </div>
                             
                             <!-- Quick Fix Guide -->
                             <div class="quick-fix-guide">
-                                <h4 class="quick-fix-title">⚡ Perbaikan Cepat:</h4>
+                                <h4 class="quick-fix-title">âš¡ Perbaikan Cepat:</h4>
                                 <div class="quick-fix-steps">
                                     <div class="quick-fix-step">
                                         <span class="quick-fix-number">1</span>
@@ -5654,9 +5654,9 @@ margin: 10px 20px;
                 <!-- Old validation result (kept for compatibility) -->
                 <div id="validationResult" class="validation-result" style="display: none;">
                     <div class="validation-header">
-                        <span class="validation-icon">✓</span>
+                        <span class="validation-icon">âœ“</span>
                         <span class="validation-title">Hasil Validasi</span>
-                        <button onclick="closeValidation()" class="validation-close">×</button>
+                        <button onclick="closeValidation()" class="validation-close">Ã—</button>
                     </div>
                     <div class="validation-body">
                         <div class="validation-score">
@@ -6083,9 +6083,9 @@ margin: 10px 20px;
                         if (detectedLanguage === 'java' || detectedLanguage === 'text/x-java') {
                             onlineCompilerButtons = `
                                 <div style="margin-top:15px; padding-top:15px; border-top:1px solid #333;">
-                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">🚀 Run Online:</div>
+                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">ðŸš€ Run Online:</div>
                                     <a href="https://www.jdoodle.com/online-java-compiler/" target="_blank" 
-                                       style="display:inline-block; padding:8px 16px; background:#8b5cf6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
+                                       style="display:inline-block; padding:8px 16px; background:#14B8A6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
                                        JDoodle
                                     </a>
                                     <a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank"
@@ -6100,9 +6100,9 @@ margin: 10px 20px;
                         } else if (detectedLanguage === 'cpp' || detectedLanguage === 'c++' || detectedLanguage === 'text/x-c++src') {
                             onlineCompilerButtons = `
                                 <div style="margin-top:15px; padding-top:15px; border-top:1px solid #333;">
-                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">🚀 Run Online:</div>
+                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">ðŸš€ Run Online:</div>
                                     <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank"
-                                       style="display:inline-block; padding:8px 16px; background:#8b5cf6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
+                                       style="display:inline-block; padding:8px 16px; background:#14B8A6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
                                        OnlineGDB
                                     </a>
                                     <a href="https://www.programiz.com/cpp-programming/online-compiler/" target="_blank"
@@ -6311,14 +6311,14 @@ margin: 10px 20px;
             modal.className = 'success-modal-overlay';
             modal.innerHTML = `
                 <div class="success-modal">
-                    <div class="success-modal-icon">🎉</div>
+                    <div class="success-modal-icon">ðŸŽ‰</div>
                     <h2 class="success-modal-title">Kerja Bagus!</h2>
                     ${xpEarned > 0 ? `<div class="success-modal-xp">+${xpEarned} XP</div>` : ''}
                     <p class="success-modal-message">Kode kamu sudah benar. Lesson ini telah diselesaikan!</p>
                     <div class="success-modal-actions">
                         ${hasNextLesson ? 
                             `<button class="success-modal-btn primary" onclick="window.location.href='${nextLessonUrl}'">
-                                Lanjut ke Lesson Berikutnya →
+                                Lanjut ke Lesson Berikutnya â†’
                             </button>` : 
                             `<button class="success-modal-btn primary" onclick="window.location.href='${courseUrl}'">
                                 Kembali ke Course
@@ -6371,7 +6371,7 @@ margin: 10px 20px;
                 let passedHtml = '';
                 if (passed.length > 0) {
                     passed.forEach(check => {
-                        passedHtml += `<div class="comparison-check-item passed">✓ ${escapeHtml(check.element)}</div>`;
+                        passedHtml += `<div class="comparison-check-item passed">âœ“ ${escapeHtml(check.element)}</div>`;
                     });
                 } else {
                     passedHtml = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 0.5rem;">Belum ada yang benar</div>';
@@ -6381,7 +6381,7 @@ margin: 10px 20px;
                 let failedHtml = '';
                 if (failed.length > 0) {
                     failed.forEach(check => {
-                        failedHtml += `<div class="comparison-check-item failed">✗ ${escapeHtml(check.element)}</div>`;
+                        failedHtml += `<div class="comparison-check-item failed">âœ— ${escapeHtml(check.element)}</div>`;
                     });
                 } else {
                     failedHtml = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 0.5rem;">Semua sudah benar!</div>';
@@ -6397,7 +6397,7 @@ margin: 10px 20px;
                 validation.hints.forEach((hint, index) => {
                     actionHtml += `
                         <div class="action-item">
-                            <span class="action-item-icon">${index + 1}️⃣</span>
+                            <span class="action-item-icon">${index + 1}ï¸âƒ£</span>
                             <div class="action-item-text">
                                 <strong>Tindakan ${index + 1}:</strong> ${escapeHtml(hint)}
                             </div>
@@ -6408,7 +6408,7 @@ margin: 10px 20px;
             } else {
                 actionItemsList.innerHTML = `
                     <div class="action-item">
-                        <span class="action-item-icon">📋</span>
+                        <span class="action-item-icon">ðŸ“‹</span>
                         <div class="action-item-text">
                             <strong>Periksa kembali:</strong> Baca ulang instruksi dan bandingkan hasil Anda dengan tab "Target" di preview
                         </div>
@@ -6419,11 +6419,11 @@ margin: 10px 20px;
             // Update modal icon based on score
             const modalIcon = modal.querySelector('.validation-modal-icon');
             if (validation.score >= 80) {
-                modalIcon.textContent = '✅';
+                modalIcon.textContent = 'âœ…';
             } else if (validation.score >= 50) {
-                modalIcon.textContent = '⚠️';
+                modalIcon.textContent = 'âš ï¸';
             } else {
-                modalIcon.textContent = '❌';
+                modalIcon.textContent = 'âŒ';
             }
 
             // Show modal
@@ -6485,7 +6485,7 @@ margin: 10px 20px;
 
         // Use event delegation for close buttons (works even if modal is created dynamically)
         document.addEventListener('click', function(e) {
-            // Close button in header (× button)
+            // Close button in header (Ã— button)
             if (e.target.classList.contains('validation-modal-close') || 
                 e.target.closest('.validation-modal-close')) {
                 e.preventDefault();
@@ -6634,7 +6634,7 @@ margin: 10px 20px;
                     </head>
                     <body>
                         <div class="message">
-                            <div class="icon">📝</div>
+                            <div class="icon">ðŸ“</div>
                             <h3>Ikuti Instruksi</h3>
                             <p>Baca instruksi di panel kiri dengan teliti, lalu tulis kode sesuai dengan petunjuk yang diberikan.</p>
                         </div>
@@ -6786,7 +6786,7 @@ margin: 10px 20px;
                 // Update lesson subtitle
                 const lessonSubtitle = document.querySelector('.lesson-header-content p, .lesson-title-section p');
                 if (lessonSubtitle && data.course && data.lesson) {
-                    lessonSubtitle.textContent = `${data.course.judul_course} • Lesson ${data.lesson.urutan}`;
+                    lessonSubtitle.textContent = `${data.course.judul_course} â€¢ Lesson ${data.lesson.urutan}`;
                 }
 
                 // Update language logo if needed
@@ -6832,9 +6832,9 @@ margin: 10px 20px;
                 cleanContent = cleanContent.replace(/\n{3,}/g, '\n\n');
 
                 if (typeof marked !== 'undefined') {
-                    instructionContainer.innerHTML = '<div class="instruction-number">📝</div>' + marked.parse(cleanContent);
+                    instructionContainer.innerHTML = '<div class="instruction-number">ðŸ“</div>' + marked.parse(cleanContent);
                 } else {
-                    instructionContainer.innerHTML = '<div class="instruction-number">📝</div><p>' + cleanContent.replace(/\n/g, '<br>') + '</p>';
+                    instructionContainer.innerHTML = '<div class="instruction-number">ðŸ“</div><p>' + cleanContent.replace(/\n/g, '<br>') + '</p>';
                 }
             }
 
@@ -6910,50 +6910,50 @@ margin: 10px 20px;
 
                 // Rebuild instructions
                 let html = `
-                    <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                    <h3 class="instruction-section-title">âœ… Tugas Praktik</h3>
                     
                     <div class="how-to-complete-section">
-                        <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                        <h4 class="how-to-title">ðŸ“‹ Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                         <div class="visual-steps">
                             <div class="visual-step">
                                 <div class="visual-step-number">1</div>
                                 <div class="visual-step-content">
-                                    <strong>📖 Baca Instruksi</strong>
+                                    <strong>ðŸ“– Baca Instruksi</strong>
                                     <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">2</div>
                                 <div class="visual-step-content">
-                                    <strong>📋 Salin Kode</strong>
+                                    <strong>ðŸ“‹ Salin Kode</strong>
                                     <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">3</div>
                                 <div class="visual-step-content">
-                                    <strong>📝 Tempel di Editor</strong>
+                                    <strong>ðŸ“ Tempel di Editor</strong>
                                     <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">4</div>
                                 <div class="visual-step-content">
-                                    <strong>✏️ Modifikasi Kode</strong>
+                                    <strong>âœï¸ Modifikasi Kode</strong>
                                     <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">5</div>
                                 <div class="visual-step-content">
-                                    <strong>▶️ Test dengan Run</strong>
+                                    <strong>â–¶ï¸ Test dengan Run</strong>
                                     <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">6</div>
                                 <div class="visual-step-content">
-                                    <strong>✅ Kirim Jawaban</strong>
+                                    <strong>âœ… Kirim Jawaban</strong>
                                     <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                 </div>
                             </div>
@@ -6961,7 +6961,7 @@ margin: 10px 20px;
                     </div>
                     
                     <div class="instruction-intro-enhanced">
-                        <div class="intro-icon">🎯</div>
+                        <div class="intro-icon">ðŸŽ¯</div>
                         <div class="intro-content">
                             <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                         </div>
@@ -6995,7 +6995,7 @@ margin: 10px 20px;
                             ${textHtml ? `
                                 <div class="instruction-text">
                                     <div class="instruction-action">
-                                        <span class="action-icon">📝</span>
+                                        <span class="action-icon">ðŸ“</span>
                                         <span class="action-text"><strong>Instruksi Langkah ${index + 1}:</strong></span>
                                     </div>
                                     <div class="instruction-content-text">${formatInstructionText(cleanText)}</div>
@@ -7004,13 +7004,13 @@ margin: 10px 20px;
                             ${step.code ? `
                                 <div class="code-snippet">
                                     <div class="code-header">
-                                        <span class="code-label">💻 Kode untuk Disalin</span>
+                                        <span class="code-label">ðŸ’» Kode untuk Disalin</span>
                                         <button class="copy-btn" onclick="copyToClipboard('${codeHtml}', this)">Copy</button>
                                     </div>
                                     <code>${escapeHtml(step.code)}</code>
                                 </div>
                                 <div class="code-instruction">
-                                    <span class="code-instruction-icon">💡</span>
+                                    <span class="code-instruction-icon">ðŸ’¡</span>
                                     <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                 </div>
                             ` : ''}
@@ -7027,7 +7027,7 @@ margin: 10px 20px;
 
                 html += `
                     <div class="completion-guide">
-                        <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                        <h4 class="guide-title">ðŸŽ¯ Cara Menyelesaikan:</h4>
                         <div class="guide-steps">
                             <div class="guide-step">
                                 <div class="guide-step-number">1</div>
@@ -7057,7 +7057,7 @@ margin: 10px 20px;
                     </div>
                     
                     <div class="instruction-tip">
-                        <strong>💡 Tips Penting:</strong>
+                        <strong>ðŸ’¡ Tips Penting:</strong>
                         <ul class="tip-list">
                             <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                             <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -7114,7 +7114,7 @@ margin: 10px 20px;
                         const newLink = document.createElement('a');
                         newLink.href = `lesson.php?course_id=${courseId}&lesson_id=${prevLesson.id}`;
                         newLink.className = prevLink.className;
-                        newLink.textContent = '← Sebelumnya';
+                        newLink.textContent = 'â† Sebelumnya';
                         prevLink.parentNode.replaceChild(newLink, prevLink);
                     }
                 } else if (prevLink && !prevLesson) {
@@ -7138,7 +7138,7 @@ margin: 10px 20px;
                         const newLink = document.createElement('a');
                         newLink.href = `lesson.php?course_id=${courseId}&lesson_id=${nextLesson.id}`;
                         newLink.className = nextLink.className;
-                        newLink.textContent = 'Selanjutnya →';
+                        newLink.textContent = 'Selanjutnya â†’';
                         nextLink.parentNode.replaceChild(newLink, nextLink);
                     }
                 } else if (nextLink && !nextLesson) {
@@ -7168,9 +7168,9 @@ margin: 10px 20px;
                     line = line.trim();
                     if (!line) {
                         html += '<br>';
-                    } else if (/^[-*•]\s*(.+)$/.test(line)) {
-                        const match = line.match(/^[-*•]\s*(.+)$/);
-                        html += `<div class="instruction-bullet">• ${escapeHtml(match[1])}</div>`;
+                    } else if (/^[-*â€¢]\s*(.+)$/.test(line)) {
+                        const match = line.match(/^[-*â€¢]\s*(.+)$/);
+                        html += `<div class="instruction-bullet">â€¢ ${escapeHtml(match[1])}</div>`;
                     } else if (/^\d+[\.\)]\s*(.+)$/.test(line)) {
                         html += `<div class="instruction-bullet">${escapeHtml(line)}</div>`;
                     } else {

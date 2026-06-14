@@ -26,13 +26,13 @@ class Clan {
 
         $stmt = $this->conn->prepare($query);
 
-        $this->nama_clan = htmlspecialchars(strip_tags($this->nama_clan));
+        $this->nama_clan = strip_tags($this->nama_clan);
         $this->slug = $this->generateSlug($this->nama_clan);
-        $this->deskripsi = htmlspecialchars(strip_tags($this->deskripsi));
-        $this->avatar = !empty($this->avatar) ? htmlspecialchars(strip_tags($this->avatar)) : null;
-        $this->leader_id = htmlspecialchars(strip_tags($this->leader_id));
+        $this->deskripsi = strip_tags($this->deskripsi);
+        $this->avatar = !empty($this->avatar) ? strip_tags($this->avatar) : null;
+        $this->leader_id = strip_tags($this->leader_id);
         $this->is_public = isset($this->is_public) ? 1 : 0;
-        $this->max_members = htmlspecialchars(strip_tags($this->max_members ?? 50));
+        $this->max_members = strip_tags($this->max_members ?? 50);
 
         $stmt->bindParam(':nama_clan', $this->nama_clan);
         $stmt->bindParam(':slug', $this->slug);
@@ -117,12 +117,12 @@ class Clan {
 
         $stmt = $this->conn->prepare($query);
 
-        $this->nama_clan = htmlspecialchars(strip_tags($this->nama_clan));
+        $this->nama_clan = strip_tags($this->nama_clan);
         $this->slug = $this->generateSlug($this->nama_clan);
-        $this->deskripsi = htmlspecialchars(strip_tags($this->deskripsi));
+        $this->deskripsi = strip_tags($this->deskripsi);
         $this->is_public = isset($this->is_public) ? 1 : 0;
-        $this->max_members = htmlspecialchars(strip_tags($this->max_members ?? 50));
-        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->max_members = strip_tags($this->max_members ?? 50);
+        $this->id = strip_tags($this->id);
 
         $stmt->bindParam(':nama_clan', $this->nama_clan);
         $stmt->bindParam(':slug', $this->slug);

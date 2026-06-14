@@ -223,7 +223,7 @@ function renderQuoteWidget($quote = null) {
     <div class="quote-widget">
         <span class="quote-icon"><?php icon('quote', 24); ?></span>
         <p class="quote-text"><?= htmlspecialchars($quote['text']) ?></p>
-        <p class="quote-author">— <?= htmlspecialchars($quote['author']) ?></p>
+        <p class="quote-author">â€” <?= htmlspecialchars($quote['author']) ?></p>
     </div>
     <?php
 }
@@ -254,7 +254,7 @@ function renderSkillProgressWidget($skills = []) {
                 $percent = $total > 0 ? round(($completed / $total) * 100) : 0;
             ?>
             <div class="skill-item">
-                <div class="skill-icon" style="background: rgba(139, 92, 246, 0.2);"><?php icon('code', 18); ?></div>
+                <div class="skill-icon" style="background: rgba(20, 184, 166, 0.2);"><?php icon('code', 18); ?></div>
                 <div class="skill-info">
                     <div class="skill-header">
                         <span class="skill-name"><?= htmlspecialchars(substr($skill['judul_course'] ?? 'Course', 0, 25)) ?></span>
@@ -307,8 +307,8 @@ function renderRecommendedCoursesWidget($courses = []) {
                         <strong><?= htmlspecialchars($course['judul_course'] ?? 'Course') ?></strong>
                     </p>
                     <p class="activity-time">
-                        <?= $course['total_lessons'] ?? 0 ?> Lessons • 
-                        <span style="color: #a78bfa;">+<?= $course['total_xp'] ?? 0 ?> XP</span>
+                        <?= $course['total_lessons'] ?? 0 ?> Lessons â€¢ 
+                        <span style="color: #2DD4BF;">+<?= $course['total_xp'] ?? 0 ?> XP</span>
                     </p>
                 </div>
             </a>

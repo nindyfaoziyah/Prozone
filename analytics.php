@@ -94,12 +94,12 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         <link rel="stylesheet" href="assets/css/dark-theme.css">
     <style>
         .analytics-header {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             color: white;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
         }
         .analytics-header h1 {
             margin: 0 0 0.5rem 0;
@@ -125,7 +125,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         .stat-value-large {
             font-size: 3rem;
             font-weight: 700;
-            color: #a78bfa;
+            color: #2DD4BF;
             margin-bottom: 0.5rem;
         }
         .stat-label-large {
@@ -148,7 +148,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         .level-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #a78bfa;
+            color: #2DD4BF;
         }
         .level-xp {
             color: #94a3b8;
@@ -164,7 +164,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         }
         .xp-progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             transition: width 0.5s;
             display: flex;
             align-items: center;
@@ -196,7 +196,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
             font-weight: 600;
         }
         .course-progress-percent {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-weight: 600;
         }
         .course-progress-bar {
@@ -208,7 +208,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
         }
         .course-progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             transition: width 0.5s;
         }
     </style>
@@ -280,7 +280,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
                     <h3><?php icon('trending-up', 16); ?> Progress per Kursus</h3>
                     <?php if (empty($enrolled_courses)): ?>
                         <p style="color: #94a3b8; text-align: center; padding: 2rem;">
-                            Anda belum terdaftar di kursus manapun. <a href="courses.php" style="color: #a78bfa;">Jelajahi Kursus</a>
+                            Anda belum terdaftar di kursus manapun. <a href="courses.php" style="color: #2DD4BF;">Jelajahi Kursus</a>
                         </p>
                     <?php else: ?>
                         <?php foreach ($enrolled_courses as $course_item): ?>
@@ -295,7 +295,7 @@ $learning_streak = $streak_data['streak_days'] ?? 0;
                                 <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;">
                                     <?php echo $course_item['completed_lessons']; ?> dari <?php echo $course_item['total_lessons']; ?> lessons selesai
                                     <?php if ($course_item['status'] == 'completed'): ?>
-                                        <span style="color: #10b981; margin-left: 0.5rem;">✓ Selesai</span>
+                                        <span style="color: #10b981; margin-left: 0.5rem;">âœ“ Selesai</span>
                                     <?php endif; ?>
                                 </div>
                             </div>

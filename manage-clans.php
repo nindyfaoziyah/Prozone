@@ -21,11 +21,11 @@ if ($_POST) {
     } elseif (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'update':
-                $clan->id = sanitizeInput($_POST['id']);
-                $clan->nama_clan = sanitizeInput($_POST['nama_clan']);
+                $clan->id = sanitizeInput($_POST['id'] ?? '');
+                $clan->nama_clan = sanitizeInput($_POST['nama_clan'] ?? '');
                 $clan->deskripsi = $_POST['deskripsi'] ?? '';
                 $clan->is_public = isset($_POST['is_public']) ? 1 : 0;
-                $clan->max_members = sanitizeInput($_POST['max_members'] ?? 50);
+                $clan->max_members = sanitizeInput($_POST['max_members'] ?? '50');
 
                 if ($clan->update()) {
                     $message = 'Clan berhasil diperbarui!';
@@ -37,7 +37,7 @@ if ($_POST) {
                 break;
 
             case 'delete':
-                $clan->id = sanitizeInput($_POST['id']);
+                $clan->id = sanitizeInput($_POST['id'] ?? '');
                 if ($clan->delete()) {
                     $message = 'Clan berhasil dihapus!';
                     $message_type = 'success';
@@ -48,9 +48,9 @@ if ($_POST) {
                 break;
 
             case 'toggle_public':
-                $clan->id = sanitizeInput($_POST['id']);
+                $clan->id = sanitizeInput($_POST['id'] ?? '');
                 $clan_data_stmt = $clan->readOne();
-                if ($clan_data = $clan_data_stmt->fetch(PDO::FETCH_ASSOC)) {
+                if ($clan_data_stmt && $clan_data = $clan_data_stmt->fetch(PDO::FETCH_ASSOC)) {
                     $clan->nama_clan = $clan_data['nama_clan'];
                     $clan->deskripsi = $clan_data['deskripsi'];
                     $clan->is_public = $clan_data['is_public'] ? 0 : 1;
@@ -85,7 +85,7 @@ $total_members_stmt = $db->query("SELECT COUNT(*) as total FROM clan_members");
 $total_members = $total_members_stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
 
 $page_title = 'Manajemen Clan';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
@@ -101,7 +101,6 @@ $body_class = getThemeClass();
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .admin-manage-header h1 {
             font-size: 1.5rem;
             font-weight: 700;
             margin: 0;
@@ -286,16 +285,16 @@ $body_class = getThemeClass();
 <body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
     <?php require_once 'navbar.php'; ?>
 
-    <div class="page-wrapper dashboard-main-container">
+    <div class="dashboard-container">
         <div class="dashboard-content">
 
             <!-- Header -->
             <div class="admin-manage-header">
                 <div>
-                    <h1>⚔️ Manajemen Clan</h1>
+                    <h1>Manajemen Clan</h1>
                     <p>Kelola semua clan di platform Prozone</p>
                 </div>
-                <a href="dashboard.php" class="glass-btn glass-btn-secondary">← Kembali ke Dashboard</a>
+                <a href="dashboard.php" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;">&larr; Kembali ke Dashboard</a>
             </div>
 
             <?php if ($message): ?>
@@ -424,7 +423,6 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
     <script src="assets/js/navbar.js"></script>

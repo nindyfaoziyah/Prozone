@@ -126,7 +126,7 @@ if ($selected_friend_id) {
         }
         
         .badge-count {
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             color: white;
             font-size: 0.65rem;
             padding: 0.15rem 0.4rem;
@@ -150,18 +150,18 @@ if ($selected_friend_id) {
         }
         
         .friend-item:hover, .friend-item.active {
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(59, 130, 246, 0.1);
         }
         
         .friend-item.active {
-            border-left: 3px solid #8b5cf6;
+            border-left: 3px solid #14B8A6;
         }
         
         .friend-avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -256,7 +256,7 @@ if ($selected_friend_id) {
         
         .search-input:focus {
             outline: none;
-            border-color: rgba(139, 92, 246, 0.4);
+            border-color: rgba(20, 184, 166, 0.4);
             background: rgba(15, 15, 35, 0.8);
         }
         
@@ -279,7 +279,7 @@ if ($selected_friend_id) {
             background: rgba(26, 26, 46, 0.98);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 10px;
             margin-top: 0.5rem;
             max-height: 280px;
@@ -303,12 +303,12 @@ if ($selected_friend_id) {
         }
         
         .search-result-item:hover {
-            background: rgba(124, 58, 237, 0.1);
+            background: rgba(59, 130, 246, 0.1);
         }
         
         .btn-add-friend {
             padding: 0.4rem 0.75rem;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             color: white;
             border: none;
             border-radius: 0.375rem;
@@ -341,7 +341,7 @@ if ($selected_friend_id) {
             align-items: center;
             gap: 0.75rem;
             padding: 0.875rem 1.25rem;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
         
         .request-actions {
@@ -375,7 +375,7 @@ if ($selected_friend_id) {
         .chat-panel {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             display: flex;
             flex-direction: column;
             min-height: 500px;
@@ -383,7 +383,7 @@ if ($selected_friend_id) {
         
         .chat-header {
             padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -428,7 +428,7 @@ if ($selected_friend_id) {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -439,14 +439,14 @@ if ($selected_friend_id) {
         }
         
         .message-content {
-            background: rgba(124, 58, 237, 0.15);
+            background: rgba(59, 130, 246, 0.15);
             padding: 0.75rem 1rem;
             border-radius: 1rem;
             border-top-left-radius: 0.25rem;
         }
         
         .chat-message.own .message-content {
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             border-radius: 1rem;
             border-top-right-radius: 0.25rem;
         }
@@ -470,7 +470,7 @@ if ($selected_friend_id) {
         
         .chat-input-container {
             padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(124, 58, 237, 0.15);
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
             display: flex;
             gap: 0.75rem;
         }
@@ -479,7 +479,7 @@ if ($selected_friend_id) {
             flex: 1;
             padding: 0.75rem 1rem;
             background: rgba(15, 15, 35, 0.6);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 0.5rem;
             color: #e0e7ff;
             font-size: 0.9rem;
@@ -487,12 +487,12 @@ if ($selected_friend_id) {
         
         .chat-input:focus {
             outline: none;
-            border-color: rgba(124, 58, 237, 0.5);
+            border-color: rgba(59, 130, 246, 0.5);
         }
         
         .btn-send {
             padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             color: white;
             border: none;
             border-radius: 0.5rem;
@@ -551,7 +551,7 @@ if ($selected_friend_id) {
             background: linear-gradient(145deg, rgba(37, 37, 80, 0.7) 0%, rgba(45, 45, 90, 0.6) 100%);
             border-radius: 1rem;
             padding: 1.25rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -561,16 +561,16 @@ if ($selected_friend_id) {
         }
         
         .user-card:hover {
-            border-color: rgba(124, 58, 237, 0.4);
+            border-color: rgba(59, 130, 246, 0.4);
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
         }
         
         .user-card-avatar {
             width: 64px;
             height: 64px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -609,7 +609,7 @@ if ($selected_friend_id) {
             justify-content: center;
             gap: 1rem;
             font-size: 0.8rem;
-            color: #a78bfa;
+            color: #2DD4BF;
             margin-bottom: 0.5rem;
         }
         
@@ -657,14 +657,14 @@ if ($selected_friend_id) {
         }
         
         .btn-user-action.btn-add {
-            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            background: linear-gradient(135deg, #0284C7, #14B8A6);
             color: white;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
         .btn-user-action.btn-add:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
         
         .btn-user-action.btn-pending {
@@ -834,7 +834,7 @@ if ($selected_friend_id) {
                         <div class="suggested-users-grid">
                             <?php if (empty($suggested_users)): ?>
                             <div class="empty-state">
-                                <div class="empty-state-icon">👥</div>
+                                <div class="empty-state-icon">ðŸ‘¥</div>
                                 <h3>Tidak ada user lain</h3>
                                 <p>Belum ada user lain yang terdaftar</p>
                             </div>
@@ -937,7 +937,7 @@ if ($selected_friend_id) {
         
         function getFriendButton(user) {
             if (user.friendship_status === 'accepted') {
-                return '<button class="btn-add-friend friends" disabled>✓ Teman</button>';
+                return '<button class="btn-add-friend friends" disabled>âœ“ Teman</button>';
             } else if (user.friendship_status === 'pending') {
                 return '<button class="btn-add-friend pending" disabled>Menunggu</button>';
             }

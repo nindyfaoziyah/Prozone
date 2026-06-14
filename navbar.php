@@ -42,7 +42,7 @@ $user_streak = $streakDays ?? 0;
                     <?php if (!empty($avatar) && file_exists('assets/uploads/avatars/' . $avatar)): ?>
                         <img src="assets/uploads/avatars/<?php echo $avatar; ?>" alt="Avatar" class="user-avatar">
                     <?php else: ?>
-                        <div class="user-avatar" style="background:linear-gradient(135deg,#6C4CFD,#20C7B7);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;">
+                        <div class="user-avatar" style="background:linear-gradient(135deg,#3B82F6,#20C7B7);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1rem;">
                             <?php echo strtoupper(substr($_SESSION['nama_lengkap'] ?? 'U', 0, 1)); ?>
                         </div>
                     <?php endif; ?>

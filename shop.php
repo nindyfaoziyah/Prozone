@@ -47,7 +47,7 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
         .shop-header {
             background: linear-gradient(135deg, 
                 rgba(79, 70, 229, 0.2) 0%, 
-                rgba(124, 58, 237, 0.15) 50%, 
+                rgba(59, 130, 246, 0.15) 50%, 
                 rgba(167, 139, 250, 0.1) 100%);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -81,7 +81,7 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
             font-size: 1.5rem;
             font-weight: 700;
             margin: 0;
-            background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, #c4b5fd 100%);
+            background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, #5EEAD4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -149,15 +149,15 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa, #8b5cf6);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF, #14B8A6);
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .shop-item:hover {
             transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15);
+            border-color: rgba(20, 184, 166, 0.3);
+            box-shadow: 0 12px 35px rgba(20, 184, 166, 0.15);
         }
         
         .shop-item:hover::before {
@@ -167,21 +167,21 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
         .item-icon {
             width: 64px;
             height: 64px;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
             font-size: 1.75rem;
-            border: 2px solid rgba(139, 92, 246, 0.2);
+            border: 2px solid rgba(20, 184, 166, 0.2);
             transition: all 0.3s;
         }
         
         .shop-item:hover .item-icon {
             transform: scale(1.1);
-            border-color: rgba(139, 92, 246, 0.5);
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(167, 139, 250, 0.2) 100%);
+            border-color: rgba(20, 184, 166, 0.5);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.25) 0%, rgba(167, 139, 250, 0.2) 100%);
         }
 
         .item-name {
@@ -217,19 +217,19 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
             padding: 0.875rem;
             border: none;
             border-radius: 12px;
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%);
             color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .btn-buy:hover {
-            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #0369A1 0%, #0284C7 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
 
         .btn-buy:disabled {
@@ -303,8 +303,8 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            box-shadow: 0 25px 50px rgba(124, 58, 237, 0.25);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25);
         }
         
         .modal-content h2 {
@@ -328,7 +328,7 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
         }
         
         .topup-option:hover {
-            border-color: #7c3aed;
+            border-color: #0284C7;
             background: rgba(54, 54, 82, 0.9);
             transform: translateX(5px);
         }
@@ -413,11 +413,11 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
     <div class="page-wrapper" style="margin-top: 80px;">
         <div class="shop-header">
             <div>
-                <h1>🛒 Item Shop</h1>
+                <h1>ðŸ›’ Item Shop</h1>
                 <p>Tukarkan koinmu dengan item menarik!</p>
             </div>
             <div class="coin-balance">
-                <span class="coin-icon">●</span>
+                <span class="coin-icon">â—</span>
                 <span id="userCoins"><?php echo number_format($coins); ?></span> Coins
                 <button onclick="showTopUpModal()" class="btn-topup">+ Top Up</button>
             </div>
@@ -446,7 +446,7 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
                     
                     <?php if (!$owned): ?>
                         <div class="item-cost">
-                            <span>●</span> <?php echo number_format($item['cost']); ?>
+                            <span>â—</span> <?php echo number_format($item['cost']); ?>
                         </div>
                         <button class="btn-buy" onclick="buyItem(<?php echo $item['id']; ?>, <?php echo $item['cost']; ?>)" 
                                 <?php echo ($coins < $item['cost']) ? 'disabled' : ''; ?>>
@@ -545,18 +545,18 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
     <!-- Top Up Modal -->
     <div id="topUpModal" class="modal-overlay">
         <div class="modal-content">
-            <h2>💰 Top Up Coins</h2>
+            <h2>ðŸ’° Top Up Coins</h2>
             <div style="display: grid; gap: 0.75rem;">
                 <div class="topup-option" onclick="processTopUp(100, 10000)">
-                    <div class="topup-coins"><span style="font-size: 1.3rem;">●</span> 100 Coins</div>
+                    <div class="topup-coins"><span style="font-size: 1.3rem;">â—</span> 100 Coins</div>
                     <div class="topup-price">Rp 10.000</div>
                 </div>
                 <div class="topup-option" onclick="processTopUp(500, 45000)">
-                    <div class="topup-coins"><span style="font-size: 1.3rem;">●</span> 500 Coins</div>
+                    <div class="topup-coins"><span style="font-size: 1.3rem;">â—</span> 500 Coins</div>
                     <div class="topup-price">Rp 45.000</div>
                 </div>
                 <div class="topup-option" onclick="processTopUp(1000, 80000)">
-                    <div class="topup-coins"><span style="font-size: 1.3rem;">●</span> 1000 Coins</div>
+                    <div class="topup-coins"><span style="font-size: 1.3rem;">â—</span> 1000 Coins</div>
                     <div class="topup-price">Rp 80.000</div>
                 </div>
             </div>

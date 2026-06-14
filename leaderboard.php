@@ -88,7 +88,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
         /* Leaderboard Hero Section */
         .leaderboard-hero {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.15) 0%, 
+                rgba(20, 184, 166, 0.15) 0%, 
                 rgba(59, 130, 246, 0.1) 50%,
                 rgba(236, 72, 153, 0.1) 100%);
             border-radius: 24px;
@@ -96,7 +96,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .leaderboard-hero::before {
             content: '';
@@ -105,7 +105,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2314b8a6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             opacity: 0.5;
         }
         .hero-content {
@@ -124,18 +124,18 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
             position: relative;
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 40px rgba(20, 184, 166, 0.4);
             animation: pulse-glow 2s ease-in-out infinite;
         }
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); }
-            50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.6); }
+            0%, 100% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.4); }
+            50% { box-shadow: 0 0 60px rgba(20, 184, 166, 0.6); }
         }
         .hero-rank-number {
             font-size: 2.5rem;
@@ -143,7 +143,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             color: white;
         }
         .hero-rank-label {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-size: 0.875rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -177,7 +177,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             justify-content: center;
             color: white;
         }
-        .hero-stat-icon.xp { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .hero-stat-icon.xp { background: linear-gradient(135deg, #14B8A6, #2DD4BF); }
         .hero-stat-icon.level { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
         .hero-stat-icon.streak { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
         .hero-stat-value {
@@ -206,19 +206,19 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             font-size: 0.875rem;
         }
         .hero-progress-value {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-weight: 600;
             font-size: 0.875rem;
         }
         .hero-progress-bar {
             height: 8px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 4px;
             overflow: hidden;
         }
         .hero-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF);
             border-radius: 4px;
             transition: width 1s ease-out;
         }
@@ -369,7 +369,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             background: rgba(30, 30, 55, 0.5);
             padding: 0.375rem;
             border-radius: 12px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
         }
         .period-btn {
             padding: 0.5rem 1rem;
@@ -386,7 +386,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             color: #e2e8f0;
         }
         .period-btn.active {
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
             color: white;
         }
         .search-box {
@@ -396,12 +396,12 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             background: rgba(30, 30, 55, 0.5);
             padding: 0.625rem 1rem;
             border-radius: 12px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
             transition: all 0.3s ease;
         }
         .search-box:focus-within {
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: rgba(20, 184, 166, 0.4);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
         }
         .search-box input {
             background: transparent;
@@ -432,8 +432,8 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             display: flex;
             align-items: center;
             padding: 1rem 1.25rem;
-            background: rgba(139, 92, 246, 0.05);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.05);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.1);
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -472,7 +472,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             }
         }
         .leaderboard-item:hover {
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             transform: translateX(4px);
         }
         .leaderboard-item:last-child {
@@ -480,9 +480,9 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
         }
         .leaderboard-item.current-user {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.15) 0%, 
+                rgba(20, 184, 166, 0.15) 0%, 
                 rgba(167, 139, 250, 0.1) 100%);
-            border-left: 3px solid #8b5cf6;
+            border-left: 3px solid #14B8A6;
         }
         .rank-number {
             width: 40px;
@@ -512,9 +512,9 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             box-shadow: 0 4px 15px rgba(205, 127, 50, 0.2);
         }
         .rank-number.other {
-            background: rgba(139, 92, 246, 0.1);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.1);
+            color: #2DD4BF;
+            border: 1px solid rgba(20, 184, 166, 0.2);
             font-size: 0.9rem;
         }
         .user-info {
@@ -527,14 +527,14 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 50%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
             font-size: 1.125rem;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
             position: relative;
         }
         .user-avatar img {
@@ -572,7 +572,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             gap: 0.5rem;
         }
         .you-badge {
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
             color: white;
             font-size: 0.65rem;
             padding: 0.125rem 0.5rem;
@@ -585,7 +585,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             gap: 1rem;
         }
         .user-level {
-            color: #8b5cf6;
+            color: #14B8A6;
             font-size: 0.8rem;
             font-weight: 500;
         }
@@ -610,7 +610,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             color: #fff;
             font-size: 1.125rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -627,26 +627,26 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             display: flex;
             align-items: center;
             padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.08);
             transition: all 0.3s ease;
             animation: slideIn 0.4s ease-out backwards;
         }
         .clan-item:hover {
-            background: rgba(139, 92, 246, 0.08);
+            background: rgba(20, 184, 166, 0.08);
             transform: translateX(4px);
         }
         .clan-avatar {
             width: 56px;
             height: 56px;
             border-radius: 16px;
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.5rem;
             margin-right: 1.25rem;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
         }
         .clan-info {
             flex: 1;
@@ -670,7 +670,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
             gap: 0.375rem;
         }
         .clan-meta-item svg {
-            color: #8b5cf6;
+            color: #14B8A6;
         }
 
         /* Empty State */
@@ -700,8 +700,8 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
 
         /* Motivational Message */
         .motivation-banner {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(20, 184, 166, 0.15));
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 16px;
             padding: 1.25rem 1.5rem;
             margin-bottom: 1.5rem;
@@ -805,7 +805,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
         <div class="dashboard-content">
             <div class="page-wrapper">
                 <div class="glass-header">
-                    <h1>🏅 Leaderboard</h1>
+                    <h1>ðŸ… Leaderboard</h1>
                     <p>Bersaing dengan developer lainnya dan raih posisi teratas!</p>
                 </div>
 
@@ -860,7 +860,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                             </div>
                             <?php elseif ($user_rank === 1): ?>
                             <div class="hero-progress" style="text-align: center;">
-                                <span style="color: #fbbf24; font-weight: 600;">🏆 Selamat! Anda berada di posisi #1!</span>
+                                <span style="color: #fbbf24; font-weight: 600;">ðŸ† Selamat! Anda berada di posisi #1!</span>
                             </div>
                             <?php endif; ?>
                         </div>
@@ -871,7 +871,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                 <!-- Motivational Banner -->
                 <?php if ($tab === 'solo' && $user_rank > 10): ?>
                 <div class="motivation-banner">
-                    <div class="motivation-icon">💪</div>
+                    <div class="motivation-icon">ðŸ’ª</div>
                     <div class="motivation-text">
                         <div class="motivation-title">Terus Belajar!</div>
                         <div class="motivation-subtitle">Selesaikan lebih banyak lesson untuk naik ke Top 10</div>
@@ -879,7 +879,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                 </div>
                 <?php elseif ($tab === 'solo' && $user_rank > 3 && $user_rank <= 10): ?>
                 <div class="motivation-banner">
-                    <div class="motivation-icon">🔥</div>
+                    <div class="motivation-icon">ðŸ”¥</div>
                     <div class="motivation-text">
                         <div class="motivation-title">Hampir Sampai!</div>
                         <div class="motivation-subtitle">Sedikit lagi untuk masuk podium Top 3!</div>
@@ -889,10 +889,10 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
 
                 <div class="glass-tabs">
                     <button class="glass-tab <?php echo $tab === 'solo' ? 'active' : ''; ?>" onclick="window.location.href='?tab=solo'">
-                        👤 Solo
+                        ðŸ‘¤ Solo
                     </button>
                     <button class="glass-tab <?php echo $tab === 'clan' ? 'active' : ''; ?>" onclick="window.location.href='?tab=clan'">
-                        💜 Clan
+                        ðŸ’œ Clan
                     </button>
                 </div>
 
@@ -918,7 +918,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                             <!-- First Place -->
                             <div class="podium-player first">
                                 <div class="podium-avatar-wrapper">
-                                    <div class="podium-crown">👑</div>
+                                    <div class="podium-crown">ðŸ‘‘</div>
                                     <div class="podium-avatar">
                                         <?php echo strtoupper(substr($solo_leaderboard[0]['nama_lengkap'], 0, 1)); ?>
                                     </div>
@@ -958,7 +958,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                     <div class="leaderboard-table" id="leaderboardTable">
                         <?php if (empty($solo_leaderboard)): ?>
                             <div class="leaderboard-empty">
-                                <div class="leaderboard-empty-icon">🏆</div>
+                                <div class="leaderboard-empty-icon">ðŸ†</div>
                                 <div class="leaderboard-empty-title">Belum ada data leaderboard</div>
                                 <div class="leaderboard-empty-text">Mulai belajar untuk tampil di leaderboard!</div>
                             </div>
@@ -1045,7 +1045,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                             <!-- First Place -->
                             <div class="podium-player first">
                                 <div class="podium-avatar-wrapper">
-                                    <div class="podium-crown">👑</div>
+                                    <div class="podium-crown">ðŸ‘‘</div>
                                     <div class="podium-avatar" style="border-radius: 20px;">
                                         <?php icon('users', 32); ?>
                                     </div>
@@ -1081,7 +1081,7 @@ $xp_lead = ($user_data['total_xp'] ?? 0) - $next_user_xp;
                     <div class="leaderboard-table" id="clanLeaderboardTable">
                         <?php if (empty($clan_leaderboard)): ?>
                             <div class="leaderboard-empty">
-                                <div class="leaderboard-empty-icon">💜</div>
+                                <div class="leaderboard-empty-icon">ðŸ’œ</div>
                                 <div class="leaderboard-empty-title">Belum ada clan</div>
                                 <div class="leaderboard-empty-text">Buat atau bergabung dengan clan untuk berkompetisi!</div>
                             </div>

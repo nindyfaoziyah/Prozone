@@ -34,7 +34,7 @@ $nav_active       = function ($href) use ($current_page) {
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <defs>
                         <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -72,7 +72,7 @@ $nav_active       = function ($href) use ($current_page) {
                 </h1>
                 <p class="hero-lead reveal">
                     Prozone menyediakan tools lengkap untuk menjadi developer. Dari code editor interaktif,
-                    gamifikasi yang seru, hingga komunitas yang supportive — semua dalam satu platform.
+                    gamifikasi yang seru, hingga komunitas yang supportive â€” semua dalam satu platform.
                 </p>
                 <div class="hero-ctas reveal">
                     <?php if (isLoggedIn()): ?>
@@ -94,7 +94,7 @@ $nav_active       = function ($href) use ($current_page) {
                 <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="featGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="0%" stop-color="#3B82F6"/>
                             <stop offset="100%" stop-color="#10B981"/>
                         </linearGradient>
                     </defs>
@@ -112,9 +112,9 @@ $nav_active       = function ($href) use ($current_page) {
                         <circle cx="55" cy="15" r="5" fill="#10B981"/>
                         <line class="hero-terminal-divider" x1="15" y1="35" x2="205" y2="35" stroke-width="2" opacity="0.5"/>
                         <text class="hero-terminal-cmd" x="15" y="60" font-family="monospace" font-size="13" font-weight="bold">&gt; learn coding</text>
-                        <text class="hero-terminal-ok" x="15" y="85" font-family="monospace" font-size="11">✓ Interactive editor</text>
-                        <text class="hero-terminal-ok" x="15" y="110" font-family="monospace" font-size="11">✓ Gamification</text>
-                        <text class="hero-terminal-dim" x="15" y="135" font-family="monospace" font-size="11">✓ Community</text>
+                        <text class="hero-terminal-ok" x="15" y="85" font-family="monospace" font-size="11">âœ“ Interactive editor</text>
+                        <text class="hero-terminal-ok" x="15" y="110" font-family="monospace" font-size="11">âœ“ Gamification</text>
+                        <text class="hero-terminal-dim" x="15" y="135" font-family="monospace" font-size="11">âœ“ Community</text>
                     </g>
 
                     <!-- XP badge -->
@@ -214,7 +214,7 @@ $nav_active       = function ($href) use ($current_page) {
                             <div class="xp-progress">
                                 <div class="xp-progress-bar" style="width: 65%"></div>
                             </div>
-                            <div class="xp-progress-label">Level 12 → 13</div>
+                            <div class="xp-progress-label">Level 12 â†’ 13</div>
                         </div>
                         <div class="achievement-strip">
                             <div class="achievement-item">
@@ -398,7 +398,7 @@ $nav_active       = function ($href) use ($current_page) {
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
                         <defs>
                             <linearGradient id="footerBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366F1"/>
+                                <stop offset="0%" stop-color="#3B82F6"/>
                                 <stop offset="100%" stop-color="#10B981"/>
                             </linearGradient>
                         </defs>

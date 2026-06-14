@@ -476,11 +476,11 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             gap: 1.5rem;
         }
         .clan-header {
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 50%, #2DD4BF 100%);
             color: white;
             padding: 1.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2), 0 0 0 1px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -541,12 +541,12 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         .chat-container {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 0.75rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             display: flex;
             flex-direction: column;
             height: 450px;
             max-height: 450px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
         .chat-messages {
             flex: 1;
@@ -565,25 +565,25 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             padding: 0.75rem;
             background: rgba(37, 37, 80, 0.6);
             border-radius: 0.5rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.2s ease;
         }
         .chat-message:hover {
             background: rgba(37, 37, 80, 0.8);
-            border-color: rgba(124, 58, 237, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
         }
         .chat-message.own {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(167, 139, 250, 0.15) 100%);
-            border-color: rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.25) 0%, rgba(167, 139, 250, 0.15) 100%);
+            border-color: rgba(20, 184, 166, 0.4);
             margin-left: auto;
             max-width: 85%;
-            box-shadow: 0 2px 6px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 2px 6px rgba(20, 184, 166, 0.2);
         }
         .chat-avatar {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -597,7 +597,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .chat-username {
             font-weight: 600;
-            color: #a78bfa;
+            color: #2DD4BF;
             margin-bottom: 0.15rem;
             font-size: 0.85rem;
         }
@@ -621,7 +621,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         .chat-input {
             flex: 1;
             padding: 0.75rem 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 25px;
             background: rgba(15, 15, 35, 0.6);
             color: #e0e7ff;
@@ -630,15 +630,15 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .chat-input:focus {
             outline: none;
-            border-color: rgba(124, 58, 237, 0.5);
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
             background: rgba(15, 15, 35, 0.8);
         }
         .chat-input::placeholder {
             color: #64748b;
         }
         .btn-send {
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%);
             color: white;
             border: none;
             padding: 0.75rem 1.5rem;
@@ -646,7 +646,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
             font-size: 0.85rem;
             display: flex;
             align-items: center;
@@ -654,8 +654,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .btn-send:hover {
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #0369A1 0%, #0284C7 100%);
         }
         
         /* Clan Stats Grid */
@@ -667,7 +667,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .clan-stat-card {
             background: linear-gradient(145deg, rgba(37, 37, 80, 0.7) 0%, rgba(45, 45, 90, 0.5) 100%);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 1rem;
             padding: 1.25rem;
             text-align: center;
@@ -677,8 +677,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .clan-stat-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(124, 58, 237, 0.4);
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
         }
         .clan-stat-card::before {
             content: '';
@@ -687,7 +687,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--stat-color, #8b5cf6), transparent);
+            background: linear-gradient(90deg, var(--stat-color, #14B8A6), transparent);
         }
         .clan-stat-icon {
             font-size: 2rem;
@@ -711,13 +711,13 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         .clan-activity {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             overflow: hidden;
         }
         .activity-header {
             padding: 1rem 1.25rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -756,7 +756,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         .activity-icon.xp { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
         .activity-icon.join { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-        .activity-icon.achievement { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .activity-icon.achievement { background: linear-gradient(135deg, #14B8A6 0%, #0284C7 100%); }
         .activity-text {
             flex: 1;
             font-size: 0.85rem;
@@ -770,8 +770,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         /* Enhanced Chat Header */
         .chat-header {
             padding: 1rem 1.25rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -831,8 +831,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
         .members-card h3 {
             color: #e2e8f0;
@@ -847,19 +847,19 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             background: rgba(37, 37, 80, 0.6);
             border-radius: 0.5rem;
             margin-bottom: 0.5rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.2s ease;
         }
         .member-item:hover {
             background: rgba(37, 37, 80, 0.8);
-            border-color: rgba(124, 58, 237, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
             transform: translateX(4px);
         }
         .member-avatar {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -895,7 +895,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.75rem;
         }
         .member-xp {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-size: 0.85rem;
             font-weight: 600;
         }
@@ -903,8 +903,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 1rem;
             padding: 1.75rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
         .clans-list h3 {
             color: #e2e8f0;
@@ -915,13 +915,13 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             background: rgba(37, 37, 80, 0.6);
             border-radius: 0.75rem;
             margin-bottom: 1rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.3s ease;
         }
         .clan-item:hover {
-            border-color: rgba(124, 58, 237, 0.4);
+            border-color: rgba(59, 130, 246, 0.4);
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
             background: rgba(37, 37, 80, 0.8);
         }
         .clan-item-name {
@@ -937,7 +937,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             margin-bottom: 0.5rem;
         }
         .btn-join-clan {
-            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%);
             color: white;
             border: none;
             padding: 0.6rem 1rem;
@@ -946,19 +946,19 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             cursor: pointer;
             width: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         .btn-join-clan:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-            background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #0369A1 0%, #0284C7 100%);
         }
         .create-clan-form {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%);
             border-radius: 1rem;
             padding: 2rem;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1);
         }
         .create-clan-form h3 {
             color: #e2e8f0;
@@ -986,27 +986,27 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         
         /* Member Action Menu Styles */
         .member-menu button:hover {
-            background: rgba(139, 92, 246, 0.15) !important;
+            background: rgba(20, 184, 166, 0.15) !important;
         }
         
         /* Chat Input Focus Effect */
         .chat-input:focus {
-            border-color: rgba(139, 92, 246, 0.5);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: rgba(20, 184, 166, 0.5);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
         }
         
         /* Clan Card Hover Effect */
         .clan-card:hover {
-            border-color: rgba(139, 92, 246, 0.4) !important;
+            border-color: rgba(20, 184, 166, 0.4) !important;
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25);
         }
         
         /* Search Input Styles */
         #searchClan:focus {
             outline: none;
-            border-color: rgba(139, 92, 246, 0.5);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: rgba(20, 184, 166, 0.5);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
         }
         
         /* Empty State Animation */
@@ -1025,7 +1025,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             align-items: center;
             gap: 4px;
             padding: 8px 12px;
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.1);
             border-radius: 12px;
             font-size: 0.8rem;
             color: #94a3b8;
@@ -1034,7 +1034,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         .typing-indicator span {
             width: 6px;
             height: 6px;
-            background: #a78bfa;
+            background: #2DD4BF;
             border-radius: 50%;
             animation: typing-bounce 1.4s infinite;
         }
@@ -1098,7 +1098,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         
         .member-item:hover {
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.2);
         }
         
         /* Button Shine Effect */
@@ -1136,13 +1136,13 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         
         .chat-messages::-webkit-scrollbar-thumb,
         .member-scroll::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.4);
+            background: rgba(20, 184, 166, 0.4);
             border-radius: 3px;
         }
         
         .chat-messages::-webkit-scrollbar-thumb:hover,
         .member-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.6);
+            background: rgba(20, 184, 166, 0.6);
         }
         
         /* Top Contributor Medal Animation */
@@ -1188,7 +1188,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         
         /* Emoji Picker Styles */
         .emoji-picker-btn {
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border: none;
             border-radius: 50%;
             width: 40px;
@@ -1202,7 +1202,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         
         .emoji-picker-btn:hover {
-            background: rgba(139, 92, 246, 0.4);
+            background: rgba(20, 184, 166, 0.4);
             transform: scale(1.1);
         }
         
@@ -1211,7 +1211,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             bottom: 100%;
             left: 0;
             background: rgba(30, 30, 60, 0.98);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: 12px;
             padding: 0.75rem;
             display: none;
@@ -1238,7 +1238,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
         
         .emoji-picker button:hover {
-            background: rgba(139, 92, 246, 0.3);
+            background: rgba(20, 184, 166, 0.3);
             transform: scale(1.2);
         }
         
@@ -1303,8 +1303,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             display: flex;
             align-items: center;
             gap: 0.375rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(20, 184, 166, 0.1) 100%);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             padding: 0.375rem 0.625rem;
             border-radius: 20px;
             font-size: 0.7rem;
@@ -1443,7 +1443,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             gap: 0.75rem;
             padding: 0.65rem 0.75rem;
             border-radius: 10px;
-            border: 1px solid rgba(124, 58, 237, 0.18);
+            border: 1px solid rgba(59, 130, 246, 0.18);
             background: rgba(37, 37, 80, 0.45);
             margin-bottom: 0.5rem;
         }
@@ -1455,7 +1455,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             width: 28px;
             text-align: center;
             font-weight: 900;
-            color: #a78bfa;
+            color: #2DD4BF;
         }
         .leaderboard-name {
             flex: 1;
@@ -1510,7 +1510,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="clan-container">
                         <div class="clan-main">
                             <!-- Enhanced Clan Header -->
-                            <div class="clan-header" style="background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 40%, #a78bfa 100%); position: relative; overflow: hidden;">
+                            <div class="clan-header" style="background: linear-gradient(135deg, #0369A1 0%, #14B8A6 40%, #2DD4BF 100%); position: relative; overflow: hidden;">
                                 <!-- Decorative Elements -->
                                 <div style="position: absolute; top: -50%; right: -10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
                                 <div style="position: absolute; bottom: -30%; left: 10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%); border-radius: 50%;"></div>
@@ -1539,7 +1539,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <?php icon('zap', 14); ?> <?php echo number_format($user_clan['total_xp']); ?> XP
                                     </span>
                                     <span style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem;">
-                                        👑 <?php echo htmlspecialchars($user_clan['leader_name']); ?>
+                                        ðŸ‘‘ <?php echo htmlspecialchars($user_clan['leader_name']); ?>
                                     </span>
                                     <span style="display: flex; align-items: center; gap: 0.5rem; background: rgba(16, 185, 129, 0.3); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; color: #a7f3d0;">
                                         <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse-dot 2s infinite;"></span>
@@ -1550,23 +1550,23 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 <!-- Clan Badges -->
                                 <div class="clan-badges" style="position: relative; z-index: 1; margin-top: 0.75rem;">
                                     <?php if ($user_clan['total_xp'] >= 10000): ?>
-                                        <span class="clan-badge gold">🏆 XP Master</span>
+                                        <span class="clan-badge gold">ðŸ† XP Master</span>
                                     <?php elseif ($user_clan['total_xp'] >= 5000): ?>
-                                        <span class="clan-badge gold">⭐ Rising Star</span>
+                                        <span class="clan-badge gold">â­ Rising Star</span>
                                     <?php endif; ?>
                                     
                                     <?php if ($user_clan['total_members'] >= 10): ?>
-                                        <span class="clan-badge emerald">👥 Growing Community</span>
+                                        <span class="clan-badge emerald">ðŸ‘¥ Growing Community</span>
                                     <?php endif; ?>
                                     
                                     <?php if (count($chat_messages) >= 50): ?>
-                                        <span class="clan-badge blue">💬 Active Chat</span>
+                                        <span class="clan-badge blue">ðŸ’¬ Active Chat</span>
                                     <?php endif; ?>
                                     
                                     <?php if ($user_clan['is_public']): ?>
-                                        <span class="clan-badge">🌐 Public Clan</span>
+                                        <span class="clan-badge">ðŸŒ Public Clan</span>
                                     <?php else: ?>
-                                        <span class="clan-badge">🔒 Private</span>
+                                        <span class="clan-badge">ðŸ”’ Private</span>
                                     <?php endif; ?>
                                 </div>
                                 
@@ -1581,17 +1581,17 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <!-- Clan Stats Cards -->
                             <div class="clan-stats-grid">
                                 <div class="clan-stat-card" style="--stat-color: #fbbf24;">
-                                    <span class="clan-stat-icon">🏆</span>
+                                    <span class="clan-stat-icon">ðŸ†</span>
                                     <div class="clan-stat-value" style="color: #fbbf24;">#<?php echo $clan_rank; ?></div>
                                     <div class="clan-stat-label">Ranking</div>
                                 </div>
-                                <div class="clan-stat-card" style="--stat-color: #a78bfa;">
-                                    <span class="clan-stat-icon">⚡</span>
-                                    <div class="clan-stat-value" style="color: #a78bfa;"><?php echo number_format($user_clan['total_xp']); ?></div>
+                                <div class="clan-stat-card" style="--stat-color: #2DD4BF;">
+                                    <span class="clan-stat-icon">âš¡</span>
+                                    <div class="clan-stat-value" style="color: #2DD4BF;"><?php echo number_format($user_clan['total_xp']); ?></div>
                                     <div class="clan-stat-label">Total XP</div>
                                 </div>
                                 <div class="clan-stat-card" style="--stat-color: #10b981;">
-                                    <span class="clan-stat-icon">👥</span>
+                                    <span class="clan-stat-icon">ðŸ‘¥</span>
                                     <div class="clan-stat-value" style="color: #10b981;"><?php echo $user_clan['total_members']; ?>/<?php echo $user_clan['max_members']; ?></div>
                                     <div class="clan-stat-label">Members</div>
                                 </div>
@@ -1615,7 +1615,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
                                 
                                 <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🆕</div>
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">ðŸ†•</div>
                                     <div>
                                         <div style="color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">Member Terbaru</div>
                                         <div style="color: #e0e7ff; font-weight: 600; font-size: 0.9rem;"><?php echo $newest_member ? htmlspecialchars($newest_member['nama_lengkap']) : 'Belum ada'; ?></div>
@@ -1623,7 +1623,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 </div>
                                 
                                 <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">💬</div>
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">ðŸ’¬</div>
                                     <div>
                                         <div style="color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">Pesan Hari Ini</div>
                                         <div style="color: #e0e7ff; font-weight: 600; font-size: 0.9rem;"><?php echo $today_chats; ?> pesan</div>
@@ -1631,7 +1631,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 </div>
                                 
                                 <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">⭐</div>
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">â­</div>
                                     <div>
                                         <div style="color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;">Top Contributor</div>
                                         <div style="color: #e0e7ff; font-weight: 600; font-size: 0.9rem;"><?php echo !empty($sorted_members) ? htmlspecialchars($sorted_members[0]['nama_lengkap']) : 'Belum ada'; ?></div>
@@ -1642,7 +1642,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <!-- Announcements -->
                             <div class="announcement-card" style="margin-bottom: 1rem;">
                                 <div class="announcement-header">
-                                    <h3 class="announcement-title">📢 Pengumuman Clan</h3>
+                                    <h3 class="announcement-title">ðŸ“¢ Pengumuman Clan</h3>
                                     <div style="color: #94a3b8; font-size: 0.75rem;">Terbaru</div>
                                 </div>
 
@@ -1655,7 +1655,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <div class="announcement-item <?php echo !empty($ann['is_pinned']) ? 'pinned' : ''; ?>">
                                             <h4>
                                                 <?php if (!empty($ann['is_pinned'])): ?>
-                                                    <span class="announcement-pill pinned">📌 PIN</span>
+                                                    <span class="announcement-pill pinned">ðŸ“Œ PIN</span>
                                                 <?php endif; ?>
                                                 <?php echo htmlspecialchars($ann['title'], ENT_QUOTES, 'UTF-8'); ?>
                                             </h4>
@@ -1663,7 +1663,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                             <div class="announcement-meta">
                                                 <span>
                                                     Oleh <strong><?php echo htmlspecialchars($ann['author_name'] ?? 'Unknown', ENT_QUOTES, 'UTF-8'); ?></strong>
-                                                    • <?php echo date('d M Y H:i', strtotime($ann['created_at'])); ?>
+                                                    â€¢ <?php echo date('d M Y H:i', strtotime($ann['created_at'])); ?>
                                                 </span>
                                                 <?php if ($user_clan && $user_clan['leader_id'] == $_SESSION['user_id']): ?>
                                                     <div class="announcement-actions">
@@ -1726,7 +1726,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <div class="chat-container">
                                 <div class="chat-header">
                                     <div class="chat-header-title">
-                                        💬 Clan Chat
+                                        ðŸ’¬ Clan Chat
                                     </div>
                                     <div class="chat-online-count">
                                         <?php echo $online_count; ?> member online
@@ -1735,13 +1735,13 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 <div class="chat-messages" id="chatMessages">
                                     <?php if (empty($chat_messages)): ?>
                                         <div class="empty-chat">
-                                            <div class="empty-chat-icon">💬</div>
+                                            <div class="empty-chat-icon">ðŸ’¬</div>
                                             <div class="empty-chat-text">Belum ada pesan. Mulai percakapan!</div>
                                         </div>
                                     <?php else: ?>
                                         <?php foreach ($chat_messages as $msg): ?>
                                             <div class="chat-message <?php echo $msg['user_id'] == $_SESSION['user_id'] ? 'own' : ''; ?>" data-id="<?php echo $msg['id']; ?>">
-                                                <div class="chat-avatar" style="background: linear-gradient(135deg, <?php echo $msg['user_id'] == $_SESSION['user_id'] ? '#10b981, #059669' : '#8b5cf6, #7c3aed'; ?>);">
+                                                <div class="chat-avatar" style="background: linear-gradient(135deg, <?php echo $msg['user_id'] == $_SESSION['user_id'] ? '#10b981, #059669' : '#14B8A6, #0284C7'; ?>);">
                                                     <?php echo strtoupper(substr($msg['nama_lengkap'], 0, 1)); ?>
                                                 </div>
                                                 <div class="chat-content">
@@ -1760,24 +1760,24 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                     
                                     <!-- Emoji Picker -->
                                     <div style="position: relative;">
-                                        <button type="button" class="emoji-picker-btn" onclick="toggleEmojiPicker()" title="Tambah emoji">😊</button>
+                                        <button type="button" class="emoji-picker-btn" onclick="toggleEmojiPicker()" title="Tambah emoji">ðŸ˜Š</button>
                                         <div class="emoji-picker" id="emojiPicker">
-                                            <button type="button" onclick="addEmoji('😀')">😀</button>
-                                            <button type="button" onclick="addEmoji('😂')">😂</button>
-                                            <button type="button" onclick="addEmoji('😍')">😍</button>
-                                            <button type="button" onclick="addEmoji('🤔')">🤔</button>
-                                            <button type="button" onclick="addEmoji('👍')">👍</button>
-                                            <button type="button" onclick="addEmoji('👏')">👏</button>
-                                            <button type="button" onclick="addEmoji('🎉')">🎉</button>
-                                            <button type="button" onclick="addEmoji('🔥')">🔥</button>
-                                            <button type="button" onclick="addEmoji('💪')">💪</button>
-                                            <button type="button" onclick="addEmoji('❤️')">❤️</button>
-                                            <button type="button" onclick="addEmoji('💯')">💯</button>
-                                            <button type="button" onclick="addEmoji('✨')">✨</button>
-                                            <button type="button" onclick="addEmoji('🚀')">🚀</button>
-                                            <button type="button" onclick="addEmoji('💻')">💻</button>
-                                            <button type="button" onclick="addEmoji('🤝')">🤝</button>
-                                            <button type="button" onclick="addEmoji('🙏')">🙏</button>
+                                            <button type="button" onclick="addEmoji('ðŸ˜€')">ðŸ˜€</button>
+                                            <button type="button" onclick="addEmoji('ðŸ˜‚')">ðŸ˜‚</button>
+                                            <button type="button" onclick="addEmoji('ðŸ˜')">ðŸ˜</button>
+                                            <button type="button" onclick="addEmoji('ðŸ¤”')">ðŸ¤”</button>
+                                            <button type="button" onclick="addEmoji('ðŸ‘')">ðŸ‘</button>
+                                            <button type="button" onclick="addEmoji('ðŸ‘')">ðŸ‘</button>
+                                            <button type="button" onclick="addEmoji('ðŸŽ‰')">ðŸŽ‰</button>
+                                            <button type="button" onclick="addEmoji('ðŸ”¥')">ðŸ”¥</button>
+                                            <button type="button" onclick="addEmoji('ðŸ’ª')">ðŸ’ª</button>
+                                            <button type="button" onclick="addEmoji('â¤ï¸')">â¤ï¸</button>
+                                            <button type="button" onclick="addEmoji('ðŸ’¯')">ðŸ’¯</button>
+                                            <button type="button" onclick="addEmoji('âœ¨')">âœ¨</button>
+                                            <button type="button" onclick="addEmoji('ðŸš€')">ðŸš€</button>
+                                            <button type="button" onclick="addEmoji('ðŸ’»')">ðŸ’»</button>
+                                            <button type="button" onclick="addEmoji('ðŸ¤')">ðŸ¤</button>
+                                            <button type="button" onclick="addEmoji('ðŸ™')">ðŸ™</button>
                                         </div>
                                     </div>
                                     
@@ -1793,7 +1793,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <!-- Clan Leaderboard -->
                             <div class="members-card" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.06) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(251, 191, 36, 0.18);">
                                 <h3 style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span>🏆 Leaderboard Clan</span>
+                                    <span>ðŸ† Leaderboard Clan</span>
                                     <span style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;">Top 10</span>
                                 </h3>
                                 <?php if (empty($clan_leaderboard)): ?>
@@ -1810,9 +1810,9 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             </div>
 
                             <!-- Activity Log -->
-                            <div class="members-card" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(139, 92, 246, 0.18);">
+                            <div class="members-card" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.06) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(20, 184, 166, 0.18);">
                                 <h3 style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span>📝 Aktivitas</span>
+                                    <span>ðŸ“ Aktivitas</span>
                                     <span style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;">Terbaru</span>
                                 </h3>
                                 <div class="member-scroll" style="max-height: 220px; overflow-y: auto; margin: 0 -0.25rem; padding: 0 0.25rem;">
@@ -1820,7 +1820,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <div style="color: #94a3b8; font-size: 0.85rem; padding: 0.5rem;">Belum ada aktivitas.</div>
                                     <?php else: ?>
                                         <?php foreach ($clan_activity as $act): ?>
-                                            <div style="padding: 0.65rem 0.75rem; border-radius: 10px; background: rgba(37, 37, 80, 0.45); border: 1px solid rgba(124, 58, 237, 0.15); margin-bottom: 0.5rem;">
+                                            <div style="padding: 0.65rem 0.75rem; border-radius: 10px; background: rgba(37, 37, 80, 0.45); border: 1px solid rgba(59, 130, 246, 0.15); margin-bottom: 0.5rem;">
                                                 <div style="color: #e0e7ff; font-size: 0.85rem; line-height: 1.4;">
                                                     <?php echo htmlspecialchars($act['description'] ?? 'Aktivitas', ENT_QUOTES, 'UTF-8'); ?>
                                                 </div>
@@ -1835,16 +1835,16 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
 
                             <!-- Top Contributors -->
                             <div class="members-card" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(251, 191, 36, 0.2);">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; color: #fbbf24;">🏅 Top Contributors</h3>
+                                <h3 style="display: flex; align-items: center; gap: 0.5rem; color: #fbbf24;">ðŸ… Top Contributors</h3>
                                 <?php 
                                 // Get top 3 (sorted_members already defined above)
                                 $top_3 = array_slice($sorted_members, 0, 3);
                                 $rank = 1;
                                 ?>
                                 <?php foreach ($top_3 as $top_member): ?>
-                                    <div class="member-item" style="background: <?php echo $rank === 1 ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(37, 37, 80, 0.6) 100%)' : 'rgba(37, 37, 80, 0.6)'; ?>; border-color: <?php echo $rank === 1 ? 'rgba(251, 191, 36, 0.3)' : 'rgba(124, 58, 237, 0.2)'; ?>;">
+                                    <div class="member-item" style="background: <?php echo $rank === 1 ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(37, 37, 80, 0.6) 100%)' : 'rgba(37, 37, 80, 0.6)'; ?>; border-color: <?php echo $rank === 1 ? 'rgba(251, 191, 36, 0.3)' : 'rgba(59, 130, 246, 0.2)'; ?>;">
                                         <div class="top-medal" style="font-size: 1.25rem; width: 28px; text-align: center;">
-                                            <?php echo $rank === 1 ? '🥇' : ($rank === 2 ? '🥈' : '🥉'); ?>
+                                            <?php echo $rank === 1 ? 'ðŸ¥‡' : ($rank === 2 ? 'ðŸ¥ˆ' : 'ðŸ¥‰'); ?>
                                         </div>
                                         <div class="member-avatar" style="background: linear-gradient(135deg, <?php echo $rank === 1 ? '#fbbf24, #f59e0b' : ($rank === 2 ? '#94a3b8, #64748b' : '#cd7f32, #a0522d'); ?>);">
                                             <?php echo strtoupper(substr($top_member['nama_lengkap'], 0, 1)); ?>
@@ -1852,7 +1852,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <div class="member-info">
                                             <div class="member-name" style="font-size: 0.85rem;"><?php echo htmlspecialchars($top_member['nama_lengkap']); ?></div>
                                         </div>
-                                        <div class="member-xp" style="color: <?php echo $rank === 1 ? '#fbbf24' : '#a78bfa'; ?>;">
+                                        <div class="member-xp" style="color: <?php echo $rank === 1 ? '#fbbf24' : '#2DD4BF'; ?>;">
                                             <?php echo number_format($top_member['total_xp'] ?? 0); ?>
                                         </div>
                                     </div>
@@ -1862,7 +1862,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <!-- All Members -->
                             <div class="members-card">
                                 <h3 style="display: flex; align-items: center; justify-content: space-between;">
-                                    <span>👥 All Members</span>
+                                    <span>ðŸ‘¥ All Members</span>
                                     <span style="font-size: 0.75rem; color: #94a3b8; font-weight: normal;"><?php echo count($clan_members); ?>/<?php echo $user_clan['max_members']; ?></span>
                                 </h3>
                                 <?php 
@@ -1876,7 +1876,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         <div class="member-avatar" style="background: linear-gradient(135deg, <?php 
                                             if ($member['role'] === 'leader') echo '#fbbf24, #f59e0b';
                                             elseif ($member['role'] === 'co_leader') echo '#60a5fa, #3b82f6';
-                                            else echo '#8b5cf6, #7c3aed';
+                                            else echo '#14B8A6, #0284C7';
                                         ?>);">
                                             <?php echo strtoupper(substr($member['nama_lengkap'], 0, 1)); ?>
                                             <span class="status-indicator <?php echo (!empty($member['is_online']) && $member['is_online']) ? 'online' : 'offline'; ?>"></span>
@@ -1892,9 +1892,9 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                             </div>
                                             <div class="member-role" style="font-size: 0.7rem;">
                                                 <?php if (!empty($member['is_online']) && $member['is_online']): ?>
-                                                    <span style="color: #10b981;">● Online</span>
+                                                    <span style="color: #10b981;">â— Online</span>
                                                 <?php else: ?>
-                                                    <span style="color: #64748b;">○ Offline</span>
+                                                    <span style="color: #64748b;">â—‹ Offline</span>
                                                 <?php endif; ?>
                                                 <span style="color: #64748b; margin-left: 0.5rem;"><?php echo number_format($member['total_xp'] ?? 0); ?> XP</span>
                                             </div>
@@ -1902,8 +1902,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                         
                                         <?php if ($can_manage && $member['user_id'] != $_SESSION['user_id'] && $member['role'] !== 'leader'): ?>
                                         <div class="member-actions" style="position: relative;">
-                                            <button onclick="toggleMemberMenu(<?php echo $member['user_id']; ?>)" style="background: rgba(139, 92, 246, 0.2); border: none; color: #a78bfa; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 1rem;">⋮</button>
-                                            <div id="member-menu-<?php echo $member['user_id']; ?>" class="member-menu" style="display: none; position: absolute; right: 0; top: 100%; background: rgba(30, 30, 60, 0.98); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 4px; z-index: 100; min-width: 140px; box-shadow: 0 8px 25px rgba(0,0,0,0.4);">
+                                            <button onclick="toggleMemberMenu(<?php echo $member['user_id']; ?>)" style="background: rgba(20, 184, 166, 0.2); border: none; color: #2DD4BF; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 1rem;">â‹®</button>
+                                            <div id="member-menu-<?php echo $member['user_id']; ?>" class="member-menu" style="display: none; position: absolute; right: 0; top: 100%; background: rgba(30, 30, 60, 0.98); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: 8px; padding: 4px; z-index: 100; min-width: 140px; box-shadow: 0 8px 25px rgba(0,0,0,0.4);">
                                                 <?php if ($is_leader): ?>
                                                     <?php if ($member['role'] === 'member'): ?>
                                                         <form method="POST" style="margin: 0;">
@@ -1912,7 +1912,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                             <input type="hidden" name="clan_id" value="<?php echo $user_clan_id; ?>">
                                                             <input type="hidden" name="member_id" value="<?php echo $member['user_id']; ?>">
                                                             <input type="hidden" name="new_role" value="co_leader">
-                                                            <button type="submit" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #60a5fa; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">⭐ Jadikan Co-Leader</button>
+                                                            <button type="submit" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #60a5fa; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">â­ Jadikan Co-Leader</button>
                                                         </form>
                                                     <?php else: ?>
                                                         <form method="POST" style="margin: 0;">
@@ -1921,7 +1921,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                             <input type="hidden" name="clan_id" value="<?php echo $user_clan_id; ?>">
                                                             <input type="hidden" name="member_id" value="<?php echo $member['user_id']; ?>">
                                                             <input type="hidden" name="new_role" value="member">
-                                                            <button type="submit" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #94a3b8; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">↓ Turunkan ke Member</button>
+                                                            <button type="submit" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #94a3b8; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">â†“ Turunkan ke Member</button>
                                                         </form>
                                                     <?php endif; ?>
                                                     <form method="POST" style="margin: 0;">
@@ -1929,7 +1929,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                         <input type="hidden" name="action" value="transfer_leadership">
                                                         <input type="hidden" name="clan_id" value="<?php echo $user_clan_id; ?>">
                                                         <input type="hidden" name="new_leader_id" value="<?php echo $member['user_id']; ?>">
-                                                        <button type="submit" onclick="return confirm('Transfer kepemimpinan ke <?php echo htmlspecialchars($member['nama_lengkap']); ?>?')" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #fbbf24; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">👑 Transfer Leadership</button>
+                                                        <button type="submit" onclick="return confirm('Transfer kepemimpinan ke <?php echo htmlspecialchars($member['nama_lengkap']); ?>?')" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #fbbf24; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">ðŸ‘‘ Transfer Leadership</button>
                                                     </form>
                                                 <?php endif; ?>
                                                 <form method="POST" style="margin: 0;">
@@ -1937,7 +1937,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                     <input type="hidden" name="action" value="kick_member">
                                                     <input type="hidden" name="clan_id" value="<?php echo $user_clan_id; ?>">
                                                     <input type="hidden" name="member_id" value="<?php echo $member['user_id']; ?>">
-                                                    <button type="submit" onclick="return confirm('Keluarkan <?php echo htmlspecialchars($member['nama_lengkap']); ?> dari clan?')" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #ef4444; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">🚫 Keluarkan</button>
+                                                    <button type="submit" onclick="return confirm('Keluarkan <?php echo htmlspecialchars($member['nama_lengkap']); ?> dari clan?')" style="width: 100%; padding: 8px 12px; background: transparent; border: none; color: #ef4444; text-align: left; cursor: pointer; font-size: 0.8rem; border-radius: 4px;">ðŸš« Keluarkan</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -1949,8 +1949,8 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             
                             <?php if ($is_leader): ?>
                             <!-- Clan Settings (Leader Only) -->
-                            <div class="members-card" style="margin-top: 1rem; background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(139, 92, 246, 0.2);">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">⚙️ Pengaturan Clan</h3>
+                            <div class="members-card" style="margin-top: 1rem; background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(20, 184, 166, 0.2);">
+                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">âš™ï¸ Pengaturan Clan</h3>
                                 <form method="POST">
                                     <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                                     <input type="hidden" name="action" value="update_clan">
@@ -1958,23 +1958,23 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                     
                                     <div style="margin-bottom: 1rem;">
                                         <label style="display: block; margin-bottom: 0.4rem; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Deskripsi</label>
-                                        <textarea name="deskripsi" rows="2" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.85rem; resize: vertical; transition: all 0.3s;" onfocus="this.style.borderColor='rgba(139, 92, 246, 0.5)'" onblur="this.style.borderColor='rgba(124, 58, 237, 0.2)'"><?php echo htmlspecialchars($user_clan['deskripsi']); ?></textarea>
+                                        <textarea name="deskripsi" rows="2" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.85rem; resize: vertical; transition: all 0.3s;" onfocus="this.style.borderColor='rgba(20, 184, 166, 0.5)'" onblur="this.style.borderColor='rgba(59, 130, 246, 0.2)'"><?php echo htmlspecialchars($user_clan['deskripsi']); ?></textarea>
                                     </div>
                                     
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
                                         <div>
                                             <label style="display: block; margin-bottom: 0.4rem; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Max Members</label>
-                                            <input type="number" name="max_members" value="<?php echo $user_clan['max_members']; ?>" min="5" max="100" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.85rem;">
+                                            <input type="number" name="max_members" value="<?php echo $user_clan['max_members']; ?>" min="5" max="100" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.85rem;">
                                         </div>
                                         <div style="display: flex; align-items: flex-end;">
-                                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #b4bcd0; font-size: 0.85rem; cursor: pointer; padding: 0.625rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; width: 100%;">
-                                                <input type="checkbox" name="is_public" <?php echo $user_clan['is_public'] ? 'checked' : ''; ?> style="accent-color: #8b5cf6; width: 16px; height: 16px;"> 
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #b4bcd0; font-size: 0.85rem; cursor: pointer; padding: 0.625rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; width: 100%;">
+                                                <input type="checkbox" name="is_public" <?php echo $user_clan['is_public'] ? 'checked' : ''; ?> style="accent-color: #14B8A6; width: 16px; height: 16px;"> 
                                                 Public
                                             </label>
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);">
+                                    <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
                                         <?php icon('save', 14); ?> Simpan Perubahan
                                     </button>
                                 </form>
@@ -1987,19 +1987,19 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             $invite_code = strtoupper(substr(md5($user_clan_id . 'prozone_clan'), 0, 8));
                             ?>
                             <div class="invite-code-box">
-                                <h4 style="color: #60a5fa; font-size: 0.9rem; margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">🔗 Kode Undangan</h4>
+                                <h4 style="color: #60a5fa; font-size: 0.9rem; margin: 0 0 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">ðŸ”— Kode Undangan</h4>
                                 <p style="color: #94a3b8; font-size: 0.75rem; margin: 0;">Bagikan ke teman untuk bergabung</p>
                                 <div class="invite-code">
                                     <code id="inviteCode"><?php echo $invite_code; ?></code>
                                     <button type="button" class="copy-btn" onclick="copyInviteCode()" id="copyBtn">
-                                        📋 Copy
+                                        ðŸ“‹ Copy
                                     </button>
                                 </div>
                             </div>
                             
                             <!-- Quick Stats / Info Card -->
                             <div class="members-card tips-card" style="margin-top: 1rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(16, 185, 129, 0.2);">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; color: #10b981; margin-bottom: 0.75rem;">💡 Tips</h3>
+                                <h3 style="display: flex; align-items: center; gap: 0.5rem; color: #10b981; margin-bottom: 0.75rem;">ðŸ’¡ Tips</h3>
                                 <ul style="color: #94a3b8; font-size: 0.8rem; line-height: 1.7; padding-left: 1.25rem; margin: 0;">
                                     <li>Aktif di chat untuk membangun komunitas</li>
                                     <li>XP kamu berkontribusi ke ranking clan</li>
@@ -2013,7 +2013,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="clan-container" style="grid-template-columns: 1fr 350px;">
                         <!-- Main: Join Existing Clans -->
                         <div class="clan-main">
-                            <div class="clans-list" style="background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; padding: 1.75rem; border: 1px solid rgba(124, 58, 237, 0.2);">
+                            <div class="clans-list" style="background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; padding: 1.75rem; border: 1px solid rgba(59, 130, 246, 0.2);">
                                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                                     <h3 style="color: #e0e7ff; font-size: 1.25rem; margin: 0;"><?php icon('users', 20); ?> Pilih Clan untuk Bergabung</h3>
                                     <span style="color: #94a3b8; font-size: 0.85rem;"><?php echo count($all_clans); ?> clan tersedia</span>
@@ -2023,27 +2023,27 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                 <div style="margin-bottom: 1.5rem;">
                                     <div style="position: relative;">
                                         <input type="text" id="searchClan" placeholder="Cari clan..." 
-                                            style="width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 10px; color: #e0e7ff; font-size: 0.9rem; transition: all 0.3s;">
+                                            style="width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 10px; color: #e0e7ff; font-size: 0.9rem; transition: all 0.3s;">
                                         <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"><?php icon('search', 16); ?></span>
                                     </div>
                                 </div>
                                 
                                 <?php if (empty($all_clans)): ?>
-                                    <div style="text-align: center; padding: 3rem 2rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border: 1px dashed rgba(139, 92, 246, 0.3);">
-                                        <div style="font-size: 3rem; margin-bottom: 1rem;">🏰</div>
+                                    <div style="text-align: center; padding: 3rem 2rem; background: rgba(20, 184, 166, 0.05); border-radius: 12px; border: 1px dashed rgba(20, 184, 166, 0.3);">
+                                        <div style="font-size: 3rem; margin-bottom: 1rem;">ðŸ°</div>
                                         <p style="color: #e0e7ff; font-size: 1.1rem; margin-bottom: 0.5rem;">Belum ada clan yang tersedia</p>
                                         <p style="color: #94a3b8; font-size: 0.9rem;">Jadilah yang pertama membuat clan!</p>
                                     </div>
                                 <?php else: ?>
                                     <div class="clan-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
                                         <?php foreach ($all_clans as $clan_item): ?>
-                                            <div class="clan-card" data-name="<?php echo strtolower(htmlspecialchars($clan_item['nama_clan'])); ?>" data-desc="<?php echo strtolower(htmlspecialchars($clan_item['deskripsi'] ?? '')); ?>" style="background: linear-gradient(145deg, rgba(37, 37, 80, 0.7) 0%, rgba(45, 45, 90, 0.6) 100%); border-radius: 14px; padding: 1.25rem; border: 1px solid rgba(124, 58, 237, 0.2); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                                            <div class="clan-card" data-name="<?php echo strtolower(htmlspecialchars($clan_item['nama_clan'])); ?>" data-desc="<?php echo strtolower(htmlspecialchars($clan_item['deskripsi'] ?? '')); ?>" style="background: linear-gradient(145deg, rgba(37, 37, 80, 0.7) 0%, rgba(45, 45, 90, 0.6) 100%); border-radius: 14px; padding: 1.25rem; border: 1px solid rgba(59, 130, 246, 0.2); transition: all 0.3s ease; position: relative; overflow: hidden;">
                                                 <!-- Decorative top bar -->
-                                                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7c3aed, #a78bfa, #7c3aed);"></div>
+                                                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #0284C7, #2DD4BF, #0284C7);"></div>
                                                 
                                                 <!-- Clan Avatar & Name -->
                                                 <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; font-weight: bold;">
+                                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0284C7 0%, #2DD4BF 100%); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; font-weight: bold;">
                                                         <?php echo strtoupper(substr($clan_item['nama_clan'], 0, 1)); ?>
                                                     </div>
                                                     <div>
@@ -2060,10 +2060,10 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                 <!-- Stats -->
                                                 <div style="display: flex; gap: 1rem; margin-bottom: 1rem; padding: 0.75rem; background: rgba(15, 15, 35, 0.5); border-radius: 8px;">
                                                     <div style="flex: 1; text-align: center;">
-                                                        <div style="color: #a78bfa; font-weight: 700; font-size: 1.1rem;"><?php echo $clan_item['total_members']; ?>/<?php echo $clan_item['max_members']; ?></div>
+                                                        <div style="color: #2DD4BF; font-weight: 700; font-size: 1.1rem;"><?php echo $clan_item['total_members']; ?>/<?php echo $clan_item['max_members']; ?></div>
                                                         <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Members</div>
                                                     </div>
-                                                    <div style="width: 1px; background: rgba(139, 92, 246, 0.2);"></div>
+                                                    <div style="width: 1px; background: rgba(20, 184, 166, 0.2);"></div>
                                                     <div style="flex: 1; text-align: center;">
                                                         <div style="color: #fbbf24; font-weight: 700; font-size: 1.1rem;"><?php echo number_format($clan_item['total_xp']); ?></div>
                                                         <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase;">Total XP</div>
@@ -2076,7 +2076,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                                         <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                                                         <input type="hidden" name="action" value="join_clan">
                                                         <input type="hidden" name="clan_id" value="<?php echo $clan_item['id']; ?>">
-                                                        <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);">
+                                                        <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #0284C7 0%, #14B8A6 100%); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
                                                             <?php icon('user-plus', 16); ?> Bergabung
                                                         </button>
                                                     </form>
@@ -2094,7 +2094,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
 
                         <!-- Sidebar: Create New Clan -->
                         <div class="clan-sidebar">
-                            <div class="create-clan-form" style="background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(124, 58, 237, 0.2);">
+                            <div class="create-clan-form" style="background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(30, 30, 63, 0.98) 100%); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
                                 <h3 style="color: #e0e7ff; margin-bottom: 1.25rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
                                     <?php icon('plus', 18); ?> Buat Clan Baru
                                 </h3>
@@ -2106,19 +2106,19 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <input type="hidden" name="action" value="create_clan">
                                     <div class="form-group" style="margin-bottom: 1rem;">
                                         <label style="display: block; margin-bottom: 0.375rem; color: #b4bcd0; font-size: 0.8rem; font-weight: 500;">Nama Clan</label>
-                                        <input type="text" name="nama_clan" required placeholder="Contoh: Code Warriors" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem;">
+                                        <input type="text" name="nama_clan" required placeholder="Contoh: Code Warriors" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem;">
                                     </div>
                                     <div class="form-group" style="margin-bottom: 1rem;">
                                         <label style="display: block; margin-bottom: 0.375rem; color: #b4bcd0; font-size: 0.8rem; font-weight: 500;">Deskripsi</label>
-                                        <textarea name="deskripsi" rows="3" placeholder="Deskripsikan clan kamu..." style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem; resize: vertical;"></textarea>
+                                        <textarea name="deskripsi" rows="3" placeholder="Deskripsikan clan kamu..." style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem; resize: vertical;"></textarea>
                                     </div>
                                     <div class="form-group" style="margin-bottom: 1rem;">
                                         <label style="display: block; margin-bottom: 0.375rem; color: #b4bcd0; font-size: 0.8rem; font-weight: 500;">Max Members</label>
-                                        <input type="number" name="max_members" value="50" min="5" max="100" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem;">
+                                        <input type="number" name="max_members" value="50" min="5" max="100" style="width: 100%; padding: 0.625rem 0.875rem; background: rgba(15, 15, 35, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; color: #e0e7ff; font-size: 0.9rem;">
                                     </div>
                                     <div class="form-group" style="margin-bottom: 1.25rem;">
                                         <label style="display: flex; align-items: center; gap: 0.5rem; color: #b4bcd0; font-size: 0.85rem; cursor: pointer;">
-                                            <input type="checkbox" name="is_public" checked style="width: 16px; height: 16px; accent-color: #8b5cf6;"> 
+                                            <input type="checkbox" name="is_public" checked style="width: 16px; height: 16px; accent-color: #14B8A6;"> 
                                             Public Clan (dapat ditemukan)
                                         </label>
                                     </div>
@@ -2205,7 +2205,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                         noResults = document.createElement('div');
                         noResults.id = 'noSearchResults';
                         noResults.style.cssText = 'text-align: center; padding: 2rem; color: #94a3b8;';
-                        noResults.innerHTML = '<p>🔍 Tidak ada clan yang cocok dengan "' + searchTerm + '"</p>';
+                        noResults.innerHTML = '<p>ðŸ” Tidak ada clan yang cocok dengan "' + searchTerm + '"</p>';
                         document.querySelector('.clan-cards-grid').appendChild(noResults);
                     }
                 } else if (noResults) {
@@ -2247,7 +2247,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             messageDiv.className = 'chat-message';
                             messageDiv.setAttribute('data-id', msg.id);
                             messageDiv.innerHTML = `
-                                <div class="chat-avatar" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">${escapeHtml(msg.nama_lengkap.charAt(0).toUpperCase())}</div>
+                                <div class="chat-avatar" style="background: linear-gradient(135deg, #14B8A6, #0284C7);">${escapeHtml(msg.nama_lengkap.charAt(0).toUpperCase())}</div>
                                 <div class="chat-content">
                                     <div class="chat-username">${escapeHtml(msg.nama_lengkap)}</div>
                                     <div class="chat-text">${escapeHtml(msg.message)}</div>
@@ -2363,10 +2363,10 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
             const btn = document.getElementById('copyBtn');
             
             navigator.clipboard.writeText(code.textContent).then(() => {
-                btn.textContent = '✓ Copied!';
+                btn.textContent = 'âœ“ Copied!';
                 btn.classList.add('copied');
                 setTimeout(() => {
-                    btn.textContent = '📋 Copy';
+                    btn.textContent = 'ðŸ“‹ Copy';
                     btn.classList.remove('copied');
                 }, 2000);
             }).catch(() => {
@@ -2377,10 +2377,10 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-                btn.textContent = '✓ Copied!';
+                btn.textContent = 'âœ“ Copied!';
                 btn.classList.add('copied');
                 setTimeout(() => {
-                    btn.textContent = '📋 Copy';
+                    btn.textContent = 'ðŸ“‹ Copy';
                     btn.classList.remove('copied');
                 }, 2000);
             });

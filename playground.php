@@ -21,7 +21,7 @@ $templates = [
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #14B8A6 100%);
         }
         h1 {
             color: white;
@@ -266,8 +266,8 @@ $templates = [
         <div class="display" id="display">0</div>
         <div class="buttons">
             <button class="clear" onclick="clearD()">C</button>
-            <button class="op" onclick="addOp(\'/\')">÷</button>
-            <button class="op" onclick="addOp(\'*\')">×</button>
+            <button class="op" onclick="addOp(\'/\')">Ã·</button>
+            <button class="op" onclick="addOp(\'*\')">Ã—</button>
             <button class="num" onclick="addNum(\'7\')">7</button>
             <button class="num" onclick="addNum(\'8\')">8</button>
             <button class="num" onclick="addNum(\'9\')">9</button>
@@ -856,26 +856,26 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
         .playground-container { max-width: 1600px; margin: 0 auto; padding: 1.5rem; }
         .playground-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
         .playground-title { display: flex; align-items: center; gap: 0.75rem; }
-        .playground-title h1 { font-size: 1.5rem; margin: 0; background: linear-gradient(135deg, #a78bfa, #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .playground-title h1 { font-size: 1.5rem; margin: 0; background: linear-gradient(135deg, #2DD4BF, #14B8A6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .playground-title .icon { font-size: 2rem; }
-        .language-tabs { display: flex; gap: 0.5rem; background: rgba(15, 15, 35, 0.6); padding: 0.35rem; border-radius: 10px; border: 1px solid rgba(139, 92, 246, 0.2); flex-wrap: wrap; }
+        .language-tabs { display: flex; gap: 0.5rem; background: rgba(15, 15, 35, 0.6); padding: 0.35rem; border-radius: 10px; border: 1px solid rgba(20, 184, 166, 0.2); flex-wrap: wrap; }
         .lang-tab { padding: 0.5rem 1rem; border-radius: 6px; border: none; background: transparent; color: #94a3b8; font-size: 0.85rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease; }
         .lang-tab .tab-logo { width: 18px; height: 18px; object-fit: contain; }
-        .lang-tab:hover { background: rgba(139, 92, 246, 0.1); color: #e2e8f0; }
-        .lang-tab.active { background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: white; }
+        .lang-tab:hover { background: rgba(20, 184, 166, 0.1); color: #e2e8f0; }
+        .lang-tab.active { background: linear-gradient(135deg, #0284C7, #14B8A6); color: white; }
         .lang-tab.active .tab-logo { filter: brightness(1.2); }
         .playground-actions { display: flex; gap: 0.5rem; }
         .btn-run { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
         .btn-run:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
         .btn-run:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .btn-clear, .btn-copy { padding: 0.6rem 1rem; background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 8px; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; }
-        .btn-clear:hover, .btn-copy:hover { background: rgba(139, 92, 246, 0.25); border-color: rgba(139, 92, 246, 0.4); }
+        .btn-clear, .btn-copy { padding: 0.6rem 1rem; background: rgba(20, 184, 166, 0.15); color: #2DD4BF; border: 1px solid rgba(20, 184, 166, 0.25); border-radius: 8px; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; }
+        .btn-clear:hover, .btn-copy:hover { background: rgba(20, 184, 166, 0.25); border-color: rgba(20, 184, 166, 0.4); }
         .playground-main { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; height: calc(100vh - 320px); min-height: 400px; }
-        .editor-panel, .output-panel { background: #1e1e32; border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-        .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(15, 15, 35, 0.5); border-bottom: 1px solid rgba(139, 92, 246, 0.1); }
+        .editor-panel, .output-panel { background: #1e1e32; border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+        .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(15, 15, 35, 0.5); border-bottom: 1px solid rgba(20, 184, 166, 0.1); }
         .panel-title { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: #e2e8f0; }
         .panel-title .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .panel-title .dot.editor { background: #a78bfa; }
+        .panel-title .dot.editor { background: #2DD4BF; }
         .panel-title .dot.output { background: #10b981; }
         .panel-body { flex: 1; overflow: auto; }
         .CodeMirror { height: 100% !important; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 14px; }
@@ -886,14 +886,14 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
         .console-line.log { color: #10b981; }
         .templates-panel { margin-top: 1.5rem; }
         .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
-        .template-card { background: rgba(30, 30, 50, 0.8); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.2s ease; }
-        .template-card:hover { background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.3); transform: translateY(-2px); }
+        .template-card { background: rgba(30, 30, 50, 0.8); border: 1px solid rgba(20, 184, 166, 0.15); border-radius: 10px; padding: 1rem; cursor: pointer; transition: all 0.2s ease; }
+        .template-card:hover { background: rgba(20, 184, 166, 0.1); border-color: rgba(20, 184, 166, 0.3); transform: translateY(-2px); }
         .template-icon { font-size: 2rem; margin-bottom: 0.5rem; }
         .template-name { color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
         .template-desc { color: #94a3b8; font-size: 0.75rem; }
         .shortcuts-hint { display: flex; gap: 1rem; align-items: center; color: #64748b; font-size: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
         .shortcut { display: flex; align-items: center; gap: 0.25rem; }
-        .shortcut kbd { background: rgba(139, 92, 246, 0.2); color: #a78bfa; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        .shortcut kbd { background: rgba(20, 184, 166, 0.2); color: #2DD4BF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
         @media (max-width: 1024px) {
             .playground-main { grid-template-columns: 1fr; height: auto; }
             .editor-panel, .output-panel { min-height: 300px; }
@@ -1193,7 +1193,7 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
             var btn = document.getElementById('runBtn');
             var consoleEl = document.getElementById('consoleOutput');
             btn.disabled = true;
-            btn.innerHTML = '<span>⏳</span> Running...';
+            btn.innerHTML = '<span>â³</span> Running...';
 
             if (currentLang === 'html') {
                 // Run HTML in iframe
@@ -1203,7 +1203,7 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
                 doc.write(code);
                 doc.close();
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Run';
+                btn.innerHTML = '<span>â–¶</span> Run';
             } else if (currentLang === 'javascript') {
                 // Run JavaScript in browser with captured console
                 consoleEl.innerHTML = '';
@@ -1253,7 +1253,7 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
                 
                 document.body.removeChild(sandbox);
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Run';
+                btn.innerHTML = '<span>â–¶</span> Run';
             } else {
                 // Run Python/PHP/Java/C++ via API
                 fetch('api/run-code.php', {
@@ -1270,15 +1270,15 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
                     if (isCompilerMissing) {
                         if (currentLang === 'java') {
                             onlineButtons = '<div style="margin-top:10px; padding-top:10px; border-top:1px solid #333;">' +
-                                '<span style="color:#10b981; font-weight:bold;">🚀 Run Online: </span>' +
-                                '<a href="https://www.jdoodle.com/online-java-compiler/" target="_blank" style="color:#8b5cf6; margin-right:10px;">JDoodle</a>' +
+                                '<span style="color:#10b981; font-weight:bold;">ðŸš€ Run Online: </span>' +
+                                '<a href="https://www.jdoodle.com/online-java-compiler/" target="_blank" style="color:#14B8A6; margin-right:10px;">JDoodle</a>' +
                                 '<a href="https://www.programiz.com/java-programming/online-compiler/" target="_blank" style="color:#3b82f6; margin-right:10px;">Programiz</a>' +
                                 '<a href="https://www.onlinegdb.com/online_java_compiler" target="_blank" style="color:#10b981;">OnlineGDB</a>' +
                                 '</div>';
                         } else if (currentLang === 'cpp') {
                             onlineButtons = '<div style="margin-top:10px; padding-top:10px; border-top:1px solid #333;">' +
-                                '<span style="color:#10b981; font-weight:bold;">🚀 Run Online: </span>' +
-                                '<a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" style="color:#8b5cf6; margin-right:10px;">OnlineGDB</a>' +
+                                '<span style="color:#10b981; font-weight:bold;">ðŸš€ Run Online: </span>' +
+                                '<a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" style="color:#14B8A6; margin-right:10px;">OnlineGDB</a>' +
                                 '<a href="https://www.programiz.com/cpp-programming/online-compiler/" target="_blank" style="color:#3b82f6; margin-right:10px;">Programiz</a>' +
                                 '<a href="https://cpp.sh/" target="_blank" style="color:#10b981;">cpp.sh</a>' +
                                 '</div>';
@@ -1292,7 +1292,7 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
                 })
                 .finally(function() {
                     btn.disabled = false;
-                    btn.innerHTML = '<span>▶</span> Run';
+                    btn.innerHTML = '<span>â–¶</span> Run';
                 });
             }
         }

@@ -14,7 +14,7 @@
     <div class="share-menu" id="shareMenu">
         <div class="share-header">
             <span>Bagikan ke</span>
-            <button class="close-share" onclick="toggleShareMenu()">×</button>
+            <button class="close-share" onclick="toggleShareMenu()">Ã—</button>
         </div>
         <div class="share-options">
             <button class="share-option" onclick="shareToTwitter()">
@@ -55,9 +55,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
+    background: rgba(20, 184, 166, 0.1);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    color: #2DD4BF;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     cursor: pointer;
@@ -67,8 +67,8 @@
 }
 
 .share-trigger:hover {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.4);
+    background: rgba(20, 184, 166, 0.2);
+    border-color: rgba(20, 184, 166, 0.4);
 }
 
 .share-menu {
@@ -77,7 +77,7 @@
     right: 0;
     margin-top: 0.5rem;
     background: #1e1e32;
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(20, 184, 166, 0.2);
     border-radius: 12px;
     padding: 0.75rem;
     min-width: 200px;
@@ -102,7 +102,7 @@
     align-items: center;
     padding-bottom: 0.75rem;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.1);
 }
 
 .share-header span {
@@ -144,7 +144,7 @@
 }
 
 .share-option:hover {
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(20, 184, 166, 0.1);
 }
 
 .share-option svg {

@@ -81,10 +81,9 @@ class Course {
     }
 
     public function readAll() {
-        $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
+        $query = "SELECT c.*, cat.nama_kategori
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.instructor_id = u.id
                   ORDER BY c.created_at DESC";
 
         $stmt = $this->conn->prepare($query);
@@ -94,10 +93,9 @@ class Course {
     }
 
     public function readOne() {
-        $query = "SELECT c.*, cat.nama_kategori, cat.slug as kategori_slug, u.nama_lengkap as instructor_name
+        $query = "SELECT c.*, cat.nama_kategori, cat.slug as kategori_slug
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE c.id = :id OR c.slug = :slug";
 
         $stmt = $this->conn->prepare($query);
@@ -202,10 +200,9 @@ class Course {
     }
 
     public function getCoursesByCategory($kategori_id) {
-        $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
+        $query = "SELECT c.*, cat.nama_kategori
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE c.kategori_id = :kategori_id AND c.is_published = 1
                   ORDER BY c.created_at DESC";
 
@@ -217,10 +214,9 @@ class Course {
     }
 
     public function search($keyword) {
-        $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
+        $query = "SELECT c.*, cat.nama_kategori
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE (c.judul_course LIKE :keyword OR c.deskripsi LIKE :keyword) 
                   AND c.is_published = 1
                   ORDER BY c.judul_course ASC";

@@ -120,7 +120,6 @@ Kemudian buka: `http://localhost:8000`
 | Username       | Password   | Role        |
 | -------------- | ---------- | ----------- |
 | `admin`        | `password` | admin       |
-| `instructor1`  | `password` | instructor  |
 | `student1`     | `password` | student     |
 
 > ⚠️ **Change these passwords immediately in production!**

@@ -2,22 +2,22 @@
    PROZONE ACHIEVEMENT / TROPHY SYSTEM
    ============================================================ */
 
-/* ── Rarity Color Tokens ─────────────────────────────────── */
+/* â”€â”€ Rarity Color Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
     --rarity-bronze:    #CD7F32;
     --rarity-silver:    #94A3B8;
     --rarity-gold:      #F59E0B;
-    --rarity-platinum:  #6C4CFD;
+    --rarity-platinum:  #3B82F6;
     --rarity-diamond:   #06B6D4;
 
     --rarity-bronze-bg:    rgba(205, 127, 50, 0.1);
     --rarity-silver-bg:    rgba(148, 163, 184, 0.1);
     --rarity-gold-bg:      rgba(245, 158, 11, 0.1);
-    --rarity-platinum-bg:  rgba(108, 76, 253, 0.1);
+    --rarity-platinum-bg:  rgba(59, 130, 246, 0.1);
     --rarity-diamond-bg:   rgba(6, 182, 212, 0.1);
 }
 
-/* ── Rarity Badge ─────────────────────────────────────────── */
+/* â”€â”€ Rarity Badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .rarity-badge {
     display: inline-flex;
     align-items: center;
@@ -182,7 +182,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--ach-accent, linear-gradient(90deg, #6C4CFD, #8B72FF));
+    background: var(--ach-accent, linear-gradient(90deg, #3B82F6, #0EA5E9));
 }
 
 .ach-rank-icon-wrap {
@@ -293,7 +293,7 @@
 
 .ach-next-req {
     font-size: 0.68rem;
-    color: #6C4CFD;
+    color: #3B82F6;
     font-weight: 600;
 }
 
@@ -344,7 +344,7 @@
 }
 
 .ach-card.active-rank {
-    border-color: #6C4CFD;
+    border-color: #3B82F6;
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15), 0 8px 24px rgba(99, 102, 241, 0.12);
 }
 
@@ -483,7 +483,7 @@
     color: #16A34A;
 }
 
-.ach-card-req span { color: #6C4CFD; font-weight: 700; }
+.ach-card-req span { color: #3B82F6; font-weight: 700; }
 
 .ach-card-req.met span { color: #16A34A; }
 
@@ -510,13 +510,13 @@
 
 .ach-status-active {
     background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
-    color: #6C4CFD;
+    color: #3B82F6;
     border: 1px solid #E0E7FF;
     pointer-events: none;
 }
 
 .ach-status-unlocked {
-    background: linear-gradient(135deg, #6C4CFD, #5A3FF5);
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
     color: white;
     border: none;
     cursor: pointer;
@@ -527,7 +527,7 @@
 
 .ach-status-unlocked:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(108,76,253,0.3);
+    box-shadow: 0 6px 20px rgba(59,130,246,0.3);
 }
 
 .ach-status-locked {
@@ -565,7 +565,7 @@
 
 .ach-progress-header strong {
     font-size: 1rem;
-    color: #6C4CFD;
+    color: #3B82F6;
     font-weight: 800;
 }
 
@@ -579,7 +579,7 @@
 
 .ach-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #6C4CFD, #22C55E);
+    background: linear-gradient(90deg, #3B82F6, #22C55E);
     border-radius: 999px;
     transition: width 0.8s ease;
     position: relative;

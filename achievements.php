@@ -69,21 +69,21 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             transform: scaleX(0);
             transition: transform 0.3s;
         }
         .achievement-card:hover {
             transform: translateY(-3px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+            border-color: rgba(20, 184, 166, 0.3);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.15);
         }
         .achievement-card:hover::before {
             transform: scaleX(1);
         }
         .achievement-card.earned {
-            border-color: rgba(139, 92, 246, 0.4);
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(30, 30, 55, 0.5) 100%);
+            border-color: rgba(20, 184, 166, 0.4);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(30, 30, 55, 0.5) 100%);
         }
         .achievement-card.earned::before {
             transform: scaleX(1);
@@ -111,7 +111,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         }
         .achievement-xp {
             display: inline-block;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
@@ -134,18 +134,18 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         }
         .btn-share-achievement {
             margin-top: 0.5rem;
-            background: rgba(139, 92, 246, 0.15);
-            color: #a78bfa;
+            background: rgba(20, 184, 166, 0.15);
+            color: #2DD4BF;
             padding: 0.35rem 0.75rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(20, 184, 166, 0.3);
             border-radius: 0.5rem;
             font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.3s;
         }
         .btn-share-achievement:hover {
-            background: rgba(139, 92, 246, 0.25);
-            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(20, 184, 166, 0.25);
+            border-color: rgba(20, 184, 166, 0.5);
         }
         /* Share Modal */
         .share-modal {
@@ -169,7 +169,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
             padding: 1.5rem;
             max-width: 400px;
             width: 90%;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .share-modal-header {
             display: flex;
@@ -199,15 +199,15 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
             align-items: center;
             gap: 0.5rem;
             padding: 1rem;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 0.75rem;
             cursor: pointer;
             transition: all 0.3s;
             color: #e2e8f0;
         }
         .share-option:hover {
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             transform: translateY(-2px);
         }
         .share-option svg {
@@ -228,7 +228,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         <div class="dashboard-content">
             <div class="page-wrapper">
                 <div class="glass-header">
-                    <h1>🏆 Achievements</h1>
+                    <h1>ðŸ† Achievements</h1>
                     <p>Kumpulkan achievement dan dapatkan bonus XP!</p>
                 </div>
 
@@ -256,7 +256,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
                 <div class="achievements-grid">
                     <?php if (empty($achievements)): ?>
                         <div class="glass-empty-state" style="grid-column: 1 / -1;">
-                            <div class="glass-empty-icon">🏆</div>
+                            <div class="glass-empty-icon">ðŸ†</div>
                             <p class="glass-empty-title">Belum ada achievement yang tersedia</p>
                             <p class="glass-empty-text">Selesaikan berbagai tantangan untuk mendapatkan achievement!</p>
                         </div>
@@ -265,7 +265,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
                             <?php $is_earned = !empty($ach['earned_at']); ?>
                             <div class="achievement-card <?php echo $is_earned ? 'earned' : ''; ?>">
                                 <?php if ($is_earned): ?>
-                                    <div class="achievement-badge">✓ Diperoleh</div>
+                                    <div class="achievement-badge">âœ“ Diperoleh</div>
                                 <?php endif; ?>
                                 <div class="achievement-icon"><?php echo htmlspecialchars($ach['icon']); ?></div>
                                 <div class="achievement-name"><?php echo htmlspecialchars($ach['nama_achievement']); ?></div>
@@ -276,7 +276,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
                                         Diperoleh: <?php echo date('d/m/Y', strtotime($ach['earned_at'])); ?>
                                     </div>
                                     <button class="btn-share-achievement" onclick="shareAchievement('<?php echo htmlspecialchars($ach['nama_achievement']); ?>', '<?php echo htmlspecialchars($ach['icon']); ?>')">
-                                        🔗 Bagikan
+                                        ðŸ”— Bagikan
                                     </button>
                                 <?php else: ?>
                                     <div style="margin-top: 0.75rem; font-size: 0.7rem; color: rgba(148, 163, 184, 0.7);">
@@ -298,8 +298,8 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
     <div class="share-modal" id="shareModal">
         <div class="share-modal-content">
             <div class="share-modal-header">
-                <h3>🔗 Bagikan Achievement</h3>
-                <button class="share-modal-close" onclick="closeShareModal()">×</button>
+                <h3>ðŸ”— Bagikan Achievement</h3>
+                <button class="share-modal-close" onclick="closeShareModal()">Ã—</button>
             </div>
             <p style="color: #94a3b8; margin-bottom: 1rem; font-size: 0.9rem;">Bagikan pencapaian Anda ke:</p>
             <div class="share-options">

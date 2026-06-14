@@ -1,4 +1,4 @@
-﻿/* Learning Path - Role Selection + Path View */
+/* Learning Path - Role Selection + Path View */
 .learning-path-page {
   padding: 24px 0 120px;
   position: relative;
@@ -545,8 +545,8 @@
 }
 
 .lp-stat-icon--progress {
-  background: rgba(139, 92, 246, 0.12);
-  color: #7c3aed;
+  background: rgba(20, 184, 166, 0.12);
+  color: #0284C7;
 }
 
 .lp-stat-info {
@@ -590,7 +590,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
   display: grid;
   place-items: center;
   box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
@@ -660,7 +660,7 @@
 .lp-role-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 40px rgba(99, 102, 241, 0.1);
-  border-color: var(--role-color, #6366f1);
+  border-color: var(--role-color, #3B82F6);
 }
 
 .lp-role-card:active {
@@ -685,7 +685,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--role-gradient, linear-gradient(135deg, #6366f1, #8b5cf6));
+  background: var(--role-gradient, linear-gradient(135deg, #3B82F6, #14B8A6));
   opacity: 0.04;
 }
 
@@ -767,7 +767,7 @@
 
 .lp-role-progress-fill {
   height: 100%;
-  background: var(--role-gradient, linear-gradient(90deg, #6366f1, #22c55e));
+  background: var(--role-gradient, linear-gradient(90deg, #3B82F6, #22c55e));
   border-radius: 999px;
   transition: width 0.6s ease;
 }
@@ -775,7 +775,7 @@
 .lp-role-progress-text {
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--role-color, #6366f1);
+  color: var(--role-color, #3B82F6);
   flex-shrink: 0;
 }
 
@@ -790,7 +790,7 @@
   width: 100%;
   padding: 12px 0;
   border-radius: 12px;
-  background: var(--role-gradient, linear-gradient(135deg, #6366f1, #8b5cf6));
+  background: var(--role-gradient, linear-gradient(135deg, #3B82F6, #14B8A6));
   color: white;
   font-size: 0.85rem;
   font-weight: 700;
@@ -986,7 +986,7 @@
 .lp-card-badge--completed { background: #22c55e; }
 
 .lp-card-badge--active {
-  background: #6366f1;
+  background: #3B82F6;
   animation: badge-pulse 2s ease-in-out infinite;
 }
 
@@ -1000,7 +1000,7 @@
 .lp-card-level {
   font-size: 0.68rem;
   font-weight: 700;
-  color: #6366f1;
+  color: #3B82F6;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   display: block;
@@ -1070,7 +1070,7 @@
 
 .lp-card:hover .lp-card-arrow {
   transform: translateX(4px);
-  color: #6366f1;
+  color: #3B82F6;
 }
 
 .lp-card.completed { border-color: rgba(34, 197, 94, 0.2); }
@@ -1149,7 +1149,7 @@
 .lp-detail-level {
   font-size: 0.72rem;
   font-weight: 700;
-  color: #6366f1;
+  color: #3B82F6;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   display: block;

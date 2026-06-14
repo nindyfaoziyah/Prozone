@@ -284,13 +284,13 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .profile-xp-progress {
             height: 8px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 4px;
             overflow: hidden;
         }
         .profile-xp-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF);
             border-radius: 4px;
             transition: width 1s ease-out;
         }
@@ -299,7 +299,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         /* Profile Hero Card */
         .profile-hero {
             background: linear-gradient(135deg, 
-                rgba(139, 92, 246, 0.15) 0%, 
+                rgba(20, 184, 166, 0.15) 0%, 
                 rgba(59, 130, 246, 0.1) 50%,
                 rgba(236, 72, 153, 0.08) 100%);
             border-radius: 24px;
@@ -307,7 +307,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .profile-hero::before {
             content: '';
@@ -316,7 +316,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             right: -100px;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
         .profile-hero-content {
@@ -334,7 +334,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -342,7 +342,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 3.5rem;
             font-weight: bold;
             position: relative;
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3), 0 10px 40px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.3), 0 10px 40px rgba(20, 184, 166, 0.3);
             animation: avatar-glow 3s ease-in-out infinite;
         }
         .profile-avatar-large img {
@@ -352,8 +352,8 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             object-fit: cover;
         }
         @keyframes avatar-glow {
-            0%, 100% { box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3), 0 10px 40px rgba(139, 92, 246, 0.3); }
-            50% { box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.4), 0 10px 50px rgba(139, 92, 246, 0.4); }
+            0%, 100% { box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.3), 0 10px 40px rgba(20, 184, 166, 0.3); }
+            50% { box-shadow: 0 0 0 6px rgba(20, 184, 166, 0.4), 0 10px 50px rgba(20, 184, 166, 0.4); }
         }
         .level-badge {
             position: absolute;
@@ -394,7 +394,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-weight: 600;
         }
         .profile-username {
-            color: #8b5cf6;
+            color: #14B8A6;
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
@@ -431,19 +431,19 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.8rem;
         }
         .profile-xp-value {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-weight: 600;
             font-size: 0.8rem;
         }
         .profile-xp-progress {
             height: 8px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 4px;
             overflow: hidden;
         }
         .profile-xp-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF);
             border-radius: 4px;
             transition: width 1s ease-out;
         }
@@ -454,7 +454,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .quick-stat {
             background: rgba(30, 30, 55, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 12px;
             padding: 1rem 1.25rem;
             text-align: center;
@@ -462,13 +462,13 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             transition: all 0.3s ease;
         }
         .quick-stat:hover {
-            border-color: rgba(139, 92, 246, 0.4);
+            border-color: rgba(20, 184, 166, 0.4);
             transform: translateY(-2px);
         }
         .quick-stat-value {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -489,7 +489,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             background: rgba(30, 30, 55, 0.5);
             padding: 0.5rem;
             border-radius: 16px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
             overflow-x: auto;
             scrollbar-width: none;
         }
@@ -513,12 +513,12 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .profile-tab:hover {
             color: #e2e8f0;
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.1);
         }
         .profile-tab.active {
             color: white;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
         }
         .profile-tab svg {
             width: 18px;
@@ -550,7 +550,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             border-radius: 20px;
             padding: 1.75rem;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         .profile-section h2 {
@@ -562,7 +562,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             gap: 0.75rem;
         }
         .profile-section h2 svg {
-            color: #8b5cf6;
+            color: #14B8A6;
         }
 
         /* Form Styling */
@@ -579,14 +579,14 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.9rem;
         }
         .form-label svg {
-            color: #8b5cf6;
+            color: #14B8A6;
             width: 16px;
             height: 16px;
         }
         .form-input {
             width: 100%;
             padding: 0.875rem 1rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 12px;
             background: rgba(15, 15, 35, 0.6);
             color: #e2e8f0;
@@ -595,8 +595,8 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .form-input:focus {
             outline: none;
-            border-color: rgba(139, 92, 246, 0.5);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            border-color: rgba(20, 184, 166, 0.5);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
         }
         .form-input::placeholder {
             color: #64748b;
@@ -621,14 +621,14 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
             font-size: 2rem;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.3);
             flex-shrink: 0;
         }
         .avatar-preview img {
@@ -641,22 +641,22 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             flex: 1;
             min-width: 200px;
             padding: 1.25rem;
-            border: 2px dashed rgba(139, 92, 246, 0.3);
+            border: 2px dashed rgba(20, 184, 166, 0.3);
             border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: rgba(139, 92, 246, 0.05);
+            background: rgba(20, 184, 166, 0.05);
         }
         .avatar-upload-area:hover {
-            border-color: rgba(139, 92, 246, 0.5);
-            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(20, 184, 166, 0.5);
+            background: rgba(20, 184, 166, 0.1);
         }
         .avatar-upload-area input[type="file"] {
             display: none;
         }
         .upload-icon {
-            color: #8b5cf6;
+            color: #14B8A6;
             margin-bottom: 0.5rem;
         }
         .upload-text {
@@ -664,7 +664,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.85rem;
         }
         .upload-text span {
-            color: #8b5cf6;
+            color: #14B8A6;
             font-weight: 600;
         }
 
@@ -674,7 +674,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .strength-bar {
             height: 4px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 2px;
             overflow: hidden;
             margin-bottom: 0.375rem;
@@ -705,11 +705,11 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             padding: 1.25rem;
             background: rgba(15, 15, 35, 0.5);
             border-radius: 14px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.1);
             transition: all 0.3s ease;
         }
         .setting-item:hover {
-            border-color: rgba(139, 92, 246, 0.3);
+            border-color: rgba(20, 184, 166, 0.3);
         }
         .setting-info {
             display: flex;
@@ -726,7 +726,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             color: white;
         }
         .setting-icon.lang { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
-        .setting-icon.theme { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .setting-icon.theme { background: linear-gradient(135deg, #14B8A6, #2DD4BF); }
         .setting-label {
             color: #e2e8f0;
             font-weight: 600;
@@ -742,7 +742,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             background: rgba(15, 15, 35, 0.8);
             padding: 0.25rem;
             border-radius: 10px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
         }
         .toggle-btn {
             display: inline-flex;
@@ -762,9 +762,9 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             flex-shrink: 0;
         }
         .toggle-btn.active {
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
             color: white;
-            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 2px 10px rgba(20, 184, 166, 0.3);
         }
 
         /* Submit Button */
@@ -773,7 +773,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             align-items: center;
             gap: 0.5rem;
             padding: 0.875rem 1.75rem;
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -781,11 +781,11 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
         }
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 6px 25px rgba(20, 184, 166, 0.4);
         }
 
         /* Stats Grid */
@@ -797,16 +797,16 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .stat-card {
             background: rgba(15, 15, 35, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 16px;
             padding: 1.25rem;
             text-align: center;
             transition: all 0.3s ease;
         }
         .stat-card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
+            border-color: rgba(20, 184, 166, 0.4);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
         }
         .stat-icon {
             width: 48px;
@@ -818,12 +818,12 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             margin: 0 auto 0.75rem;
             color: white;
         }
-        .stat-icon.xp { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .stat-icon.xp { background: linear-gradient(135deg, #14B8A6, #2DD4BF); }
         .stat-icon.courses { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
         .stat-icon.lessons { background: linear-gradient(135deg, #10b981, #34d399); }
         .stat-icon.streak { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
         .stat-icon.achievements { background: linear-gradient(135deg, #ec4899, #f472b6); }
-        .stat-icon.rank { background: linear-gradient(135deg, #6366f1, #818cf8); }
+        .stat-icon.rank { background: linear-gradient(135deg, #3B82F6, #818cf8); }
         .stat-value {
             font-size: 1.75rem;
             font-weight: 700;
@@ -842,8 +842,8 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
 
         /* Level Progress Card */
         .level-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -863,11 +863,11 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 30px rgba(20, 184, 166, 0.4);
         }
         .level-circle span {
             color: white;
@@ -887,7 +887,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             text-align: right;
         }
         .level-xp-needed .xp-value {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-size: 1.25rem;
             font-weight: 700;
         }
@@ -897,13 +897,13 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .level-progress-bar {
             height: 12px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 6px;
             overflow: hidden;
         }
         .level-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa, #c4b5fd);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF, #5EEAD4);
             border-radius: 6px;
             transition: width 1s ease-out;
             position: relative;
@@ -926,7 +926,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         /* Course Progress */
         .courses-progress-section {
             background: rgba(15, 15, 35, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 16px;
             padding: 1.5rem;
         }
@@ -939,13 +939,13 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .course-item {
             padding: 1rem;
-            background: rgba(139, 92, 246, 0.05);
+            background: rgba(20, 184, 166, 0.05);
             border-radius: 12px;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
         .course-item:hover {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(20, 184, 166, 0.1);
         }
         .course-item:last-child {
             margin-bottom: 0;
@@ -962,20 +962,20 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 0.95rem;
         }
         .course-percent {
-            color: #a78bfa;
+            color: #2DD4BF;
             font-weight: 700;
             font-size: 0.95rem;
         }
         .course-progress-bar {
             height: 8px;
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(20, 184, 166, 0.2);
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 0.5rem;
         }
         .course-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF);
             border-radius: 4px;
             transition: width 0.5s ease;
         }
@@ -1002,7 +1002,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .achievement-card {
             background: rgba(15, 15, 35, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(20, 184, 166, 0.15);
             border-radius: 16px;
             padding: 1.25rem;
             text-align: center;
@@ -1017,21 +1017,21 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(90deg, #14B8A6, #2DD4BF);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
         .achievement-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            border-color: rgba(20, 184, 166, 0.4);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
         }
         .achievement-card:hover::before {
             transform: scaleX(1);
         }
         .achievement-card.earned {
-            border-color: rgba(139, 92, 246, 0.4);
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(15, 15, 35, 0.5) 100%);
+            border-color: rgba(20, 184, 166, 0.4);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(15, 15, 35, 0.5) 100%);
         }
         .achievement-card.earned::before {
             transform: scaleX(1);
@@ -1064,7 +1064,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         }
         .achievement-xp {
             display: inline-block;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            background: linear-gradient(135deg, #14B8A6, #2DD4BF);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
@@ -1171,7 +1171,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
             font-size: 4rem;
             margin-bottom: 1rem;
             opacity: 0.5;
-            color: #8b5cf6;
+            color: #14B8A6;
         }
         .empty-icon svg {
             width: 48px;
@@ -1333,7 +1333,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
                     <?php icon('trending-up', 18); ?> Analytics
                 </a>
                 <a href="?tab=character" class="glass-tab <?php echo $active_tab === 'character' ? 'active' : ''; ?>" style="position:relative">
-                    ⚔️ Karakter
+                    âš”ï¸ Karakter
                 </a>
                 <a href="?tab=achievements" class="glass-tab <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>">
                     <?php icon('award', 18); ?> Achievement
@@ -1556,7 +1556,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
                                                 <div class="absolute top-1 left-1 text-brand/30"><?php icon('award', 16); ?></div>
                                                 <div class="text-[8px] tracking-[4px] text-brand uppercase font-bold mb-1">CERTIFICATE</div>
                                                 <div class="text-[10px] font-bold text-white mb-2 leading-tight"><?php echo htmlspecialchars($cert['judul_course']); ?></div>
-                                                <div class="text-[6px] text-gray-500">PROZONE ACADEMY • <?php echo date('M Y', strtotime($cert['completed_at'])); ?></div>
+                                                <div class="text-[6px] text-gray-500">PROZONE ACADEMY â€¢ <?php echo date('M Y', strtotime($cert['completed_at'])); ?></div>
                                             </div>
                                         </div>
                                         <div class="p-5">

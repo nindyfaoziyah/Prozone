@@ -53,6 +53,7 @@
 .btn-primary:hover {
   background-color: var(--brand-hover);
   border-color: var(--brand-hover);
+  color: var(--text-on-primary);
   box-shadow: var(--shadow-primary);
   transform: translateY(-1px);
 }
@@ -73,6 +74,7 @@
 .btn-secondary:hover {
   background-color: var(--bg-hover);
   border-color: var(--border-strong);
+  color: var(--text-primary);
   box-shadow: var(--shadow-sm);
 }
 .btn-secondary:active {
@@ -90,6 +92,7 @@
 .btn-accent:hover {
   background-color: var(--accent-hover);
   border-color: var(--accent-hover);
+  color: var(--text-on-primary);
   box-shadow: var(--shadow-accent);
   transform: translateY(-1px);
 }
@@ -106,6 +109,7 @@
 }
 .btn-ghost:hover {
   background-color: var(--bg-hover);
+  color: var(--text-primary);
 }
 .btn-ghost:active {
   background-color: var(--bg-active);
@@ -120,6 +124,7 @@
 .btn-outline:hover {
   background-color: var(--brand-subtle);
   border-color: var(--brand-hover);
+  color: var(--brand);
 }
 .btn-outline:active {
   background-color: var(--brand-subtle);

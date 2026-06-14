@@ -4,7 +4,7 @@
    File: assets/css/arena.css
    ============================================================ */
 
-/* ── Fullscreen Override ────────────────────────────────── */
+/* â”€â”€ Fullscreen Override â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* Disable the normal scrolling and bounds to force a full-screen app layout */
 body.arena-active {
     overflow: hidden !important;
@@ -22,7 +22,7 @@ body.arena-active .sidebar-menu {
     scrollbar-width: none !important;
 }
 
-/* ── Main Arena Wrapper ─────────────────────────────────── */
+/* â”€â”€ Main Arena Wrapper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* Positioning it to exactly fill the space outside sidebar/navbar */
 .arena-fullscreen-wrapper {
     position: fixed;
@@ -37,13 +37,13 @@ body.arena-active .sidebar-menu {
     z-index: 10;
 }
 
-/* ── Glassmorphism Panels ───────────────────────────────── */
+/* â”€â”€ Glassmorphism Panels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .arena-panel-dark {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(108, 76, 253, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.15);
     border-radius: 20px;
-    box-shadow: 0 24px 70px rgba(108, 76, 253, 0.08);
+    box-shadow: 0 24px 70px rgba(59, 130, 246, 0.08);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -63,7 +63,7 @@ body.arena-active .sidebar-menu {
     }
 }
 
-/* ── Center Panel (65-70%) ──────────────────────────────── */
+/* â”€â”€ Center Panel (65-70%) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .arena-center {
     flex: 7; /* ~70% */
     display: flex;
@@ -73,7 +73,7 @@ body.arena-active .sidebar-menu {
 /* Top Section: Challenge Info */
 .arena-challenge-header {
     padding: 20px 24px;
-    border-bottom: 1px solid rgba(108, 76, 253, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -121,7 +121,7 @@ body.arena-active .sidebar-menu {
     font-size: 0.9rem;
     line-height: 1.6;
     color: #475569;
-    border-bottom: 1px solid rgba(108, 76, 253, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
     background: #F8FAFC;
     overflow-y: auto;
     max-height: 120px;
@@ -131,7 +131,7 @@ body.arena-active .sidebar-menu {
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'JetBrains Mono', monospace;
-    color: #6C4CFD;
+    color: #3B82F6;
 }
 
 /* Middle Section: Editor */
@@ -177,7 +177,7 @@ body.arena-active .sidebar-menu {
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
-.editor-pane.you .editor-pane-label { color: #6C4CFD; border-top: 2px solid #6C4CFD; }
+.editor-pane.you .editor-pane-label { color: #3B82F6; border-top: 2px solid #3B82F6; }
 .editor-pane.enemy .editor-pane-label { color: #F43F5E; border-top: 2px solid #F43F5E; border-left: 1px solid #E2E8F0; }
 
 .editor-textarea {
@@ -195,7 +195,7 @@ body.arena-active .sidebar-menu {
     outline: none;
 }
 .editor-textarea:focus {
-    box-shadow: inset 0 0 0 1px rgba(108, 76, 253, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.4);
 }
 .editor-pane.enemy {
     border-left: 1px solid #E2E8F0;
@@ -254,14 +254,14 @@ body.arena-active .sidebar-menu {
 
 .btn-neon-fill {
     padding: 10px 32px;
-    background: linear-gradient(135deg, #6C4CFD, #20C7B7);
+    background: linear-gradient(135deg, #3B82F6, #20C7B7);
     color: white;
     border: none;
     border-radius: 8px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(108, 76, 253, 0.3), 0 0 28px rgba(108, 76, 253, 0.15);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3), 0 0 28px rgba(59, 130, 246, 0.15);
     transition: all 0.25s ease;
 }
 .btn-neon-fill::before {
@@ -269,14 +269,14 @@ body.arena-active .sidebar-menu {
     position: absolute;
     inset: 0;
     border-radius: 8px;
-    background: radial-gradient(circle at 50% 50%, rgba(108, 76, 253, 0.35), transparent 55%);
+    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.35), transparent 55%);
     filter: blur(14px);
     opacity: 0.65;
     z-index: -1;
 }
 .btn-neon-fill:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(108, 76, 253, 0.35), 0 0 40px rgba(32, 199, 183, 0.22);
+    box-shadow: 0 12px 30px rgba(59, 130, 246, 0.35), 0 0 40px rgba(32, 199, 183, 0.22);
 }
 
 .btn-neon-fill:active {
@@ -284,7 +284,7 @@ body.arena-active .sidebar-menu {
 }
 
 
-/* ── Right Panel (25-30%) ───────────────────────────────── */
+/* â”€â”€ Right Panel (25-30%) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .arena-right {
     flex: 3; /* ~30% */
     display: flex;
@@ -295,7 +295,7 @@ body.arena-active .sidebar-menu {
 /* Sub-panel layout in right column */
 .rp-box {
     background: white;
-    border: 1px solid rgba(108, 76, 253, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.1);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
@@ -315,8 +315,8 @@ body.arena-active .sidebar-menu {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #6C4CFD;
-    border-bottom: 1px solid rgba(108, 76, 253, 0.1);
+    color: #3B82F6;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
     background: #F8FAFC;
     display: flex;
     align-items: center;
@@ -333,7 +333,7 @@ body.arena-active .sidebar-menu {
     padding: 8px 0;
     height: calc(100% - 40px); /* minus header */
     scrollbar-width: thin;
-    scrollbar-color: rgba(108, 76, 253, 0.16) rgba(248, 250, 252, 0.95);
+    scrollbar-color: rgba(59, 130, 246, 0.16) rgba(248, 250, 252, 0.95);
 }
 .lb-list::-webkit-scrollbar {
     width: 8px;
@@ -344,12 +344,12 @@ body.arena-active .sidebar-menu {
     border-radius: 999px;
 }
 .lb-list::-webkit-scrollbar-thumb {
-    background: rgba(108, 76, 253, 0.16);
+    background: rgba(59, 130, 246, 0.16);
     border-radius: 999px;
     border: 2px solid rgba(248, 250, 252, 0.95);
 }
 .lb-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(108, 76, 253, 0.22);
+    background: rgba(59, 130, 246, 0.22);
 }
 
 .lb-row {
@@ -361,8 +361,8 @@ body.arena-active .sidebar-menu {
 }
 .lb-row:hover { background: #F8FAFC; }
 .lb-row.active-user {
-    background: linear-gradient(90deg, rgba(108, 76, 253, 0.08), transparent);
-    border-left: 3px solid #6C4CFD;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.08), transparent);
+    border-left: 3px solid #3B82F6;
 }
 
 .lb-num {
@@ -394,7 +394,7 @@ body.arena-active .sidebar-menu {
 .lb-score {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #6C4CFD;
+    color: #3B82F6;
 }
 
 /* 2. Battle Stats (Middle) */
@@ -425,7 +425,7 @@ body.arena-active .sidebar-menu {
     font-weight: 900;
     color: #0F172A;
 }
-.stat-val.accent { color: #6C4CFD; }
+.stat-val.accent { color: #3B82F6; }
 
 /* 3. Battle Chat (Bottom) */
 .rp-chat {
@@ -441,7 +441,7 @@ body.arena-active .sidebar-menu {
     gap: 12px;
     height: calc(100% - 100px);
     scrollbar-width: thin;
-    scrollbar-color: rgba(108, 76, 253, 0.16) rgba(248, 250, 252, 0.95);
+    scrollbar-color: rgba(59, 130, 246, 0.16) rgba(248, 250, 252, 0.95);
 }
 .chat-scroll::-webkit-scrollbar {
     width: 8px;
@@ -452,12 +452,12 @@ body.arena-active .sidebar-menu {
     border-radius: 999px;
 }
 .chat-scroll::-webkit-scrollbar-thumb {
-    background: rgba(108, 76, 253, 0.16);
+    background: rgba(59, 130, 246, 0.16);
     border-radius: 999px;
     border: 2px solid rgba(248, 250, 252, 0.95);
 }
 .chat-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(108, 76, 253, 0.22);
+    background: rgba(59, 130, 246, 0.22);
 }
 
 .chat-msg {
@@ -498,7 +498,7 @@ body.arena-active .sidebar-menu {
 .chat-author {
     font-size: 0.75rem;
     font-weight: 800;
-    color: #6C4CFD;
+    color: #3B82F6;
     margin-bottom: 2px;
 }
 .chat-text {
@@ -517,7 +517,7 @@ body.arena-active .sidebar-menu {
 .chat-input-box {
     padding: 12px;
     background: white;
-    border-top: 1px solid rgba(108, 76, 253, 0.1);
+    border-top: 1px solid rgba(59, 130, 246, 0.1);
     display: flex;
     gap: 8px;
 }
@@ -533,14 +533,14 @@ body.arena-active .sidebar-menu {
     outline: none;
 }
 .chat-input:focus {
-    border-color: #6C4CFD;
+    border-color: #3B82F6;
     background: white;
 }
 .chat-btn {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6C4CFD, #20C7B7);
+    background: linear-gradient(135deg, #3B82F6, #20C7B7);
     color: white;
     border: none;
     cursor: pointer;
@@ -550,7 +550,7 @@ body.arena-active .sidebar-menu {
     flex-shrink: 0;
 }
 
-/* ── Glow / Neon Ambience ───────────────────────────────── */
+/* â”€â”€ Glow / Neon Ambience â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .neon-glow-bg {
     position: fixed;
     top: 50%;
@@ -559,7 +559,7 @@ body.arena-active .sidebar-menu {
     height: 100vh;
     transform: translate(-50%, -50%);
     background: 
-        radial-gradient(circle at 15% 50%, rgba(108, 76, 253, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 85% 50%, rgba(32, 199, 183, 0.05) 0%, transparent 40%);
     pointer-events: none;
     z-index: 1;

@@ -12,7 +12,7 @@ $xp_prev      = ($user_level - 1) * 500;
 $xp_progress  = $xp_next - $xp_prev;
 $xp_current   = $user_xp - $xp_prev;
 $xp_pct       = $xp_progress > 0 ? min(100, round(($xp_current / $xp_progress) * 100)) : 0;
-// SVG circle: circumference = 2 * pi * 15.9155 ≈ 100
+// SVG circle: circumference = 2 * pi * 15.9155 â‰ˆ 100
 $dash_value   = $xp_pct; // out of 100
 
 // Fetch RPG class from DB
@@ -52,22 +52,25 @@ if ($user_role === 'student') {
 // Admin menu items
 if ($user_role === 'admin') {
     $menu_items = array_merge($menu_items, [
+        ['label' => 'Admin',             'icon' => '',            'link' => '', 'type' => 'label'],
         ['label' => 'Kelola Kursus',     'icon' => 'book',        'link' => 'manage-courses.php', 'badge' => 'ADMIN'],
         ['label' => 'Kelola User',       'icon' => 'users',       'link' => 'users.php', 'badge' => 'ADMIN'],
         ['label' => 'Kelola Clan',       'icon' => 'zap',         'link' => 'manage-clans.php', 'badge' => 'ADMIN'],
         ['label' => 'Analytics',         'icon' => 'bar-chart',   'link' => 'admin_analytics.php', 'badge' => 'ADMIN'],
+        ['label' => 'Settings',          'icon' => 'settings',    'link' => 'pengaturan.php'],
+        ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
     ]);
+} else {
+    // Common menu
+    $menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'pengaturan.php'];
 }
-
-// Common menu
-$menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'settings.php'];
 ?>
 
 <!-- Hidden SVG defs for XP ring gradient -->
 <svg width="0" height="0" style="position:absolute">
     <defs>
         <linearGradient id="xpGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#6C4CFD"/>
+            <stop offset="0%"   stop-color="#3B82F6"/>
             <stop offset="100%" stop-color="#20C7B7"/>
         </linearGradient>
     </defs>
@@ -75,28 +78,42 @@ $menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'setting
 
 <nav class="sidebar-island-container" id="sidebar-island">
     <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle Navigation" aria-label="Toggle Navigation">
-        <span id="toggle-icon">☰</span>
+        <span id="toggle-icon">â˜°</span>
     </button>
     <div class="sidebar-island-panel">
         <!-- Logo -->
         <div class="sidebar-logo">
-            <div class="logo-box">
-                <?php icon('code', 18); ?>
-            </div>
-            <span class="logo-text">Prozone</span>
+            <a href="dashboard.php" class="logo-box">
+                <img src="assets/img/Prozone Logo.png" alt="Prozone">
+            </a>
         </div>
 
         <!-- Menu -->
         <div class="sidebar-menu" id="sidebar-menu">
             <?php foreach ($menu_items as $item): ?>
-                <?php $is_active = ($item['link'] === basename($_SERVER['PHP_SELF'])) ? 'active' : ''; ?>
-                <a href="<?php echo $item['link']; ?>" class="menu-item <?php echo $is_active; ?>">
-                    <span class="menu-icon"><?php icon($item['icon'], 18); ?></span>
-                    <span class="menu-label"><?php echo $item['label']; ?></span>
-                    <?php if (!empty($item['badge'])): ?>
-                        <span class="menu-badge <?php echo strtolower($item['badge']); ?>"><?php echo $item['badge']; ?></span>
-                    <?php endif; ?>
-                </a>
+                <?php if (isset($item['type']) && $item['type'] === 'label'): ?>
+                    <div class="sidebar-section-label">
+                        <span><?php echo $item['label']; ?></span>
+                        <span class="label-line"></span>
+                    </div>
+                <?php elseif (isset($item['type']) && $item['type'] === 'divider'): ?>
+                    <div class="sidebar-divider"></div>
+                <?php else: ?>
+                    <?php 
+                    $is_active = ($item['link'] === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
+                    $extra_class = '';
+                    if (!empty($item['badge']) && strtolower($item['badge']) === 'admin') {
+                        $extra_class = ' admin-item';
+                    }
+                    ?>
+                    <a href="<?php echo $item['link']; ?>" class="menu-item <?php echo $is_active . $extra_class; ?>">
+                        <span class="menu-icon"><?php icon($item['icon'], 18); ?></span>
+                        <span class="menu-label"><?php echo $item['label']; ?></span>
+                        <?php if (!empty($item['badge'])): ?>
+                            <span class="menu-badge <?php echo strtolower($item['badge']); ?>"><?php echo $item['badge']; ?></span>
+                        <?php endif; ?>
+                    </a>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
@@ -108,7 +125,7 @@ $menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'setting
                     <svg class="xp-ring-svg" viewBox="0 0 36 36" style="position: absolute; top:0; left:0; width:100%; height:100%;">
                         <path class="xp-ring-bg"  d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #E2E8F0; stroke-width: 2.5;"/>
                         <path class="xp-ring-fill" stroke-dasharray="<?php echo $dash_value; ?>,100"
-                              d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #6C4CFD; stroke-width: 2.5; stroke-linecap: round;"/>
+                              d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #3B82F6; stroke-width: 2.5; stroke-linecap: round;"/>
                     </svg>
                     <div class="xp-avatar-emoji" style="position: absolute; width: 34px; height: 34px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#F5F3FF; border-radius:50%;">
                         <img src="<?php echo htmlspecialchars($sidebar_cls['image']); ?>" alt="<?php echo htmlspecialchars($sidebar_cls['name']); ?>" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" title="<?php echo $avatar_emoji . ' ' . htmlspecialchars($sidebar_cls['name']); ?>">
@@ -148,6 +165,6 @@ function toggleSidebar() {
     document.body.classList.toggle('sidebar-hidden');
 
     const hidden = sidebar.classList.contains('sidebar-hidden');
-    icon.textContent = hidden ? '☰' : '✕';
+    icon.textContent = hidden ? 'â˜°' : 'âœ•';
 }
 </script>

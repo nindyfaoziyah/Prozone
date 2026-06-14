@@ -272,7 +272,7 @@ $certificate_id = "CERT-" . strtoupper(substr(md5($user_id . $course_id . $data[
                 <div class="signature-block">
                     <div class="signature-name">Prozone CEO</div>
                     <div class="signature-line">
-                        <div class="signature-title">Instructor</div>
+                        <div class="signature-title">Admin</div>
                     </div>
                 </div>
             </div>
