@@ -460,7 +460,10 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/ui-enhancements.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
-        <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link rel="stylesheet" href="assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="assets/css/dashboard-override.css">
     <style>
         .clan-container {
             max-width: 1400px;
@@ -1474,7 +1477,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <!-- Navbar -->
     <?php require_once 'navbar.php'; ?>
 

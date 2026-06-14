@@ -79,6 +79,8 @@ if ($selected_friend_id) {
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/dark-theme.css">
     <link rel="stylesheet" href="assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="assets/css/dashboard-override.css">
     <style>
         .friends-container {
             max-width: 1400px;
@@ -697,7 +699,7 @@ if ($selected_friend_id) {
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <?php require_once 'navbar.php'; ?>
 
     <div class="dashboard-main-container">

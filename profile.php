@@ -1713,7 +1713,4 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         });
     </script>
 </body>
-    <?php require_once 'navbar.php'; ?>
-
-    <div class="dashboard-main-container">
 </html>

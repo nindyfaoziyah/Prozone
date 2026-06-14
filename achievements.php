@@ -42,6 +42,9 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/dark-theme.css">
     <link rel="stylesheet" href="assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="assets/css/dashboard-override.css">
+    
     <style>
         .achievements-grid {
             display: grid;
@@ -219,7 +222,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <!-- Navbar -->
     <?php require_once 'navbar.php'; ?>
 

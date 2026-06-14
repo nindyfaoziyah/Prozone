@@ -95,35 +95,24 @@ a { color: #3B82F6; }
 a:hover { color: #2563EB; }
 
 body.dashboard-layout {
-    display: grid;
-    min-height: 100vh;
-    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "sidebar header"
-        "sidebar main";
-    gap: 20px;
-    padding: 20px;
     overflow: hidden;
-}
-
-body.sidebar-hidden.dashboard-layout {
-    grid-template-columns: 0 minmax(0, 1fr);
+    min-height: 100vh;
 }
 
 body.dashboard-layout .sidebar-island-container {
-    grid-area: sidebar;
-    position: sticky !important;
+    position: fixed !important;
     top: 20px !important;
-    left: auto !important;
+    left: 20px !important;
     right: auto !important;
     bottom: auto !important;
     width: var(--sidebar-width) !important;
+    height: calc(100vh - 40px) !important;
     min-height: calc(100vh - 40px) !important;
-    align-self: stretch !important;
+    max-height: calc(100vh - 40px) !important;
     transition: width 0.32s ease, opacity 0.32s ease !important;
     overflow: hidden !important;
     pointer-events: auto !important;
+    z-index: 1000 !important;
 }
 
 body.dashboard-layout .sidebar-island-container.sidebar-hidden {
@@ -750,10 +739,11 @@ body.sidebar-hidden .header-floating {
    MAIN CONTENT AREA
    ============================================ */
 .page-wrapper.dashboard-main-container {
-    grid-area: main;
     margin: 0 !important;
     padding: 20px 0 60px !important;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
     background: transparent !important;
     max-width: none !important;
     min-width: 0;
@@ -1148,10 +1138,6 @@ body.sidebar-hidden .header-floating {
     pointer-events: none;
 }
 
-body.sidebar-hidden.dashboard-layout {
-    grid-template-columns: 0 minmax(0, 1fr);
-}
-
 body.sidebar-hidden.dashboard-layout .sidebar-island-container {
     width: 0 !important;
     min-width: 0 !important;
@@ -1162,10 +1148,6 @@ body.sidebar-hidden.dashboard-layout .sidebar-island-container {
 
 body.sidebar-hidden.dashboard-layout .sidebar-island-container.sidebar-hidden .sidebar-island-panel {
     display: none !important;
-}
-
-body.sidebar-hidden.dashboard-layout .page-wrapper.dashboard-main-container {
-    margin-left: 0 !important;
 }
 
 
@@ -1327,73 +1309,14 @@ body.sidebar-hidden.dashboard-layout .page-wrapper.dashboard-main-container {
     .dashboard-grid-secondary { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 1024px) {
-    body.dashboard-layout {
-        grid-template-columns: 0 minmax(0, 1fr);
-        padding: 16px;
-    }
-
-    .sidebar-island-container,
-    #sidebar-toggle {
-        display: none;
-    }
-
-    .header-floating {
-        position: fixed !important;
-        top: 16px !important;
-        left: 16px !important;
-        right: 16px !important;
-        width: auto !important;
-    }
-
-    body.dashboard-layout .dashboard-container {
-        left: 16px;
-        right: 16px;
-        top: 96px;
-        bottom: 16px;
-    }
-
-    .page-wrapper.dashboard-main-container {
-        margin: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-/* Final responsive grid overrides for dashboard layout */
-body.dashboard-layout .sidebar-island-container {
-    grid-area: sidebar;
-    width: var(--sidebar-width) !important;
-    min-height: calc(100vh - 40px) !important;
-    max-height: calc(100vh - 40px) !important;
-    position: sticky !important;
-    top: 20px !important;
-    align-self: stretch !important;
-    overflow: hidden !important;
-}
-
-body.dashboard-layout .sidebar-island-container.sidebar-hidden {
-    width: 0 !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    overflow: hidden !important;
-}
-
-body.dashboard-layout .sidebar-island-container.sidebar-hidden .sidebar-island-panel {
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-body.dashboard-layout .sidebar-island-panel {
-    transition: opacity 0.32s ease !important;
-}
-
+/* Fixed-position dashboard layout (like admin) */
 body.dashboard-layout .header-floating {
     position: fixed !important;
     top: 20px !important;
-    left: 320px !important;
+    left: calc(var(--sidebar-width) + 40px) !important;
     right: 20px !important;
     width: auto !important;
+    z-index: 500 !important;
 }
 
 body.sidebar-hidden.dashboard-layout .header-floating {
@@ -1403,7 +1326,7 @@ body.sidebar-hidden.dashboard-layout .header-floating {
 body.dashboard-layout .dashboard-container {
     position: fixed;
     top: 104px;
-    left: 320px;
+    left: calc(var(--sidebar-width) + 40px);
     right: 20px;
     bottom: 20px;
     overflow-y: auto;
@@ -1415,14 +1338,32 @@ body.sidebar-hidden .dashboard-container {
 }
 
 body.dashboard-layout .page-wrapper.dashboard-main-container {
-    grid-area: main !important;
-    margin: 0 !important;
+    position: fixed !important;
+    top: 104px !important;
+    left: calc(var(--sidebar-width) + 40px) !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    overflow-y: auto !important;
     min-width: 0 !important;
-    width: auto !important;
+    padding: 24px 24px 24px !important;
+    margin: 0 !important;
+    max-width: none !important;
 }
 
 body.dashboard-layout .dashboard-main-container {
-    padding: 90px 20px 60px !important;
+    position: fixed;
+    top: 104px;
+    left: calc(var(--sidebar-width) + 40px);
+    right: 20px;
+    bottom: 20px;
+    overflow-y: auto;
+    min-width: 0;
+    padding: 24px !important;
+}
+
+body.sidebar-hidden.dashboard-layout .page-wrapper.dashboard-main-container,
+body.sidebar-hidden.dashboard-layout .dashboard-main-container {
+    left: 20px !important;
 }
 
 body.dashboard-layout .dashboard-content {
@@ -1435,6 +1376,24 @@ body.dashboard-layout .page-wrapper.dashboard-main-container,
 body.dashboard-layout .header-floating,
 body.dashboard-layout .dashboard-container {
     transition: all 0.28s ease !important;
+}
+
+@media (max-width: 1024px) {
+    body.dashboard-layout .header-floating {
+        left: 20px !important;
+    }
+
+    body.dashboard-layout .page-wrapper.dashboard-main-container {
+        left: 20px !important;
+    }
+
+    body.dashboard-layout .dashboard-main-container {
+        left: 20px !important;
+    }
+
+    body.dashboard-layout .dashboard-container {
+        left: 20px !important;
+    }
 }
 
 @media (max-width: 768px) {

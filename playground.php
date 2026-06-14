@@ -30,7 +30,7 @@ $templates = [
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <h1>Hello World!</h1>
 </body>
 </html>',
@@ -66,7 +66,7 @@ $templates = [
         .box:nth-child(5) { background: #9b59b6; }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <div class="container">
         <div class="box">Box 1</div>
         <div class="box">Box 2</div>
@@ -113,7 +113,7 @@ $templates = [
         .error { color: #ff6b6b; font-size: 12px; }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <div class="form-container">
         <h2>Login Form</h2>
         <form id="loginForm" onsubmit="return validateForm()">
@@ -204,7 +204,7 @@ $templates = [
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <div class="loader">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -261,7 +261,7 @@ $templates = [
         .equals { background: #2ecc71; color: white; }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <div class="calculator">
         <div class="display" id="display">0</div>
         <div class="buttons">
@@ -850,6 +850,8 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
     <link rel="stylesheet" href="assets/css/ui-enhancements.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="assets/css/dashboard-override.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
     <style>
@@ -905,7 +907,7 @@ $templates = array_merge($templates, $phpTemplates, $javaTemplates, $cppTemplate
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <?php require_once 'navbar.php'; ?>
 
     <div class="dashboard-main-container">

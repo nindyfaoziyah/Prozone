@@ -5,7 +5,7 @@ require_once 'includes/icons.php';
 
 $page_title       = 'AI Mentor';
 $page_description = 'Tanya AI tentang coding, algoritma, dan teknologi.';
-$page_css         = ['pages/ai-mentor.css'];
+$page_css         = ['sidebar-island.css', 'dashboard-override.css', 'pages/ai-mentor.css'];
 $body_class       = getThemeClass();
 
 $user_initial = strtoupper(substr(explode(' ', $_SESSION['nama_lengkap'] ?? 'U')[0], 0, 1));

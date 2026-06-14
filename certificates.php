@@ -53,6 +53,8 @@ foreach ($certificates as $cert) {
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/dark-theme.css">
     <link rel="stylesheet" href="assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="assets/css/dashboard-override.css">
     <!-- Libraries for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -746,7 +748,7 @@ foreach ($certificates as $cert) {
         }
     </style>
 </head>
-<body>
+<body class="dashboard-layout">
     <!-- Navbar -->
     <?php require_once 'navbar.php'; ?>
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once 'config/config.php';
 requireLogin();
 require_once 'includes/icons.php';
@@ -354,7 +354,7 @@ if ($_POST) {
 
             $enrollment->updateProgress($_SESSION['user_id'], $course_id);
             
-            $_SESSION['success_message'] = '🎉 Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
+            $_SESSION['success_message'] = '?? Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
             unset($_SESSION['xp_earned']);
             
             header('Location: courses.php');
@@ -379,15 +379,18 @@ unset($_SESSION['error_message']);
     <?php include 'includes/favicon.php'; ?>
     <?php include 'includes/seo.php'; echo seo_meta(htmlspecialchars($lesson_data['judul_lesson']) . ' - ' . APP_NAME, 'Pelajari ' . htmlspecialchars($lesson_data['judul_lesson']), 'lesson, tutorial, coding'); ?>
     <title><?php echo htmlspecialchars($lesson_data['judul_lesson']); ?> - <?php echo APP_NAME; ?></title>
+    
+    
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/ui-enhancements.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/lesson-enhanced.css">
+    <link rel="stylesheet" href="assets/css/dark-theme.css">
     <link rel="stylesheet" href="assets/css/pages/dashboard.css">
     <link rel="stylesheet" href="assets/css/sidebar-island.css">
     <link rel="stylesheet" href="assets/css/dashboard-override.css">
+    <link rel="stylesheet" href="assets/css/lesson-enhanced.css">
     <!-- Parsedown for Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- CodeMirror CSS -->
@@ -1520,7 +1523,7 @@ unset($_SESSION['error_message']);
         }
 
         .tip-list li::before {
-            content: '✓';
+            content: '?';
             position: absolute;
             left: -1.5rem;
             color: #10b981;
@@ -1729,7 +1732,7 @@ unset($_SESSION['error_message']);
         }
 
         .instruction-bullet::before {
-            content: '→';
+            content: '?';
             position: absolute;
             left: 0;
             color: var(--primary-purple);
@@ -3155,7 +3158,7 @@ unset($_SESSION['error_message']);
         }
 
         .preview-header h3::before {
-            content: '👁️';
+            content: '???';
             font-size: 0.875rem;
         }
 
@@ -3641,7 +3644,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content h2::before {
-            content: '◆';
+            content: '?';
             color: var(--primary-purple);
             font-size: var(--text-md);
         }
@@ -3671,7 +3674,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content h3::before {
-            content: '▸';
+            content: '?';
             color: var(--accent-cyan);
             font-size: var(--text-md);
         }
@@ -3688,7 +3691,7 @@ unset($_SESSION['error_message']);
         }
 
         .theory-content h4::before {
-            content: '•';
+            content: '�';
             color: var(--accent-pink);
             font-size: 1.25em;
         }
@@ -3718,7 +3721,7 @@ unset($_SESSION['error_message']);
         .theory-content ul li::marker {
             color: var(--accent-cyan);
             font-weight: bold;
-            content: '✦ ';
+            content: '? ';
         }
 
         .theory-content ol li {
@@ -4356,7 +4359,7 @@ unset($_SESSION['error_message']);
         }
     </style>
 </head>
-<body class="dashboard-layout">
+<body class="<?php echo getThemeClass(); ?> dashboard-layout">
     <!-- Navbar -->
     <?php require_once 'navbar.php'; ?>
 
@@ -4397,7 +4400,7 @@ unset($_SESSION['error_message']);
                     <?php endif; ?>
                     <h1><?php echo htmlspecialchars($lesson_data['judul_lesson']); ?></h1>
                 </div>
-                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> • Lesson <?php echo $lesson_data['urutan']; ?></p>
+                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> � Lesson <?php echo $lesson_data['urutan']; ?></p>
             </div>
             
             
@@ -4405,19 +4408,19 @@ unset($_SESSION['error_message']);
                 <?php if ($prev_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $prev_lesson['id']; ?>" 
                        class="nav-btn">
-                        ← Sebelumnya
+                        ? Sebelumnya
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>← Sebelumnya</button>
+                    <button class="nav-btn" disabled>? Sebelumnya</button>
                 <?php endif; ?>
                 
                 <?php if ($next_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $next_lesson['id']; ?>" 
                        class="nav-btn">
-                        Selanjutnya →
+                        Selanjutnya ?
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>Selanjutnya →</button>
+                    <button class="nav-btn" disabled>Selanjutnya ?</button>
                 <?php endif; ?>
             </div>
         </div>
@@ -4563,13 +4566,13 @@ unset($_SESSION['error_message']);
                 <!-- Slide Navigation -->
                 <div class="slide-navigation">
                     <button class="slide-nav-btn prev-btn" onclick="previousSlide()" id="prevBtn">
-                        ← Sebelumnya
+                        ? Sebelumnya
                     </button>
                     <div class="slide-indicator">
                         <span id="currentSlide">1</span> / <span id="totalSlides"><?php echo count($slides); ?></span>
                     </div>
                     <button class="slide-nav-btn next-btn" onclick="nextSlide()" id="nextBtn">
-                        Selanjutnya →
+                        Selanjutnya ?
                     </button>
                 </div>
                 
@@ -4612,7 +4615,7 @@ unset($_SESSION['error_message']);
                                                         <div class="box-label">Padding</div>
                                                         <div class="box-content">
                                                             <div class="box-label">Content</div>
-                                                            <div class="box-content-text">Width × Height</div>
+                                                            <div class="box-content-text">Width � Height</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4664,7 +4667,7 @@ margin-left: 20px;
                                                     </code>
                                                 </div>
                                             </div>
-                                            <div class="shorthand-arrow">→</div>
+                                            <div class="shorthand-arrow">?</div>
                                             <div class="shorthand-short">
                                                 <h3>Shorthand (Pendek)</h3>
                                                 <div class="code-example highlight">
@@ -4677,16 +4680,16 @@ margin: 10px 20px;
                                         <div class="shorthand-rules">
                                             <h4>Aturan Shorthand:</h4>
                                             <div class="rule-item">
-                                                <strong>1 nilai:</strong> <code>margin: 10px;</code> → semua sisi
+                                                <strong>1 nilai:</strong> <code>margin: 10px;</code> ? semua sisi
                                             </div>
                                             <div class="rule-item">
-                                                <strong>2 nilai:</strong> <code>margin: 10px 20px;</code> → vertikal horizontal
+                                                <strong>2 nilai:</strong> <code>margin: 10px 20px;</code> ? vertikal horizontal
                                             </div>
                                             <div class="rule-item">
-                                                <strong>3 nilai:</strong> <code>margin: 10px 20px 15px;</code> → atas horizontal bawah
+                                                <strong>3 nilai:</strong> <code>margin: 10px 20px 15px;</code> ? atas horizontal bawah
                                             </div>
                                             <div class="rule-item">
-                                                <strong>4 nilai:</strong> <code>margin: 10px 20px 15px 25px;</code> → atas kanan bawah kiri
+                                                <strong>4 nilai:</strong> <code>margin: 10px 20px 15px 25px;</code> ? atas kanan bawah kiri
                                             </div>
                                         </div>
                                     </div>
@@ -4735,7 +4738,7 @@ margin: 10px 20px;
             
             <div class="theory-navigation">
                 <a href="courses.php" class="theory-nav-btn secondary">
-                    ← Kembali ke Course
+                    ? Kembali ke Course
                 </a>
             </div>
         </div>
@@ -4758,7 +4761,7 @@ margin: 10px 20px;
                     if ($has_konten): 
                     ?>
                     <div class="material-section">
-                        <h3 class="material-title">📚 Materi Pembelajaran</h3>
+                        <h3 class="material-title">?? Materi Pembelajaran</h3>
                         <div class="instruction-box markdown-content material-box" id="konten-markdown">
                             <div class="loading-content">
                                 <div class="loading-spinner"></div>
@@ -4835,51 +4838,51 @@ margin: 10px 20px;
                         </script>
                     <?php elseif (!empty($instructions)): ?>
                         <div class="instruction-section">
-                            <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                            <h3 class="instruction-section-title">? Tugas Praktik</h3>
                             
                             <!-- Cara Menyelesaikan Section -->
                             <div class="how-to-complete-section">
-                                <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                                <h4 class="how-to-title">?? Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                                 <div class="visual-steps">
                                     <div class="visual-step">
                                         <div class="visual-step-number">1</div>
                                         <div class="visual-step-content">
-                                            <strong>📖 Baca Instruksi</strong>
+                                            <strong>?? Baca Instruksi</strong>
                                             <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">2</div>
                                         <div class="visual-step-content">
-                                            <strong>📋 Salin Kode</strong>
+                                            <strong>?? Salin Kode</strong>
                                             <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">3</div>
                                         <div class="visual-step-content">
-                                            <strong>📝 Tempel di Editor</strong>
+                                            <strong>?? Tempel di Editor</strong>
                                             <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">4</div>
                                         <div class="visual-step-content">
-                                            <strong>✏️ Modifikasi Kode</strong>
+                                            <strong>?? Modifikasi Kode</strong>
                                             <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">5</div>
                                         <div class="visual-step-content">
-                                            <strong>▶️ Test dengan Run</strong>
+                                            <strong>?? Test dengan Run</strong>
                                             <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">6</div>
                                         <div class="visual-step-content">
-                                            <strong>✅ Kirim Jawaban</strong>
+                                            <strong>? Kirim Jawaban</strong>
                                             <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                         </div>
                                     </div>
@@ -4887,7 +4890,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-intro-enhanced">
-                                <div class="intro-icon">🎯</div>
+                                <div class="intro-icon">??</div>
                                 <div class="intro-content">
                                     <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                                 </div>
@@ -4921,7 +4924,7 @@ margin: 10px 20px;
                                         <?php if (!empty($clean_text)): ?>
                                             <div class="instruction-text">
                                                 <div class="instruction-action">
-                                                    <span class="action-icon">📝</span>
+                                                    <span class="action-icon">??</span>
                                                     <span class="action-text"><strong>Instruksi Langkah <?php echo $index + 1; ?>:</strong></span>
                                                 </div>
                                                 <div class="instruction-content-text">
@@ -4932,8 +4935,8 @@ margin: 10px 20px;
                                                         $line = trim($line);
                                                         if (empty($line)) {
                                                             echo '<br>';
-                                                        } elseif (preg_match('/^[-*•]\s*(.+)$/', $line, $matches)) {
-                                                            echo '<div class="instruction-bullet">• ' . htmlspecialchars($matches[1]) . '</div>';
+                                                        } elseif (preg_match('/^[-*�]\s*(.+)$/', $line, $matches)) {
+                                                            echo '<div class="instruction-bullet">� ' . htmlspecialchars($matches[1]) . '</div>';
                                                         } elseif (preg_match('/^\d+[\.\)]\s*(.+)$/', $line, $matches)) {
                                                             echo '<div class="instruction-bullet">' . htmlspecialchars($line) . '</div>';
                                                         } else {
@@ -4959,7 +4962,7 @@ margin: 10px 20px;
                                             <code><?php echo htmlspecialchars($step['code']); ?></code>
                                         </div>
                                         <div class="code-instruction">
-                                            <span class="code-instruction-icon">💡</span>
+                                            <span class="code-instruction-icon">??</span>
                                             <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                         </div>
                                     <?php endif; ?>
@@ -4984,7 +4987,7 @@ margin: 10px 20px;
                             
                             <!-- Completion Guide -->
                             <div class="completion-guide">
-                                <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                                <h4 class="guide-title">?? Cara Menyelesaikan:</h4>
                                 <div class="guide-steps">
                                     <div class="guide-step">
                                         <div class="guide-step-number">1</div>
@@ -5014,7 +5017,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-tip">
-                                <strong>💡 Tips Penting:</strong>
+                                <strong>?? Tips Penting:</strong>
                                 <ul class="tip-list">
                                     <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                                     <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -5025,34 +5028,34 @@ margin: 10px 20px;
 
                             <!-- Help Section for Validation Errors -->
                             <div class="help-section">
-                                <h4 class="help-title">❓ Jika Validasi Error atau Output Belum Sesuai:</h4>
+                                <h4 class="help-title">? Jika Validasi Error atau Output Belum Sesuai:</h4>
                                 <div class="help-content">
                                     <div class="help-step">
-                                        <div class="help-step-icon">1️⃣</div>
+                                        <div class="help-step-icon">1??</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Detail Validasi</strong> - Setelah klik "Kirim", panel validasi akan muncul dengan detail pengecekan. Lihat elemen mana yang belum sesuai.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">2️⃣</div>
+                                        <div class="help-step-icon">2??</div>
                                         <div class="help-step-text">
                                             <strong>Bandingkan dengan Target</strong> - Klik tab "Target" di preview untuk melihat contoh hasil yang benar. Bandingkan dengan hasil Anda.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">3️⃣</div>
+                                        <div class="help-step-icon">3??</div>
                                         <div class="help-step-text">
                                             <strong>Ikuti Hints</strong> - Panel validasi akan memberikan hints spesifik tentang apa yang perlu diperbaiki. Ikuti petunjuk tersebut.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">4️⃣</div>
+                                        <div class="help-step-icon">4??</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Kembali Instruksi</strong> - Baca ulang setiap langkah instruksi. Pastikan Anda tidak melewatkan langkah apapun.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">5️⃣</div>
+                                        <div class="help-step-icon">5??</div>
                                         <div class="help-step-text">
                                             <strong>Test dengan Run</strong> - Setelah memperbaiki, klik "Run" untuk melihat hasil baru sebelum mengirim lagi.
                                         </div>
@@ -5062,51 +5065,51 @@ margin: 10px 20px;
                         </div>
                     <?php else: ?>
                         <div class="instruction-section">
-                            <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                            <h3 class="instruction-section-title">? Tugas Praktik</h3>
                             
                             <!-- Cara Menyelesaikan Section -->
                             <div class="how-to-complete-section">
-                                <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                                <h4 class="how-to-title">?? Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                                 <div class="visual-steps">
                                     <div class="visual-step">
                                         <div class="visual-step-number">1</div>
                                         <div class="visual-step-content">
-                                            <strong>📖 Baca Instruksi</strong>
+                                            <strong>?? Baca Instruksi</strong>
                                             <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">2</div>
                                         <div class="visual-step-content">
-                                            <strong>📋 Salin Kode</strong>
+                                            <strong>?? Salin Kode</strong>
                                             <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">3</div>
                                         <div class="visual-step-content">
-                                            <strong>📝 Tempel di Editor</strong>
+                                            <strong>?? Tempel di Editor</strong>
                                             <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">4</div>
                                         <div class="visual-step-content">
-                                            <strong>✏️ Modifikasi Kode</strong>
+                                            <strong>?? Modifikasi Kode</strong>
                                             <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">5</div>
                                         <div class="visual-step-content">
-                                            <strong>▶️ Test dengan Run</strong>
+                                            <strong>?? Test dengan Run</strong>
                                             <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                         </div>
                                     </div>
                                     <div class="visual-step">
                                         <div class="visual-step-number">6</div>
                                         <div class="visual-step-content">
-                                            <strong>✅ Kirim Jawaban</strong>
+                                            <strong>? Kirim Jawaban</strong>
                                             <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                         </div>
                                     </div>
@@ -5114,7 +5117,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-intro-enhanced">
-                                <div class="intro-icon">🎯</div>
+                                <div class="intro-icon">??</div>
                                 <div class="intro-content">
                                     <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                                 </div>
@@ -5122,10 +5125,10 @@ margin: 10px 20px;
                             
                             <?php if (!empty($lesson_data['instruksi'])): ?>
                                 <div class="instruction-box">
-                                    <div class="instruction-number">📝</div>
+                                    <div class="instruction-number">??</div>
                                     <div class="instruction-text">
                                         <div class="instruction-action">
-                                            <span class="action-icon">📝</span>
+                                            <span class="action-icon">??</span>
                                             <span class="action-text"><strong>Instruksi:</strong></span>
                                         </div>
                                         <div class="instruction-content-text">
@@ -5142,8 +5145,8 @@ margin: 10px 20px;
                                                 $line = trim($line);
                                                 if (empty($line)) {
                                                     echo '<br>';
-                                                } elseif (preg_match('/^[-*•]\s*(.+)$/', $line, $matches)) {
-                                                    echo '<div class="instruction-bullet">• ' . htmlspecialchars($matches[1]) . '</div>';
+                                                } elseif (preg_match('/^[-*�]\s*(.+)$/', $line, $matches)) {
+                                                    echo '<div class="instruction-bullet">� ' . htmlspecialchars($matches[1]) . '</div>';
                                                 } elseif (preg_match('/^\d+[\.\)]\s*(.+)$/', $line, $matches)) {
                                                     echo '<div class="instruction-bullet">' . htmlspecialchars($line) . '</div>';
                                                 } else {
@@ -5169,14 +5172,14 @@ margin: 10px 20px;
                                     <code><?php echo htmlspecialchars($lesson_data['kode_contoh']); ?></code>
                                 </div>
                                 <div class="code-instruction">
-                                    <span class="code-instruction-icon">💡</span>
+                                    <span class="code-instruction-icon">??</span>
                                     <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                 </div>
                             <?php endif; ?>
                             
                             <!-- Completion Guide -->
                             <div class="completion-guide">
-                                <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                                <h4 class="guide-title">?? Cara Menyelesaikan:</h4>
                                 <div class="guide-steps">
                                     <div class="guide-step">
                                         <div class="guide-step-number">1</div>
@@ -5206,7 +5209,7 @@ margin: 10px 20px;
                             </div>
                             
                             <div class="instruction-tip">
-                                <strong>💡 Tips Penting:</strong>
+                                <strong>?? Tips Penting:</strong>
                                 <ul class="tip-list">
                                     <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                                     <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -5217,34 +5220,34 @@ margin: 10px 20px;
 
                             <!-- Help Section for Validation Errors -->
                             <div class="help-section">
-                                <h4 class="help-title">❓ Jika Validasi Error atau Output Belum Sesuai:</h4>
+                                <h4 class="help-title">? Jika Validasi Error atau Output Belum Sesuai:</h4>
                                 <div class="help-content">
                                     <div class="help-step">
-                                        <div class="help-step-icon">1️⃣</div>
+                                        <div class="help-step-icon">1??</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Detail Validasi</strong> - Setelah klik "Kirim", panel validasi akan muncul dengan detail pengecekan. Lihat elemen mana yang belum sesuai.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">2️⃣</div>
+                                        <div class="help-step-icon">2??</div>
                                         <div class="help-step-text">
                                             <strong>Bandingkan dengan Target</strong> - Klik tab "Target" di preview untuk melihat contoh hasil yang benar. Bandingkan dengan hasil Anda.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">3️⃣</div>
+                                        <div class="help-step-icon">3??</div>
                                         <div class="help-step-text">
                                             <strong>Ikuti Hints</strong> - Panel validasi akan memberikan hints spesifik tentang apa yang perlu diperbaiki. Ikuti petunjuk tersebut.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">4️⃣</div>
+                                        <div class="help-step-icon">4??</div>
                                         <div class="help-step-text">
                                             <strong>Periksa Kembali Instruksi</strong> - Baca ulang setiap langkah instruksi. Pastikan Anda tidak melewatkan langkah apapun.
                                         </div>
                                     </div>
                                     <div class="help-step">
-                                        <div class="help-step-icon">5️⃣</div>
+                                        <div class="help-step-icon">5??</div>
                                         <div class="help-step-text">
                                             <strong>Test dengan Run</strong> - Setelah memperbaiki, klik "Run" untuk melihat hasil baru sebelum mengirim lagi.
                                         </div>
@@ -5287,7 +5290,7 @@ margin: 10px 20px;
                             </div>
                             <div class="task-step">
                                 <span class="task-num">4</span>
-                                <span>Klik <strong>Run</strong> → bandingkan "Hasil Anda" dengan "Target"</span>
+                                <span>Klik <strong>Run</strong> ? bandingkan "Hasil Anda" dengan "Target"</span>
                             </div>
                             <div class="task-step">
                                 <span class="task-num">5</span>
@@ -5302,17 +5305,17 @@ margin: 10px 20px;
                         <div class="criteria-info">
                             <ul>
                                 <?php if (in_array($file_ext, ['.html', '.htm'])): ?>
-                                <li><span class="check-icon">☐</span> Elemen HTML sesuai (tag & struktur)</li>
-                                <li><span class="check-icon">☐</span> Properti CSS lengkap</li>
-                                <li><span class="check-icon">☐</span> Hasil mirip dengan "Target"</li>
+                                <li><span class="check-icon">?</span> Elemen HTML sesuai (tag & struktur)</li>
+                                <li><span class="check-icon">?</span> Properti CSS lengkap</li>
+                                <li><span class="check-icon">?</span> Hasil mirip dengan "Target"</li>
                                 <?php else: ?>
-                                <li><span class="check-icon">☐</span> Output program benar</li>
-                                <li><span class="check-icon">☐</span> Struktur kode sesuai</li>
-                                <li><span class="check-icon">☐</span> Logika berjalan benar</li>
+                                <li><span class="check-icon">?</span> Output program benar</li>
+                                <li><span class="check-icon">?</span> Struktur kode sesuai</li>
+                                <li><span class="check-icon">?</span> Logika berjalan benar</li>
                                 <?php endif; ?>
                             </ul>
                             <div class="score-info">
-                                <span class="score-badge success">≥80%</span> = Lulus
+                                <span class="score-badge success">=80%</span> = Lulus
                             </div>
                         </div>
                     </div>
@@ -5330,7 +5333,7 @@ margin: 10px 20px;
 
                 <div class="instructions-footer">
                     <button class="back-to-slide-btn" onclick="window.location.href='course.php?id=<?php echo $course_id; ?>'">
-                        ← Kembali ke Course
+                        ? Kembali ke Course
                     </button>
                 </div>
             </div>
@@ -5390,13 +5393,13 @@ margin: 10px 20px;
                     <div class="validation-modal">
                         <div class="validation-modal-header">
                             <div class="validation-modal-title-section">
-                                <span class="validation-modal-icon">⚠️</span>
+                                <span class="validation-modal-icon">??</span>
                                 <div>
                                     <h3 class="validation-modal-title">Hasil Validasi</h3>
                                     <p class="validation-modal-subtitle">Skor: <span id="modalScore" class="modal-score-text">0%</span></p>
                                 </div>
                             </div>
-                            <button class="validation-modal-close" type="button" aria-label="Tutup" onclick="window.closeValidationModal && window.closeValidationModal(); event.stopPropagation(); return false;">×</button>
+                            <button class="validation-modal-close" type="button" aria-label="Tutup" onclick="window.closeValidationModal && window.closeValidationModal(); event.stopPropagation(); return false;">�</button>
                         </div>
                         
                         <div class="validation-modal-body">
@@ -5404,14 +5407,14 @@ margin: 10px 20px;
                             
                             <!-- Comparison Section -->
                             <div id="comparisonSection" class="comparison-section" style="display: none;">
-                                <h4 class="comparison-title">📊 Perbandingan:</h4>
+                                <h4 class="comparison-title">?? Perbandingan:</h4>
                                 <div class="comparison-grid">
                                     <div class="comparison-item">
-                                        <div class="comparison-label">✅ Yang Sudah Benar</div>
+                                        <div class="comparison-label">? Yang Sudah Benar</div>
                                         <div id="passedChecks" class="comparison-content passed"></div>
                                     </div>
                                     <div class="comparison-item">
-                                        <div class="comparison-label">❌ Yang Perlu Diperbaiki</div>
+                                        <div class="comparison-label">? Yang Perlu Diperbaiki</div>
                                         <div id="failedChecks" class="comparison-content failed"></div>
                                     </div>
                                 </div>
@@ -5419,13 +5422,13 @@ margin: 10px 20px;
                             
                             <!-- Action Items -->
                             <div id="actionItems" class="action-items-section">
-                                <h4 class="action-items-title">🎯 Yang Harus Anda Lakukan:</h4>
+                                <h4 class="action-items-title">?? Yang Harus Anda Lakukan:</h4>
                                 <div id="actionItemsList" class="action-items-list"></div>
                             </div>
                             
                             <!-- Quick Fix Guide -->
                             <div class="quick-fix-guide">
-                                <h4 class="quick-fix-title">⚡ Perbaikan Cepat:</h4>
+                                <h4 class="quick-fix-title">? Perbaikan Cepat:</h4>
                                 <div class="quick-fix-steps">
                                     <div class="quick-fix-step">
                                         <span class="quick-fix-number">1</span>
@@ -5461,9 +5464,9 @@ margin: 10px 20px;
                 <!-- Old validation result (kept for compatibility) -->
                 <div id="validationResult" class="validation-result" style="display: none;">
                     <div class="validation-header">
-                        <span class="validation-icon">✓</span>
+                        <span class="validation-icon">?</span>
                         <span class="validation-title">Hasil Validasi</span>
-                        <button onclick="closeValidation()" class="validation-close">×</button>
+                        <button onclick="closeValidation()" class="validation-close">�</button>
                     </div>
                     <div class="validation-body">
                         <div class="validation-score">
@@ -5889,7 +5892,7 @@ margin: 10px 20px;
                         if (detectedLanguage === 'java' || detectedLanguage === 'text/x-java') {
                             onlineCompilerButtons = `
                                 <div style="margin-top:15px; padding-top:15px; border-top:1px solid #333;">
-                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">🚀 Run Online:</div>
+                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">?? Run Online:</div>
                                     <a href="https://www.jdoodle.com/online-java-compiler/" target="_blank" 
                                        style="display:inline-block; padding:8px 16px; background:#14B8A6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
                                        JDoodle
@@ -5906,7 +5909,7 @@ margin: 10px 20px;
                         } else if (detectedLanguage === 'cpp' || detectedLanguage === 'c++' || detectedLanguage === 'text/x-c++src') {
                             onlineCompilerButtons = `
                                 <div style="margin-top:15px; padding-top:15px; border-top:1px solid #333;">
-                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">🚀 Run Online:</div>
+                                    <div style="margin-bottom:10px; color:#10b981; font-weight:bold;">?? Run Online:</div>
                                     <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank"
                                        style="display:inline-block; padding:8px 16px; background:#14B8A6; color:white; text-decoration:none; border-radius:6px; margin-right:8px; margin-bottom:8px;">
                                        OnlineGDB
@@ -6165,7 +6168,7 @@ margin: 10px 20px;
                 let passedHtml = '';
                 if (passed.length > 0) {
                     passed.forEach(check => {
-                        passedHtml += `<div class="comparison-check-item passed">✓ ${escapeHtml(check.element)}</div>`;
+                        passedHtml += `<div class="comparison-check-item passed">? ${escapeHtml(check.element)}</div>`;
                     });
                 } else {
                     passedHtml = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 0.5rem;">Belum ada yang benar</div>';
@@ -6175,7 +6178,7 @@ margin: 10px 20px;
                 let failedHtml = '';
                 if (failed.length > 0) {
                     failed.forEach(check => {
-                        failedHtml += `<div class="comparison-check-item failed">✗ ${escapeHtml(check.element)}</div>`;
+                        failedHtml += `<div class="comparison-check-item failed">? ${escapeHtml(check.element)}</div>`;
                     });
                 } else {
                     failedHtml = '<div style="color: var(--text-muted); font-size: 0.85rem; padding: 0.5rem;">Semua sudah benar!</div>';
@@ -6191,7 +6194,7 @@ margin: 10px 20px;
                 validation.hints.forEach((hint, index) => {
                     actionHtml += `
                         <div class="action-item">
-                            <span class="action-item-icon">${index + 1}️⃣</span>
+                            <span class="action-item-icon">${index + 1}??</span>
                             <div class="action-item-text">
                                 <strong>Tindakan ${index + 1}:</strong> ${escapeHtml(hint)}
                             </div>
@@ -6202,7 +6205,7 @@ margin: 10px 20px;
             } else {
                 actionItemsList.innerHTML = `
                     <div class="action-item">
-                        <span class="action-item-icon">📋</span>
+                        <span class="action-item-icon">??</span>
                         <div class="action-item-text">
                             <strong>Periksa kembali:</strong> Baca ulang instruksi dan bandingkan hasil Anda dengan tab "Target" di preview
                         </div>
@@ -6213,11 +6216,11 @@ margin: 10px 20px;
             // Update modal icon based on score
             const modalIcon = modal.querySelector('.validation-modal-icon');
             if (validation.score >= 80) {
-                modalIcon.textContent = '✅';
+                modalIcon.textContent = '?';
             } else if (validation.score >= 50) {
-                modalIcon.textContent = '⚠️';
+                modalIcon.textContent = '??';
             } else {
-                modalIcon.textContent = '❌';
+                modalIcon.textContent = '?';
             }
 
             // Show modal
@@ -6279,7 +6282,7 @@ margin: 10px 20px;
 
         // Use event delegation for close buttons (works even if modal is created dynamically)
         document.addEventListener('click', function(e) {
-            // Close button in header (× button)
+            // Close button in header (� button)
             if (e.target.classList.contains('validation-modal-close') || 
                 e.target.closest('.validation-modal-close')) {
                 e.preventDefault();
@@ -6428,7 +6431,7 @@ margin: 10px 20px;
                     </head>
                     <body>
                         <div class="message">
-                            <div class="icon">📝</div>
+                            <div class="icon">??</div>
                             <h3>Ikuti Instruksi</h3>
                             <p>Baca instruksi di panel kiri dengan teliti, lalu tulis kode sesuai dengan petunjuk yang diberikan.</p>
                         </div>
@@ -6580,7 +6583,7 @@ margin: 10px 20px;
                 // Update lesson subtitle
                 const lessonSubtitle = document.querySelector('.lesson-header-content p, .lesson-title-section p');
                 if (lessonSubtitle && data.course && data.lesson) {
-                    lessonSubtitle.textContent = `${data.course.judul_course} • Lesson ${data.lesson.urutan}`;
+                    lessonSubtitle.textContent = `${data.course.judul_course} � Lesson ${data.lesson.urutan}`;
                 }
 
                 // Update language logo if needed
@@ -6626,9 +6629,9 @@ margin: 10px 20px;
                 cleanContent = cleanContent.replace(/\n{3,}/g, '\n\n');
 
                 if (typeof marked !== 'undefined') {
-                    instructionContainer.innerHTML = '<div class="instruction-number">📝</div>' + marked.parse(cleanContent);
+                    instructionContainer.innerHTML = '<div class="instruction-number">??</div>' + marked.parse(cleanContent);
                 } else {
-                    instructionContainer.innerHTML = '<div class="instruction-number">📝</div><p>' + cleanContent.replace(/\n/g, '<br>') + '</p>';
+                    instructionContainer.innerHTML = '<div class="instruction-number">??</div><p>' + cleanContent.replace(/\n/g, '<br>') + '</p>';
                 }
             }
 
@@ -6704,50 +6707,50 @@ margin: 10px 20px;
 
                 // Rebuild instructions
                 let html = `
-                    <h3 class="instruction-section-title">✅ Tugas Praktik</h3>
+                    <h3 class="instruction-section-title">? Tugas Praktik</h3>
                     
                     <div class="how-to-complete-section">
-                        <h4 class="how-to-title">📋 Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
+                        <h4 class="how-to-title">?? Cara Menyelesaikan Lesson Ini (Step-by-Step):</h4>
                         <div class="visual-steps">
                             <div class="visual-step">
                                 <div class="visual-step-number">1</div>
                                 <div class="visual-step-content">
-                                    <strong>📖 Baca Instruksi</strong>
+                                    <strong>?? Baca Instruksi</strong>
                                     <p>Pelajari setiap langkah di bawah ini dengan teliti. Setiap langkah menjelaskan apa yang harus Anda lakukan.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">2</div>
                                 <div class="visual-step-content">
-                                    <strong>📋 Salin Kode</strong>
+                                    <strong>?? Salin Kode</strong>
                                     <p>Klik tombol <strong>"Copy"</strong> pada setiap blok kode yang disediakan. Kode akan tersalin ke clipboard Anda.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">3</div>
                                 <div class="visual-step-content">
-                                    <strong>📝 Tempel di Editor</strong>
+                                    <strong>?? Tempel di Editor</strong>
                                     <p>Paste kode (Ctrl+V atau Cmd+V) ke editor di tengah. Editor adalah kotak besar di panel tengah.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">4</div>
                                 <div class="visual-step-content">
-                                    <strong>✏️ Modifikasi Kode</strong>
+                                    <strong>?? Modifikasi Kode</strong>
                                     <p>Sesuaikan kode sesuai instruksi. Misalnya: ubah teks, tambah elemen, atau ubah warna.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">5</div>
                                 <div class="visual-step-content">
-                                    <strong>▶️ Test dengan Run</strong>
+                                    <strong>?? Test dengan Run</strong>
                                     <p>Klik tombol <strong>"Run"</strong> (biru) untuk melihat hasil di preview. Bandingkan dengan tab <strong>"Target"</strong>.</p>
                                 </div>
                             </div>
                             <div class="visual-step">
                                 <div class="visual-step-number">6</div>
                                 <div class="visual-step-content">
-                                    <strong>✅ Kirim Jawaban</strong>
+                                    <strong>? Kirim Jawaban</strong>
                                     <p>Jika hasil sudah sesuai dengan Target, klik tombol <strong>"Kirim"</strong> (ungu) untuk validasi.</p>
                                 </div>
                             </div>
@@ -6755,7 +6758,7 @@ margin: 10px 20px;
                     </div>
                     
                     <div class="instruction-intro-enhanced">
-                        <div class="intro-icon">🎯</div>
+                        <div class="intro-icon">??</div>
                         <div class="intro-content">
                             <strong>Panduan Penting:</strong> Ikuti langkah-langkah di bawah ini <strong>secara berurutan</strong>. Setiap langkah memiliki kode yang bisa dicopy. Setelah menyalin, modifikasi sesuai instruksi di langkah tersebut.
                         </div>
@@ -6789,7 +6792,7 @@ margin: 10px 20px;
                             ${textHtml ? `
                                 <div class="instruction-text">
                                     <div class="instruction-action">
-                                        <span class="action-icon">📝</span>
+                                        <span class="action-icon">??</span>
                                         <span class="action-text"><strong>Instruksi Langkah ${index + 1}:</strong></span>
                                     </div>
                                     <div class="instruction-content-text">${formatInstructionText(cleanText)}</div>
@@ -6798,13 +6801,13 @@ margin: 10px 20px;
                             ${step.code ? `
                                 <div class="code-snippet">
                                     <div class="code-header">
-                                        <span class="code-label">💻 Kode untuk Disalin</span>
+                                        <span class="code-label">?? Kode untuk Disalin</span>
                                         <button class="copy-btn" onclick="copyToClipboard('${codeHtml}', this)">Copy</button>
                                     </div>
                                     <code>${escapeHtml(step.code)}</code>
                                 </div>
                                 <div class="code-instruction">
-                                    <span class="code-instruction-icon">💡</span>
+                                    <span class="code-instruction-icon">??</span>
                                     <span>Salin kode di atas, lalu tempel di editor dan modifikasi sesuai instruksi</span>
                                 </div>
                             ` : ''}
@@ -6821,7 +6824,7 @@ margin: 10px 20px;
 
                 html += `
                     <div class="completion-guide">
-                        <h4 class="guide-title">🎯 Cara Menyelesaikan:</h4>
+                        <h4 class="guide-title">?? Cara Menyelesaikan:</h4>
                         <div class="guide-steps">
                             <div class="guide-step">
                                 <div class="guide-step-number">1</div>
@@ -6851,7 +6854,7 @@ margin: 10px 20px;
                     </div>
                     
                     <div class="instruction-tip">
-                        <strong>💡 Tips Penting:</strong>
+                        <strong>?? Tips Penting:</strong>
                         <ul class="tip-list">
                             <li>Pastikan kode yang Anda tulis sesuai dengan instruksi di setiap langkah</li>
                             <li>Gunakan tombol "Run" untuk mengecek hasil sebelum mengirim</li>
@@ -6908,7 +6911,7 @@ margin: 10px 20px;
                         const newLink = document.createElement('a');
                         newLink.href = `lesson.php?course_id=${courseId}&lesson_id=${prevLesson.id}`;
                         newLink.className = prevLink.className;
-                        newLink.textContent = '← Sebelumnya';
+                        newLink.textContent = '? Sebelumnya';
                         prevLink.parentNode.replaceChild(newLink, prevLink);
                     }
                 } else if (prevLink && !prevLesson) {
@@ -6932,7 +6935,7 @@ margin: 10px 20px;
                         const newLink = document.createElement('a');
                         newLink.href = `lesson.php?course_id=${courseId}&lesson_id=${nextLesson.id}`;
                         newLink.className = nextLink.className;
-                        newLink.textContent = 'Selanjutnya →';
+                        newLink.textContent = 'Selanjutnya ?';
                         nextLink.parentNode.replaceChild(newLink, nextLink);
                     }
                 } else if (nextLink && !nextLesson) {
@@ -6962,9 +6965,9 @@ margin: 10px 20px;
                     line = line.trim();
                     if (!line) {
                         html += '<br>';
-                    } else if (/^[-*•]\s*(.+)$/.test(line)) {
-                        const match = line.match(/^[-*•]\s*(.+)$/);
-                        html += `<div class="instruction-bullet">• ${escapeHtml(match[1])}</div>`;
+                    } else if (/^[-*�]\s*(.+)$/.test(line)) {
+                        const match = line.match(/^[-*�]\s*(.+)$/);
+                        html += `<div class="instruction-bullet">� ${escapeHtml(match[1])}</div>`;
                     } else if (/^\d+[\.\)]\s*(.+)$/.test(line)) {
                         html += `<div class="instruction-bullet">${escapeHtml(line)}</div>`;
                     } else {

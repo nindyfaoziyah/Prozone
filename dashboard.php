@@ -269,24 +269,12 @@ if ($role === 'admin') {
                             Streak <span class="streak-count"><?php echo $streakDays; ?> hari</span>
                         </div>
                         <?php endif; ?>
-                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
-                        <div class="hero-badge">
-                            <span class="hero-badge-dot"></span>
-                            Platform Coding #1 untuk Pemula
-                        </div>
-                        <?php if ($streakDays > 0): ?>
-                        <div class="streak-badge">
-                            <span class="streak-fire">🔥</span>
-                            Streak <span class="streak-count"><?php echo $streakDays; ?> hari</span>
-                        </div>
-                        <?php endif; ?>
                     </div>
                     <h1>Belajar Coding dengan Cara <br><span class="text-accent-gradient">Menyenangkan</span></h1>
                     <p class="hero-subtitle">
                         Platform pembelajaran coding interaktif dengan clan, leaderboard, achievement, dan code editor langsung di browser. Tingkatkan skill programming Anda sambil bersenang-senang!
                     </p>
                     <div class="hero-actions">
-                        <a href="courses.php" class="glass-btn glass-btn-primary glass-btn-lg">Mulai Belajar Gratis →</a>
                         <a href="courses.php" class="glass-btn glass-btn-primary glass-btn-lg">Mulai Belajar Gratis →</a>
                         <a href="courses.php" class="glass-btn glass-btn-secondary glass-btn-lg">
                             Lihat Kursus <?php icon('play', 14); ?>
@@ -318,20 +306,7 @@ if ($role === 'admin') {
                     <div class="stat-mini-body">
                         <div class="stat-mini-label">Belajar</div>
                         <div class="stat-mini-value"><?php echo number_format($total_courses ?? 0); ?>+ Kursus</div>
-            <!-- Stats Row 2: Mini Stats -->
-            <div class="stats-row-2">
-                <div class="stat-mini-card">
-                    <div class="stat-mini-icon purple">📚</div>
-                    <div class="stat-mini-body">
-                        <div class="stat-mini-label">Belajar</div>
-                        <div class="stat-mini-value"><?php echo number_format($total_courses ?? 0); ?>+ Kursus</div>
                     </div>
-                </div>
-                <div class="stat-mini-card">
-                    <div class="stat-mini-icon green">📊</div>
-                    <div class="stat-mini-body">
-                        <div class="stat-mini-label">Progress Rata-rata</div>
-                        <div class="stat-mini-value"><?php echo number_format($avg_progress, 0); ?>%</div>
                 </div>
                 <div class="stat-mini-card">
                     <div class="stat-mini-icon green">📊</div>
@@ -345,18 +320,8 @@ if ($role === 'admin') {
                     <div class="stat-mini-body">
                         <div class="stat-mini-label">Streak</div>
                         <div class="stat-mini-value"><?php echo $streakDays; ?> Hari</div>
-                <div class="stat-mini-card">
-                    <div class="stat-mini-icon amber">🔥</div>
-                    <div class="stat-mini-body">
-                        <div class="stat-mini-label">Streak</div>
-                        <div class="stat-mini-value"><?php echo $streakDays; ?> Hari</div>
                     </div>
                 </div>
-                <div class="stat-mini-card">
-                    <div class="stat-mini-icon blue">✅</div>
-                    <div class="stat-mini-body">
-                        <div class="stat-mini-label">Selesai</div>
-                        <div class="stat-mini-value"><?php echo $completed_courses; ?> Kursus</div>
                 <div class="stat-mini-card">
                     <div class="stat-mini-icon blue">✅</div>
                     <div class="stat-mini-body">
@@ -368,17 +333,6 @@ if ($role === 'admin') {
 
             <!-- Continue Learning -->
             <?php if (!empty($lastCourse)): ?>
-            <div class="continue-card">
-                <div class="continue-info">
-                    <div class="continue-icon-box"><?php icon('play', 26); ?></div>
-                    <div class="continue-text">
-                        <h3><?php echo htmlspecialchars($lastCourse['judul_course']); ?></h3>
-                        <p>Progress: <span class="progress-highlight"><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
-                    </div>
-                </div>
-                <a href="course.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
-                    <?php icon('play', 16); ?> Lanjutkan
-                </a>
             <div class="continue-card">
                 <div class="continue-info">
                     <div class="continue-icon-box"><?php icon('play', 26); ?></div>
@@ -405,9 +359,6 @@ if ($role === 'admin') {
                     <div class="learning-tracks-list">
                         <?php if (empty($enrolled_courses)): ?>
                             <div class="glass-empty-state">
-                                <span class="empty-icon">🎯</span>
-                                <div class="empty-title">Belum ada kursus</div>
-                                <div class="empty-sub">Mulai belajar dengan kursus pertama!</div>
                                 <span class="empty-icon">🎯</span>
                                 <div class="empty-title">Belum ada kursus</div>
                                 <div class="empty-sub">Mulai belajar dengan kursus pertama!</div>
@@ -440,15 +391,7 @@ if ($role === 'admin') {
                         <!-- Tantangan Harian -->
                         <div class="section-title-row" style="margin-top:20px;">
                             <h3>Tantangan Harian <span class="glass-badge glass-badge-primary ml-2" style="font-size:9px;">🔥 Baru</span></h3>
-                        <!-- Tantangan Harian -->
-                        <div class="section-title-row" style="margin-top:20px;">
-                            <h3>Tantangan Harian <span class="glass-badge glass-badge-primary ml-2" style="font-size:9px;">🔥 Baru</span></h3>
                         </div>
-                        <div class="challenge-item-horizontal">
-                            <div class="challenge-icon-box">💻</div>
-                            <div class="challenge-mini-info">
-                                <span class="challenge-name">Two Sum</span>
-                                <span class="challenge-desc">Selesaikan algoritma Two Sum</span>
                         <div class="challenge-item-horizontal">
                             <div class="challenge-icon-box">💻</div>
                             <div class="challenge-mini-info">
@@ -501,11 +444,8 @@ if ($role === 'admin') {
                     <div class="rpg-class-name"><?php echo htmlspecialchars($char_data['name']); ?></div>
                     <div class="rpg-class-title"><?php echo htmlspecialchars($char_data['title']); ?></div>
                     <span class="rarity-badge rarity-<?php echo $char_data['rarity']; ?>">✦ <?php echo $char_data['rarity_label']; ?></span>
-                    <span class="rarity-badge rarity-<?php echo $char_data['rarity']; ?>">✦ <?php echo $char_data['rarity_label']; ?></span>
 
                     <div class="rpg-stats-row">
-                        <div class="rpg-stat-pill lvl">⭐ Lv.<?php echo $level; ?></div>
-                        <div class="rpg-stat-pill xp">⚡ <?php echo number_format($total_xp); ?> XP</div>
                         <div class="rpg-stat-pill lvl">⭐ Lv.<?php echo $level; ?></div>
                         <div class="rpg-stat-pill xp">⚡ <?php echo number_format($total_xp); ?> XP</div>
                     </div>
@@ -517,16 +457,13 @@ if ($role === 'admin') {
                             <div class="rpg-next-bar-fill" style="width:<?php echo $next_xp_pct; ?>%"></div>
                         </div>
                         <div class="rpg-next-hint"><?php echo number_format($total_xp); ?> / <?php echo number_format($next_unlock['xp_required']); ?> XP · Lv.<?php echo $next_unlock['level_required']; ?> required</div>
-                        <div class="rpg-next-hint"><?php echo number_format($total_xp); ?> / <?php echo number_format($next_unlock['xp_required']); ?> XP · Lv.<?php echo $next_unlock['level_required']; ?> required</div>
                     </div>
                     <?php else: ?>
                     <div class="rpg-next-unlock" style="text-align:center">
                         <div class="rpg-next-label" style="justify-content:center">🏆 Max Class Reached!</div>
-                        <div class="rpg-next-label" style="justify-content:center">🏆 Max Class Reached!</div>
                     </div>
                     <?php endif; ?>
 
-                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">🏆 Lihat Semua Trophy</a>
                     <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">🏆 Lihat Semua Trophy</a>
                 </div>
             </div>
@@ -541,7 +478,6 @@ if ($role === 'admin') {
                         <?php icon('shield', 14); ?> ADMIN
                     </div>
                     <h2>Selamat datang, <?php echo htmlspecialchars(explode(' ', $_SESSION['nama_lengkap'] ?? 'Admin')[0]); ?>!</h2>
-                    <p>Kelola platform Prozone — kursus, user, clan, dan pantau aktivitas belajar.</p>
                     <p>Kelola platform Prozone — kursus, user, clan, dan pantau aktivitas belajar.</p>
                 </div>
                 <div class="admin-welcome-stats">

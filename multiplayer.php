@@ -6,7 +6,7 @@ require_once 'includes/rpg_system.php';
 
 $page_title       = 'CodeQuest Arena';
 $page_description = 'Multiplayer Coding Battle Prozone.';
-$page_css         = ['sidebar-island.css', 'rpg-system.css', 'arena-v2.css', 'arena-battle-result.css'];
+$page_css         = ['sidebar-island.css', 'dashboard-override.css', 'rpg-system.css', 'arena-v2.css', 'arena-battle-result.css'];
 // By injecting `arena-active`, we override the body to be overflow:hidden
 $body_class       = getThemeClass() . ' arena-active';
 
