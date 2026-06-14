@@ -1329,7 +1329,7 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
                     <?php icon('trending-up', 18); ?> Analytics
                 </a>
                 <a href="?tab=character" class="glass-tab <?php echo $active_tab === 'character' ? 'active' : ''; ?>" style="position:relative">
-                    âš”ï¸ Karakter
+                    ⚔️ Karakter
                 </a>
                 <a href="?tab=achievements" class="glass-tab <?php echo $active_tab === 'achievements' ? 'active' : ''; ?>">
                     <?php icon('award', 18); ?> Achievement

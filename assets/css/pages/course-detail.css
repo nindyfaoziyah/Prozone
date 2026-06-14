@@ -8,7 +8,6 @@
   background: linear-gradient(135deg, #3B82F6 0%, #14B8A6 50%, #2DD4BF 100%);
   color: white;
   padding: 1.5rem;
-  margin-top: 70px;
   position: relative;
   overflow: hidden;
 }
@@ -145,17 +144,56 @@
   box-shadow: none;
 }
 
+.enroll-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(20,184,166,0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--accent-primary, #3B82F6);
+}
+
 .enroll-section h2 {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-primary, #1e1b4b);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .enroll-section p {
   color: var(--text-secondary, #64748b);
-  margin: 0.75rem 0 1.25rem;
+  margin: 0.5rem 0 1.25rem;
   font-size: 0.9rem;
+}
+
+.btn-enroll-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 2rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #3B82F6, #14B8A6);
+  color: white;
+  box-shadow: 0 6px 20px rgba(99,102,241,0.25);
+}
+
+.btn-enroll-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.35);
+}
+
+.btn-enroll-cta:active {
+  transform: translateY(0);
 }
 
 /* --- Progress Section --- */
@@ -380,6 +418,20 @@
   gap: 0.5rem;
 }
 
+.lesson-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 20px;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-primary, #3B82F6);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .lessons-list {
   background: var(--card-bg, #ffffff);
   border: 1px solid rgba(99,102,241,0.06);
@@ -405,6 +457,9 @@
 }
 .dark-mode .lesson-item {
   border-color: rgba(255,255,255,0.03);
+}
+.dark-mode .lesson-item.completed {
+  background: rgba(34,197,94,0.05);
 }
 
 .lesson-item:last-child {
@@ -434,6 +489,9 @@
 .lesson-item.completed::before {
   transform: scaleY(1);
   background: linear-gradient(180deg, #22c55e, #16a34a);
+}
+.lesson-item.completed {
+  background: rgba(34,197,94,0.03);
 }
 
 .lesson-number {

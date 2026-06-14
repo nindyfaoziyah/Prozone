@@ -19,7 +19,7 @@ define('RPG_CLASSES', [
         'description'    => 'Setiap perjalanan epik dimulai dengan satu baris kode.',
         'color'          => '#3B82F6',
         'gradient'       => 'linear-gradient(135deg, #3B82F6, #0EA5E9)',
-        'badge'          => 'âš”ï¸',
+        'badge'          => '⚔️',
         'image'          => 'assets/img/characters/code-warrior.png',
     ],
     'bug-hunter' => [
@@ -33,7 +33,7 @@ define('RPG_CLASSES', [
         'description'    => 'Tidak ada error yang lolos dari pengamatanmu!',
         'color'          => '#20C7B7',
         'gradient'       => 'linear-gradient(135deg, #20C7B7, #0FAE9F)',
-        'badge'          => 'ðŸ”',
+        'badge'          => '🔍',
         'image'          => 'assets/img/characters/bug-hunter.png',
     ],
     'web-developer' => [

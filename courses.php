@@ -319,16 +319,29 @@ $body_class = getThemeClass();
             box-shadow: var(--card-shadow);
             height: 100%;
         }
+        .course-card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #14B8A6, #8B5CF6);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 3;
+        }
         .course-card-premium:hover {
             transform: translateY(-6px);
             border-color: rgba(var(--accent-primary-rgb, 99,102,241), 0.2);
             box-shadow: var(--card-shadow-hover);
         }
+        .course-card-premium:hover::before {
+            opacity: 1;
+        }
 
         .course-thumbnail {
             position: relative;
             height: var(--thumb-height);
-            background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(20,184,166,0.1));
+            background: var(--card-grad, linear-gradient(135deg, rgba(99,102,241,0.06), rgba(20,184,166,0.1)));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -339,14 +352,14 @@ $body_class = getThemeClass();
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.25) 0%, transparent 60%);
             pointer-events: none;
         }
         .dark-mode .course-thumbnail {
-            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(20,184,166,0.04));
+            background: var(--card-grad, linear-gradient(135deg, rgba(99,102,241,0.08), rgba(20,184,166,0.04)));
         }
         .dark-mode .course-thumbnail::after {
-            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.04) 0%, transparent 60%);
+            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
         }
 
         .course-logo {
@@ -635,7 +648,7 @@ $body_class = getThemeClass();
                 <!-- Hero Section -->
                 <div class="courses-hero reveal">
                     <div class="hero-badge">
-                        <span>ðŸ“š</span>
+                        <span>📚</span>
                         <span>Katalog Kursus</span>
                     </div>
                     <h1 class="hero-title">Jelajahi Skill Baru</h1>
@@ -700,14 +713,28 @@ $body_class = getThemeClass();
                             <a href="courses.php" class="btn-search" style="width: auto;">Reset Semua Filter</a>
                         </div>
                     <?php else: ?>
-                        <?php foreach ($courses as $course_item): 
+                        <?php 
+                        $gradients = [
+                            'linear-gradient(135deg, #667eea, #764ba2)',
+                            'linear-gradient(135deg, #f093fb, #f5576c)',
+                            'linear-gradient(135deg, #4facfe, #00f2fe)',
+                            'linear-gradient(135deg, #43e97b, #38f9d7)',
+                            'linear-gradient(135deg, #fa709a, #fee140)',
+                            'linear-gradient(135deg, #30cfd0, #330867)',
+                            'linear-gradient(135deg, #a18cd1, #fbc2eb)',
+                            'linear-gradient(135deg, #fccb90, #d57eeb)',
+                            'linear-gradient(135deg, #e0c3fc, #8ec5fc)',
+                            'linear-gradient(135deg, #f5576c, #ff6f00)',
+                        ];
+                        foreach ($courses as $course_item): 
                             $is_enrolled = isset($user_enrollments[$course_item['id']]);
                             $enrollment_data = $is_enrolled ? $user_enrollments[$course_item['id']] : null;
                             $logoUrl = getCourseLogo($course_item['judul_course']);
                             $level = strtolower($course_item['level']);
                             $progress = $is_enrolled ? (float)$enrollment_data['progress_percent'] : 0;
+                            $gradient_idx = abs(crc32($course_item['judul_course'] ?? '')) % count($gradients);
                         ?>
-                            <div class="course-card-premium reveal">
+                            <div class="course-card-premium reveal" style="--card-grad: <?php echo $gradients[$gradient_idx]; ?>">
                                 <div class="course-thumbnail">
                                     <?php if ($logoUrl): ?>
                                         <img src="<?php echo $logoUrl; ?>" alt="" class="course-logo">
@@ -744,6 +771,10 @@ $body_class = getThemeClass();
                                         <div class="meta-item">
                                             <?php icon('clock', 14); ?>
                                             <span><?php echo (int)$course_item['durasi_jam']; ?> Jam</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <?php icon('users', 14); ?>
+                                            <span><?php echo (int)$course_item['total_students']; ?></span>
                                         </div>
                                         <?php if ($is_enrolled): ?>
                                             <div class="meta-item meta-item--enrolled">

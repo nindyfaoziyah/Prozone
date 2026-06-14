@@ -258,16 +258,24 @@ if ($role === 'admin') {
             <!-- Premium Hero Section -->
             <div class="glass-header premium-hero">
                 <div class="hero-text-content">
-                    <div class="hero-badge">
-                        <span class="hero-badge-dot"></span>
-                        Platform Coding #1 untuk Pemula
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                        <div class="hero-badge">
+                            <span class="hero-badge-dot"></span>
+                            Platform Coding #1 untuk Pemula
+                        </div>
+                        <?php if ($streakDays > 0): ?>
+                        <div class="streak-badge">
+                            <span class="streak-fire">🔥</span>
+                            Streak <span class="streak-count"><?php echo $streakDays; ?> hari</span>
+                        </div>
+                        <?php endif; ?>
                     </div>
                     <h1>Belajar Coding dengan Cara <br><span class="text-accent-gradient">Menyenangkan</span></h1>
                     <p class="hero-subtitle">
                         Platform pembelajaran coding interaktif dengan clan, leaderboard, achievement, dan code editor langsung di browser. Tingkatkan skill programming Anda sambil bersenang-senang!
                     </p>
                     <div class="hero-actions">
-                        <a href="courses.php" class="glass-btn glass-btn-primary glass-btn-lg">Mulai Belajar Gratis â†’</a>
+                        <a href="courses.php" class="glass-btn glass-btn-primary glass-btn-lg">Mulai Belajar Gratis →</a>
                         <a href="courses.php" class="glass-btn glass-btn-secondary glass-btn-lg">
                             Lihat Kursus <?php icon('play', 14); ?>
                         </a>
@@ -282,62 +290,58 @@ if ($role === 'admin') {
                         </div>
                         <div class="terminal-body">
                             <div class="line"><span class="cmd">></span> npm start</div>
-                            <div class="line success">âœ“ Server running...</div>
-                            <div class="line">âœ“ Ready to code!</div>
+                            <div class="line success">✓ Server running...</div>
+                            <div class="line">✓ Ready to code!</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="glass-stats-grid mb-10">
-                <div class="glass-stat-card">
-                    <div class="stat-icon-wrapper bg-accent-subtle">
-                        <?php icon('book', 24, 'text-accent'); ?>
-                    </div>
-                    <div class="stat-info">
-                        <div class="glass-stat-label">KURSUS</div>
-                        <div class="glass-stat-value"><?php echo number_format($total_courses ?? 0); ?>+</div>
-                        <div class="stat-desc">Kursus Interaktif</div>
+            <!-- Stats Row 2: Mini Stats -->
+            <div class="stats-row-2">
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon purple">📚</div>
+                    <div class="stat-mini-body">
+                        <div class="stat-mini-label">Belajar</div>
+                        <div class="stat-mini-value"><?php echo number_format($total_courses ?? 0); ?>+ Kursus</div>
                     </div>
                 </div>
-                <div class="glass-stat-card">
-                    <div class="stat-icon-wrapper bg-primary-subtle">
-                        <?php icon('users', 24, 'text-primary'); ?>
-                    </div>
-                    <div class="stat-info">
-                        <div class="glass-stat-label">STUDENTS</div>
-                        <div class="glass-stat-value"><?php echo number_format($total_enrolled ?? 0); ?>+</div>
-                        <div class="stat-desc">Pelajar Aktif</div>
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon green">📊</div>
+                    <div class="stat-mini-body">
+                        <div class="stat-mini-label">Progress Rata-rata</div>
+                        <div class="stat-mini-value"><?php echo number_format($avg_progress, 0); ?>%</div>
                     </div>
                 </div>
-                <div class="glass-stat-card">
-                    <div class="stat-icon-wrapper bg-warning-subtle">
-                        <?php icon('award', 24, 'text-warning'); ?>
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon amber">🔥</div>
+                    <div class="stat-mini-body">
+                        <div class="stat-mini-label">Streak</div>
+                        <div class="stat-mini-value"><?php echo $streakDays; ?> Hari</div>
                     </div>
-                    <div class="stat-info">
-                        <div class="glass-stat-label">COURSES</div>
-                        <div class="glass-stat-value">50+</div>
-                        <div class="stat-desc">Kursus Tersedia</div>
+                </div>
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon blue">✅</div>
+                    <div class="stat-mini-body">
+                        <div class="stat-mini-label">Selesai</div>
+                        <div class="stat-mini-value"><?php echo $completed_courses; ?> Kursus</div>
                     </div>
                 </div>
             </div>
 
             <!-- Continue Learning -->
             <?php if (!empty($lastCourse)): ?>
-            <div class="glass-card mb-8">
-                <div class="glass-card-content flex items-center justify-between gap-4 flex-wrap">
-                    <div class="continue-info flex items-center gap-4">
-                        <div class="continue-icon w-12 h-12 rounded-lg bg-brand flex items-center justify-center text-white"><?php icon('play', 22); ?></div>
-                        <div class="continue-text">
-                            <h3 class="text-lg font-bold text-white mb-1"><?php echo htmlspecialchars($lastCourse['judul_course']); ?></h3>
-                            <p class="text-sm text-gray-300">Progress: <span class="text-brand font-bold"><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
-                        </div>
+            <div class="continue-card">
+                <div class="continue-info">
+                    <div class="continue-icon-box"><?php icon('play', 26); ?></div>
+                    <div class="continue-text">
+                        <h3><?php echo htmlspecialchars($lastCourse['judul_course']); ?></h3>
+                        <p>Progress: <span class="progress-highlight"><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
                     </div>
-                    <a href="course.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
-                        <?php icon('play', 16); ?> Lanjutkan
-                    </a>
                 </div>
+                <a href="course.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
+                    <?php icon('play', 16); ?> Lanjutkan
+                </a>
             </div>
             <?php endif; ?>
 
@@ -353,7 +357,9 @@ if ($role === 'admin') {
                     <div class="learning-tracks-list">
                         <?php if (empty($enrolled_courses)): ?>
                             <div class="glass-empty-state">
-                                <p>Cari kursus pertamamu!</p>
+                                <span class="empty-icon">🎯</span>
+                                <div class="empty-title">Belum ada kursus</div>
+                                <div class="empty-sub">Mulai belajar dengan kursus pertama!</div>
                             </div>
                         <?php else: ?>
                             <?php foreach (array_slice($enrolled_courses, 0, 2) as $course_item): ?>
@@ -380,17 +386,15 @@ if ($role === 'admin') {
                             <?php endforeach; ?>
                         <?php endif; ?>
 
-                        <!-- Tantangan Harian Placeholder -->
-                        <div class="section-title-row mt-8">
-                            <h3>Tantangan Harian <span class="glass-badge glass-badge-primary ml-2" style="font-size: 8px;">New</span></h3>
+                        <!-- Tantangan Harian -->
+                        <div class="section-title-row" style="margin-top:20px;">
+                            <h3>Tantangan Harian <span class="glass-badge glass-badge-primary ml-2" style="font-size:9px;">🔥 Baru</span></h3>
                         </div>
-                        <div class="course-item-horizontal">
-                            <div class="course-logo-circle">
-                                <?php icon('code', 24, 'text-primary'); ?>
-                            </div>
-                            <div class="course-mini-info">
-                                <span class="track-name">Two Sum</span>
-                                <div class="text-xs text-muted">Selesaikan algoritma Two Sum</div>
+                        <div class="challenge-item-horizontal">
+                            <div class="challenge-icon-box">💻</div>
+                            <div class="challenge-mini-info">
+                                <span class="challenge-name">Two Sum</span>
+                                <span class="challenge-desc">Selesaikan algoritma Two Sum</span>
                             </div>
                         </div>
                     </div>
@@ -437,11 +441,11 @@ if ($role === 'admin') {
                     <div class="rpg-class-badge"><?php echo $char_data['badge']; ?></div>
                     <div class="rpg-class-name"><?php echo htmlspecialchars($char_data['name']); ?></div>
                     <div class="rpg-class-title"><?php echo htmlspecialchars($char_data['title']); ?></div>
-                    <span class="rarity-badge rarity-<?php echo $char_data['rarity']; ?>">âœ¦ <?php echo $char_data['rarity_label']; ?></span>
+                    <span class="rarity-badge rarity-<?php echo $char_data['rarity']; ?>">✦ <?php echo $char_data['rarity_label']; ?></span>
 
                     <div class="rpg-stats-row">
-                        <div class="rpg-stat-pill lvl">â­ Lv.<?php echo $level; ?></div>
-                        <div class="rpg-stat-pill xp">âš¡ <?php echo number_format($total_xp); ?> XP</div>
+                        <div class="rpg-stat-pill lvl">⭐ Lv.<?php echo $level; ?></div>
+                        <div class="rpg-stat-pill xp">⚡ <?php echo number_format($total_xp); ?> XP</div>
                     </div>
 
                     <?php if ($next_unlock): ?>
@@ -450,15 +454,15 @@ if ($role === 'admin') {
                         <div class="rpg-next-bar-bg">
                             <div class="rpg-next-bar-fill" style="width:<?php echo $next_xp_pct; ?>%"></div>
                         </div>
-                        <div class="rpg-next-hint"><?php echo number_format($total_xp); ?> / <?php echo number_format($next_unlock['xp_required']); ?> XP Â· Lv.<?php echo $next_unlock['level_required']; ?> required</div>
+                        <div class="rpg-next-hint"><?php echo number_format($total_xp); ?> / <?php echo number_format($next_unlock['xp_required']); ?> XP · Lv.<?php echo $next_unlock['level_required']; ?> required</div>
                     </div>
                     <?php else: ?>
                     <div class="rpg-next-unlock" style="text-align:center">
-                        <div class="rpg-next-label" style="justify-content:center">ðŸ† Max Class Reached!</div>
+                        <div class="rpg-next-label" style="justify-content:center">🏆 Max Class Reached!</div>
                     </div>
                     <?php endif; ?>
 
-                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">ðŸ† Lihat Semua Trophy</a>
+                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">🏆 Lihat Semua Trophy</a>
                 </div>
             </div>
 
@@ -472,7 +476,7 @@ if ($role === 'admin') {
                         <?php icon('shield', 14); ?> ADMIN
                     </div>
                     <h2>Selamat datang, <?php echo htmlspecialchars(explode(' ', $_SESSION['nama_lengkap'] ?? 'Admin')[0]); ?>!</h2>
-                    <p>Kelola platform Prozone â€” kursus, user, clan, dan pantau aktivitas belajar.</p>
+                    <p>Kelola platform Prozone — kursus, user, clan, dan pantau aktivitas belajar.</p>
                 </div>
                 <div class="admin-welcome-stats">
                     <div class="welcome-stat">

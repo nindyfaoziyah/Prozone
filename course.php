@@ -70,24 +70,20 @@ if ($_POST) {
         }
     }
 }
+$page_title = htmlspecialchars($course_data['judul_course']) . ' - ' . APP_NAME;
+$page_description = htmlspecialchars($course_data['deskripsi'] ?? 'Detail kursus');
+$page_css = ['sidebar-island.css', 'dashboard-override.css', 'pages/course-detail.css'];
+$body_class = trim(getThemeClass() . ' dashboard-layout');
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta(htmlspecialchars($course_data['judul_course']) . ' - ' . APP_NAME, htmlspecialchars($course_data['deskripsi'] ?? 'Detail kursus'), 'course, learning, ' . htmlspecialchars($course_data['judul_course'])); ?>
-    <title><?php echo htmlspecialchars($course_data['judul_course']); ?> - <?php echo APP_NAME; ?></title>
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/pages/course-detail.css">
+    <?php require_once 'includes/head.php'; ?>
 </head>
-<body>
-    <!-- Navbar -->
+<body class="<?php echo $body_class; ?>">
     <?php require_once 'navbar.php'; ?>
 
-    <div class="dashboard-main-container">
+    <div class="page-wrapper dashboard-main-container">
         <div class="dashboard-content">
             <div class="course-header">
                 <div class="course-header-content">
@@ -127,12 +123,13 @@ if ($_POST) {
 
             <?php if (!$is_enrolled): ?>
                 <div class="enroll-section">
+                    <div class="enroll-icon"><?php icon('book-open', 32); ?></div>
                     <h2>Mulai Belajar Sekarang!</h2>
-                    <p><?php echo $course_data['is_free'] ? 'Kursus ini gratis!' : 'Harga: Rp ' . number_format($course_data['harga'], 0, ',', '.'); ?></p>
+                    <p><?php echo $course_data['is_free'] ? 'Kursus ini gratis! Akses semua materi selamanya.' : 'Harga: Rp ' . number_format($course_data['harga'], 0, ',', '.'); ?></p>
                     <form method="POST">
                         <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
-                        <button type="submit" name="enroll" class="btn-start">
-                            <?php icon('user-plus', 16); ?>
+                        <button type="submit" name="enroll" class="btn-enroll-cta">
+                            <?php icon('user-plus', 18); ?>
                             Daftar Kursus
                         </button>
                     </form>
@@ -227,7 +224,7 @@ if ($_POST) {
             <?php endif; ?>
 
             <div class="lessons-section">
-                <h2>Daftar Lesson</h2>
+                <h2>Daftar Lesson <span class="lesson-count-badge"><?php echo count($lessons); ?></span></h2>
                 <div class="lessons-list">
                     <?php if (empty($lessons)): ?>
                     <div class="lessons-empty">

@@ -98,13 +98,13 @@ function mapRarity($rarity) {
 // Trophy emoji per tier
 function trophyIcon($rarity) {
     $icons = [
-        'common' => 'ðŸ¥‰',
-        'uncommon' => 'ðŸ¥ˆ',
-        'rare' => 'ðŸ¥‡',
-        'epic' => 'ðŸ†',
-        'legendary' => 'ðŸ‘‘',
+        'common' => '🥉',
+        'uncommon' => '🥈',
+        'rare' => '🥇',
+        'epic' => '🏆',
+        'legendary' => '👑',
     ];
-    return $icons[$rarity] ?? 'ðŸ…';
+    return $icons[$rarity] ?? '🏅';
 }
 ?>
 <!DOCTYPE html>
@@ -112,16 +112,92 @@ function trophyIcon($rarity) {
 <head>
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/rpg-system.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
 <?php require_once 'navbar.php'; ?>
+
+<div id="certificate-template" style="position:fixed;top:-9999px;left:-9999px;width:1056px;height:816px;background:#fff;font-family:Georgia,'Times New Roman',serif;padding:40px;box-sizing:border-box;">
+    <!-- Outer ornate border -->
+    <div style="position:absolute;top:16px;left:16px;right:16px;bottom:16px;border:3px solid #b8860b;border-radius:12px;"></div>
+    <div style="position:absolute;top:24px;left:24px;right:24px;bottom:24px;border:1px solid #d4a843;border-radius:8px;"></div>
+    <!-- Corner ornaments -->
+    <div style="position:absolute;top:24px;left:24px;width:50px;height:50px;border-top:4px solid #b8860b;border-left:4px solid #b8860b;border-radius:4px 0 0 0;"></div>
+    <div style="position:absolute;top:24px;right:24px;width:50px;height:50px;border-top:4px solid #b8860b;border-right:4px solid #b8860b;border-radius:0 4px 0 0;"></div>
+    <div style="position:absolute;bottom:24px;left:24px;width:50px;height:50px;border-bottom:4px solid #b8860b;border-left:4px solid #b8860b;border-radius:0 0 0 4px;"></div>
+    <div style="position:absolute;bottom:24px;right:24px;width:50px;height:50px;border-bottom:4px solid #b8860b;border-right:4px solid #b8860b;border-radius:0 0 4px 0;"></div>
+
+    <!-- Content -->
+    <div style="text-align:center;position:relative;z-index:1;padding:50px 60px 40px;display:flex;flex-direction:column;align-items:center;min-height:100%;box-sizing:border-box;">
+        <!-- Top watermark -->
+        <div style="font-size:56px;margin-bottom:4px;line-height:1;">🏆</div>
+
+        <!-- Organization name -->
+        <div style="font-size:22px;font-weight:700;color:#8b6914;letter-spacing:4px;text-transform:uppercase;margin-bottom:4px;"><?php echo APP_NAME; ?></div>
+        <div style="font-size:11px;color:#a0883a;letter-spacing:6px;text-transform:uppercase;margin-bottom:16px;">— Learning Platform —</div>
+
+        <!-- Decorative divider -->
+        <div style="display:flex;align-items:center;gap:16px;width:300px;margin-bottom:20px;">
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,#b8860b);"></div>
+            <div style="width:6px;height:6px;background:#b8860b;transform:rotate(45deg);"></div>
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,#b8860b,transparent);"></div>
+        </div>
+
+        <!-- Certificate title -->
+        <div style="font-size:13px;color:#6b5b2e;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;">Certificate of Achievement</div>
+        <div style="font-size:28px;font-weight:700;color:#1a1a2e;margin-bottom:24px;font-family:Georgia,'Times New Roman',serif;">SERTIFIKAT</div>
+
+        <!-- Body text -->
+        <div style="font-size:15px;color:#555;margin-bottom:6px;line-height:1.6;">Diberikan kepada</div>
+
+        <!-- Recipient name -->
+        <div id="cert-name" style="font-size:36px;font-weight:800;color:#1c1917;margin-bottom:12px;font-family:Georgia,'Times New Roman',serif;border-bottom:2px solid #e8d5a3;padding-bottom:8px;display:inline-block;"><?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?></div>
+
+        <div style="font-size:14px;color:#555;margin-bottom:4px;">Atas pencapaiannya sebagai</div>
+
+        <!-- Achievement name -->
+        <div id="cert-achievement" style="font-size:22px;font-weight:700;color:#b8860b;margin:4px 0 20px;font-style:italic;font-family:Georgia,'Times New Roman',serif;"></div>
+
+        <div style="font-size:13px;color:#777;margin-bottom:20px;max-width:500px;line-height:1.5;">Dengan ini dinyatakan bahwa yang bersangkutan telah berhasil menyelesaikan seluruh persyaratan dan dinyatakan kompeten dalam bidang tersebut.</div>
+
+        <!-- Certificate number & date -->
+        <div style="font-size:11px;color:#999;margin-bottom:24px;">
+            <span id="cert-number"></span>
+            <span style="margin:0 10px;">|</span>
+            <span>Diterbitkan: <span id="cert-date"></span></span>
+        </div>
+
+        <!-- Signatures -->
+        <div style="display:flex;justify-content:space-between;width:100%;max-width:700px;margin-top:auto;padding-top:20px;">
+            <div style="text-align:center;flex:1;">
+                <div style="font-family:'Brush Script MT',cursive;font-size:28px;color:#333;margin-bottom:-6px;min-height:40px;">A. Santoso</div>
+                <div style="width:160px;height:1px;background:#b8860b;margin:4px auto;"></div>
+                <div style="font-size:11px;color:#666;font-weight:600;margin-top:4px;">Direktur Utama</div>
+                <div style="font-size:10px;color:#999;"><?php echo APP_NAME; ?></div>
+            </div>
+            <div style="text-align:center;flex:1;">
+                <div style="font-family:'Brush Script MT',cursive;font-size:28px;color:#333;margin-bottom:-6px;min-height:40px;">D. Wijaya</div>
+                <div style="width:160px;height:1px;background:#b8860b;margin:4px auto;"></div>
+                <div style="font-size:11px;color:#666;font-weight:600;margin-top:4px;">Kepala Divisi Akademik</div>
+                <div style="font-size:10px;color:#999;"><?php echo APP_NAME; ?></div>
+            </div>
+        </div>
+
+        <!-- Gold seal -->
+        <div style="position:absolute;bottom:60px;right:50px;width:80px;height:80px;border-radius:50%;border:3px solid #b8860b;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(135deg, #fef3c7, #fde68a);">
+            <div style="font-size:18px;">🏅</div>
+            <div style="font-size:7px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Verified</div>
+        </div>
+    </div>
+</div>
 
 <div class="page-wrapper dashboard-main-container">
     <div class="dashboard-content">
 
         <?php if ($message): ?>
         <div class="rpg-alert rpg-alert-<?php echo $message_type; ?>">
-            <span><?php echo $message_type === 'success' ? 'âœ…' : 'âŒ'; ?></span>
+            <span><?php echo $message_type === 'success' ? '✅' : '❌'; ?></span>
             <?php echo htmlspecialchars($message); ?>
         </div>
         <?php endif; ?>
@@ -129,7 +205,7 @@ function trophyIcon($rarity) {
         <!-- Header -->
         <div class="achievement-header">
             <div class="ach-header-text">
-                <div class="page-eyebrow">ðŸ† Achievement System</div>
+                <div class="page-eyebrow">🏆 Achievement System</div>
                 <h1>Trophy <span class="text-accent-gradient">Collection</span></h1>
                 <p>Kumpulkan trophy dengan terus belajar dan naik level. Setiap trophy menandai pencapaian baru dalam perjalanan coding-mu!</p>
             </div>
@@ -152,7 +228,7 @@ function trophyIcon($rarity) {
         <!-- Progress Bar -->
         <div class="ach-progress-section">
             <div class="ach-progress-header">
-                <h3>ðŸ… Overall Progress</h3>
+                <h3>🏅 Overall Progress</h3>
                 <strong><?php echo $progress_percent; ?>%</strong>
             </div>
             <div class="ach-progress-track">
@@ -181,14 +257,14 @@ function trophyIcon($rarity) {
                     <div class="ach-next-label">Next Trophy</div>
                     <div class="ach-next-badge"><?php echo trophyIcon($next['rarity']); ?></div>
                     <div class="ach-next-name"><?php echo htmlspecialchars($next['name']); ?></div>
-                    <div class="ach-next-req">Lv.<?php echo $next['level_required']; ?> Â· <?php echo number_format($next['xp_required']); ?> XP</div>
+                    <div class="ach-next-req">Lv.<?php echo $next['level_required']; ?> · <?php echo number_format($next['xp_required']); ?> XP</div>
                 </div>
             </div>
             <?php endif; ?>
         </div>
 
         <!-- Achievement Grid -->
-        <div class="ach-section-title">ðŸ† All Trophies</div>
+        <div class="ach-section-title">🏆 All Trophies</div>
         <div class="ach-grid">
             <?php foreach (RPG_CLASSES as $slug => $cls):
                 $unlocked = isClassUnlocked($slug, $user_level, $user_xp);
@@ -200,14 +276,14 @@ function trophyIcon($rarity) {
                 <div class="ach-card-image">
                     <div class="ach-trophy-icon"><?php echo trophyIcon($cls['rarity']); ?></div>
                     <?php if ($is_active): ?>
-                    <div class="ach-earned-badge" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">âœ¦ ACTIVE</div>
+                    <div class="ach-earned-badge" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">✦ ACTIVE</div>
                     <?php elseif ($unlocked): ?>
-                    <div class="ach-earned-badge">âœ“ EARNED</div>
+                    <div class="ach-earned-badge">✓ EARNED</div>
                     <?php endif; ?>
                     <?php if (!$unlocked): ?>
                     <div class="ach-lock-overlay">
-                        <div class="ach-lock-icon">ðŸ”’</div>
-                        <div class="ach-lock-text">Lv.<?php echo $cls['level_required']; ?> Â· <?php echo number_format($cls['xp_required']); ?> XP</div>
+                        <div class="ach-lock-icon">🔒</div>
+                        <div class="ach-lock-text">Lv.<?php echo $cls['level_required']; ?> · <?php echo number_format($cls['xp_required']); ?> XP</div>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -218,12 +294,13 @@ function trophyIcon($rarity) {
                     <div class="ach-card-desc"><?php echo htmlspecialchars($cls['description']); ?></div>
                     <div class="ach-card-req <?php echo $is_met ? 'met' : ''; ?>">
                         <?php icon('star', 12); ?>
-                        <?php if ($is_met): ?>âœ…<?php endif; ?>
-                        Lv.<span><?php echo $cls['level_required']; ?></span> Â· <span><?php echo number_format($cls['xp_required']); ?></span> XP
+                        <?php if ($is_met): ?>✅<?php endif; ?>
+                        Lv.<span><?php echo $cls['level_required']; ?></span> · <span><?php echo number_format($cls['xp_required']); ?></span> XP
                     </div>
 
                     <?php if ($is_active): ?>
-                    <div class="ach-card-status ach-status-active">âœ¦ Current Rank</div>
+                    <div class="ach-card-status ach-status-active">✦ Current Rank</div>
+                    <button onclick="downloadAchievementCert('<?php echo htmlspecialchars($cls['name']); ?>')" class="ach-card-status ach-status-unlocked" style="margin-top:6px;background:linear-gradient(135deg,#d97706,#b45309);font-size:0.75rem;">📜 Download Certificate</button>
                     <?php elseif ($unlocked): ?>
                     <form method="POST">
                         <input type="hidden" name="action" value="activate_rank">
@@ -231,8 +308,9 @@ function trophyIcon($rarity) {
                         <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                         <button type="submit" class="ach-card-status ach-status-unlocked">Activate Rank</button>
                     </form>
+                    <button onclick="downloadAchievementCert('<?php echo htmlspecialchars($cls['name']); ?>')" class="ach-card-status ach-status-unlocked" style="margin-top:6px;background:linear-gradient(135deg,#d97706,#b45309);font-size:0.75rem;">📜 Download Certificate</button>
                     <?php else: ?>
-                    <div class="ach-card-status ach-status-locked">ðŸ”’ Locked</div>
+                    <div class="ach-card-status ach-status-locked">🔒 Locked</div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -245,5 +323,52 @@ function trophyIcon($rarity) {
 <?php include 'includes/loading.php'; ?>
 <?php include 'includes/toast.php'; ?>
 <script src="assets/js/navbar.js"></script>
+<script>
+window.jsPDF = window.jspdf.jsPDF;
+
+function downloadAchievementCert(achievementName) {
+    const template = document.getElementById('certificate-template');
+
+    document.getElementById('cert-achievement').textContent = achievementName;
+    const now = new Date();
+    document.getElementById('cert-date').textContent = now.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('cert-number').textContent = 'No. Sertifikat: ' + now.getFullYear() + '/PRZ/ACH/' + String(now.getTime()).slice(-6);
+
+    template.style.position = 'absolute';
+    template.style.top = '0';
+    template.style.left = '0';
+    template.style.zIndex = '-9999';
+
+    html2canvas(template, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false
+    }).then(canvas => {
+        template.style.position = 'fixed';
+        template.style.top = '-9999px';
+        template.style.left = '-9999px';
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'px',
+            format: [1056, 816]
+        });
+
+        pdf.addImage(imgData, 'PNG', 0, 0, 1056, 816);
+        pdf.save('Sertifikat-' + achievementName.replace(/[^a-zA-Z0-9]/g, '-') + '.pdf');
+
+        if (typeof showToast === 'function') {
+            showToast('Certificate berhasil diunduh!', 'success');
+        }
+    }).catch(error => {
+        console.error('Error generating certificate:', error);
+        if (typeof showToast === 'function') {
+            showToast('Gagal membuat certificate', 'error');
+        }
+    });
+}
+</script>
 </body>
 </html>

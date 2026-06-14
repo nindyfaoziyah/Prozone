@@ -12,7 +12,7 @@ $xp_prev      = ($user_level - 1) * 500;
 $xp_progress  = $xp_next - $xp_prev;
 $xp_current   = $user_xp - $xp_prev;
 $xp_pct       = $xp_progress > 0 ? min(100, round(($xp_current / $xp_progress) * 100)) : 0;
-// SVG circle: circumference = 2 * pi * 15.9155 â‰ˆ 100
+// SVG circle: circumference = 2 * pi * 15.9155 ≈ 100
 $dash_value   = $xp_pct; // out of 100
 
 // Fetch RPG class from DB
@@ -43,12 +43,11 @@ if ($user_role === 'student') {
     $menu_items = array_merge($menu_items, [
         ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
         ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
-        ['label' => 'Characters',        'icon' => 'user',        'link' => 'characters.php', 'badge' => 'RPG'],
-        ['label' => 'Coding Arena',      'icon' => 'code',        'link' => 'coding-arena.php'],
+        ['label' => 'Achievement',       'icon' => 'trophy',      'link' => 'characters.php'],
         ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
         ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
         ['label' => 'Clan',             'icon' => 'users',       'link' => 'clan.php'],
-        ['label' => 'Leaderboard & Achievement', 'icon' => 'award', 'link' => 'leaderboard.php'],
+        ['label' => 'Leaderboard', 'icon' => 'award', 'link' => 'leaderboard.php'],
     ]);
 }
 
@@ -144,7 +143,7 @@ if ($user_role === 'admin') {
                     <svg class="xp-ring-svg" viewBox="0 0 36 36" style="position: absolute; top:0; left:0; width:100%; height:100%;">
                         <path class="xp-ring-bg"  d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #E2E8F0; stroke-width: 2.5;"/>
                         <path class="xp-ring-fill" stroke-dasharray="<?php echo $dash_value; ?>,100"
-                              d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: #3B82F6; stroke-width: 2.5; stroke-linecap: round;"/>
+                              d="M18 3 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30" style="fill: none; stroke: url(#xpGradient); stroke-width: 2.5; stroke-linecap: round;"/>
                     </svg>
                     <div class="xp-avatar-emoji" style="position: absolute; width: 34px; height: 34px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#F5F3FF; border-radius:50%;">
                         <img src="<?php echo htmlspecialchars($sidebar_cls['image']); ?>" alt="<?php echo htmlspecialchars($sidebar_cls['name']); ?>" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" title="<?php echo $avatar_emoji . ' ' . htmlspecialchars($sidebar_cls['name']); ?>">

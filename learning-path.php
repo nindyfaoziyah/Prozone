@@ -527,10 +527,10 @@ $overallProgress = round(array_sum(array_column($learningPath, 'progress')) / $t
     const circumference = 2 * Math.PI * 52;
     let currentLevel = null;
 
-    // Quest button click - redirect to course page
+    // Quest button click - open quest slides then coding practice
     detailBtn.addEventListener('click', function() {
         if (currentLevel && currentLevel.course_id) {
-            window.location.href = 'course.php?id=' + currentLevel.course_id;
+            window.location.href = 'quest.php?course_id=' + currentLevel.course_id;
         }
     });
 

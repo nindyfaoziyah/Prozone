@@ -10,7 +10,6 @@
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e3a5f 100%);
     color: white;
     padding: 1rem 1.5rem;
-    margin-top: 56px;
     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
     position: relative;
     overflow: hidden;
@@ -102,12 +101,26 @@
 .instructions-panel {
     background: linear-gradient(180deg, #161625 0%, #1a1a2e 100%);
     border-right: 1px solid rgba(59, 130, 246, 0.2);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     padding: 1.25rem;
     box-shadow: 2px 0 20px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
+}
+
+.instructions-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+}
+
+.instructions-footer {
+    flex-shrink: 0;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .instructions-header {
@@ -132,7 +145,7 @@
 }
 
 .instructions-subtitle {
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 0.75rem;
     margin: 0;
 }
@@ -279,6 +292,65 @@
     display: block;
     line-height: 1.6;
     font-size: 0.8rem;
+}
+
+/* Fix instruction elements using light CSS variables inside dark panel */
+.instructions-panel .instruction-intro,
+.instructions-panel .instruction-intro-enhanced {
+    color: #cbd5e1;
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.12) 0%, 
+        rgba(109, 40, 217, 0.08) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.instructions-panel .visual-step-content p {
+    color: #94a3b8;
+}
+
+.instructions-panel .intro-content {
+    color: #94a3b8;
+}
+
+.instructions-panel .completion-steps li {
+    color: #cbd5e1;
+    background: rgba(59, 130, 246, 0.06);
+}
+
+.instructions-panel .completion-steps li strong {
+    color: #7dd3fc;
+}
+
+.instructions-panel .how-to-complete-section {
+    background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1) 0%, 
+        rgba(109, 40, 217, 0.08) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Fix instruction elements using CSS variables (light values in dark box) */
+.instruction-box .instruction-text,
+.instruction-box .instruction-content-text,
+.instruction-box .instruction-content-text p,
+.instruction-box .instruction-bullet {
+    color: #cbd5e1;
+}
+
+.instruction-box .instruction-action {
+    background: rgba(59, 130, 246, 0.12);
+}
+
+.instruction-box .action-text {
+    color: #7dd3fc;
+}
+
+.instruction-box .code-instruction {
+    background: rgba(59, 130, 246, 0.08);
+    color: #94a3b8;
+}
+
+.instruction-box .instruction-step-title {
+    color: #7dd3fc;
 }
 
 /* Tips styling inside instruction box */

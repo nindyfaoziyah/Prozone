@@ -1586,7 +1586,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                                     <div class="clan-stat-label">Ranking</div>
                                 </div>
                                 <div class="clan-stat-card" style="--stat-color: #2DD4BF;">
-                                    <span class="clan-stat-icon">âš¡</span>
+                                    <span class="clan-stat-icon">⚡</span>
                                     <div class="clan-stat-value" style="color: #2DD4BF;"><?php echo number_format($user_clan['total_xp']); ?></div>
                                     <div class="clan-stat-label">Total XP</div>
                                 </div>
@@ -1950,7 +1950,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                             <?php if ($is_leader): ?>
                             <!-- Clan Settings (Leader Only) -->
                             <div class="members-card" style="margin-top: 1rem; background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(26, 26, 46, 0.95) 100%); border: 1px solid rgba(20, 184, 166, 0.2);">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">âš™ï¸ Pengaturan Clan</h3>
+                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">⚙️ Pengaturan Clan</h3>
                                 <form method="POST">
                                     <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                                     <input type="hidden" name="action" value="update_clan">
@@ -2205,7 +2205,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                         noResults = document.createElement('div');
                         noResults.id = 'noSearchResults';
                         noResults.style.cssText = 'text-align: center; padding: 2rem; color: #94a3b8;';
-                        noResults.innerHTML = '<p>ðŸ” Tidak ada clan yang cocok dengan "' + searchTerm + '"</p>';
+                        noResults.innerHTML = '<p>🔍 Tidak ada clan yang cocok dengan "' + searchTerm + '"</p>';
                         document.querySelector('.clan-cards-grid').appendChild(noResults);
                     }
                 } else if (noResults) {
