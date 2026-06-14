@@ -28,7 +28,6 @@
 --
 -- Default Login (password: "password"):
 --   - admin        (role: admin)
---   - instructor1  (role: instructor)
 --   - student1     (role: student)
 --   - system       (role: admin, untuk seeding clan default)
 -- =====================================================
@@ -81,7 +80,7 @@ CREATE TABLE `users` (
     `password` VARCHAR(255) NULL,
     `nama_lengkap` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NULL,
-    `role` ENUM('admin', 'instructor', 'student') NOT NULL DEFAULT 'student',
+    `role` ENUM('admin', 'student') NOT NULL DEFAULT 'student',
     `avatar` VARCHAR(255) NULL,
     `bio` TEXT,
     `total_xp` INT DEFAULT 0,
@@ -121,7 +120,7 @@ CREATE TABLE `courses` (
     `judul_course` VARCHAR(200) NOT NULL,
     `slug` VARCHAR(200) UNIQUE NOT NULL,
     `kategori_id` INT,
-    `instructor_id` INT,
+    `admin_id` INT,
     `deskripsi` TEXT,
     `thumbnail` VARCHAR(255) NULL,
     `level` ENUM('beginner', 'intermediate', 'advanced') DEFAULT 'beginner',
@@ -136,7 +135,7 @@ CREATE TABLE `courses` (
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`kategori_id`) REFERENCES `course_categories`(`id`) ON DELETE SET NULL,
-    FOREIGN KEY (`instructor_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
+    FOREIGN KEY (`admin_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------- LESSONS ----------
@@ -427,10 +426,9 @@ CREATE INDEX `idx_clan_announcements_clan_id` ON `clan_announcements`(`clan_id`)
 -- =====================================================
 -- Password default "password" (bcrypt hash yang valid)
 INSERT INTO `users` (`username`, `password`, `nama_lengkap`, `email`, `role`, `total_xp`, `level`) VALUES
-('admin',       '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin@prozone.com',      'admin',      1000, 10),
-('instructor1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Instructor Pro','instructor@prozone.com', 'instructor',  500,  5),
-('student1',    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Student Demo',  'student@prozone.com',    'student',     250,  3),
-('system',      '$2y$10$abcdefghijklmnopqrstuuabcdefghijklmnopqrstuu',           'System Admin',  'system@prozone.com',     'admin',         0,  1);
+('admin',    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator', 'admin@prozone.com',   'admin',   1000, 10),
+('student1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Student Demo',  'student@prozone.com', 'student',  250,  3),
+('system',   '$2y$10$abcdefghijklmnopqrstuuabcdefghijklmnopqrstuu',           'System Admin',  'system@prozone.com',  'admin',      0,  1);
 
 -- =====================================================
 -- 5. SEED DATA - COURSE CATEGORIES

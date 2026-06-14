@@ -1,6 +1,6 @@
 <?php
 require_once 'config/config.php';
-requireRole(['admin', 'instructor']);
+requireRole(['admin']);
 require_once 'includes/icons.php';
 
 require_once 'models/Course.php';
@@ -21,11 +21,6 @@ if (!$course_data) {
     exit();
 }
 
-// Check permission (instructor can only manage their own courses)
-if ($_SESSION['user_role'] === 'instructor' && $course_data['instructor_id'] != $_SESSION['user_id']) {
-    header('Location: manage-courses.php');
-    exit();
-}
 
 $message = '';
 $message_type = '';

@@ -155,7 +155,6 @@ if ($_POST) {
             <div class="auth-demo-box stagger">
                 <div class="auth-demo-box-title">&#9733; Akun Demo</div>
                 <div>Admin: <code>admin / password</code></div>
-                <div>Instruktur: <code>instructor1 / password</code></div>
                 <div>Siswa: <code>student1 / password</code></div>
             </div>
         </div>
@@ -184,8 +183,8 @@ if ($_POST) {
                     <span class="auth-welcome-brand-name"><?php echo APP_NAME; ?></span>
                 </a>
 
-                <h1 class="auth-welcome-heading">SELAMAT DATANG!</h1>
-                <p class="auth-welcome-text">Masuk dan mulai perjalanan coding Anda bersama kami. Belajar coding dengan cara yang menyenangkan!</p>
+                <h1 class="auth-welcome-heading">SELAMAT DATANG KEMBALI!</h1>
+                <p class="auth-welcome-text">Masuk dan lanjutkan perjalanan coding Anda bersama komunitas. Belajar coding dengan cara yang menyenangkan!</p>
 
                 <a href="register.php" class="auth-btn-signup">DAFTAR</a>
 

@@ -32,7 +32,7 @@ $where_clause = ($_SESSION['user_role'] === 'student') ? "WHERE c.is_published =
 $query = "SELECT c.*, cc.nama_kategori, u.nama_lengkap as instructor_name
           FROM courses c
           LEFT JOIN course_categories cc ON c.kategori_id = cc.id
-          LEFT JOIN users u ON c.instructor_id = u.id
+          LEFT JOIN users u ON c.admin_id = u.id
           " . $where_clause;
 
 $params = [];

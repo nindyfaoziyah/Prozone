@@ -219,7 +219,7 @@ $body_class       = getThemeClass();
                 </a>
 
                 <h1 class="auth-welcome-heading">TENANG SAJA!</h1>
-                <p class="auth-welcome-text">Hal ini bisa terjadi pada siapa pun. Kami akan bantu Anda kembali ke akun dengan aman.</p>
+                <p class="auth-welcome-text">Hal ini bisa terjadi pada siapa pun. Kami akan bantu Anda kembali ke akun dengan aman dan cepat.</p>
 
                 <div class="auth-welcome-features">
                     <div class="auth-welcome-feature">

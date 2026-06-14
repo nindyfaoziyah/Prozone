@@ -225,7 +225,6 @@ $stmt = $user->readAll();
                                 <select id="role" name="role" required>
                                     <option value="">Pilih Role</option>
                                     <option value="admin">Admin</option>
-                                    <option value="instructor">Instructor</option>
                                     <option value="student">Student</option>
                                 </select>
                             </div>
@@ -261,8 +260,7 @@ $stmt = $user->readAll();
                                 <td><?php echo $row['email'] ?: '-'; ?></td>
                                 <td>
                                     <span class="badge <?php 
-                                        echo $row['role'] === 'admin' ? 'badge-danger' : 
-                                            ($row['role'] === 'instructor' ? 'badge-info' : 'badge-success'); 
+                                        echo $row['role'] === 'admin' ? 'badge-danger' : 'badge-success'; 
                                     ?>">
                                         <?php echo ucfirst($row['role']); ?>
                                     </span>
@@ -316,7 +314,6 @@ $stmt = $user->readAll();
                         <label for="edit_role">Role</label>
                         <select id="edit_role" name="role" required>
                             <option value="admin">Admin</option>
-                            <option value="instructor">Instructor</option>
                             <option value="student">Student</option>
                         </select>
                     </div>

@@ -32,10 +32,6 @@ $nav_active       = function ($href) use ($current_page) {
                 <stop offset="100%" stop-color="#10B981"/>
             </linearGradient>
         </defs>
-        <symbol id="brandLogo" viewBox="0 0 100 100">
-            <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGrad)"/>
-            <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGrad)"/>
-        </symbol>
     </svg>
 </head>
 <body class="<?php echo $body_class; ?> landing-page">
@@ -45,7 +41,14 @@ $nav_active       = function ($href) use ($current_page) {
         <div class="nav-inner">
             <a href="index.php" class="brand" aria-label="Prozone Home">
                 <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <use href="#brandLogo"></use>
+                    <defs>
+                        <linearGradient id="brandGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="100%" stop-color="#10B981"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGradNav)"/>
+                    <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGradNav)"/>
                 </svg>
                 <span>Prozone</span>
             </a>
@@ -260,8 +263,8 @@ $nav_active       = function ($href) use ($current_page) {
                     <div class="stat-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <div class="stat-value" data-count="50" aria-label="50 instruktur">0+</div>
-                    <div class="stat-label">Instruktur</div>
+                    <div class="stat-value" data-count="50" aria-label="50 kursus">0+</div>
+                    <div class="stat-label">Kursus</div>
                 </div>
                 <div class="card stat-block reveal" role="listitem">
                     <div class="stat-glow" aria-hidden="true"></div>
@@ -332,7 +335,7 @@ $nav_active       = function ($href) use ($current_page) {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                     </div>
-                    <p class="testimonial-text">Sebagai instructor, Prozone memudahkan saya membuat materi interaktif. Dashboard analytics-nya juga sangat membantu memantau progress siswa.</p>
+                    <p class="testimonial-text">Prozone memudahkan saya belajar coding dengan cara yang menyenangkan. Fitur code editor interaktif dan gamifikasi membuat belajar menjadi lebih seru!</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar" aria-label="Inisial Rizki Ramadhan"><span>R</span></div>
                         <div>
@@ -370,7 +373,14 @@ $nav_active       = function ($href) use ($current_page) {
             <div class="landing-footer-brand">
                 <a href="index.php" class="brand" aria-label="Prozone Home">
                     <svg class="brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:32px;height:32px">
-                        <use href="#brandLogo"></use>
+                        <defs>
+                            <linearGradient id="brandGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366F1"/>
+                                <stop offset="100%" stop-color="#10B981"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 25 20 L 25 75 Q 25 80 30 80 L 35 80 Q 40 80 40 75 L 40 20 Q 40 15 35 15 L 30 15 Q 25 15 25 20 Z" fill="url(#brandGradFooter)"/>
+                        <path d="M 40 20 Q 40 15 45 15 L 60 15 Q 70 15 70 25 L 70 35 Q 70 45 60 45 L 45 45 Q 40 45 40 40 L 40 30 Q 40 25 45 25 L 60 25 Q 65 25 65 30 L 65 35 Q 65 40 60 40 L 45 40 Q 40 40 40 35 Z" fill="url(#brandGradFooter)"/>
                     </svg>
                     <span>Prozone</span>
                 </a>

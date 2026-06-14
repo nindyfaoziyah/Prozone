@@ -100,24 +100,24 @@ $body_class       = getThemeClass();
             </a>
 
             <?php if ($step === 'error'): ?>
-                <div class="auth-form-title">Reset Failed</div>
+                <div class="auth-form-title">Reset Gagal</div>
                 <span class="auth-form-title-underline" style="background:linear-gradient(90deg,#ef4444,#f87171)"></span>
                 <div class="alert alert-error" style="margin-top:1rem">
                     <?php echo htmlspecialchars($message); ?>
                 </div>
                 <div style="text-align:center; margin-top:1rem">
-                    <a href="forgot-password.php" class="auth-forgot-link">&larr; Request new reset link</a>
+                    <a href="forgot-password.php" class="auth-forgot-link">&larr; Minta link reset baru</a>
                 </div>
 
             <?php elseif ($step === 'complete'): ?>
-                <div class="auth-form-title">Password Changed!</div>
+                <div class="auth-form-title">Password Berhasil Diubah!</div>
                 <span class="auth-form-title-underline" style="background:linear-gradient(90deg,#10b981,#34d399)"></span>
                 <div class="alert alert-success" style="margin-top:1rem">
                     <?php echo htmlspecialchars($message); ?>
                 </div>
                 <a href="login.php" class="auth-btn-primary" style="text-decoration:none; margin-top:1rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    <span class="btn-label">LOG IN NOW</span>
+                    <span class="btn-label">MASUK SEKARANG</span>
                 </a>
 
             <?php else: ?>
@@ -134,14 +134,14 @@ $body_class       = getThemeClass();
                     <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
 
                     <div class="auth-field">
-                        <label for="new_password" class="auth-field-label">New Password</label>
+                        <label for="new_password" class="auth-field-label">Password Baru</label>
                         <div class="auth-field-wrap">
                             <span class="auth-field-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                             </span>
                             <input type="password" id="new_password" name="new_password"
                                    class="auth-field-input"
-                                   placeholder="Minimum 8 characters"
+                                   placeholder="Minimal 8 karakter"
                                    required minlength="8" autocomplete="new-password">
                             <button type="button" class="auth-field-toggle" id="togglePassword" aria-label="Show password">
                                 <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -153,43 +153,43 @@ $body_class       = getThemeClass();
                         </div>
                         <span class="auth-strength-text" id="strengthLabel"></span>
                         <ul class="auth-req-list" id="requirementList">
-                            <li data-req="length">Min 8 characters</li>
-                            <li data-req="case">Upper & lowercase</li>
-                            <li data-req="number">Contains number</li>
-                            <li data-req="special">Special character</li>
+                            <li data-req="length">Minimal 8 karakter</li>
+                            <li data-req="case">Huruf besar & kecil</li>
+                            <li data-req="number">Mengandung angka</li>
+                            <li data-req="special">Karakter khusus</li>
                         </ul>
                     </div>
 
                     <div class="auth-field">
-                        <label for="confirm_password" class="auth-field-label">Confirm Password</label>
+                        <label for="confirm_password" class="auth-field-label">Konfirmasi Password</label>
                         <div class="auth-field-wrap">
                             <span class="auth-field-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             </span>
                             <input type="password" id="confirm_password" name="confirm_password"
                                    class="auth-field-input"
-                                   placeholder="Repeat password"
+                                   placeholder="Ulangi password"
                                    required minlength="8" autocomplete="new-password">
                         </div>
-                        <p class="auth-field-error" id="matchFeedback" style="display:none">Passwords don't match</p>
+                        <p class="auth-field-error" id="matchFeedback" style="display:none">Password tidak cocok</p>
                     </div>
 
                     <button type="submit" class="auth-btn-primary" id="submitBtn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        <span class="btn-label">CHANGE PASSWORD</span>
+                        <span class="btn-label">UBAH PASSWORD</span>
                         <span class="btn-spinner" aria-hidden="true"></span>
                     </button>
                 </form>
             <?php endif; ?>
 
-            <div class="auth-divider-sm"><span>or</span></div>
+            <div class="auth-divider-sm"><span>atau</span></div>
 
             <div class="auth-form-footer">
-                Remember password? <a href="login.php">Log in</a>
+                Ingat password Anda? <a href="login.php">Masuk</a>
             </div>
 
             <div style="text-align:center">
-                <a href="index.php" class="auth-home-link">&larr; Back to Home</a>
+                <a href="index.php" class="auth-home-link">&larr; Kembali ke Beranda</a>
             </div>
         </div>
 
@@ -216,27 +216,27 @@ $body_class       = getThemeClass();
                     <span class="auth-welcome-brand-name"><?php echo APP_NAME; ?></span>
                 </a>
 
-                <h1 class="auth-welcome-heading" style="font-size:1.75rem;">ALMOST THERE!</h1>
-                <p class="auth-welcome-text">Create a strong password to keep your account safe and secure.</p>
+                <h1 class="auth-welcome-heading" style="font-size:1.75rem;">HAMPIR SELESAI!</h1>
+                <p class="auth-welcome-text">Buat password yang kuat untuk menjaga akun Anda tetap aman dan terlindungi.</p>
 
                 <div class="auth-welcome-features">
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Fully Encrypted</span>
+                        <span class="auth-welcome-feature-text">Terenkripsi Penuh</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Strong Bcrypt Hashing</span>
+                        <span class="auth-welcome-feature-text">Hashing Bcrypt Kuat</span>
                     </div>
                     <div class="auth-welcome-feature">
                         <div class="auth-welcome-feature-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         </div>
-                        <span class="auth-welcome-feature-text">Instant Activation</span>
+                        <span class="auth-welcome-feature-text">Aktivasi Instan</span>
                     </div>
                 </div>
             </div>
@@ -281,7 +281,7 @@ $body_class       = getThemeClass();
                 special: /[^A-Za-z0-9]/.test(v)
             };
             var score = Object.values(checks).filter(Boolean).length;
-            var labels = ['Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'];
+            var labels = ['Lemah', 'Lemah', 'Sedang', 'Kuat', 'Sangat Kuat'];
             var classes = ['weak', 'weak', 'fair', 'good', 'strong'];
             var percents = [0, 25, 50, 75, 100];
 
@@ -296,7 +296,7 @@ $body_class       = getThemeClass();
             } else {
                 strengthBar.style.width = percents[score] + '%';
                 strengthBar.className = 'auth-strength-fill ' + classes[score];
-                strengthLabel.textContent = 'Strength: ' + labels[score];
+                strengthLabel.textContent = 'Kekuatan: ' + labels[score];
             }
         }
 

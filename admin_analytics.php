@@ -18,12 +18,6 @@ $stmt = $db->prepare($query);
 $stmt->execute();
 $metrics['total_students'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 
-// Total Instructors
-$query = "SELECT COUNT(*) as total FROM users WHERE role = 'instructor'";
-$stmt = $db->prepare($query);
-$stmt->execute();
-$metrics['total_instructors'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
-
 // Total Courses
 $query = "SELECT COUNT(*) as total FROM courses";
 $stmt = $db->prepare($query);
@@ -135,10 +129,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="stat-label">Total Siswa</div>
                 <div class="stat-value"><?php echo number_format($metrics['total_students']); ?></div>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">Total Instruktur</div>
-                <div class="stat-value"><?php echo number_format($metrics['total_instructors']); ?></div>
-            </div>
+
             <div class="stat-card">
                 <div class="stat-label">Total Kursus</div>
                 <div class="stat-value"><?php echo number_format($metrics['total_courses']); ?></div>

@@ -1,6 +1,6 @@
 <?php
 require_once 'config/config.php';
-requireRole(['admin', 'instructor']);
+requireRole(['admin']);
 require_once 'includes/icons.php';
 require_once 'includes/language-icons.php';
 require_once 'includes/FileUpload.php';
@@ -29,7 +29,7 @@ if ($_POST) {
                 $course->judul_course = sanitizeInput($_POST['judul_course']);
                 $course->slug = ''; // Will be auto-generated in model
                 $course->kategori_id = sanitizeInput($_POST['kategori_id']) ?: null;
-                $course->instructor_id = $_SESSION['user_role'] === 'instructor' ? $_SESSION['user_id'] : sanitizeInput($_POST['instructor_id']);
+                $course->admin_id = $_SESSION['user_id'];
                 $course->deskripsi = $_POST['deskripsi'] ?? '';
                 $course->level = sanitizeInput($_POST['level']);
                 $course->durasi_jam = sanitizeInput($_POST['durasi_jam']);
@@ -61,9 +61,7 @@ if ($_POST) {
                 $course->judul_course = sanitizeInput($_POST['judul_course']);
                 $course->slug = ''; // Will be auto-generated in model
                 $course->kategori_id = sanitizeInput($_POST['kategori_id']) ?: null;
-                if ($_SESSION['user_role'] === 'admin') {
-                    $course->instructor_id = sanitizeInput($_POST['instructor_id']);
-                }
+                $course->admin_id = $_SESSION['user_id'];
                 $course->deskripsi = $_POST['deskripsi'] ?? '';
                 $course->level = sanitizeInput($_POST['level']);
                 $course->durasi_jam = sanitizeInput($_POST['durasi_jam']);
@@ -107,10 +105,6 @@ if ($_POST) {
 $stmt = $course->readAll();
 $courses = [];
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    // Filter by instructor if role is instructor
-    if ($_SESSION['user_role'] === 'instructor' && $row['instructor_id'] != $_SESSION['user_id']) {
-        continue;
-    }
     $courses[] = $row;
 }
 
@@ -120,17 +114,6 @@ $categories = [];
 while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
     $categories[$row['id']] = $row;
 }
-
-// Get instructors (for admin)
-$instructors = [];
-if ($_SESSION['user_role'] === 'admin') {
-    $query_instructors = "SELECT id, nama_lengkap FROM users WHERE role = 'instructor'";
-    $stmt_instructors = $db->prepare($query_instructors);
-    $stmt_instructors->execute();
-    while ($row = $stmt_instructors->fetch(PDO::FETCH_ASSOC)) {
-        $instructors[] = $row;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +122,7 @@ if ($_SESSION['user_role'] === 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta('Kelola Kursus - ' . APP_NAME, 'Manajemen kursus untuk admin dan instructor', 'admin, courses, management'); ?>
+    <?php include 'includes/seo.php'; echo seo_meta('Kelola Kursus - ' . APP_NAME, 'Manajemen kursus untuk admin', 'admin, courses, management'); ?>
     <title>Kelola Kursus - <?php echo APP_NAME; ?></title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -408,19 +391,7 @@ if ($_SESSION['user_role'] === 'admin') {
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <?php if ($_SESSION['user_role'] === 'admin'): ?>
-                                <div class="form-group">
-                                    <label>Instructor</label>
-                                    <select name="instructor_id" id="instructor_id" required>
-                                        <option value="">Pilih Instructor</option>
-                                        <?php foreach ($instructors as $inst): ?>
-                                            <option value="<?php echo $inst['id']; ?>">
-                                                <?php echo htmlspecialchars($inst['nama_lengkap']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <?php endif; ?>
+
                             </div>
 
                             <div class="form-group">
@@ -485,9 +456,6 @@ if ($_SESSION['user_role'] === 'admin') {
             document.getElementById('kode_course').value = course.kode_course;
             document.getElementById('judul_course').value = course.judul_course;
             document.getElementById('kategori_id').value = course.kategori_id || '';
-            if (course.instructor_id) {
-                document.getElementById('instructor_id').value = course.instructor_id;
-            }
             document.getElementById('deskripsi').value = course.deskripsi || '';
             document.getElementById('level').value = course.level;
             document.getElementById('durasi_jam').value = course.durasi_jam;

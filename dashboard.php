@@ -104,7 +104,7 @@ if ($role === 'student') {
     $lastCourse = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-if ($role === 'admin' || $role === 'instructor') {
+if ($role === 'admin') {
     // Get course stats
     $total_courses = $course->getTotalCourses();
     
@@ -231,9 +231,9 @@ if ($role === 'admin' || $role === 'instructor') {
                         <?php icon('award', 24, 'text-warning'); ?>
                     </div>
                     <div class="stat-info">
-                        <div class="glass-stat-label">INSTRUCTORS</div>
+                        <div class="glass-stat-label">COURSES</div>
                         <div class="glass-stat-value">50+</div>
-                        <div class="stat-desc">Instruktur Ahli</div>
+                        <div class="stat-desc">Kursus Tersedia</div>
                     </div>
                 </div>
             </div>
@@ -258,7 +258,7 @@ if ($role === 'admin' || $role === 'instructor') {
 
             <?php endif; ?>
 
-            <?php if ($role === 'admin' || $role === 'instructor'): ?>
+            <?php if ($role === 'admin'): ?>
             
             <!-- Admin Stats -->
             <div class="dash-stats-grid">

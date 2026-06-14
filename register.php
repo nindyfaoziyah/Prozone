@@ -76,8 +76,8 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
                     <span class="auth-welcome-brand-name"><?php echo APP_NAME; ?></span>
                 </a>
 
-                <h1 class="auth-welcome-heading">SELAMAT DATANG!</h1>
-                <p class="auth-welcome-text">Sudah punya akun? Masuk dan lanjutkan perjalanan coding Anda.</p>
+                <h1 class="auth-welcome-heading">GABUNG SEKARANG!</h1>
+                <p class="auth-welcome-text">Buat akun dan mulai perjalanan coding Anda. Pelajari pemrograman dengan cara yang menyenangkan dan interaktif.</p>
 
                 <a href="login.php" class="auth-btn-signup">MASUK</a>
 
@@ -122,7 +122,7 @@ $strengthClass = ['weak', 'weak', 'fair', 'good', 'strong'][$strengthScore] ?? '
         </div>
 
         <!-- RIGHT: Registration Form (white card) -->
-        <div class="auth-form-panel">
+        <div class="auth-form-panel auth-form-panel--compact">
             <div class="auth-form-brand">
                 <a href="index.php" class="auth-form-brand-link">
                     <svg class="auth-form-brand-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

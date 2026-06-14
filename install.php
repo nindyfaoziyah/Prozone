@@ -145,7 +145,6 @@ try {
     echo "<p><strong>Akun default untuk login:</strong></p>";
     echo "<ul>";
     echo "<li><strong>Admin:</strong> username: <code>admin</code>, password: <code>password</code></li>";
-    echo "<li><strong>Instructor:</strong> username: <code>instructor1</code>, password: <code>password</code></li>";
     echo "<li><strong>Student:</strong> username: <code>student1</code>, password: <code>password</code></li>";
     echo "</ul>";
     echo "<p><a href='login.php' class='btn'>🚀 Mulai Menggunakan Prozone</a></p>";
