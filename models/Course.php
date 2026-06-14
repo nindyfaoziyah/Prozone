@@ -36,7 +36,7 @@ class Course {
     public function create() {
         $query = "INSERT INTO " . $this->table_name . "
                   SET kode_course=:kode_course, judul_course=:judul_course, slug=:slug,
-                      kategori_id=:kategori_id, admin_id=:admin_id, deskripsi=:deskripsi,
+                      kategori_id=:kategori_id, instructor_id=:instructor_id, deskripsi=:deskripsi,
                       thumbnail=:thumbnail, level=:level, durasi_jam=:durasi_jam, harga=:harga,
                       is_free=:is_free, is_published=:is_published, xp_reward=:xp_reward";
 
@@ -64,7 +64,7 @@ class Course {
         $stmt->bindParam(':judul_course', $this->judul_course);
         $stmt->bindParam(':slug', $this->slug);
         $stmt->bindParam(':kategori_id', $this->kategori_id);
-        $stmt->bindParam(':admin_id', $this->admin_id);
+        $stmt->bindParam(':instructor_id', $this->admin_id);
         $stmt->bindParam(':deskripsi', $this->deskripsi);
         $stmt->bindParam(':thumbnail', $this->thumbnail);
         $stmt->bindParam(':level', $this->level);
@@ -84,7 +84,7 @@ class Course {
         $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.admin_id = u.id
+                  LEFT JOIN users u ON c.instructor_id = u.id
                   ORDER BY c.created_at DESC";
 
         $stmt = $this->conn->prepare($query);
@@ -97,7 +97,7 @@ class Course {
         $query = "SELECT c.*, cat.nama_kategori, cat.slug as kategori_slug, u.nama_lengkap as instructor_name
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.admin_id = u.id
+                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE c.id = :id OR c.slug = :slug";
 
         $stmt = $this->conn->prepare($query);
@@ -114,7 +114,7 @@ class Course {
             $this->judul_course = $row['judul_course'];
             $this->slug = $row['slug'];
             $this->kategori_id = $row['kategori_id'];
-            $this->admin_id = $row['admin_id'];
+            $this->admin_id = $row['instructor_id'];
             $this->deskripsi = $row['deskripsi'];
             $this->thumbnail = $row['thumbnail'] ?? null;
             $this->level = $row['level'];
@@ -133,7 +133,7 @@ class Course {
     public function update() {
         $query = "UPDATE " . $this->table_name . "
                   SET kode_course=:kode_course, judul_course=:judul_course, slug=:slug, kategori_id=:kategori_id,
-                      admin_id=:admin_id, deskripsi=:deskripsi, thumbnail=:thumbnail,
+                      instructor_id=:instructor_id, deskripsi=:deskripsi, thumbnail=:thumbnail,
                       level=:level, durasi_jam=:durasi_jam, harga=:harga, is_free=:is_free,
                       is_published=:is_published, xp_reward=:xp_reward
                   WHERE id=:id";
@@ -163,7 +163,7 @@ class Course {
         $stmt->bindParam(':judul_course', $this->judul_course);
         $stmt->bindParam(':slug', $this->slug);
         $stmt->bindParam(':kategori_id', $this->kategori_id);
-        $stmt->bindParam(':admin_id', $this->admin_id);
+        $stmt->bindParam(':instructor_id', $this->admin_id);
         $stmt->bindParam(':deskripsi', $this->deskripsi);
         $stmt->bindParam(':thumbnail', $this->thumbnail);
         $stmt->bindParam(':level', $this->level);
@@ -205,7 +205,7 @@ class Course {
         $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.admin_id = u.id
+                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE c.kategori_id = :kategori_id AND c.is_published = 1
                   ORDER BY c.created_at DESC";
 
@@ -220,7 +220,7 @@ class Course {
         $query = "SELECT c.*, cat.nama_kategori, u.nama_lengkap as instructor_name
                   FROM " . $this->table_name . " c
                   LEFT JOIN course_categories cat ON c.kategori_id = cat.id
-                  LEFT JOIN users u ON c.admin_id = u.id
+                  LEFT JOIN users u ON c.instructor_id = u.id
                   WHERE (c.judul_course LIKE :keyword OR c.deskripsi LIKE :keyword) 
                   AND c.is_published = 1
                   ORDER BY c.judul_course ASC";

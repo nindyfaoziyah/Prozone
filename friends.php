@@ -886,7 +886,6 @@ if ($selected_friend_id) {
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/toast.php'; ?>
 
     <script src="assets/js/navbar.js"></script>

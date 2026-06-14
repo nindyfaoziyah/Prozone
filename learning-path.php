@@ -4,16 +4,28 @@ requireLogin();
 require_once 'includes/icons.php';
 
 $page_title       = 'Learning Path';
-$page_description = 'Jalur RPG Adventure untuk perjalanan belajar coding Prozone.';
+$page_description = 'Pilih role tujuanmu, lalu ikuti jalur belajar yang sesuai.';
 $page_css         = ['sidebar-island.css', 'dashboard-override.css', 'pages/learning-path.css'];
 $body_class       = trim(getThemeClass() . ' dashboard-layout');
+
+$themeColors = [
+    'html' => '#F97316',
+    'css' => '#2563EB',
+    'js' => '#F59E0B',
+    'react' => '#22C55E',
+    'backend' => '#8B5CF6',
+    'api' => '#EC4899',
+    'database' => '#0EA5E9',
+    'fullstack' => '#10B981',
+];
 
 $learningPath = [
     [
         'level' => 1,
         'name' => 'HTML Forest',
-        'icon' => '🌳',
+        'icon' => '&#127799;',
         'theme' => 'html',
+        'course_id' => 1,
         'description' => 'Masuki dunia markup dengan keharmonisan struktur dan desain semantic.',
         'reward' => 100,
         'material_count' => 8,
@@ -36,8 +48,9 @@ $learningPath = [
     [
         'level' => 2,
         'name' => 'CSS Desert',
-        'icon' => '🏜️',
+        'icon' => '&#127793;',
         'theme' => 'css',
+        'course_id' => 1,
         'description' => 'Ciptakan visual premium dengan gradient, efek neon, dan layout futuristik.',
         'reward' => 150,
         'material_count' => 7,
@@ -59,161 +72,203 @@ $learningPath = [
     [
         'level' => 3,
         'name' => 'JavaScript Kingdom',
-        'icon' => '⚡',
+        'icon' => '&#9889;&#65039;',
         'theme' => 'js',
+        'course_id' => 4,
         'description' => 'Kuasakan logika interaktif dan bangun mekanisme cerdas di dunia digital.',
         'reward' => 200,
         'material_count' => 8,
         'duration' => '45 min',
         'skills' => ['Variables', 'Functions', 'Conditionals', 'Loops', 'Events'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Build a smart calculator app',
         'nodes' => [
-            ['label' => 'Variable', 'status' => 'locked'],
-            ['label' => 'Data Type', 'status' => 'locked'],
-            ['label' => 'Operator', 'status' => 'locked'],
-            ['label' => 'Conditional', 'status' => 'locked'],
-            ['label' => 'Loop', 'status' => 'locked'],
-            ['label' => 'Function', 'status' => 'locked'],
-            ['label' => 'Array', 'status' => 'locked'],
-            ['label' => 'Object', 'status' => 'locked'],
+            ['label' => 'Variable', 'status' => 'available'],
+            ['label' => 'Data Type', 'status' => 'available'],
+            ['label' => 'Operator', 'status' => 'available'],
+            ['label' => 'Conditional', 'status' => 'available'],
+            ['label' => 'Loop', 'status' => 'available'],
+            ['label' => 'Function', 'status' => 'available'],
+            ['label' => 'Array', 'status' => 'available'],
+            ['label' => 'Object', 'status' => 'available'],
         ],
     ],
     [
         'level' => 4,
         'name' => 'React Citadel',
-        'icon' => '🏰',
+        'icon' => '&#127952;',
         'theme' => 'react',
+        'course_id' => 9,
         'description' => 'Bangun antarmuka modern yang responsif dengan komponen cerdas dan state dinamis.',
         'reward' => 225,
         'material_count' => 7,
         'duration' => '55 min',
         'skills' => ['Components', 'State', 'Hooks', 'Routing', 'UX'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Create a reactive dashboard experience',
         'nodes' => [
-            ['label' => 'Komponen', 'status' => 'locked'],
-            ['label' => 'Props', 'status' => 'locked'],
-            ['label' => 'State', 'status' => 'locked'],
-            ['label' => 'Event Handler', 'status' => 'locked'],
-            ['label' => 'Lifecycle', 'status' => 'locked'],
-            ['label' => 'Hooks', 'status' => 'locked'],
-            ['label' => 'Routing', 'status' => 'locked'],
+            ['label' => 'Komponen', 'status' => 'available'],
+            ['label' => 'Props', 'status' => 'available'],
+            ['label' => 'State', 'status' => 'available'],
+            ['label' => 'Event Handler', 'status' => 'available'],
+            ['label' => 'Lifecycle', 'status' => 'available'],
+            ['label' => 'Hooks', 'status' => 'available'],
+            ['label' => 'Routing', 'status' => 'available'],
         ],
     ],
     [
         'level' => 5,
         'name' => 'Backend Volcano',
-        'icon' => '🌋',
+        'icon' => '&#127797;',
         'theme' => 'backend',
+        'course_id' => 3,
         'description' => 'Masuki inti server, logika bisnis, dan infrastruktur aplikasi berskala.',
         'reward' => 250,
         'material_count' => 7,
         'duration' => '50 min',
         'skills' => ['Server', 'Routing', 'Auth', 'Database', 'CRUD'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Build a powerful REST API',
         'nodes' => [
-            ['label' => 'Server', 'status' => 'locked'],
-            ['label' => 'Routing', 'status' => 'locked'],
-            ['label' => 'Database', 'status' => 'locked'],
-            ['label' => 'Authentication', 'status' => 'locked'],
-            ['label' => 'CRUD', 'status' => 'locked'],
-            ['label' => 'Validation', 'status' => 'locked'],
-            ['label' => 'Deployment', 'status' => 'locked'],
+            ['label' => 'Server', 'status' => 'available'],
+            ['label' => 'Routing', 'status' => 'available'],
+            ['label' => 'Database', 'status' => 'available'],
+            ['label' => 'Authentication', 'status' => 'available'],
+            ['label' => 'CRUD', 'status' => 'available'],
+            ['label' => 'Validation', 'status' => 'available'],
+            ['label' => 'Deployment', 'status' => 'available'],
         ],
     ],
     [
         'level' => 6,
         'name' => 'API Ocean',
-        'icon' => '🌊',
+        'icon' => '&#127753;',
         'theme' => 'api',
+        'course_id' => 10,
         'description' => 'Terhubung dengan layanan global dan bangun ekosistem data realtime.',
         'reward' => 230,
         'material_count' => 6,
         'duration' => '50 min',
         'skills' => ['HTTP', 'Endpoints', 'Requests', 'Responses', 'Security'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Integrate a realtime API system',
         'nodes' => [
-            ['label' => 'HTTP', 'status' => 'locked'],
-            ['label' => 'Endpoints', 'status' => 'locked'],
-            ['label' => 'Request', 'status' => 'locked'],
-            ['label' => 'Response', 'status' => 'locked'],
-            ['label' => 'Authentication', 'status' => 'locked'],
-            ['label' => 'Debugging', 'status' => 'locked'],
+            ['label' => 'HTTP', 'status' => 'available'],
+            ['label' => 'Endpoints', 'status' => 'available'],
+            ['label' => 'Request', 'status' => 'available'],
+            ['label' => 'Response', 'status' => 'available'],
+            ['label' => 'Authentication', 'status' => 'available'],
+            ['label' => 'Debugging', 'status' => 'available'],
         ],
     ],
     [
         'level' => 7,
         'name' => 'Database Sanctuary',
-        'icon' => '💾',
+        'icon' => '&#128194;',
         'theme' => 'database',
+        'course_id' => 11,
         'description' => 'Rancang ruang data yang aman, efisien, dan siap untuk aplikasi canggih.',
         'reward' => 220,
         'material_count' => 6,
         'duration' => '40 min',
         'skills' => ['Schema', 'Queries', 'Relations', 'Indexing', 'Backup'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Design a scalable database schema',
         'nodes' => [
-            ['label' => 'Tabel', 'status' => 'locked'],
-            ['label' => 'Query', 'status' => 'locked'],
-            ['label' => 'Relasi', 'status' => 'locked'],
-            ['label' => 'Index', 'status' => 'locked'],
-            ['label' => 'Backup', 'status' => 'locked'],
-            ['label' => 'Optimasi', 'status' => 'locked'],
+            ['label' => 'Tabel', 'status' => 'available'],
+            ['label' => 'Query', 'status' => 'available'],
+            ['label' => 'Relasi', 'status' => 'available'],
+            ['label' => 'Index', 'status' => 'available'],
+            ['label' => 'Backup', 'status' => 'available'],
+            ['label' => 'Optimasi', 'status' => 'available'],
         ],
     ],
     [
         'level' => 8,
         'name' => 'Full Stack Empire',
-        'icon' => '👑',
+        'icon' => '&#128138;',
         'theme' => 'fullstack',
+        'course_id' => 3,
         'description' => 'Jelajahi mahkota digital dengan kemampuan frontend, backend, dan deployment siap produksi.',
         'reward' => 300,
         'material_count' => 7,
         'duration' => '70 min',
         'skills' => ['Architecture', 'Optimization', 'Testing', 'Scaling', 'Launch'],
         'progress' => 0,
-        'status' => 'locked',
+        'status' => 'in-progress',
         'boss' => 'Launch a full stack flagship app',
         'nodes' => [
-            ['label' => 'Integrasi Frontend', 'status' => 'locked'],
-            ['label' => 'Integrasi Backend', 'status' => 'locked'],
-            ['label' => 'Database', 'status' => 'locked'],
-            ['label' => 'API', 'status' => 'locked'],
-            ['label' => 'Deployment', 'status' => 'locked'],
-            ['label' => 'Testing', 'status' => 'locked'],
-            ['label' => 'Optimization', 'status' => 'locked'],
+            ['label' => 'Integrasi Frontend', 'status' => 'available'],
+            ['label' => 'Integrasi Backend', 'status' => 'available'],
+            ['label' => 'Database', 'status' => 'available'],
+            ['label' => 'API', 'status' => 'available'],
+            ['label' => 'Deployment', 'status' => 'available'],
+            ['label' => 'Testing', 'status' => 'available'],
+            ['label' => 'Optimization', 'status' => 'available'],
         ],
+    ],
+];
+
+// Role definitions
+$roles = [
+    'frontend' => [
+        'id' => 'frontend',
+        'name' => 'Frontend Developer',
+        'icon' => '🎨',
+        'description' => 'Bangun antarmuka web yang indah, interaktif, dan responsif. Mulai dari HTML, CSS, JavaScript, hingga framework modern.',
+        'color' => '#22C55E',
+        'gradient' => 'linear-gradient(135deg, #22C55E, #0EA5E9)',
+        'levels' => [1, 2, 3, 4],
+    ],
+    'backend' => [
+        'id' => 'backend',
+        'name' => 'Backend Developer',
+        'icon' => '&#128295;',
+        'description' => 'Kuasai logika server, API, database, dan arsitektur aplikasi yang scalable dan aman.',
+        'color' => '#8B5CF6',
+        'gradient' => 'linear-gradient(135deg, #8B5CF6, #EC4899)',
+        'levels' => [5, 6, 7],
+    ],
+    'fullstack' => [
+        'id' => 'fullstack',
+        'name' => 'Full Stack Developer',
+        'icon' => '&#128640;',
+        'description' => 'Kuasai frontend hingga backend. Dari HTML hingga deployment, jadi developer serba bisa!',
+        'color' => '#F59E0B',
+        'gradient' => 'linear-gradient(135deg, #F59E0B, #EC4899)',
+        'levels' => [1, 2, 3, 4, 5, 6, 7, 8],
+    ],
+    'data' => [
+        'id' => 'data',
+        'name' => 'Data & AI Engineer',
+        'icon' => '&#129302;',
+        'description' => 'Olah data, bangun pipeline, dan ciptakan sistem cerdas dengan machine learning.',
+        'color' => '#06B6D4',
+        'gradient' => 'linear-gradient(135deg, #06B6D4, #6366F1)',
+        'levels' => [3, 5, 6, 7],
     ],
 ];
 
 function statusBadge($status) {
     $map = [
-        'completed' => '✅ Legendary',
-        'in-progress' => '🟣 Quest Active',
-        'locked' => '🔒 Sealed',
+        'completed' => '&#10004; Legendary',
+        'in-progress' => '&#127764; Quest Active',
+        'locked' => '&#128274; Sealed',
     ];
     return $map[$status] ?? ucfirst($status);
 }
 
-function nodeStatusLabel($status) {
-    $map = [
-        'completed' => '✅',
-        'active' => '🔵',
-        'available' => '🟣',
-        'locked' => '🔒',
-    ];
-    return $map[$status] ?? '●';
-}
-
+// Calculate stats per role
+$totalLevels = count($learningPath);
+$completedLevels = count(array_filter($learningPath, fn($l) => $l['status'] === 'completed'));
+$inProgressLevels = count(array_filter($learningPath, fn($l) => $l['status'] === 'in-progress'));
+$totalXP = array_sum(array_column($learningPath, 'reward'));
+$overallProgress = round(array_sum(array_column($learningPath, 'progress')) / $totalLevels);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -225,243 +280,453 @@ function nodeStatusLabel($status) {
 
 <div class="page-wrapper dashboard-main-container">
     <div class="learning-path-page">
-        <section class="learning-path-hero">
-            <div class="hero-copy">
-                <div class="hero-chip">Journey From Beginner To Digital Legend</div>
-                <h1>Prozone World Map: RPG Quest of Code</h1>
-                <p>Masuki pengalaman premium yang menggabungkan fantasy, cyberpunk, dan petualangan belajar coding kelas AAA.</p>
 
-                <div class="hero-meta-grid">
-                    <div class="hero-value">
-                        <span>Total Island</span>
-                        <strong><?php echo count($learningPath); ?></strong>
-                    </div>
-                    <div class="hero-value">
-                        <span>Total XP Reward</span>
-                        <strong>+<?php echo array_sum(array_column($learningPath, 'reward')); ?> XP</strong>
-                    </div>
-                    <div class="hero-value">
-                        <span>Skill Track</span>
-                        <strong><?php echo array_sum(array_map(function ($level) { return count($level['skills']); }, $learningPath)); ?></strong>
-                    </div>
-                </div>
+        <!-- ============================================= -->
+        <!-- STEP 1: ROLE SELECTION -->
+        <!-- ============================================= -->
+        <div class="lp-step" id="lp-step-role">
+            <section class="lp-hero">
+                <div class="lp-hero-inner">
+                    <div class="lp-hero-content">
+                        <span class="lp-hero-chip">&#127775; Pilih Role-mu</span>
+                        <h1>Who will you become?</h1>
+                        <p>Pilih role developer yang ingin kamu capai. Kami akan menyusun jalur belajar yang tepat sesuai tujuanmu.</p>
 
-                <div class="hero-overview">
-                    <div class="hero-overview-card">
-                        <span>Current Quest</span>
-                        <strong>CSS Desert</strong>
-                    </div>
-                    <div class="hero-overview-card">
-                        <span>Next Unlock</span>
-                        <strong>JavaScript Kingdom</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-visual hero-map-v2">
-                <div class="world-sky">
-                    <div class="aurora aurora-1"></div>
-                    <div class="aurora aurora-2"></div>
-                    <div class="stars stars-1"></div>
-                    <div class="stars stars-2"></div>
-                    <div class="floating-cloud cloud-1"></div>
-                    <div class="floating-cloud cloud-2"></div>
-                    <div class="map-background">
-                        <div class="map-edge-glow"></div>
-                        <div class="map-stage world-map-container">
-                            <div class="path-layer" aria-hidden="true">
-                                <div class="map-path map-path-12"></div>
-                                <div class="map-path map-path-23"></div>
-                                <div class="map-path map-path-34"></div>
-                                <div class="map-path map-path-45"></div>
-                                <div class="map-path map-path-56"></div>
-                                <div class="map-path map-path-67"></div>
-                                <div class="map-path map-path-78"></div>
+                        <div class="lp-stats">
+                            <div class="lp-stat-item">
+                                <div class="lp-stat-icon lp-stat-icon--completed">&#10004;</div>
+                                <div class="lp-stat-info">
+                                    <span class="lp-stat-label">Completed</span>
+                                    <strong class="lp-stat-value"><?php echo $completedLevels; ?></strong>
+                                </div>
                             </div>
-                            <div class="island-layer">
-                                <div class="map-avatar" id="map-avatar">🧑‍💻</div>
-
-                                <?php foreach ($learningPath as $level): ?>
-                                    <article class="map-island island-<?php echo $level['level']; ?> <?php echo $level['status']; ?>" data-level="<?php echo $level['level']; ?>">
-                                        <div class="island-aura"></div>
-                                        <div class="island-top">
-                                            <span class="island-icon island-icon-<?php echo htmlspecialchars($level['theme']); ?>"><?php echo htmlspecialchars($level['icon']); ?></span>
-                                            <div>
-                                                <div class="island-level">Level <?php echo $level['level']; ?></div>
-                                                <h3><?php echo htmlspecialchars($level['name']); ?></h3>
-                                            </div>
-                                        </div>
-                                        <div class="island-body">
-                                            <p><?php echo htmlspecialchars($level['description']); ?></p>
-                                            <div class="island-meta">
-                                                <span><?php echo $level['reward']; ?> XP</span>
-                                                <span><?php echo $level['material_count']; ?> Materi</span>
-                                            </div>
-                                        </div>
-                                        <div class="island-footer">
-                                            <span class="status-pill <?php echo $level['status']; ?>"><?php echo statusBadge($level['status']); ?></span>
-                                        </div>
-                                    </article>
-                                <?php endforeach; ?>
+                            <div class="lp-stat-item">
+                                <div class="lp-stat-icon lp-stat-icon--active">&#127764;</div>
+                                <div class="lp-stat-info">
+                                    <span class="lp-stat-label">In Progress</span>
+                                    <strong class="lp-stat-value"><?php echo $inProgressLevels; ?></strong>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="learning-path-details">
-            <div class="selected-island-panel" id="selected-island-panel">
-                <div class="panel-header">
-                    <span class="panel-badge">Floating Glass Panel</span>
-                    <h2 id="panel-title">Tap island untuk membuka misi</h2>
-                    <p id="panel-copy">Setiap pulau adalah quest unik yang terbuka dalam dunia RPG futuristic ini.</p>
-                </div>
-                <div class="panel-body">
-                    <div class="panel-summary">
-                        <div class="panel-stat">
-                            <span>Progress</span>
-                            <strong id="panel-progress">0%</strong>
-                        </div>
-                        <div class="panel-stat">
-                            <span>Duration</span>
-                            <strong id="panel-duration">-</strong>
-                        </div>
-                        <div class="panel-stat">
-                            <span>XP Reward</span>
-                            <strong id="panel-xp">0 XP</strong>
-                        </div>
-                    </div>
-
-                    <div class="panel-glow-bar">
-                        <div class="progress-ring" id="panel-ring">
-                            <div class="ring-value" id="panel-ring-value">0%</div>
-                        </div>
-                        <div class="panel-metrics">
-                            <div>
-                                <span>Status</span>
-                                <strong class="status-pill active" id="panel-status">Ready</strong>
+                            <div class="lp-stat-item">
+                                <div class="lp-stat-icon lp-stat-icon--xp">&#9733;</div>
+                                <div class="lp-stat-info">
+                                    <span class="lp-stat-label">Total XP</span>
+                                    <strong class="lp-stat-value">+<?php echo $totalXP; ?></strong>
+                                </div>
                             </div>
-                            <div>
-                                <span>Boss</span>
-                                <strong id="panel-boss">-</strong>
+                            <div class="lp-stat-item">
+                                <div class="lp-stat-icon lp-stat-icon--progress">&#128200;</div>
+                                <div class="lp-stat-info">
+                                    <span class="lp-stat-label">Progress</span>
+                                    <strong class="lp-stat-value"><?php echo $overallProgress; ?>%</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="skill-grid" id="panel-skills"></div>
-                    <div class="node-chips" id="panel-nodes"></div>
-                    <button class="start-learning-btn" id="panel-start-btn" disabled>Start Quest</button>
+                    <div class="lp-hero-illustration">
+                        <div class="lp-illustration-ring">
+                            <div class="lp-illustration-core">
+                                <span class="lp-illustration-icon">&#127891;</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="lp-section">
+                <div class="lp-section-header">
+                    <h2>Choose Your Path</h2>
+                    <p>Setiap role memiliki jalur belajar yang berbeda. Pilih sesuai tujuan karirmu.</p>
+                </div>
+
+                <div class="lp-roles-grid">
+                    <?php foreach ($roles as $role): ?>
+                    <?php
+                        $roleLevels = array_filter($learningPath, fn($l) => in_array($l['level'], $role['levels']));
+                        $roleLevels = array_values($roleLevels);
+                        $totalDuration = array_sum(array_map(function($d) {
+                            return (int) filter_var($d, FILTER_SANITIZE_NUMBER_INT);
+                        }, array_column($roleLevels, 'duration')));
+                        $totalMateri = array_sum(array_column($roleLevels, 'material_count'));
+                        $totalRoleXP = array_sum(array_column($roleLevels, 'reward'));
+                        $roleProgress = round(array_sum(array_column($roleLevels, 'progress')) / count($roleLevels));
+                    ?>
+                    <div class="lp-role-card" data-role="<?php echo $role['id']; ?>" style="--role-color: <?php echo $role['color']; ?>; --role-gradient: <?php echo $role['gradient']; ?>;">
+                        <div class="lp-role-glow"></div>
+                        <div class="lp-role-visual">
+                            <div class="lp-role-icon-wrap">
+                                <span class="lp-role-icon"><?php echo $role['icon']; ?></span>
+                            </div>
+                        </div>
+                        <div class="lp-role-body">
+                            <h3 class="lp-role-name"><?php echo $role['name']; ?></h3>
+                            <p class="lp-role-desc"><?php echo $role['description']; ?></p>
+                            <div class="lp-role-meta">
+                                <span class="lp-role-meta-item">
+                                    <span>&#128218;</span> <?php echo count($role['levels']); ?> Levels
+                                </span>
+                                <span class="lp-role-meta-item">
+                                    <span>&#9201;</span> ~<?php echo $totalDuration; ?> min
+                                </span>
+                                <span class="lp-role-meta-item">
+                                    <span>&#9733;</span> +<?php echo $totalRoleXP; ?> XP
+                                </span>
+                            </div>
+                            <div class="lp-role-progress">
+                                <div class="lp-role-progress-bar">
+                                    <div class="lp-role-progress-fill" style="width: <?php echo $roleProgress; ?>%"></div>
+                                </div>
+                                <span class="lp-role-progress-text"><?php echo $roleProgress; ?>%</span>
+                            </div>
+                        </div>
+                        <div class="lp-role-footer">
+                            <span class="lp-role-btn">Start This Path &#8594;</span>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================= -->
+        <!-- STEP 2: LEARNING PATH (hidden initially) -->
+        <!-- ============================================= -->
+        <div class="lp-step" id="lp-step-path" style="display: none;">
+            <section class="lp-path-header">
+                <div class="lp-path-header-left">
+                    <button class="lp-back-btn" id="lp-back-btn">&#8592; Change Role</button>
+                    <div class="lp-path-header-info">
+                        <span class="lp-path-role-icon" id="lp-path-role-icon"></span>
+                        <div>
+                            <span class="lp-path-role-label">Learning Path</span>
+                            <h2 id="lp-path-role-name"></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="lp-path-header-stats" id="lp-path-header-stats"></div>
+            </section>
+
+            <div class="lp-levels-grid" id="lp-levels-grid"></div>
+
+            <!-- Detail Panel -->
+            <section class="lp-section lp-detail-section">
+                <div class="lp-detail-panel" id="lp-detail-panel">
+                    <div class="lp-detail-placeholder" id="lp-detail-placeholder">
+                        <span class="lp-detail-placeholder-icon">&#127916;</span>
+                        <h3>Pilih Level untuk Mulai</h3>
+                        <p>Klik salah satu level di atas untuk melihat detail quest, skill, dan node pembelajaran.</p>
+                    </div>
+
+                    <div class="lp-detail-content" id="lp-detail-content" style="display: none;">
+                        <div class="lp-detail-top">
+                            <div class="lp-detail-icon-wrap">
+                                <span class="lp-detail-icon" id="lp-detail-icon"></span>
+                            </div>
+                            <div class="lp-detail-info">
+                                <span class="lp-detail-level" id="lp-detail-level"></span>
+                                <h2 id="lp-detail-name"></h2>
+                                <p id="lp-detail-desc"></p>
+                            </div>
+                            <div class="lp-detail-ring-wrap">
+                                <svg class="lp-detail-ring" viewBox="0 0 120 120" id="lp-detail-ring-svg">
+                                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--lp-ring-bg)" stroke-width="8"/>
+                                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--lp-ring-color)" stroke-width="8"
+                                        stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+                                        id="lp-detail-ring-circle"
+                                        transform="rotate(-90 60 60)"/>
+                                    <text x="60" y="56" text-anchor="middle" fill="#1e1b4b" font-size="18" font-weight="800" id="lp-detail-ring-text">0%</text>
+                                    <text x="60" y="74" text-anchor="middle" fill="#64748b" font-size="10" font-weight="600">COMPLETE</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="lp-detail-stats">
+                            <div class="lp-detail-stat">
+                                <span class="lp-detail-stat-icon">&#9733;</span>
+                                <span class="lp-detail-stat-label">XP Reward</span>
+                                <strong id="lp-detail-xp">0 XP</strong>
+                            </div>
+                            <div class="lp-detail-stat">
+                                <span class="lp-detail-stat-icon">&#9201;</span>
+                                <span class="lp-detail-stat-label">Duration</span>
+                                <strong id="lp-detail-duration">-</strong>
+                            </div>
+                            <div class="lp-detail-stat">
+                                <span class="lp-detail-stat-icon">&#128218;</span>
+                                <span class="lp-detail-stat-label">Materials</span>
+                                <strong id="lp-detail-materials">0</strong>
+                            </div>
+                            <div class="lp-detail-stat">
+                                <span class="lp-detail-stat-icon" id="lp-detail-status-icon"></span>
+                                <span class="lp-detail-stat-label">Status</span>
+                                <strong id="lp-detail-status">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="lp-detail-section-title">
+                            <span>&#128161;</span> Boss Quest
+                        </div>
+                        <div class="lp-detail-boss" id="lp-detail-boss"></div>
+
+                        <div class="lp-detail-section-title">
+                            <span>&#9881;</span> Skills to Learn
+                        </div>
+                        <div class="lp-detail-skills" id="lp-detail-skills"></div>
+
+                        <div class="lp-detail-section-title">
+                            <span>&#127991;</span> Learning Nodes
+                        </div>
+                        <div class="lp-detail-nodes" id="lp-detail-nodes"></div>
+
+                        <button class="lp-detail-btn" id="lp-detail-btn">Start Quest</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
 <?php include 'includes/loading.php'; ?>
 <?php include 'includes/toast.php'; ?>
 <script src="assets/js/navbar.js"></script>
 <script>
-  (function() {
-    const levels = <?php echo json_encode($learningPath, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
-    const islands = document.querySelectorAll('.map-island');
-    const avatar = document.getElementById('map-avatar');
-    const panelTitle = document.getElementById('panel-title');
-    const panelCopy = document.getElementById('panel-copy');
-    const panelProgress = document.getElementById('panel-progress');
-    const panelDuration = document.getElementById('panel-duration');
-    const panelXp = document.getElementById('panel-xp');
-    const panelStatus = document.getElementById('panel-status');
-    const panelBoss = document.getElementById('panel-boss');
-    const panelNodes = document.getElementById('panel-nodes');
-    const panelSkills = document.getElementById('panel-skills');
-    const panelRingValue = document.getElementById('panel-ring-value');
-    const panelButton = document.getElementById('panel-start-btn');
-    const mapStage = document.querySelector('.map-stage');
+(function() {
+    const allLevels = <?php echo json_encode($learningPath, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    const roles = <?php echo json_encode($roles, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    const themeColors = <?php echo json_encode($themeColors, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 
-    function getLevel(levelId) {
-      return levels.find((level) => Number(level.level) === Number(levelId));
-    }
+    const stepRole = document.getElementById('lp-step-role');
+    const stepPath = document.getElementById('lp-step-path');
+    const backBtn = document.getElementById('lp-back-btn');
+    const roleCards = document.querySelectorAll('.lp-role-card');
+    const levelsGrid = document.getElementById('lp-levels-grid');
+    const pathRoleIcon = document.getElementById('lp-path-role-icon');
+    const pathRoleName = document.getElementById('lp-path-role-name');
+    const pathHeaderStats = document.getElementById('lp-path-header-stats');
 
-    function formatStatus(status) {
-      if (status === 'completed') return 'Legendary';
-      if (status === 'in-progress') return 'Active Quest';
-      return 'Sealed';
-    }
+    // Detail panel elements
+    const placeholder = document.getElementById('lp-detail-placeholder');
+    const content = document.getElementById('lp-detail-content');
+    const detailIcon = document.getElementById('lp-detail-icon');
+    const detailLevel = document.getElementById('lp-detail-level');
+    const detailName = document.getElementById('lp-detail-name');
+    const detailDesc = document.getElementById('lp-detail-desc');
+    const detailRingCircle = document.getElementById('lp-detail-ring-circle');
+    const detailRingText = document.getElementById('lp-detail-ring-text');
+    const detailXp = document.getElementById('lp-detail-xp');
+    const detailDuration = document.getElementById('lp-detail-duration');
+    const detailMaterials = document.getElementById('lp-detail-materials');
+    const detailStatusIcon = document.getElementById('lp-detail-status-icon');
+    const detailStatus = document.getElementById('lp-detail-status');
+    const detailBoss = document.getElementById('lp-detail-boss');
+    const detailSkills = document.getElementById('lp-detail-skills');
+    const detailNodes = document.getElementById('lp-detail-nodes');
+    const detailBtn = document.getElementById('lp-detail-btn');
+    const circumference = 2 * Math.PI * 52;
+    let currentLevel = null;
 
-    function moveAvatar(targetIsland) {
-      if (!targetIsland || !mapStage) return;
-      const islandRect = targetIsland.getBoundingClientRect();
-      const stageRect = mapStage.getBoundingClientRect();
-      const x = islandRect.left - stageRect.left + islandRect.width * 0.5;
-      const y = islandRect.top - stageRect.top + islandRect.height * 0.4;
-      avatar.style.left = `${x}px`;
-      avatar.style.top = `${y}px`;
-      avatar.classList.add('avatar-active');
-      window.requestAnimationFrame(() => {
-        avatar.classList.remove('avatar-active');
-      });
-    }
-
-    function renderPanel(level) {
-      if (!level) return;
-      islands.forEach((island) => island.classList.toggle('active-island', Number(island.dataset.level) === Number(level.level)));
-      panelTitle.textContent = level.name;
-      panelCopy.textContent = level.description;
-      panelProgress.textContent = level.progress + '%';
-      panelDuration.textContent = level.duration || '-';
-      panelXp.textContent = level.reward + ' XP';
-      panelStatus.textContent = formatStatus(level.status);
-      panelStatus.className = 'status-pill ' + (level.status === 'in-progress' ? 'active' : level.status === 'completed' ? 'completed' : 'locked');
-      panelBoss.textContent = level.boss;
-      panelRingValue.textContent = level.progress + '%';
-
-      panelNodes.innerHTML = '';
-      level.nodes.forEach((node) => {
-        const chip = document.createElement('div');
-        chip.className = 'node-chip ' + (node.status || 'locked');
-        chip.textContent = node.label;
-        panelNodes.appendChild(chip);
-      });
-
-      panelSkills.innerHTML = '';
-      level.skills.forEach((skill) => {
-        const chip = document.createElement('span');
-        chip.className = 'skill-chip';
-        chip.textContent = skill;
-        panelSkills.appendChild(chip);
-      });
-
-      if (level.status === 'locked') {
-        panelButton.disabled = true;
-        panelButton.textContent = 'Sealed';
-      } else {
-        panelButton.disabled = false;
-        panelButton.textContent = level.status === 'completed' ? 'Quest Review' : 'Continue Quest';
-      }
-
-      const targetIsland = document.querySelector(`.map-island[data-level="${level.level}"]`);
-      moveAvatar(targetIsland);
-    }
-
-    islands.forEach((island) => {
-      island.addEventListener('click', function() {
-        const level = getLevel(this.dataset.level);
-        renderPanel(level);
-      });
-
-      island.addEventListener('mouseenter', function() {
-        this.classList.add('island-hover');
-      });
-      island.addEventListener('mouseleave', function() {
-        this.classList.remove('island-hover');
-      });
+    // Quest button click - redirect to course page
+    detailBtn.addEventListener('click', function() {
+        if (currentLevel && currentLevel.course_id) {
+            window.location.href = 'course.php?id=' + currentLevel.course_id;
+        }
     });
 
-    const initialIsland = document.querySelector('.map-island.in-progress') || document.querySelector('.map-island.completed') || islands[0];
-    renderPanel(getLevel(initialIsland?.dataset.level || 1));
-  })();
+    // ---- Role Selection ----
+    roleCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+            const roleId = this.dataset.role;
+            selectRole(roleId);
+        });
+    });
+
+    backBtn.addEventListener('click', function() {
+        stepPath.style.display = 'none';
+        stepRole.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function selectRole(roleId) {
+        const role = roles[roleId];
+        if (!role) return;
+
+        switchToPath(role);
+    }
+
+    function switchToPath(role) {
+        // Update header
+        pathRoleIcon.innerHTML = role.icon;
+        pathRoleName.textContent = role.name;
+
+        // Build stats
+        const roleLevels = role.levels.map(function(id) {
+            return allLevels.find(function(l) { return l.level === id; });
+        }).filter(Boolean);
+
+        const totalDuration = roleLevels.reduce(function(sum, l) {
+            return sum + (parseInt(l.duration) || 0);
+        }, 0);
+        const totalXP = roleLevels.reduce(function(sum, l) { return sum + l.reward; }, 0);
+        const totalMateri = roleLevels.reduce(function(sum, l) { return sum + l.material_count; }, 0);
+        const earned = roleLevels.filter(function(l) { return l.status === 'completed'; }).length;
+
+        pathHeaderStats.innerHTML =
+            '<div class="lp-path-stat"><strong>' + earned + '/' + roleLevels.length + '</strong><span>Done</span></div>' +
+            '<div class="lp-path-stat"><strong>' + totalMateri + '</strong><span>Materi</span></div>' +
+            '<div class="lp-path-stat"><strong>' + totalDuration + 'm</strong><span>Duration</span></div>' +
+            '<div class="lp-path-stat"><strong>+' + totalXP + '</strong><span>XP</span></div>';
+
+        // Build level cards
+        levelsGrid.innerHTML = '';
+        roleLevels.forEach(function(level) {
+            if (!level) return;
+            const card = document.createElement('article');
+            card.className = 'lp-card ' + (level.status || 'locked');
+            card.dataset.level = level.level;
+
+            const color = themeColors[level.theme] || '#6366f1';
+
+            card.innerHTML =
+                '<div class="lp-card-header">' +
+                    '<div class="lp-card-icon-wrap">' +
+                        '<span class="lp-card-icon" style="background:' + color + ';">' + level.icon + '</span>' +
+                        (level.status === 'completed' ? '<span class="lp-card-badge lp-card-badge--completed">&#10004;</span>' : '') +
+                        (level.status === 'in-progress' ? '<span class="lp-card-badge lp-card-badge--active">&#8226;</span>' : '') +
+                    '</div>' +
+                    '<div class="lp-card-title-area">' +
+                        '<span class="lp-card-level">Level ' + level.level + '</span>' +
+                        '<h3>' + level.name + '</h3>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="lp-card-body">' +
+                    '<div class="lp-card-meta">' +
+                        '<span class="lp-card-meta-item"><span class="lp-card-meta-icon">&#9733;</span> ' + level.reward + ' XP</span>' +
+                        '<span class="lp-card-meta-item"><span class="lp-card-meta-icon">&#128218;</span> ' + level.material_count + ' Materi</span>' +
+                        '<span class="lp-card-meta-item"><span class="lp-card-meta-icon">&#9201;</span> ' + level.duration + '</span>' +
+                    '</div>' +
+                    '<div class="lp-card-progress">' +
+                        '<div class="lp-progress-bar lp-progress-bar--sm">' +
+                            '<div class="lp-progress-fill" style="--fill: ' + level.progress + '%"></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="lp-card-footer">' +
+                    '<span class="lp-card-status lp-card-status--' + level.status + '">' +
+                        (level.status === 'completed' ? 'Legendary' : level.status === 'in-progress' ? 'Active Quest' : 'Locked') +
+                    '</span>' +
+                    '<span class="lp-card-arrow">&#8594;</span>' +
+                '</div>';
+
+            card.addEventListener('click', function() {
+                const lvl = allLevels.find(function(l) { return l.level === Number(this.dataset.level); }.bind(this));
+                if (lvl) renderDetail(lvl);
+            });
+
+            levelsGrid.appendChild(card);
+        });
+
+        // Show path, hide role selection
+        stepRole.style.display = 'none';
+        stepPath.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Reset detail panel
+        placeholder.style.display = 'flex';
+        content.style.display = 'none';
+
+        // Auto-select first in-progress or completed
+        const firstCard = levelsGrid.querySelector('.lp-card.in-progress') || levelsGrid.querySelector('.lp-card.completed') || levelsGrid.querySelector('.lp-card');
+        if (firstCard) {
+            const lvl = allLevels.find(function(l) { return l.level === Number(firstCard.dataset.level); });
+            if (lvl) renderDetail(lvl);
+        }
+    }
+
+    // ---- Detail Panel ----
+    function formatStatus(status) {
+        if (status === 'completed') return 'Legendary';
+        if (status === 'in-progress') return 'Active Quest';
+        return 'Locked';
+    }
+
+    function animateRing(circle, percent) {
+        const offset = circumference - (percent / 100) * circumference;
+        circle.style.transition = 'stroke-dashoffset 0.6s ease';
+        circle.style.strokeDashoffset = offset;
+    }
+
+    function renderDetail(level) {
+        if (!level) return;
+
+        currentLevel = level;
+        placeholder.style.display = 'none';
+        content.style.display = 'block';
+
+        const color = themeColors[level.theme] || '#6366f1';
+        detailIcon.innerHTML = level.icon;
+        detailIcon.style.background = 'linear-gradient(135deg, ' + color + ', ' + color + 'dd)';
+        detailLevel.textContent = 'Level ' + level.level;
+        detailName.textContent = level.name;
+        detailDesc.textContent = level.description;
+        detailXp.textContent = level.reward + ' XP';
+        detailDuration.textContent = level.duration || '-';
+        detailMaterials.textContent = level.material_count;
+        detailStatus.textContent = formatStatus(level.status);
+
+        const statusIcons = { completed: '&#10004;', 'in-progress': '&#127764;', locked: '&#128274;' };
+        detailStatusIcon.innerHTML = statusIcons[level.status] || '&#9899;';
+
+        content.style.setProperty('--lp-ring-color', color);
+        detailRingCircle.style.stroke = color;
+
+        // Boss
+        detailBoss.innerHTML = '';
+        const bossDiv = document.createElement('div');
+        bossDiv.className = 'lp-detail-boss-item';
+        bossDiv.innerHTML = '<span class="lp-detail-boss-icon">&#128126;</span> ' + level.boss;
+        detailBoss.appendChild(bossDiv);
+
+        // Skills
+        detailSkills.innerHTML = '';
+        level.skills.forEach(function(skill) {
+            const chip = document.createElement('span');
+            chip.className = 'lp-detail-skill-chip';
+            chip.textContent = skill;
+            detailSkills.appendChild(chip);
+        });
+
+        // Nodes
+        detailNodes.innerHTML = '';
+        level.nodes.forEach(function(node) {
+            const chip = document.createElement('span');
+            chip.className = 'lp-detail-node-chip lp-detail-node-chip--' + (node.status || 'locked');
+            const icons = { completed: '&#10004;', active: '&#8226;', locked: '&#128274;', available: '&#9654;' };
+            chip.innerHTML = (icons[node.status] || '&#9899;') + ' ' + node.label;
+            detailNodes.appendChild(chip);
+        });
+
+        // Button
+        if (level.status === 'locked') {
+            detailBtn.disabled = true;
+            detailBtn.textContent = 'Locked';
+            detailBtn.className = 'lp-detail-btn lp-detail-btn--disabled';
+        } else {
+            detailBtn.disabled = false;
+            detailBtn.textContent = level.status === 'completed' ? 'Review Quest' : (level.progress > 0 ? 'Continue Quest' : 'Start Quest');
+            detailBtn.className = 'lp-detail-btn';
+        }
+
+        detailRingText.textContent = level.progress + '%';
+        animateRing(detailRingCircle, level.progress);
+
+        // Highlight active card
+        levelsGrid.querySelectorAll('.lp-card').forEach(function(card) {
+            card.classList.toggle('lp-card--active', Number(card.dataset.level) === Number(level.level));
+        });
+    }
+})();
 </script>
 </body>
 </html>

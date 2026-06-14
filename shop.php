@@ -564,6 +564,5 @@ while ($row = $stmt_inv->fetch(PDO::FETCH_ASSOC)) {
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
 </body>
 </html>

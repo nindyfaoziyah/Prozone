@@ -550,13 +550,12 @@ if ($role === 'admin') {
                     </div>
                     <?php endif; ?>
 
-                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">⚔️ Lihat Koleksi Karakter</a>
+                    <a href="characters.php" class="glass-btn glass-btn-primary w-full" style="margin-top:16px;justify-content:center;">🏆 Lihat Semua Trophy</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
 

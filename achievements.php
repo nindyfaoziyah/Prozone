@@ -291,7 +291,6 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/loading.php'; ?>
     <?php include 'includes/toast.php'; ?>
 

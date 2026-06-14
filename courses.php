@@ -32,7 +32,7 @@ $where_clause = ($_SESSION['user_role'] === 'student') ? "WHERE c.is_published =
 $query = "SELECT c.*, cc.nama_kategori, u.nama_lengkap as instructor_name
           FROM courses c
           LEFT JOIN course_categories cc ON c.kategori_id = cc.id
-          LEFT JOIN users u ON c.admin_id = u.id
+          LEFT JOIN users u ON c.instructor_id = u.id
           " . $where_clause;
 
 $params = [];
@@ -117,52 +117,79 @@ $page_css = ['assets/css/pages/courses.css'];
     <link rel="stylesheet" href="assets/css/pages/courses.css">
     
     <style>
+        :root {
+            --card-radius: 20px;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --card-shadow-hover: 0 20px 40px rgba(0,0,0,0.08), 0 6px 12px rgba(0,0,0,0.06);
+            --card-border: rgba(99,102,241,0.06);
+            --card-bg: #ffffff;
+            --thumb-height: 170px;
+            --filter-bg: rgba(99,102,241,0.03);
+        }
+        .dark-mode {
+            --card-bg: rgba(255,255,255,0.03);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+            --card-shadow-hover: 0 20px 40px rgba(0,0,0,0.4), 0 6px 12px rgba(0,0,0,0.2);
+            --card-border: rgba(255,255,255,0.05);
+            --filter-bg: rgba(255,255,255,0.02);
+        }
+
         .page-courses {
             background: var(--bg-main);
             min-height: 100vh;
         }
-        
+
         .courses-hero {
             margin-bottom: 2.5rem;
-            text-align: left;
         }
-        
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(var(--accent-primary-rgb), 0.1);
-            border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
+            padding: 0.5rem 1.2rem;
+            background: rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
+            border: 1px solid rgba(var(--accent-primary-rgb, 99,102,241), 0.15);
             border-radius: 100px;
-            color: var(--accent-primary);
-            font-size: 0.85rem;
-            font-weight: 600;
+            color: var(--accent-primary, #6366f1);
+            font-size: 0.82rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            letter-spacing: 0.02em;
         }
-        
+
         .hero-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 0.75rem;
             letter-spacing: -0.02em;
+            line-height: 1.15;
         }
-        
+
         .hero-subtitle {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.05rem;
+            max-width: 580px;
+            line-height: 1.6;
         }
 
         .filter-section {
             margin-bottom: 2.5rem;
+            background: var(--filter-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .filter-section:focus-within {
+            border-color: rgba(99,102,241,0.2);
         }
 
         .filter-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr auto;
-            gap: 1.25rem;
+            gap: 1rem;
             align-items: flex-end;
         }
 
@@ -174,7 +201,6 @@ $page_css = ['assets/css/pages/courses.css'];
                 grid-column: span 2;
             }
         }
-
         @media (max-width: 576px) {
             .filter-grid {
                 grid-template-columns: 1fr;
@@ -187,14 +213,15 @@ $page_css = ['assets/css/pages/courses.css'];
         .filter-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .filter-label {
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.78rem;
+            font-weight: 700;
             color: var(--text-secondary);
             margin-left: 0.25rem;
+            letter-spacing: 0.03em;
         }
 
         .search-input-wrapper {
@@ -208,277 +235,359 @@ $page_css = ['assets/css/pages/courses.css'];
             transform: translateY(-50%);
             color: var(--text-muted);
             pointer-events: none;
+            display: flex;
         }
 
         .premium-input {
             width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            padding: 0.7rem 1rem 0.7rem 2.75rem;
             color: var(--text-primary);
             font-family: inherit;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
         }
-
+        .premium-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
         .premium-input:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 0 4px rgba(var(--accent-primary-rgb), 0.1);
+            border-color: var(--accent-primary, #6366f1);
+            box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
         }
 
         .premium-select {
             width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
-            padding: 0.75rem 1rem;
+            padding: 0.7rem 2.5rem 0.7rem 1rem;
             color: var(--text-primary);
             font-family: inherit;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
+            box-sizing: border-box;
         }
-
         .premium-select:focus {
             outline: none;
-            border-color: var(--accent-primary);
-            background-color: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent-primary, #6366f1);
+            box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 99,102,241), 0.1);
         }
 
         .btn-search {
-            background: var(--grad-primary);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
             border: none;
             border-radius: 12px;
-            height: 46px;
+            height: 44px;
             padding: 0 1.5rem;
-            font-weight: 600;
-            display: flex;
+            font-weight: 700;
+            font-size: 0.9rem;
+            font-family: inherit;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             white-space: nowrap;
         }
-
         .btn-search:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(var(--accent-primary-rgb), 0.3);
+            box-shadow: 0 8px 24px rgba(99,102,241,0.25);
+        }
+        .btn-search:active {
+            transform: translateY(0);
         }
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
         .course-card-premium {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             display: flex;
             flex-direction: column;
             position: relative;
+            box-shadow: var(--card-shadow);
         }
-
         .course-card-premium:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(var(--accent-primary-rgb), 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            border-color: rgba(var(--accent-primary-rgb, 99,102,241), 0.2);
+            box-shadow: var(--card-shadow-hover);
         }
 
         .course-thumbnail {
             position: relative;
-            height: 180px;
-            background: linear-gradient(45deg, rgba(var(--accent-primary-rgb), 0.1), rgba(var(--accent-secondary-rgb), 0.1));
+            height: var(--thumb-height);
+            background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.1));
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-
-        .course-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-            transition: transform 0.5s ease;
+        .course-thumbnail::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .dark-mode .course-thumbnail {
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+        }
+        .dark-mode .course-thumbnail::after {
+            background-image: radial-gradient(circle at 25% 40%, rgba(255,255,255,0.04) 0%, transparent 60%);
         }
 
+        .course-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+        }
         .course-card-premium:hover .course-logo {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.08) rotate(-3deg);
         }
 
         .course-badge-level {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.4rem 0.8rem;
+            top: 0.9rem;
+            right: 0.9rem;
+            padding: 0.3rem 0.75rem;
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            backdrop-filter: blur(10px);
+            letter-spacing: 0.06em;
+            backdrop-filter: blur(6px);
+            z-index: 2;
+            border: 1px solid;
+        }
+        .badge-beginner {
+            background: rgba(34,197,94,0.12);
+            color: #16a34a;
+            border-color: rgba(34,197,94,0.2);
+        }
+        .badge-intermediate {
+            background: rgba(245,158,11,0.12);
+            color: #d97706;
+            border-color: rgba(245,158,11,0.2);
+        }
+        .badge-advanced {
+            background: rgba(239,68,68,0.12);
+            color: #dc2626;
+            border-color: rgba(239,68,68,0.2);
+        }
+        .dark-mode .badge-beginner {
+            background: rgba(34,197,94,0.15);
+            color: #4ade80;
+            border-color: rgba(34,197,94,0.25);
+        }
+        .dark-mode .badge-intermediate {
+            background: rgba(245,158,11,0.15);
+            color: #fbbf24;
+            border-color: rgba(245,158,11,0.25);
+        }
+        .dark-mode .badge-advanced {
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
+            border-color: rgba(239,68,68,0.25);
         }
 
-        .badge-beginner { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-        .badge-intermediate { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .badge-advanced { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-
         .course-body-premium {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .course-cat {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-primary, #6366f1);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
         }
 
         .course-title-premium {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             line-height: 1.3;
         }
 
         .course-desc-premium {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         .course-meta-premium {
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1rem;
             margin-top: auto;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+            border-top: 1px solid var(--card-border);
         }
 
         .meta-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.8rem;
+            gap: 0.35rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
+            font-weight: 500;
+        }
+        .meta-item svg {
+            flex-shrink: 0;
+        }
+        .meta-item--enrolled {
+            margin-left: auto;
+            color: #16a34a;
+        }
+        .dark-mode .meta-item--enrolled {
+            color: #4ade80;
         }
 
         .course-action-premium {
-            margin-top: 1.5rem;
+            margin-top: 1.25rem;
         }
 
         .btn-course-premium {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            transition: all 0.3s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: inherit;
+            text-decoration: none;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+            cursor: pointer;
         }
-
-        .btn-course-premium.enrolled {
-            background: var(--grad-primary);
-            border: none;
-            color: white;
-        }
-
         .btn-course-premium:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.02);
+            border-color: rgba(var(--accent-primary-rgb, 99,102,241), 0.25);
+            background: rgba(var(--accent-primary-rgb, 99,102,241), 0.03);
         }
-
+        .btn-course-premium.enrolled {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+        }
         .btn-course-premium.enrolled:hover {
-            box-shadow: 0 8px 20px rgba(var(--accent-primary-rgb), 0.3);
+            box-shadow: 0 8px 24px rgba(99,102,241,0.25);
+            transform: translateY(-1px);
         }
 
         .progress-container {
-            margin-top: 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
         }
-
         .progress-label-premium {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-secondary);
         }
-
         .progress-bar-premium {
-            height: 6px;
-            background: rgba(255, 255, 255, 0.05);
+            height: 5px;
+            background: rgba(var(--accent-primary-rgb, 99,102,241), 0.08);
             border-radius: 100px;
             overflow: hidden;
         }
-
         .progress-fill-premium {
             height: 100%;
-            background: var(--grad-primary);
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
             border-radius: 100px;
-            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .empty-state-courses {
             text-align: center;
             padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px dashed rgba(255, 255, 255, 0.05);
-            border-radius: 32px;
+            border: 2px dashed var(--card-border);
+            border-radius: 24px;
             grid-column: 1 / -1;
+            background: var(--card-bg);
         }
-
         .empty-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: rgba(var(--accent-primary-rgb), 0.1);
+            width: 72px;
+            height: 72px;
+            background: rgba(var(--accent-primary-rgb, 99,102,241), 0.08);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--accent-primary);
+            margin: 0 auto 1.25rem;
+            color: var(--accent-primary, #6366f1);
         }
-
         .empty-title-courses {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
-
         .empty-text-courses {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-info {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+        }
+        .results-info strong {
+            color: var(--text-primary);
+        }
+        .results-info a {
+            color: var(--accent-primary, #6366f1);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+            transition: opacity 0.2s;
+        }
+        .results-info a:hover {
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -499,7 +608,7 @@ $page_css = ['assets/css/pages/courses.css'];
                 </div>
 
                 <!-- Filters -->
-                <div class="glass-card filter-section reveal" style="padding: 1.5rem;">
+                <div class="filter-section reveal">
                     <form method="GET" class="filter-grid">
                         <div class="filter-group">
                             <label class="filter-label">Cari Kursus</label>
@@ -540,9 +649,9 @@ $page_css = ['assets/css/pages/courses.css'];
 
                 <!-- Results Info -->
                 <?php if ($search || $category_filter || $level_filter): ?>
-                    <div class="reveal" style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                    <div class="results-info reveal">
                         <span>Ditemukan <strong><?php echo count($courses); ?></strong> kursus yang sesuai.</span>
-                        <a href="courses.php" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Reset Filter</a>
+                        <a href="courses.php">Reset Filter</a>
                     </div>
                 <?php endif; ?>
 
@@ -553,7 +662,7 @@ $page_css = ['assets/css/pages/courses.css'];
                             <div class="empty-icon-wrapper"><?php icon('book-open', 32); ?></div>
                             <h3 class="empty-title-courses">Kursus Tidak Ditemukan</h3>
                             <p class="empty-text-courses">Kami tidak dapat menemukan kursus yang sesuai dengan kriteria filter Anda.</p>
-                            <a href="courses.php" class="btn-search" style="display: inline-flex; width: auto;">Reset Semua Filter</a>
+                            <a href="courses.php" class="btn-search" style="width: auto;">Reset Semua Filter</a>
                         </div>
                     <?php else: ?>
                         <?php foreach ($courses as $course_item): 
@@ -602,7 +711,7 @@ $page_css = ['assets/css/pages/courses.css'];
                                             <span><?php echo (int)$course_item['durasi_jam']; ?> Jam</span>
                                         </div>
                                         <?php if ($is_enrolled): ?>
-                                            <div class="meta-item" style="color: #4ade80; margin-left: auto;">
+                                            <div class="meta-item meta-item--enrolled">
                                                 <?php icon('check-circle', 14); ?>
                                                 <span>Terdaftar</span>
                                             </div>
@@ -629,7 +738,6 @@ $page_css = ['assets/css/pages/courses.css'];
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/toast.php'; ?>
     <?php include 'includes/loading.php'; ?>
 

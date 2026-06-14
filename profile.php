@@ -1636,7 +1636,6 @@ while ($row = $stmt_cert->fetch(PDO::FETCH_ASSOC)) {
         </div>
     </main>
 
-    <?php include 'footer.php'; ?>
     <?php include 'includes/toast.php'; ?>
 
     <script src="assets/js/navbar.js"></script>
