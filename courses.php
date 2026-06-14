@@ -94,27 +94,15 @@ function getCourseLogo($title) {
     return null;
 }
 
-$page_title = 'Kursus - ' . APP_NAME;
+$page_title = 'Kursus';
 $page_description = 'Jelajahi berbagai kursus pemrograman untuk meningkatkan skill coding Anda';
-$page_css = ['assets/css/pages/courses.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/courses.css'];
+$body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $_SESSION['lang'] ?? 'id'; ?>" data-theme="<?php echo $_SESSION['theme'] ?? 'dark'; ?>">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($page_title); ?></title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- CSS Dependencies -->
-    <link rel="stylesheet" href="assets/css/tokens.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/glassmorphism.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/ui-enhancements.css">
-    <link rel="stylesheet" href="assets/css/pages/courses.css">
+    <?php require_once __DIR__ . '/includes/head.php'; ?>
     
     <style>
         :root {
@@ -134,9 +122,15 @@ $page_css = ['assets/css/pages/courses.css'];
             --filter-bg: rgba(255,255,255,0.02);
         }
 
-        .page-courses {
-            background: var(--bg-main);
-            min-height: 100vh;
+        /* === Reveal Animation === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .courses-hero {
@@ -179,7 +173,7 @@ $page_css = ['assets/css/pages/courses.css'];
             background: var(--filter-bg);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 1.25rem 1.5rem;
+            padding: 1.5rem;
             transition: border-color 0.3s;
         }
         .filter-section:focus-within {
@@ -324,6 +318,7 @@ $page_css = ['assets/css/pages/courses.css'];
             flex-direction: column;
             position: relative;
             box-shadow: var(--card-shadow);
+            height: 100%;
         }
         .course-card-premium:hover {
             transform: translateY(-6px);
@@ -339,6 +334,7 @@ $page_css = ['assets/css/pages/courses.css'];
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            flex-shrink: 0;
         }
         .course-thumbnail::after {
             content: '';
@@ -434,6 +430,10 @@ $page_css = ['assets/css/pages/courses.css'];
             color: var(--text-primary);
             margin-bottom: 0.6rem;
             line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .course-desc-premium {
@@ -445,6 +445,7 @@ $page_css = ['assets/css/pages/courses.css'];
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.55;
+            flex-shrink: 0;
         }
 
         .course-meta-premium {
@@ -454,6 +455,7 @@ $page_css = ['assets/css/pages/courses.css'];
             margin-top: auto;
             padding-top: 1rem;
             border-top: 1px solid var(--card-border);
+            flex-shrink: 0;
         }
 
         .meta-item {
@@ -477,6 +479,7 @@ $page_css = ['assets/css/pages/courses.css'];
 
         .course-action-premium {
             margin-top: 1.25rem;
+            flex-shrink: 0;
         }
 
         .btn-course-premium {
@@ -515,6 +518,7 @@ $page_css = ['assets/css/pages/courses.css'];
         .progress-container {
             margin-top: 1rem;
             margin-bottom: 0.25rem;
+            flex-shrink: 0;
         }
         .progress-label-premium {
             display: flex;
@@ -589,14 +593,46 @@ $page_css = ['assets/css/pages/courses.css'];
         .results-info a:hover {
             opacity: 0.8;
         }
+
+        /* === Responsive Grid Improvements === */
+        @media (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 1rem;
+            }
+            .course-body-premium {
+                padding: 1rem 1.25rem 1.25rem;
+            }
+            .filter-section {
+                padding: 1rem;
+            }
+            .courses-hero {
+                margin-bottom: 1.5rem;
+            }
+            .course-title-premium {
+                font-size: 1.05rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            :root {
+                --thumb-height: 150px;
+            }
+            .course-logo {
+                width: 56px;
+                height: 56px;
+            }
+        }
     </style>
 </head>
-<body class="page-courses">
+<body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
     <?php include 'navbar.php'; ?>
 
-    <div class="dashboard-main-container">
+    <div class="page-wrapper dashboard-main-container">
         <div class="dashboard-content">
-            <div class="page-wrapper">
                 <!-- Hero Section -->
                 <div class="courses-hero reveal">
                     <div class="hero-badge">
@@ -736,7 +772,6 @@ $page_css = ['assets/css/pages/courses.css'];
                 </div>
             </div>
         </div>
-    </div>
 
     <?php include 'includes/toast.php'; ?>
     <?php include 'includes/loading.php'; ?>
