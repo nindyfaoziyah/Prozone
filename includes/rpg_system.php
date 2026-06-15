@@ -20,7 +20,7 @@ define('RPG_CLASSES', [
         'color'          => '#3B82F6',
         'gradient'       => 'linear-gradient(135deg, #3B82F6, #0EA5E9)',
         'badge'          => '⚔️',
-        'image'          => 'assets/img/characters/code-warrior.png',
+        'image'          => '/assets/img/characters/code-warrior.png',
     ],
     'bug-hunter' => [
         'slug'           => 'bug-hunter',
@@ -34,7 +34,7 @@ define('RPG_CLASSES', [
         'color'          => '#20C7B7',
         'gradient'       => 'linear-gradient(135deg, #20C7B7, #0FAE9F)',
         'badge'          => '🔍',
-        'image'          => 'assets/img/characters/bug-hunter.png',
+        'image'          => '/assets/img/characters/bug-hunter.png',
     ],
     'web-developer' => [
         'slug'           => 'web-developer',
@@ -47,8 +47,8 @@ define('RPG_CLASSES', [
         'description'    => 'HTML, CSS, dan JavaScript adalah senjatamu!',
         'color'          => '#3B82F6',
         'gradient'       => 'linear-gradient(135deg, #3B82F6, #60A5FA)',
-        'badge'          => 'ðŸŒ',
-        'image'          => 'assets/img/characters/web-developer.png',
+        'badge'          => '🌐',
+        'image'          => '/assets/img/characters/web-developer.png',
     ],
     'ai-engineer' => [
         'slug'           => 'ai-engineer',
@@ -61,8 +61,8 @@ define('RPG_CLASSES', [
         'description'    => 'Neural network dan machine learning adalah duniamu!',
         'color'          => '#14B8A6',
         'gradient'       => 'linear-gradient(135deg, #14B8A6, #2DD4BF)',
-        'badge'          => 'ðŸ¤–',
-        'image'          => 'assets/img/characters/ai-engineer.png',
+        'badge'          => '🤖',
+        'image'          => '/assets/img/characters/ai-engineer.png',
     ],
     'data-scientist' => [
         'slug'           => 'data-scientist',
@@ -75,8 +75,8 @@ define('RPG_CLASSES', [
         'description'    => 'Kamu mengubah angka-angka menjadi wawasan yang mengubah dunia!',
         'color'          => '#F59E0B',
         'gradient'       => 'linear-gradient(135deg, #F59E0B, #FBBF24)',
-        'badge'          => 'ðŸ“Š',
-        'image'          => 'assets/img/characters/data-scientist.png',
+        'badge'          => '📊',
+        'image'          => '/assets/img/characters/data-scientist.png',
     ],
     'cyber-ninja' => [
         'slug'           => 'cyber-ninja',
@@ -89,8 +89,8 @@ define('RPG_CLASSES', [
         'description'    => 'Keamanan siber dan penetration testing adalah spesialisasimu!',
         'color'          => '#06B6D4',
         'gradient'       => 'linear-gradient(135deg, #0F172A, #06B6D4)',
-        'badge'          => 'ðŸ¥·',
-        'image'          => 'assets/img/characters/cyber-ninja.png',
+        'badge'          => '🥷',
+        'image'          => '/assets/img/characters/cyber-ninja.png',
     ],
     'fullstack-master' => [
         'slug'           => 'fullstack-master',
@@ -103,8 +103,8 @@ define('RPG_CLASSES', [
         'description'    => 'Frontend dan backend tunduk padamu!',
         'color'          => '#EC4899',
         'gradient'       => 'linear-gradient(135deg, #3B82F6, #EC4899)',
-        'badge'          => 'ðŸ‘‘',
-        'image'          => 'assets/img/characters/fullstack-master.png',
+        'badge'          => '👑',
+        'image'          => '/assets/img/characters/fullstack-master.png',
     ],
     'tech-wizard' => [
         'slug'           => 'tech-wizard',
@@ -117,8 +117,8 @@ define('RPG_CLASSES', [
         'description'    => 'Teknologi terdalam pun terbuka untukmu. Kode adalah mantramu!',
         'color'          => '#FF6B35',
         'gradient'       => 'linear-gradient(135deg, #FF6B35, #14B8A6, #06B6D4)',
-        'badge'          => 'ðŸ§™',
-        'image'          => 'assets/img/characters/tech-wizard.png',
+        'badge'          => '🧙',
+        'image'          => '/assets/img/characters/tech-wizard.png',
     ],
 ]);
 

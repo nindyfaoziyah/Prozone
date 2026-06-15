@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -141,29 +141,14 @@ $stats['completed'] = $db->query("SELECT COUNT(*) FROM enrollments WHERE status 
 $stats['dropped'] = $db->query("SELECT COUNT(*) FROM enrollments WHERE status = 'dropped'")->fetchColumn();
 
 $page_title = 'Manage Enrollments';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); margin-bottom:1.5rem; }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
-        .alert { padding:1rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.875rem; font-weight:500; }
-        .alert-success { background:rgba(16,185,129,0.12); border-left:4px solid #10b981; color:#10b981; }
-        .alert-error { background:rgba(239,68,68,0.12); border-left:4px solid #ef4444; color:#ef4444; }
-        .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1rem; margin-bottom:1.5rem; }
-        .stat-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; text-align:center; }
-        .stat-card .stat-value { font-size:1.5rem; font-weight:700; }
-        .stat-card .stat-label { font-size:0.8125rem; color:var(--text-muted); margin-top:0.25rem; }
-        .filter-bar { display:flex; gap:0.75rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
         .filter-bar select, .filter-bar input { padding:0.5rem 1rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.875rem; }
         .filter-bar select:focus, .filter-bar input:focus { outline:none; border-color:var(--brand); }
         .filter-bar a { padding:0.4rem 0.8rem; border-radius:var(--radius-md); font-size:0.8125rem; text-decoration:none; color:var(--text-muted); border:1px solid var(--border-default); }
@@ -177,14 +162,8 @@ $body_class = getThemeClass();
         .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
         .modal-header h2 { margin:0; color:var(--text-primary); }
         .modal-close { background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; }
-        .form-group { margin-bottom:1rem; }
-        .form-group label { display:block; margin-bottom:0.5rem; color:var(--text-secondary); font-weight:600; font-size:0.875rem; }
         .form-group select { width:100%; padding:0.75rem 1rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.875rem; }
-        .pagination { display:flex; gap:0.5rem; justify-content:center; margin-top:1.5rem; }
-        .pagination a, .pagination span { padding:0.5rem 0.9rem; border-radius:var(--radius-md); font-size:0.8125rem; text-decoration:none; color:var(--text-muted); border:1px solid var(--border-default); }
-        .pagination a.active { color:var(--brand); border-color:var(--brand); background:rgba(59,130,246,0.1); }
-        .pagination a:hover { border-color:var(--brand); }
-    </style>
+        </style>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
     <?php include_once 'navbar.php'; ?>
@@ -345,8 +324,9 @@ $body_class = getThemeClass();
         document.getElementById('enrollModal')?.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

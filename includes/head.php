@@ -47,22 +47,22 @@ $full_body_class = trim($theme_class . ' ' . $body_class);
 
 <!-- === Design System (urutan penting) === -->
 <!-- 1. Design tokens (warna, spacing, typography) -->
-<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/tokens.css">
 
 <!-- 2. Themes (light default, dark override) -->
-<link rel="stylesheet" href="assets/css/themes/light.css">
-<link rel="stylesheet" href="assets/css/themes/dark.css">
+<link rel="stylesheet" href="/assets/css/themes/light.css">
+<link rel="stylesheet" href="/assets/css/themes/dark.css">
 
 <!-- 3. Base reset & utilities -->
-<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/base.css">
 
 <!-- 4. Animation library -->
-<link rel="stylesheet" href="assets/css/animations.css">
+<link rel="stylesheet" href="/assets/css/animations.css">
 
 <!-- 5. Halaman-spesifik CSS -->
 <?php if (!empty($page_css) && is_array($page_css)): ?>
   <?php foreach ($page_css as $css): ?>
-    <link rel="stylesheet" href="assets/css/<?php echo htmlspecialchars($css); ?>">
+    <link rel="stylesheet" href="/assets/css/<?php echo htmlspecialchars($css); ?>">
   <?php endforeach; ?>
 <?php endif; ?>
 
@@ -105,4 +105,4 @@ $full_body_class = trim($theme_class . ' ' . $body_class);
 <?php if ($hide_theme_toggle): ?>
 <style>.theme-toggle, [data-theme-toggle], #theme-toggle { display: none !important; }</style>
 <?php endif; ?>
-<script src="assets/js/theme-toggle.js" defer></script>
+<script src="/assets/js/theme-toggle.js" defer></script>

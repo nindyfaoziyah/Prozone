@@ -1,11 +1,11 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
 requireRole(['admin']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/User.php';
-require_once 'models/Course.php';
+require_once '../models/User.php';
+require_once '../models/Course.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -91,23 +91,21 @@ $stmt->execute();
 $recent_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $page_title = 'Admin Dashboard';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $page_js = [];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       .admin-stat-card .admin-stat-icon svg { width: 22px; height: 22px; }
       .dark-mode .admin-chart-card { background: var(--bg-elevated); border-color: var(--border-color); }
       .dark-mode .admin-stat-card { background: var(--bg-elevated); border-color: var(--border-color); }
-      .dark-mode .admin-card { background: var(--bg-elevated); border-color: var(--border-color); }
-      .dark-mode .admin-action-btn { background: var(--bg-elevated); border-color: var(--border-color); }
-      .dark-mode .admin-table th { background: rgba(255,255,255,0.03); }
-      .dark-mode .admin-date-badge { background: var(--bg-elevated); border-color: var(--border-color); }
+      .dark-mode .dark-mode .admin-action-btn { background: var(--bg-elevated); border-color: var(--border-color); }
+      .dark-mode .dark-mode .admin-date-badge { background: var(--bg-elevated); border-color: var(--border-color); }
     </style>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
@@ -443,8 +441,9 @@ $body_class = getThemeClass();
         });
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

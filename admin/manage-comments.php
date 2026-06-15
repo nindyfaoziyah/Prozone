@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -85,39 +85,13 @@ $total_comments = $db->query("SELECT COUNT(*) FROM comments")->fetchColumn();
 $total_users_commented = $db->query("SELECT COUNT(DISTINCT user_id) FROM comments")->fetchColumn();
 
 $page_title = 'Moderasi Komentar';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
-    <style>
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
-        .alert { padding:1rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.875rem; font-weight:500; }
-        .alert-success { background:rgba(16,185,129,0.12); border-left:4px solid #10b981; color:#10b981; }
-        .alert-error { background:rgba(239,68,68,0.12); border-left:4px solid #ef4444; color:#ef4444; }
-        .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:1.5rem; }
-        .stat-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; text-align:center; }
-        .stat-card .stat-value { font-size:1.5rem; font-weight:700; color:var(--brand); }
-        .stat-card .stat-label { font-size:0.8125rem; color:var(--text-muted); margin-top:0.25rem; }
-        .filter-bar { display:flex; gap:0.75rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
-        .filter-bar a { padding:0.5rem 1rem; border-radius:var(--radius-md); font-size:0.8125rem; font-weight:600; text-decoration:none; color:var(--text-muted); background:var(--bg-subtle); border:1px solid var(--border-default); transition:all var(--transition-fast); }
-        .filter-bar a.active { color:var(--brand); border-color:var(--brand); background:rgba(59,130,246,0.1); }
-        .filter-bar a:hover { color:var(--text-primary); }
-        .comment-content { max-width:400px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .search-box { display:flex; gap:0.5rem; margin-left:auto; }
-        .search-box input { padding:0.5rem 0.75rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.8125rem; }
-        .search-box input:focus { outline:none; border-color:var(--brand); }
-        .search-box button { padding:0.5rem 1rem; background:var(--brand); color:#fff; border:none; border-radius:var(--radius-md); cursor:pointer; font-size:0.8125rem; }
-        .reply-indicator { font-size:0.75rem; color:var(--text-muted); background:var(--bg-subtle); padding:0.15rem 0.5rem; border-radius:4px; }
-    </style>
+    <?php require_once '../includes/head.php'; ?>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
     <?php include_once 'navbar.php'; ?>
@@ -125,17 +99,19 @@ $body_class = getThemeClass();
         <div class="dashboard-content">
             <div class="admin-header">
                 <div>
-                    <h1>Moderasi Komentar</h1>
+                    <h1><span class="header-icon rose">💬</span> Moderasi Komentar</h1>
                     <p class="admin-subtitle">Kelola komentar dari seluruh lesson</p>
                 </div>
             </div>
 
             <div class="stat-grid">
                 <div class="stat-card">
+                    <div class="stat-icon blue" style="margin:0 auto 0.5rem;">💬</div>
                     <div class="stat-value"><?php echo number_format($total_comments); ?></div>
                     <div class="stat-label">Total Komentar</div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-icon green" style="margin:0 auto 0.5rem;">👥</div>
                     <div class="stat-value"><?php echo number_format($total_users_commented); ?></div>
                     <div class="stat-label">User Berkomentar</div>
                 </div>
@@ -222,8 +198,9 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

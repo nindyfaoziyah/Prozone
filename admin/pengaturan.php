@@ -1,9 +1,9 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/Pengaturan.php';
+require_once '../models/Pengaturan.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $settings = $pengaturan->getAll();
 
 $page_title = 'Pengaturan Aplikasi';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
         .form-container {
             background: var(--bg-surface);
@@ -75,32 +75,6 @@ $body_class = getThemeClass();
             font-weight: 600;
             margin: 0 0 1.25rem 0;
             color: var(--text-primary);
-        }
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            color: var(--text-secondary);
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 0.65rem 0.875rem;
-            font-size: 0.875rem;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-default);
-            background: var(--bg-subtle);
-            color: var(--text-primary);
-            transition: all var(--transition-fast);
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--brand);
-            box-shadow: var(--shadow-primary);
-            background: var(--bg-surface);
         }
         .form-group small {
             color: var(--text-muted);
@@ -319,10 +293,11 @@ $body_class = getThemeClass();
         });
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>
 

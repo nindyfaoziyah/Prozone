@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -148,29 +148,15 @@ $db_name = $db->query("SELECT DATABASE()")->fetchColumn();
 $db_size = $db->query("SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) as size_mb FROM information_schema.tables WHERE table_schema = :db", [':db' => $db_name])->fetchColumn();
 
 $page_title = 'Backup Database';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); margin-bottom:1.5rem; }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
-        .alert { padding:1rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.875rem; font-weight:500; }
-        .alert-success { background:rgba(16,185,129,0.12); border-left:4px solid #10b981; color:#10b981; }
-        .alert-error { background:rgba(239,68,68,0.12); border-left:4px solid #ef4444; color:#ef4444; }
         .alert-warning { background:rgba(245,158,11,0.12); border-left:4px solid #f59e0b; color:#f59e0b; }
-        .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:1.5rem; }
-        .stat-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; text-align:center; }
-        .stat-card .stat-value { font-size:1.5rem; font-weight:700; }
-        .stat-card .stat-label { font-size:0.8125rem; color:var(--text-muted); margin-top:0.25rem; }
         .backup-actions { display:flex; gap:1rem; flex-wrap:wrap; }
         .btn-primary { padding:0.75rem 2rem; background:var(--brand); color:#fff; border:none; border-radius:var(--radius-md); font-weight:600; cursor:pointer; font-size:0.9rem; display:inline-flex; align-items:center; gap:0.5rem; }
         .btn-primary:hover { opacity:0.9; }
@@ -187,7 +173,7 @@ $body_class = getThemeClass();
         <div class="dashboard-content">
             <div class="admin-header">
                 <div>
-                    <h1>Backup Database</h1>
+                    <h1><span class="header-icon rose">??</span> Backup Database</h1>
                     <p class="admin-subtitle">Backup dan restore database Prozone</p>
                 </div>
             </div>
@@ -277,8 +263,9 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -41,35 +41,13 @@ $admins = $db->query("SELECT id, nama_lengkap FROM users WHERE role = 'admin' OR
 $actions = $db->query("SELECT DISTINCT action FROM activity_log ORDER BY action")->fetchAll(PDO::FETCH_ASSOC);
 
 $page_title = 'Log Aktivitas';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
-    <style>
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
-        .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:1.5rem; }
-        .stat-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; text-align:center; }
-        .stat-card .stat-value { font-size:1.5rem; font-weight:700; color:var(--brand); }
-        .stat-card .stat-label { font-size:0.8125rem; color:var(--text-muted); margin-top:0.25rem; }
-        .filter-bar { display:flex; gap:0.75rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
-        .filter-bar select { padding:0.5rem 1rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.875rem; }
-        .filter-bar select:focus { outline:none; border-color:var(--brand); }
-        .action-badge { display:inline-block; padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; font-weight:600; background:var(--bg-subtle); color:var(--text-secondary); }
-        .pagination { display:flex; gap:0.5rem; justify-content:center; margin-top:1.5rem; }
-        .pagination a, .pagination span { padding:0.5rem 0.9rem; border-radius:var(--radius-md); font-size:0.8125rem; text-decoration:none; color:var(--text-muted); border:1px solid var(--border-default); }
-        .pagination a.active { color:var(--brand); border-color:var(--brand); background:rgba(59,130,246,0.1); }
-        .pagination a:hover { border-color:var(--brand); }
-        .ip-address { font-size:0.75rem; color:var(--text-muted); font-family:monospace; }
-    </style>
+    <?php require_once '../includes/head.php'; ?>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
     <?php include_once 'navbar.php'; ?>
@@ -77,16 +55,16 @@ $body_class = getThemeClass();
         <div class="dashboard-content">
             <div class="admin-header">
                 <div>
-                    <h1>Log Aktivitas</h1>
+                    <h1><span class="header-icon amber">📋</span> Log Aktivitas</h1>
                     <p class="admin-subtitle">Riwayat aktivitas admin di platform</p>
                 </div>
                 <a href="manage-logs.php" style="color:var(--text-muted);font-size:0.875rem;text-decoration:none;">&larr; Reset Filter</a>
             </div>
 
             <div class="stat-grid">
-                <div class="stat-card"><div class="stat-value"><?php echo number_format($stats['total']); ?></div><div class="stat-label">Total Aktivitas</div></div>
-                <div class="stat-card"><div class="stat-value" style="color:#F59E0B;"><?php echo $stats['today']; ?></div><div class="stat-label">Hari Ini</div></div>
-                <div class="stat-card"><div class="stat-value"><?php echo $stats['unique_actions']; ?></div><div class="stat-label">Tipe Aksi</div></div>
+                <div class="stat-card"><div class="stat-icon blue" style="margin:0 auto 0.5rem;">📊</div><div class="stat-value"><?php echo number_format($stats['total']); ?></div><div class="stat-label">Total Aktivitas</div></div>
+                <div class="stat-card"><div class="stat-icon amber" style="margin:0 auto 0.5rem;">📅</div><div class="stat-value" style="color:#F59E0B;"><?php echo $stats['today']; ?></div><div class="stat-label">Hari Ini</div></div>
+                <div class="stat-card"><div class="stat-icon green" style="margin:0 auto 0.5rem;">⚡</div><div class="stat-value"><?php echo $stats['unique_actions']; ?></div><div class="stat-label">Tipe Aksi</div></div>
             </div>
 
             <div class="filter-bar">
@@ -163,8 +141,9 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/wysiwyg-editor.php';
+require_once '../includes/icons.php';
+require_once '../includes/wysiwyg-editor.php';
 
-require_once 'models/Course.php';
-require_once 'models/Lesson.php';
+require_once '../models/Course.php';
+require_once '../models/Lesson.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -131,31 +131,15 @@ usort($lessons, function($a, $b) {
 });
 
 $page_title = 'Kelola Lesson - ' . ($course_data['judul_course'] ?? 'Lesson');
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
         .form-group input[type="text"],
         .form-group input[type="number"],
         .form-group select,
@@ -271,24 +255,7 @@ $body_class = getThemeClass();
         .lesson-modal-close:hover {
             color: var(--text-primary);
         }
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 1.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-        .alert-success {
-            background: rgba(16, 185, 129, 0.12);
-            border-left: 4px solid #10b981;
-            color: #10b981;
-        }
-        .alert-error {
-            background: rgba(239, 68, 68, 0.12);
-            border-left: 4px solid #ef4444;
-            color: #ef4444;
-        }
-    </style>
+        </style>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
     <?php include_once 'navbar.php'; ?>
@@ -701,10 +668,11 @@ $body_class = getThemeClass();
         document.getElementById('tipe').addEventListener('change', toggleQuizBuilder);
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>
 

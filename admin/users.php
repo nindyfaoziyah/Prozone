@@ -1,9 +1,9 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/User.php';
+require_once '../models/User.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -86,30 +86,14 @@ if ($_POST) {
 $stmt = $user->readAll();
 
 $page_title = 'Manajemen User';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--text-primary);
-        }
         .form-group input, .form-group select {
             width: 100%;
             padding: 0.625rem 0.875rem;
@@ -424,9 +408,10 @@ $body_class = getThemeClass();
         }
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

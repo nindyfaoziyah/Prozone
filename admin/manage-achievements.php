@@ -1,10 +1,10 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
-require_once 'models/Achievement.php';
+require_once '../models/Achievement.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -104,35 +104,20 @@ while ($row = $stmt_ua->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $page_title = 'Manage Achievements';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
-        .form-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:1rem; }
-        .form-group { margin-bottom:1rem; }
-        .form-group label { display:block; margin-bottom:0.5rem; color:var(--text-secondary); font-weight:600; font-size:0.875rem; }
-        .form-group input, .form-group select, .form-group textarea { width:100%; padding:0.75rem 1rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.875rem; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--brand); box-shadow:var(--shadow-primary); background:var(--bg-surface); }
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
         .modal-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.6); z-index:2000; overflow-y:auto; padding:2rem; }
         .modal-content { max-width:700px; margin:2rem auto; background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-lg); }
         .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
         .modal-header h2 { margin:0; color:var(--text-primary); }
         .modal-close { background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; }
         .modal-close:hover { color:var(--text-primary); }
-        .alert { padding:1rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.875rem; font-weight:500; }
-        .alert-success { background:rgba(16,185,129,0.12); border-left:4px solid #10b981; color:#10b981; }
-        .alert-error { background:rgba(239,68,68,0.12); border-left:4px solid #ef4444; color:#ef4444; }
         .tab-nav { display:flex; gap:0.5rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-default); padding-bottom:0; }
         .tab-nav button { padding:0.75rem 1.25rem; background:none; border:none; color:var(--text-muted); font-weight:600; font-size:0.875rem; cursor:pointer; border-bottom:2px solid transparent; transition:all var(--transition-fast); }
         .tab-nav button.active { color:var(--brand); border-bottom-color:var(--brand); }
@@ -145,7 +130,7 @@ $body_class = getThemeClass();
         <div class="dashboard-content">
             <div class="admin-header">
                 <div>
-                    <h1>Manage Achievements</h1>
+                    <h1><span class="header-icon amber">??</span> Manage Achievements</h1>
                     <p class="admin-subtitle">Kelola achievement dan lihat pencapaian user</p>
                 </div>
                 <div class="admin-header-actions">
@@ -373,8 +358,9 @@ $body_class = getThemeClass();
         }
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

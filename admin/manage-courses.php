@@ -1,12 +1,12 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/language-icons.php';
-require_once 'includes/FileUpload.php';
+require_once '../includes/icons.php';
+require_once '../includes/language-icons.php';
+require_once '../includes/FileUpload.php';
 
-require_once 'models/Course.php';
-require_once 'models/CourseCategory.php';
+require_once '../models/Course.php';
+require_once '../models/CourseCategory.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -116,13 +116,13 @@ while ($row = $categories_stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $page_title = 'Kelola Kursus';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
         .form-row {
             display: grid;
@@ -230,7 +230,7 @@ $body_class = getThemeClass();
                 <?php endif; ?>
 
                 <!-- Add Course Button -->
-                <div class="admin-header" style="margin-bottom:1rem;">
+                <div class="admin-header">
                     <div></div>
                     <button onclick="showCreateForm()" class="admin-action-btn lessons" style="padding:0.6rem 1.25rem;font-size:0.85rem;"><?php echo getIcon('plus', 16); ?> Tambah Kursus</button>
                 </div>
@@ -460,10 +460,11 @@ $body_class = getThemeClass();
         });
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>
 

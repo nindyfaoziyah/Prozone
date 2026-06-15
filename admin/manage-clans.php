@@ -1,9 +1,9 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/Clan.php';
+require_once '../models/Clan.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -85,13 +85,13 @@ $total_members_stmt = $db->query("SELECT COUNT(*) as total FROM clan_members");
 $total_members = $total_members_stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
 
 $page_title = 'Manajemen Clan';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <style>
         .admin-manage-header {
             display: flex;
@@ -423,8 +423,9 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireRole(['admin']);
-require_once 'includes/icons.php';
-require_once 'includes/activity_log.php';
+require_once '../includes/icons.php';
+require_once '../includes/activity_log.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -71,33 +71,13 @@ $total_users_certified = $db->query("SELECT COUNT(DISTINCT user_id) FROM certifi
 $total_courses_with_cert = $db->query("SELECT COUNT(DISTINCT course_id) FROM certificates")->fetchColumn();
 
 $page_title = 'Manage Sertifikat';
-$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'pages/admin.css'];
+$page_css = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'admin.css', 'shared.css'];
 $body_class = getThemeClass();
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
-    <style>
-        .admin-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.5rem; box-shadow:var(--shadow-md); }
-        .admin-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-default); }
-        .admin-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-        .admin-table th { padding:0.75rem; text-align:left; color:var(--text-muted); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-default); }
-        .admin-table td { padding:0.75rem; color:var(--text-primary); border-bottom:1px solid var(--border-default); vertical-align:middle; }
-        .admin-table tr:last-child td { border-bottom:none; }
-        .admin-table tr:hover td { background:var(--bg-hover); }
-        .alert { padding:1rem 1.5rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.875rem; font-weight:500; }
-        .alert-success { background:rgba(16,185,129,0.12); border-left:4px solid #10b981; color:#10b981; }
-        .alert-error { background:rgba(239,68,68,0.12); border-left:4px solid #ef4444; color:#ef4444; }
-        .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; margin-bottom:1.5rem; }
-        .stat-card { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; text-align:center; }
-        .stat-card .stat-value { font-size:1.5rem; font-weight:700; color:var(--brand); }
-        .stat-card .stat-label { font-size:0.8125rem; color:var(--text-muted); margin-top:0.25rem; }
-        .filter-bar { display:flex; gap:0.75rem; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; }
-        .filter-bar select { padding:0.5rem 1rem; border:1px solid var(--border-default); border-radius:var(--radius-md); background:var(--bg-subtle); color:var(--text-primary); font-size:0.875rem; }
-        .filter-bar select:focus { outline:none; border-color:var(--brand); }
-        .cert-code { font-family:monospace; font-size:0.8125rem; background:var(--bg-subtle); padding:0.25rem 0.5rem; border-radius:4px; }
-    </style>
+    <?php require_once '../includes/head.php'; ?>
 </head>
 <body class="dashboard-layout <?php echo $body_class; ?>">
     <?php include_once 'navbar.php'; ?>
@@ -105,7 +85,7 @@ $body_class = getThemeClass();
         <div class="dashboard-content">
             <div class="admin-header">
                 <div>
-                    <h1>Manage Sertifikat</h1>
+                    <h1><span class="header-icon green">🎓</span> Manage Sertifikat</h1>
                     <p class="admin-subtitle">Lihat dan kelola sertifikat yang telah diterbitkan</p>
                 </div>
             </div>
@@ -204,8 +184,9 @@ $body_class = getThemeClass();
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include 'footer.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>
