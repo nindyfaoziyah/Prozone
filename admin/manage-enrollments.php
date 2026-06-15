@@ -324,7 +324,6 @@ $body_class = getThemeClass();
         document.getElementById('enrollModal')?.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
     </script>
 
-    <?php include 'footer.php'; ?>
     <?php include '../includes/loading.php'; ?>
     <?php include '../includes/toast.php'; ?>
     <script src="../assets/js/navbar.js"></script>

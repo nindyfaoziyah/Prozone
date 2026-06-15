@@ -599,7 +599,7 @@ if ($role === 'admin') {
                         </div>
                     </div>
                     <div style="margin-top:1rem;">
-                        <a href="manage-enrollments.php" class="admin-action-btn" style="width:100%;justify-content:center;padding:0.6rem;font-size:0.85rem;">Kelola Enrollment</a>
+                        <a href="admin/manage-enrollments.php" class="admin-action-btn" style="width:100%;justify-content:center;padding:0.6rem;font-size:0.85rem;">Kelola Enrollment</a>
                     </div>
                 </div>
             </div>
@@ -608,7 +608,7 @@ if ($role === 'admin') {
             <div class="admin-quick-actions">
                 <h3 class="admin-section-title">Akses Cepat</h3>
                 <div class="admin-nav-cards">
-                    <a href="manage-courses.php" class="admin-nav-card">
+                    <a href="admin/manage-courses.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('book', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Kelola Kursus</div>
@@ -616,7 +616,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="users.php" class="admin-nav-card">
+                    <a href="admin/users.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('users', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Kelola User</div>
@@ -624,7 +624,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-enrollments.php" class="admin-nav-card">
+                    <a href="admin/manage-enrollments.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('clipboard', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Enrollments</div>
@@ -632,7 +632,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-achievements.php" class="admin-nav-card">
+                    <a href="admin/manage-achievements.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('award', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Achievements</div>
@@ -640,7 +640,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-categories.php" class="admin-nav-card">
+                    <a href="admin/manage-categories.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('tag', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Kategori Kursus</div>
@@ -648,7 +648,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-comments.php" class="admin-nav-card">
+                    <a href="admin/manage-comments.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('message-circle', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Komentar</div>
@@ -656,7 +656,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-certificates.php" class="admin-nav-card">
+                    <a href="admin/manage-certificates.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('certificate', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Sertifikat</div>
@@ -664,7 +664,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-notifications.php" class="admin-nav-card">
+                    <a href="admin/manage-notifications.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('send', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Broadcast</div>
@@ -672,7 +672,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-logs.php" class="admin-nav-card">
+                    <a href="admin/manage-logs.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('scroll', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Log Aktivitas</div>
@@ -680,7 +680,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="manage-backup.php" class="admin-nav-card">
+                    <a href="admin/manage-backup.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('save', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Backup DB</div>
@@ -688,7 +688,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="admin_analytics.php" class="admin-nav-card">
+                    <a href="admin/admin_analytics.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('bar-chart-2', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Analytics</div>
@@ -696,7 +696,7 @@ if ($role === 'admin') {
                         </div>
                         <span class="admin-nav-arrow"><?php icon('arrow-right', 16); ?></span>
                     </a>
-                    <a href="export.php" class="admin-nav-card">
+                    <a href="admin/export.php" class="admin-nav-card">
                         <div class="admin-nav-icon"><?php icon('download', 20); ?></div>
                         <div class="admin-nav-info">
                             <div class="admin-nav-label">Export Data</div>
@@ -713,7 +713,7 @@ if ($role === 'admin') {
                 <div class="learning-section-card">
                     <div class="section-title-row">
                         <h3>Pendaftaran Terbaru</h3>
-                        <a href="manage-enrollments.php" class="view-all-link">Lihat Semua</a>
+                        <a href="admin/manage-enrollments.php" class="view-all-link">Lihat Semua</a>
                     </div>
                     <?php if (empty($recent_enrollments)): ?>
                         <div class="glass-empty-state"><p>Belum ada pendaftaran.</p></div>
@@ -737,7 +737,7 @@ if ($role === 'admin') {
                 <div class="learning-section-card">
                     <div class="section-title-row">
                         <h3>Student Baru</h3>
-                        <a href="users.php" class="view-all-link">Lihat Semua</a>
+                        <a href="admin/users.php" class="view-all-link">Lihat Semua</a>
                     </div>
                     <?php if (empty($recent_users)): ?>
                         <div class="glass-empty-state"><p>Belum ada student baru.</p></div>
@@ -759,7 +759,7 @@ if ($role === 'admin') {
                 <div class="learning-section-card">
                     <div class="section-title-row">
                         <h3>Aktivitas Terbaru</h3>
-                        <a href="manage-logs.php" class="view-all-link">Lihat Semua</a>
+                        <a href="admin/manage-logs.php" class="view-all-link">Lihat Semua</a>
                     </div>
                     <?php if (empty($recent_activities)): ?>
                         <div class="glass-empty-state"><p>Belum ada aktivitas.</p></div>

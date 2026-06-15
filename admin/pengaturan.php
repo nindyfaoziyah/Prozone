@@ -293,7 +293,6 @@ $body_class = getThemeClass();
         });
     </script>
 
-    <?php include 'footer.php'; ?>
     <?php include '../includes/loading.php'; ?>
     <?php include '../includes/toast.php'; ?>
 

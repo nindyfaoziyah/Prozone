@@ -82,7 +82,7 @@ $body_class       = trim(getThemeClass() . ' dashboard-layout rpg-wrapper');
 <body class="<?php echo $body_class; ?>">
 <?php require_once 'navbar.php'; ?>
 
-<div class="page-wrapper" style="padding:0;max-width:100%;background:#0B0D1E">
+<div class="page-wrapper dashboard-main-container" style="padding:0;max-width:100%;background:#0B0D1E">
     <div class="dashboard-content" style="max-width:100%;padding:0">
         <div class="dashboard-header">
             <div>
@@ -101,7 +101,5 @@ $body_class       = trim(getThemeClass() . ' dashboard-layout rpg-wrapper');
         </div>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
 </body>
 </html>

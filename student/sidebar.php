@@ -30,13 +30,13 @@ $menu_items = [
     ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
     ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
     ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
-    ['label' => 'Achievement',       'icon' => 'trophy',      'link' => 'characters.php'],
-    ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
-    ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
-    ['label' => 'Clan',             'icon' => 'users',       'link' => 'clan.php'],
-    ['label' => 'Leaderboard',      'icon' => 'award',       'link' => 'leaderboard.php'],
+    ['label' => 'Achievement',       'icon' => 'trophy',      'link' => '../characters.php'],
+    ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => '../multiplayer.php',   'badge' => 'LIVE'],
+    ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => '../ai-mentor.php'],
+    ['label' => 'Clan',             'icon' => 'users',       'link' => '../clan.php'],
+    ['label' => 'Leaderboard',      'icon' => 'award',       'link' => '../leaderboard.php'],
     ['label' => '',                 'icon' => '',            'link' => '', 'type' => 'divider'],
-    ['label' => 'Settings',         'icon' => 'settings',    'link' => 'pengaturan.php'],
+    ['label' => 'Profile',          'icon' => 'user',        'link' => 'profile.php'],
 ];
 ?>
 <svg width="0" height="0" style="position:absolute">
@@ -67,9 +67,9 @@ $menu_items = [
                     <div class="sidebar-divider"></div>
                 <?php else: ?>
                     <?php
-                    $is_active = ($item['link'] === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
+                    $is_active = (basename($item['link']) === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
                     ?>
-                    <a href="../<?php echo $item['link']; ?>" class="menu-item <?php echo $is_active; ?>">
+                    <a href="<?php echo $item['link']; ?>" class="menu-item <?php echo $is_active; ?>">
                         <span class="menu-icon"><?php icon($item['icon'], 18); ?></span>
                         <span class="menu-label"><?php echo $item['label']; ?></span>
                         <?php if (!empty($item['badge'])): ?>

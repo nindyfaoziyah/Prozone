@@ -34,7 +34,7 @@
 				<h3 class="footer-col-title">Company</h3>
 				<ul class="footer-links">
 					<li><a href="about.php">About Prozone</a></li>
-					<li><a href="pengaturan.php">Account Settings</a></li>
+					<li><a href="admin/pengaturan.php">Account Settings</a></li>
 					<li><a href="#privacy">Privacy Policy</a></li>
 					<li><a href="#terms">Terms of Service</a></li>
 					<li><a href="#contact">Contact Support</a></li>

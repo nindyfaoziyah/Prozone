@@ -31,17 +31,10 @@ $avatar_emoji = $sidebar_cls['badge']; // Fallback label / title attribute
 // Check user role
 $user_role = $_SESSION['user_role'] ?? 'student';
 
-// Default menu (non-admin)
-if ($user_role !== 'admin') {
-    $menu_items = [
-        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
-    ];
-}
-
 // Student menu items
 if ($user_role === 'student') {
-    $menu_items = array_merge($menu_items, [
-        ['label' => 'Student Dashboard','icon' => 'grid',        'link' => 'student/dashboard.php'],
+    $menu_items = [
+        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'student/dashboard.php'],
         ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'student/learning-path.php', 'badge' => 'NEW'],
         ['label' => 'Courses',           'icon' => 'book',        'link' => 'student/courses.php'],
         ['label' => 'Achievement',       'icon' => 'trophy',      'link' => 'characters.php'],
@@ -50,38 +43,35 @@ if ($user_role === 'student') {
         ['label' => 'Clan',             'icon' => 'users',       'link' => 'clan.php'],
         ['label' => 'Leaderboard',      'icon' => 'award',       'link' => 'leaderboard.php'],
         ['label' => 'Profile',          'icon' => 'user',        'link' => 'student/profile.php'],
-    ]);
+    ];
 }
 
 // Admin menu items
 if ($user_role === 'admin') {
     $menu_items = [
-        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php', 'badge' => 'ADMIN'],
+        ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'admin/dashboard.php', 'badge' => 'ADMIN'],
         ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
         ['label' => 'Konten',            'icon' => '',            'link' => '', 'type' => 'label'],
-        ['label' => 'Kelola Kursus',     'icon' => 'book',        'link' => 'manage-courses.php', 'badge' => 'ADMIN'],
-        ['label' => 'Lessons',           'icon' => 'file-text',   'link' => 'manage-lessons.php', 'badge' => 'ADMIN'],
-        ['label' => 'Kategori Kursus',   'icon' => 'tag',         'link' => 'manage-categories.php', 'badge' => 'ADMIN'],
-        ['label' => 'Achievements',      'icon' => 'award',       'link' => 'manage-achievements.php', 'badge' => 'ADMIN'],
-        ['label' => 'Sertifikat',        'icon' => 'certificate', 'link' => 'manage-certificates.php', 'badge' => 'ADMIN'],
-        ['label' => 'Komentar',          'icon' => 'message-circle', 'link' => 'manage-comments.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kelola Kursus',     'icon' => 'book',        'link' => 'admin/manage-courses.php', 'badge' => 'ADMIN'],
+        ['label' => 'Lessons',           'icon' => 'file-text',   'link' => 'admin/manage-lessons.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kategori Kursus',   'icon' => 'tag',         'link' => 'admin/manage-categories.php', 'badge' => 'ADMIN'],
+        ['label' => 'Achievements',      'icon' => 'award',       'link' => 'admin/manage-achievements.php', 'badge' => 'ADMIN'],
+        ['label' => 'Sertifikat',        'icon' => 'certificate', 'link' => 'admin/manage-certificates.php', 'badge' => 'ADMIN'],
+        ['label' => 'Komentar',          'icon' => 'message-circle', 'link' => 'admin/manage-comments.php', 'badge' => 'ADMIN'],
         ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
         ['label' => 'Pengguna',          'icon' => '',            'link' => '', 'type' => 'label'],
-        ['label' => 'Kelola User',       'icon' => 'users',       'link' => 'users.php', 'badge' => 'ADMIN'],
-        ['label' => 'Kelola Clan',       'icon' => 'zap',         'link' => 'manage-clans.php', 'badge' => 'ADMIN'],
-        ['label' => 'Enrollments',       'icon' => 'clipboard',   'link' => 'manage-enrollments.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kelola User',       'icon' => 'users',       'link' => 'admin/users.php', 'badge' => 'ADMIN'],
+        ['label' => 'Kelola Clan',       'icon' => 'zap',         'link' => 'admin/manage-clans.php', 'badge' => 'ADMIN'],
+        ['label' => 'Enrollments',       'icon' => 'clipboard',   'link' => 'admin/manage-enrollments.php', 'badge' => 'ADMIN'],
         ['label' => '',                  'icon' => '',            'link' => '', 'type' => 'divider'],
         ['label' => 'Sistem',            'icon' => '',            'link' => '', 'type' => 'label'],
-        ['label' => 'Broadcast',         'icon' => 'send',        'link' => 'manage-notifications.php', 'badge' => 'ADMIN'],
-        ['label' => 'Log Aktivitas',     'icon' => 'activity',    'link' => 'manage-logs.php', 'badge' => 'ADMIN'],
-        ['label' => 'Export Data',       'icon' => 'download',    'link' => 'export.php', 'badge' => 'ADMIN'],
-        ['label' => 'Backup DB',         'icon' => 'shield',      'link' => 'manage-backup.php', 'badge' => 'ADMIN'],
-        ['label' => 'Analytics',         'icon' => 'bar-chart',   'link' => 'admin_analytics.php', 'badge' => 'ADMIN'],
-        ['label' => 'Settings',          'icon' => 'settings',    'link' => 'pengaturan.php'],
+        ['label' => 'Broadcast',         'icon' => 'send',        'link' => 'admin/manage-notifications.php', 'badge' => 'ADMIN'],
+        ['label' => 'Log Aktivitas',     'icon' => 'activity',    'link' => 'admin/manage-logs.php', 'badge' => 'ADMIN'],
+        ['label' => 'Export Data',       'icon' => 'download',    'link' => 'admin/export.php', 'badge' => 'ADMIN'],
+        ['label' => 'Backup DB',         'icon' => 'shield',      'link' => 'admin/manage-backup.php', 'badge' => 'ADMIN'],
+        ['label' => 'Analytics',         'icon' => 'bar-chart',   'link' => 'admin/admin_analytics.php', 'badge' => 'ADMIN'],
+        ['label' => 'Settings',          'icon' => 'settings',    'link' => 'admin/pengaturan.php'],
     ];
-} else {
-    // Common menu
-    $menu_items[] = ['label' => 'Settings', 'icon' => 'settings', 'link' => 'pengaturan.php'];
 }
 ?>
 
@@ -116,7 +106,7 @@ if ($user_role === 'admin') {
                     <div class="sidebar-divider"></div>
                 <?php else: ?>
                     <?php 
-                    $is_active = ($item['link'] === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
+                    $is_active = (basename($item['link']) === basename($_SERVER['PHP_SELF'])) ? 'active' : '';
                     $extra_class = '';
                     $is_admin = false;
                     if (!empty($item['badge']) && strtolower($item['badge']) === 'admin') {

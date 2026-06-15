@@ -43,7 +43,7 @@ if (isset($_SESSION['flash_message'])) {
 <body class="<?php echo $body_class; ?>">
 <?php require_once 'navbar.php'; ?>
 
-<div class="page-wrapper">
+<div class="page-wrapper dashboard-main-container">
     <div class="dashboard-content">
         <div class="dashboard-header">
             <div>
@@ -123,7 +123,5 @@ if (isset($_SESSION['flash_message'])) {
         </div>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
 </body>
 </html>

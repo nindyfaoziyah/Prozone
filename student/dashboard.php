@@ -110,7 +110,7 @@ $recentActivities = $actStmt->fetchAll(PDO::FETCH_ASSOC);
 <body class="<?php echo $body_class; ?>">
 <?php require_once 'navbar.php'; ?>
 
-<div class="page-wrapper">
+<div class="page-wrapper dashboard-main-container">
     <div class="dashboard-content">
         <div class="dashboard-header">
             <div class="dash-greeting">
@@ -250,7 +250,5 @@ $recentActivities = $actStmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
 </body>
 </html>
