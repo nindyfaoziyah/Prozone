@@ -89,7 +89,7 @@ if ($user_role === 'admin') {
     <div class="sidebar-island-panel">
         <!-- Logo -->
         <div class="sidebar-logo">
-            <a href="dashboard.php" class="logo-box">
+            <a href="<?php echo $user_role === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="logo-box">
                 <img src="assets/img/Prozone Logo.png" alt="Prozone">
             </a>
         </div>

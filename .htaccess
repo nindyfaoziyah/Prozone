@@ -3,7 +3,7 @@
 # Enable Rewrite Engine
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ProzoneWeb/
+    RewriteBase /
 
     # Static files and directories - serve directly
     RewriteCond %{REQUEST_FILENAME} !-f

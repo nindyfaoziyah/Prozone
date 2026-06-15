@@ -210,7 +210,7 @@ class EmailService {
             'name' => $name,
             'course_name' => $courseName,
             'last_activity' => $lastActivity,
-            'dashboard_link' => BASE_URL . 'dashboard.php'
+            'dashboard_link' => BASE_URL . 'student/dashboard.php'
         ]);
         
         return $this->send($email, $subject, $body);

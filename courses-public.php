@@ -121,7 +121,7 @@ $is_logged_in = isLoggedIn();
                 <a href="courses-public.php" class="nav-link"<?php echo $nav_active('courses-public.php'); ?>>Kursus</a>
                 <a href="about.php" class="nav-link"<?php echo $nav_active('about.php'); ?>>Tentang</a>
                 <?php if ($is_logged_in): ?>
-                <a href="dashboard.php" class="btn btn-primary btn-sm nav-cta">Dashboard</a>
+                <a href="<?php echo ($_SESSION['user_role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="btn btn-primary btn-sm nav-cta">Dashboard</a>
                 <?php else: ?>
                 <a href="login.php" class="btn btn-primary btn-sm nav-cta">Masuk</a>
                 <?php endif; ?>

@@ -1,17 +1,17 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
-require_once 'config/language.php';
-require_once 'includes/icons.php';
-require_once 'includes/rpg_system.php';
+require_once '../config/language.php';
+require_once '../includes/icons.php';
+require_once '../includes/rpg_system.php';
 
 $page_title       = 'Achievements';
 $page_description = 'Kumpulkan trophy achievement dengan terus belajar dan naik level.';
 $page_css         = ['pages/dashboard.css', 'sidebar-island.css', 'dashboard-override.css', 'rpg-system.css'];
 $body_class       = getThemeClass();
 
-require_once 'models/User.php';
-require_once 'config/database.php';
+require_once '../models/User.php';
+require_once '../config/database.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -110,8 +110,8 @@ function trophyIcon($rarity) {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
-    <link rel="stylesheet" href="assets/css/rpg-system.css">
+    <?php require_once '../includes/head.php'; ?>
+    <link rel="stylesheet" href="../assets/css/rpg-system.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -320,9 +320,9 @@ function trophyIcon($rarity) {
     </div>
 </div>
 
-<?php include 'includes/loading.php'; ?>
-<?php include 'includes/toast.php'; ?>
-<script src="assets/js/navbar.js"></script>
+<?php include '../includes/loading.php'; ?>
+<?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 <script>
 window.jsPDF = window.jspdf.jsPDF;
 

@@ -51,7 +51,7 @@ if (isset($_SESSION['flash_message'])) {
                 <p class="greeting-sub">Kelola informasi akun dan pengaturan personal</p>
             </div>
             <div class="dash-header-actions">
-                <a href="../dashboard.php" class="btn btn-secondary">
+                <a href="dashboard.php" class="btn btn-secondary">
                     <?php icon('arrow-left', 16); ?> Kembali
                 </a>
             </div>
@@ -93,7 +93,7 @@ if (isset($_SESSION['flash_message'])) {
 
             <!-- Profile Content -->
             <div class="profile-content-card">
-                <form method="POST" action="../profile.php?tab=edit" enctype="multipart/form-data" class="profile-form">
+                <form method="POST" action="profile.php?tab=edit" enctype="multipart/form-data" class="profile-form">
                     <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
                     <input type="hidden" name="action" value="update_profile">
 

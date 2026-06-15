@@ -1,11 +1,11 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
 requireRole(['student']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/Clan.php';
-require_once 'models/Chat.php';
+require_once '../models/Clan.php';
+require_once '../models/Chat.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -452,18 +452,18 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta('Clan - ' . APP_NAME, 'Bergabung dengan clan dan belajar bersama komunitas', 'clan, community, team'); ?>
+    <?php include '../includes/favicon.php'; ?>
+    <?php include '../includes/seo.php'; echo seo_meta('Clan - ' . APP_NAME, 'Bergabung dengan clan dan belajar bersama komunitas', 'clan, community, team'); ?>
     <title>Clan - <?php echo APP_NAME; ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/ui-enhancements.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/dark-theme.css">
-    <link rel="stylesheet" href="assets/css/glassmorphism.css">
-    <link rel="stylesheet" href="assets/css/sidebar-island.css">
-    <link rel="stylesheet" href="assets/css/dashboard-override.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/ui-enhancements.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/dark-theme.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-override.css">
     <style>
         .clan-container {
             max-width: 1400px;
@@ -2229,7 +2229,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         let lastMessageId = <?php echo !empty($chat_messages) ? max(array_column($chat_messages, 'id')) : 0; ?>;
         
         setInterval(function() {
-            fetch('api/get-chat-messages.php?clan_id=<?php echo $user_clan_id; ?>&last_id=' + lastMessageId)
+            fetch('../api/get-chat-messages.php?clan_id=<?php echo $user_clan_id; ?>&last_id=' + lastMessageId)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success && data.messages && data.messages.length > 0) {
@@ -2288,7 +2288,7 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
                 sendBtn.disabled = true;
                 sendBtn.style.opacity = '0.6';
                 
-                fetch('api/send-chat-message.php', {
+                fetch('../api/send-chat-message.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -2411,9 +2411,9 @@ while ($row = $all_clans_stmt->fetch(PDO::FETCH_ASSOC)) {
         }
     </script>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
 </body>
 </html>  

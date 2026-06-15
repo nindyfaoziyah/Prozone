@@ -3,9 +3,23 @@
 ## Goal
 Beautify and fix all courses menu pages (courses.php, course.php, lesson.php) with light theme, proper dashboard layout, and polished visuals.
 
+Fix all PHP fatal errors and broken file paths in the Prozone student dashboard and student pages after moving files into the `student/` folder.
+
 ## Progress
 
 ### Done
+- **learning-path.php** — Created `student/playground.php` as coding playground:
+  - Three-tab editor (HTML/CSS/JS) with monospace dark-themed textareas
+  - Live preview via iframe srcdoc, auto-updates on input
+  - Requirements/validation system: quest-specific criteria shown in side panel ✓/✕
+  - Validation checks CSS, HTML, JS for required patterns (e.g. class selectors, color, flexbox properties)
+  - Submit button validates all requirements before showing success overlay with XP reward
+  - Code auto-saved to localStorage per quest; cleared on successful submit
+  - Result overlay with "Lanjut Belajar" and "Kembali ke Peta" buttons
+- **learning-path.php** — Quest items made clickable: clicking any quest opens material viewer at that specific slide index
+- **learning-path.php** — Updated `openMateri()` to accept optional `startIdx` parameter; defaults to 0
+- **learning-path.php** — Button text logic finalized: "📖 Mulai Belajar" (new), "🚀 Lanjutkan Belajar" (in-progress), "📖 Selesaikan Quest" (completed)
+- **learning-path.php** — Material viewer "Mulai Praktik Coding" button now navigates to `playground.php` with `course_id`, `level`, `quest`, `skill`, `xp` params
 - **lesson.php** — Fixed layout overflow (3-panel practice mode was overflowing page-wrapper because `height: calc(100vh - 120px)` didn't account for dashboard grid overhead):
   - Overrode `.lesson-wrapper` height to `calc(100vh - 280px)` (accounts for body grid padding/gap/header + page-wrapper padding + lesson-header)
   - Only applies when `body.dashboard-layout` is present
@@ -61,6 +75,17 @@ Beautify and fix all courses menu pages (courses.php, course.php, lesson.php) wi
 
 ### Blocked
 - (none)
+
+## Key Decisions (Path Fixes)
+- Files moved into `student/` need `../` prefix for all requires/includes to root-level dirs (`config/`, `models/`, `includes/`, `assets/`, `api/`).
+- Same-directory sibling references (e.g., `include 'navbar.php'` from `dashboard.php`) are valid without `../`.
+- Used `replaceAll` for bulk patterns (`file_exists('assets/')` → `file_exists('../assets/')`).
+
+## Relevant Files (Path Fixes)
+- `student/*.php` (all 14 files) — require/include paths, asset paths, fetch URLs, and link hrefs corrected.
+- Fixed 60+ broken paths across all 14 files.
+- Session 1 fixes: `dashboard.php` SQL queries, `User.php::readOne()`, RPG system, sidebar/footer/profile links.
+- Session 2 fixes: `achievements.php`, `certificates.php`, `characters.php`, `clan.php`, `courses.php`, `ai-mentor.php`, `leaderboard.php`, `multiplayer.php`, `dashboard.php` (admin content added later), `learning-path.php`.
 
 ## Key Decisions
 - `lesson.php` practice mode: 3-panel layout uses CSS grid internally, but outer sizing controlled by flex chain from dashboard grid.

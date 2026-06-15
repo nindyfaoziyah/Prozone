@@ -2,7 +2,9 @@
 require_once 'config/config.php';
 
 if (isLoggedIn()) {
-    header('Location: dashboard.php');
+    $role = $_SESSION['user_role'] ?? '';
+    $redirect = $role === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php';
+    header('Location: ' . $redirect);
     exit();
 }
 

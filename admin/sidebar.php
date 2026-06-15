@@ -68,14 +68,14 @@ $menu_items = [
 
 <nav class="sidebar-island-container" id="sidebar-island">
     <div class="sidebar-island-panel">
-        <!-- Logo -->
-        <div class="sidebar-logo">
-            <a href="dashboard.php" class="logo-box">
-                <img src="../assets/img/Prozone Logo.png" alt="Prozone">
-            </a>
-        </div>
+		<!-- Logo -->
+		<div class="sidebar-logo">
+			<a href="dashboard.php" class="logo-box">
+				<img src="../assets/img/Prozone Logo.png" alt="Prozone">
+			</a>
+		</div>
 
-        <!-- Admin Role Badge -->
+		<!-- Admin Role Badge -->
         <div class="admin-role-badge">
             <span class="admin-role-icon">🛡️</span>
             <span class="admin-role-text">Admin Panel</span>

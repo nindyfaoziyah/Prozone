@@ -1,7 +1,7 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
 $page_title       = 'AI Mentor';
 $page_description = 'Tanya AI tentang coding, algoritma, dan teknologi.';
@@ -13,7 +13,7 @@ $user_initial = strtoupper(substr(explode(' ', $_SESSION['nama_lengkap'] ?? 'U')
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
 </head>
 <body class="<?php echo trim($body_class . ' dashboard-layout'); ?>">
     <?php require_once 'navbar.php'; ?>
@@ -105,9 +105,9 @@ $user_initial = strtoupper(substr(explode(' ', $_SESSION['nama_lengkap'] ?? 'U')
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
-    <script src="assets/js/navbar.js"></script>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
+    <script src="../assets/js/navbar.js"></script>
 
     <script>
     const messagesEl = document.getElementById('chatMessages');
@@ -295,7 +295,7 @@ $user_initial = strtoupper(substr(explode(' ', $_SESSION['nama_lengkap'] ?? 'U')
         addMessage('user', text);
         showTyping();
 
-        fetch('api/ai-mentor-chat.php', {
+        fetch('../api/ai-mentor-chat.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: text, history: chatHistory })

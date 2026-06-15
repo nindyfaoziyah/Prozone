@@ -14,14 +14,14 @@ $lesson = new Lesson($db);
 
 $course_id = $_GET['course_id'] ?? 0;
 if (!$course_id) {
-    header('Location: learning-path.php');
+    header('Location: student/learning-path.php');
     exit();
 }
 
 $course->id = $course_id;
 $course_data = $course->readOne();
 if (!$course_data) {
-    header('Location: learning-path.php');
+    header('Location: student/learning-path.php');
     exit();
 }
 

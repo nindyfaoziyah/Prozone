@@ -4,7 +4,7 @@
 
 $current_page = basename($_SERVER['PHP_SELF']);
 $first_name   = explode(' ', $_SESSION['nama_lengkap'] ?? 'Student')[0];
-$user_level   = $level ?? 1;
+$user_level   = (isset($level) && is_numeric($level)) ? (int)$level : 1;
 $user_xp      = $total_xp ?? 0;
 
 $xp_next      = $user_level * 500;
@@ -30,11 +30,11 @@ $menu_items = [
     ['label' => 'Dashboard',         'icon' => 'grid',        'link' => 'dashboard.php'],
     ['label' => 'Learning Path',     'icon' => 'map',         'link' => 'learning-path.php', 'badge' => 'NEW'],
     ['label' => 'Courses',           'icon' => 'book',        'link' => 'courses.php'],
-    ['label' => 'Achievement',       'icon' => 'trophy',      'link' => '../characters.php'],
-    ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => '../multiplayer.php',   'badge' => 'LIVE'],
-    ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => '../ai-mentor.php'],
-    ['label' => 'Clan',             'icon' => 'users',       'link' => '../clan.php'],
-    ['label' => 'Leaderboard',      'icon' => 'award',       'link' => '../leaderboard.php'],
+    ['label' => 'Achievement',       'icon' => 'trophy',      'link' => 'characters.php'],
+    ['label' => 'Multiplayer Battle','icon' => 'zap',         'link' => 'multiplayer.php',   'badge' => 'LIVE'],
+    ['label' => 'AI Mentor',         'icon' => 'cpu',         'link' => 'ai-mentor.php'],
+    ['label' => 'Clan',             'icon' => 'users',       'link' => 'clan.php'],
+    ['label' => 'Leaderboard',      'icon' => 'award',       'link' => 'leaderboard.php'],
     ['label' => '',                 'icon' => '',            'link' => '', 'type' => 'divider'],
     ['label' => 'Profile',          'icon' => 'user',        'link' => 'profile.php'],
 ];

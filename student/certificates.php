@@ -1,11 +1,11 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
 requireRole(['student']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/Course.php';
-require_once 'models/Enrollment.php';
+require_once '../models/Course.php';
+require_once '../models/Enrollment.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -43,18 +43,18 @@ foreach ($certificates as $cert) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta('Sertifikat - ' . APP_NAME, 'Lihat dan download sertifikat kursus yang telah diselesaikan', 'certificates, sertifikat, completion'); ?>
+    <?php include '../includes/favicon.php'; ?>
+    <?php include '../includes/seo.php'; echo seo_meta('Sertifikat - ' . APP_NAME, 'Lihat dan download sertifikat kursus yang telah diselesaikan', 'certificates, sertifikat, completion'); ?>
     <title>Sertifikat - <?php echo APP_NAME; ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/ui-enhancements.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/dark-theme.css">
-    <link rel="stylesheet" href="assets/css/glassmorphism.css">
-    <link rel="stylesheet" href="assets/css/sidebar-island.css">
-    <link rel="stylesheet" href="assets/css/dashboard-override.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/ui-enhancements.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/dark-theme.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-override.css">
     <!-- Libraries for PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -931,10 +931,10 @@ foreach ($certificates as $cert) {
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
     <script>
         window.jsPDF = window.jspdf.jsPDF;
         

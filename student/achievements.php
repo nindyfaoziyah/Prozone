@@ -1,9 +1,9 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
 requireRole(['student']);
 
-require_once 'models/Achievement.php';
+require_once '../models/Achievement.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -33,17 +33,17 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'includes/favicon.php'; ?>
-    <?php include 'includes/seo.php'; echo seo_meta('Achievements - ' . APP_NAME, 'Lihat pencapaian dan badge yang telah Anda raih', 'achievements, badges, rewards'); ?>
+    <?php include '../includes/favicon.php'; ?>
+    <?php include '../includes/seo.php'; echo seo_meta('Achievements - ' . APP_NAME, 'Lihat pencapaian dan badge yang telah Anda raih', 'achievements, badges, rewards'); ?>
     <title>Achievements - <?php echo APP_NAME; ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/dark-theme.css">
-    <link rel="stylesheet" href="assets/css/glassmorphism.css">
-    <link rel="stylesheet" href="assets/css/sidebar-island.css">
-    <link rel="stylesheet" href="assets/css/dashboard-override.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/dark-theme.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/sidebar-island.css">
+    <link rel="stylesheet" href="../assets/css/dashboard-override.css">
     
     <style>
         .achievements-grid {
@@ -294,8 +294,8 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
     <!-- Share Modal -->
     <div class="share-modal" id="shareModal">
@@ -334,7 +334,7 @@ $progress_percent = $total_achievements > 0 ? ($earned_count / $total_achievemen
         </div>
     </div>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
     <script>
         let currentAchievementName = '';
         let currentAchievementIcon = '';

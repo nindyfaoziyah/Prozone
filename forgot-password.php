@@ -4,7 +4,9 @@ require_once 'classes/EmailService.php';
 
 // Jika sudah login, redirect ke dashboard
 if (isLoggedIn()) {
-    header('Location: dashboard.php');
+    $role = $_SESSION['user_role'] ?? '';
+    $redirect = $role === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php';
+    header('Location: ' . $redirect);
     exit();
 }
 

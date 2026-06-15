@@ -142,7 +142,7 @@ require_once 'includes/icons.php';
             Maaf, Anda tidak memiliki izin untuk mengakses halaman ini. Halaman ini mungkin memerlukan hak akses khusus.
         </p>
         <div class="error-actions">
-            <a href="dashboard.php" class="btn btn-primary">
+            <a href="<?php echo ($_SESSION['user_role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="btn btn-primary">
                 <?php icon('dashboard', 16); ?> Dashboard
             </a>
             <a href="logout.php" class="btn btn-secondary">

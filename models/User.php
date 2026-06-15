@@ -11,6 +11,9 @@ class User {
     public $role;
     public $avatar;
     public $nomor_hp;
+    public $xp;
+    public $level;
+    public $character_class;
 
     public function __construct($db) {
         $this->conn = $db;
@@ -78,7 +81,7 @@ class User {
     }
 
     public function readOne() {
-        $query = "SELECT id, username, nama_lengkap, email, role, avatar
+        $query = "SELECT id, username, nama_lengkap, email, role, avatar, total_xp as xp, level, character_class
                   FROM " . $this->table_name . " 
                   WHERE id = :id";
 
@@ -93,6 +96,9 @@ class User {
             $this->email = $row['email'];
             $this->role = $row['role'];
             $this->avatar = $row['avatar'];
+            $this->xp = (int) ($row['xp'] ?? 0);
+            $this->level = (int) ($row['level'] ?? 1);
+            $this->character_class = $row['character_class'] ?? 'code-warrior';
             return true;
         }
         return false;

@@ -1,10 +1,10 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
 requireRole(['student']);
-require_once 'includes/icons.php';
+require_once '../includes/icons.php';
 
-require_once 'models/Leaderboard.php';
+require_once '../models/Leaderboard.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -75,7 +75,7 @@ $body_class = 'dashboard-layout';
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
 </head>
 <body class="<?php echo $body_class; ?>">
     <!-- Navbar -->
@@ -190,8 +190,8 @@ $body_class = 'dashboard-layout';
                         <div class="podium-player second">
                             <div class="podium-avatar-wrapper">
                                 <div class="podium-avatar">
-                                    <?php if (!empty($solo_leaderboard[1]['avatar']) && file_exists('assets/uploads/avatars/' . $solo_leaderboard[1]['avatar'])): ?>
-                                        <img src="assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[1]['avatar']); ?>" alt="">
+                                    <?php if (!empty($solo_leaderboard[1]['avatar']) && file_exists('../assets/uploads/avatars/' . $solo_leaderboard[1]['avatar'])): ?>
+                                        <img src="../assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[1]['avatar']); ?>" alt="">
                                     <?php else: ?>
                                         <?php echo strtoupper(substr($solo_leaderboard[1]['nama_lengkap'], 0, 1)); ?>
                                     <?php endif; ?>
@@ -206,8 +206,8 @@ $body_class = 'dashboard-layout';
                             <div class="podium-avatar-wrapper">
                                 <div class="podium-crown">&#128075;</div>
                                 <div class="podium-avatar">
-                                    <?php if (!empty($solo_leaderboard[0]['avatar']) && file_exists('assets/uploads/avatars/' . $solo_leaderboard[0]['avatar'])): ?>
-                                        <img src="assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[0]['avatar']); ?>" alt="">
+                                    <?php if (!empty($solo_leaderboard[0]['avatar']) && file_exists('../assets/uploads/avatars/' . $solo_leaderboard[0]['avatar'])): ?>
+                                        <img src="../assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[0]['avatar']); ?>" alt="">
                                     <?php else: ?>
                                         <?php echo strtoupper(substr($solo_leaderboard[0]['nama_lengkap'], 0, 1)); ?>
                                     <?php endif; ?>
@@ -221,8 +221,8 @@ $body_class = 'dashboard-layout';
                         <div class="podium-player third">
                             <div class="podium-avatar-wrapper">
                                 <div class="podium-avatar">
-                                    <?php if (!empty($solo_leaderboard[2]['avatar']) && file_exists('assets/uploads/avatars/' . $solo_leaderboard[2]['avatar'])): ?>
-                                        <img src="assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[2]['avatar']); ?>" alt="">
+                                    <?php if (!empty($solo_leaderboard[2]['avatar']) && file_exists('../assets/uploads/avatars/' . $solo_leaderboard[2]['avatar'])): ?>
+                                        <img src="../assets/uploads/avatars/<?php echo htmlspecialchars($solo_leaderboard[2]['avatar']); ?>" alt="">
                                     <?php else: ?>
                                         <?php echo strtoupper(substr($solo_leaderboard[2]['nama_lengkap'], 0, 1)); ?>
                                     <?php endif; ?>
@@ -280,8 +280,8 @@ $body_class = 'dashboard-layout';
                                 </div>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        <?php if (!empty($user['avatar']) && file_exists('assets/uploads/avatars/' . $user['avatar'])): ?>
-                                            <img src="assets/uploads/avatars/<?php echo htmlspecialchars($user['avatar']); ?>" alt="">
+                                        <?php if (!empty($user['avatar']) && file_exists('../assets/uploads/avatars/' . $user['avatar'])): ?>
+                                            <img src="../assets/uploads/avatars/<?php echo htmlspecialchars($user['avatar']); ?>" alt="">
                                         <?php else: ?>
                                             <?php echo strtoupper(substr($user['nama_lengkap'], 0, 1)); ?>
                                         <?php endif; ?>
@@ -427,10 +427,10 @@ $body_class = 'dashboard-layout';
         </div>
     </div>
 
-    <?php include 'includes/loading.php'; ?>
-    <?php include 'includes/toast.php'; ?>
+    <?php include '../includes/loading.php'; ?>
+    <?php include '../includes/toast.php'; ?>
 
-    <script src="assets/js/navbar.js"></script>
+    <script src="../assets/js/navbar.js"></script>
     <script>
         // Search/Filter functionality
         function filterLeaderboard(searchTerm) {

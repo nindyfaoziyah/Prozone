@@ -1,8 +1,8 @@
 <?php
-require_once 'config/config.php';
+require_once '../config/config.php';
 requireLogin();
-require_once 'includes/icons.php';
-require_once 'includes/rpg_system.php';
+require_once '../includes/icons.php';
+require_once '../includes/rpg_system.php';
 
 $page_title       = 'CodeQuest Arena';
 $page_description = 'Multiplayer Coding Battle Prozone.';
@@ -33,7 +33,7 @@ $enemy_char = getClassData('cyber-ninja');
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <?php require_once 'includes/head.php'; ?>
+    <?php require_once '../includes/head.php'; ?>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body class="<?php echo $body_class; ?>">
@@ -123,7 +123,7 @@ $enemy_char = getClassData('cyber-ninja');
                 </div>
                 <div class="lb-row">
                     <div class="lb-num">2</div>
-                    <img src="assets/img/characters/web-developer.png" class="lb-img" alt="Avatar">
+                    <img src="../assets/img/characters/web-developer.png" class="lb-img" alt="Avatar">
                     <div class="lb-name">Alya_Dev</div>
                     <div class="lb-score">1200 XP</div>
                 </div>
@@ -135,7 +135,7 @@ $enemy_char = getClassData('cyber-ninja');
                 </div>
                 <div class="lb-row">
                     <div class="lb-num">4</div>
-                    <img src="assets/img/characters/bug-hunter.png" class="lb-img" alt="Avatar">
+                    <img src="../assets/img/characters/bug-hunter.png" class="lb-img" alt="Avatar">
                     <div class="lb-name">Zhafir</div>
                     <div class="lb-score">900 XP</div>
                 </div>
@@ -164,7 +164,7 @@ $enemy_char = getClassData('cyber-ninja');
             <div class="chat-scroll" id="chat-feed">
                 <!-- Default message -->
                 <div class="chat-msg">
-                    <img src="assets/img/characters/code-warrior.png" class="chat-avatar" alt="Sys">
+                    <img src="../assets/img/characters/code-warrior.png" class="chat-avatar" alt="Sys">
                     <div class="chat-body">
                         <div class="chat-author">System</div>
                         <div class="chat-text">Welcome to CodeQuest Arena! Good luck.</div>
@@ -185,10 +185,10 @@ $enemy_char = getClassData('cyber-ninja');
     window.battleUserName = <?php echo json_encode($first_name); ?>;
     window.battleUserAvatar = <?php echo json_encode($you_char['image']); ?>;
 </script>
-<script src="assets/js/arena.js"></script> <!-- Reuses existing JS timer & typing logic -->
+<script src="../assets/js/arena.js"></script> <!-- Reuses existing JS timer & typing logic -->
 
 <!-- Battle Result Analysis Modal -->
-<?php require_once 'includes/battle-result-modal.php'; ?>
+<?php require_once '../includes/battle-result-modal.php'; ?>
 
 </body>
 </html>

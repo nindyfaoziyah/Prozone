@@ -186,6 +186,18 @@ function isValidClass(string $slug): bool {
  * Auto-update user's character_class in the DB based on current level/XP.
  * Called after XP is awarded to keep the class current.
  */
+/**
+ * Calculate XP progress percentage toward the next level.
+ * Uses a flat 100 XP per level scale.
+ */
+function getLevelProgress(int $level, int $xp): int {
+    $xpForCurrent = max(0, ($level - 1) * 100);
+    $xpForNext = $level * 100;
+    if ($xpForNext <= $xpForCurrent) return 100;
+    $progress = (($xp - $xpForCurrent) / ($xpForNext - $xpForCurrent)) * 100;
+    return min(100, max(0, (int) round($progress)));
+}
+
 function syncCharacterClass($db, int $user_id, int $level, int $xp, string $current_class): string {
     $highest = getAutoClass($level, $xp);
     // Only auto-upgrade if the user hasn't manually chosen a higher one

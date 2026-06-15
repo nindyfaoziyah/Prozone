@@ -48,7 +48,7 @@ $nav_active       = function ($href) use ($current_page) {
                 <a href="courses-public.php" class="nav-link"<?php echo $nav_active('courses-public.php'); ?>>Kursus</a>
                 <a href="about.php" class="nav-link"<?php echo $nav_active('about.php'); ?>>Tentang</a>
                 <?php if (isLoggedIn()): ?>
-                    <a href="dashboard.php" class="btn btn-primary btn-sm nav-cta">Dashboard</a>
+                    <a href="<?php echo ($_SESSION['user_role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="btn btn-primary btn-sm nav-cta">Dashboard</a>
                 <?php else: ?>
                     <a href="login.php" class="btn btn-primary btn-sm nav-cta">Masuk</a>
                 <?php endif; ?>
@@ -76,7 +76,7 @@ $nav_active       = function ($href) use ($current_page) {
                 </p>
                 <div class="hero-ctas reveal">
                     <?php if (isLoggedIn()): ?>
-                        <a href="dashboard.php" class="btn btn-primary btn-lg">Buka Dashboard</a>
+                        <a href="<?php echo ($_SESSION['user_role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="btn btn-primary btn-lg">Buka Dashboard</a>
                         <a href="courses-public.php" class="btn btn-secondary btn-lg">Jelajahi Kursus</a>
                     <?php else: ?>
                         <a href="register.php" class="btn btn-primary btn-lg">
@@ -380,7 +380,7 @@ $nav_active       = function ($href) use ($current_page) {
             <p>Bergabung dengan ribuan developer yang sudah memulai belajar coding dengan cara yang menyenangkan. Dapatkan XP, kumpulkan achievement, dan bersaing di leaderboard.</p>
             <div class="row">
                 <?php if (isLoggedIn()): ?>
-                    <a href="dashboard.php" class="btn btn-xl btn-cta-primary">Buka Dashboard</a>
+                    <a href="<?php echo ($_SESSION['user_role'] ?? '') === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php'; ?>" class="btn btn-xl btn-cta-primary">Buka Dashboard</a>
                     <a href="courses-public.php" class="btn btn-xl btn-cta-secondary">Jelajahi Kursus</a>
                 <?php else: ?>
                     <a href="register.php" class="btn btn-xl btn-cta-primary">Mulai Belajar Gratis</a>

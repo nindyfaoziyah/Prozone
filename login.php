@@ -1,9 +1,11 @@
 <?php
 require_once 'config/config.php';
 
-// Jika sudah login, redirect ke dashboard
+    // Jika sudah login, redirect ke dashboard
 if (isLoggedIn()) {
-    header('Location: dashboard.php');
+    $role = $_SESSION['user_role'] ?? '';
+    $redirect = $role === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php';
+    header('Location: ' . $redirect);
     exit();
 }
 
@@ -38,7 +40,9 @@ if ($_POST) {
                 $_SESSION['user_role'] = $user->role;
                 $_SESSION['email'] = $user->email;
 
-                header('Location: dashboard.php');
+                $role = $user->role ?? $_SESSION['user_role'] ?? '';
+                $redirect = $role === 'admin' ? 'admin/dashboard.php' : 'student/dashboard.php';
+                header('Location: ' . $redirect);
                 exit();
             } else {
                 $error_message = 'Email atau kata sandi salah!';

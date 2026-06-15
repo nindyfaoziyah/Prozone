@@ -19,11 +19,11 @@
       <div class="footer-col">
         <h3 class="footer-col-title">Quick Links</h3>
         <ul class="footer-links">
-          <li><a href="../courses.php">Courses</a></li>
+          <li><a href="courses.php">Courses</a></li>
           <li><a href="../playground.php">Code Playground</a></li>
-          <li><a href="../multiplayer.php">Multiplayer Battle</a></li>
-          <li><a href="../leaderboard.php">Leaderboard</a></li>
-          <li><a href="../characters.php">Achievements</a></li>
+          <li><a href="multiplayer.php">Multiplayer Battle</a></li>
+          <li><a href="leaderboard.php">Leaderboard</a></li>
+          <li><a href="characters.php">Achievements</a></li>
         </ul>
       </div>
 
