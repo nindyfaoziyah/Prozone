@@ -341,7 +341,7 @@ if ($role === 'admin') {
                         <p>Progress: <span class="progress-highlight"><?php echo number_format($lastCourse['progress_percent'], 0); ?>%</span></p>
                     </div>
                 </div>
-                <a href="../course.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
+                <a href="course-detail.php?id=<?php echo $lastCourse['id']; ?>" class="glass-btn glass-btn-primary glass-btn-lg">
                     <?php icon('play', 16); ?> Lanjutkan
                 </a>
             </div>
@@ -374,7 +374,7 @@ if ($role === 'admin') {
                                     <?php endif; ?>
                                 </div>
                                 <div class="course-mini-info">
-                                    <a href="../course.php?id=<?php echo $course_item['course_id']; ?>" class="track-name">
+                                    <a href="course-detail.php?id=<?php echo $course_item['course_id']; ?>" class="track-name">
                                         <?php echo htmlspecialchars($course_item['judul_course']); ?>
                                     </a>
                                     <div class="progress-container-mini">

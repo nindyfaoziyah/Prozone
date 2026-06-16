@@ -112,7 +112,7 @@ class Course {
             $this->judul_course = $row['judul_course'];
             $this->slug = $row['slug'];
             $this->kategori_id = $row['kategori_id'];
-            $this->admin_id = $row['instructor_id'];
+            $this->admin_id = $row['admin_id'];
             $this->deskripsi = $row['deskripsi'];
             $this->thumbnail = $row['thumbnail'] ?? null;
             $this->level = $row['level'];

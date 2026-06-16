@@ -144,20 +144,44 @@ $roles = [
 
 $totalLevels = count($levels);
 
-// Get real progress from enrollments
+// Get real quest progress from database
 $user_id = $_SESSION['user_id'] ?? 0;
-$enroll_progress = [];
+$quest_progress = [];
+$quest_detail = [];
 if ($user_id && isset($db)) {
-    $stmt = $db->prepare("SELECT course_id, completed_lessons, CAST(progress_percent AS UNSIGNED) AS pct FROM enrollments WHERE user_id = :uid");
+    $stmt = $db->prepare("SELECT level_id, COUNT(*) as completed FROM user_quest_progress WHERE user_id = :uid AND status = 'completed' GROUP BY level_id");
     $stmt->execute([':uid' => $user_id]);
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $enroll_progress[(int)$row['course_id']] = (int)$row['pct'];
+        $quest_progress[(int)$row['level_id']] = (int)$row['completed'];
+    }
+
+    $stmt2 = $db->prepare("SELECT level_id, quest_idx, status FROM user_quest_progress WHERE user_id = :uid");
+    $stmt2->execute([':uid' => $user_id]);
+    while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+        $lid = (int)$row['level_id'];
+        $qidx = (int)$row['quest_idx'];
+        if (!isset($quest_detail[$lid])) $quest_detail[$lid] = [];
+        $quest_detail[$lid][$qidx] = $row['status'];
     }
 }
+
+// Determine level status and progress
+$current_found = false;
 foreach ($levels as &$lvl) {
-    $cid = $lvl['course_id'] ?? 0;
-    if ($cid && isset($enroll_progress[$cid])) {
-        $lvl['progress'] = $enroll_progress[$cid];
+    $completed_q = $quest_progress[$lvl['id']] ?? 0;
+    $total_q = $lvl['materi'];
+    $lvl['completed_quests'] = $completed_q;
+    $lvl['progress'] = $total_q > 0 ? round(($completed_q / $total_q) * 100) : 0;
+
+    if (!$current_found) {
+        if ($lvl['progress'] >= 100) {
+            $lvl['status'] = 'completed';
+        } else {
+            $lvl['status'] = 'in-progress';
+            $current_found = true;
+        }
+    } else {
+        $lvl['status'] = 'locked';
     }
 }
 unset($lvl);
@@ -562,6 +586,21 @@ body.dashboard-layout .dashboard-content {
     border: 1px solid var(--border-light); color: var(--text-s);
 }
 
+/* ===== PROGRESS CIRCLE COLOR STATES ===== */
+.detail-ring circle.pg-0 { stroke: #CBD5E1 !important; }
+.detail-ring circle.pg-25 { stroke: #93C5FD !important; }
+.detail-ring circle.pg-50 { stroke: #6366F1 !important; }
+.detail-ring circle.pg-75 { stroke: #22D3EE !important; }
+.detail-ring circle.pg-100 { stroke: #22C55E !important; filter: drop-shadow(0 0 6px rgba(34,197,94,0.5)); }
+.detail-ring text.pg-glow { fill: #22C55E !important; font-weight: 900; }
+
+/* Node progress bar colors */
+.node-progress-fill.pg-0 { background: #E2E8F0; }
+.node-progress-fill.pg-25 { background: linear-gradient(90deg, #93C5FD, #6366F1); }
+.node-progress-fill.pg-50 { background: linear-gradient(90deg, #6366F1, #6366F1); }
+.node-progress-fill.pg-75 { background: linear-gradient(90deg, #6366F1, #22D3EE); }
+.node-progress-fill.pg-100 { background: linear-gradient(90deg, var(--suc), #059669); }
+
 /* ===== LEGEND ===== */
 .map-legend {
     display: flex; gap: 16px; padding: 4px 0 10px; flex-wrap: wrap;
@@ -861,6 +900,7 @@ body.dashboard-layout .dashboard-content {
 (function(){
 var allLevels = <?php echo json_encode($levels, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT); ?>;
 var roles = <?php echo json_encode($roles, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT); ?>;
+var questDetail = <?php echo json_encode($quest_detail, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT); ?>;
 var currentLevel = null;
 var selectedRole = null;
 
@@ -871,6 +911,15 @@ var mapGrid = $('map-grid');
 var mapSvg = $('map-svg');
 var panelPlaceholder = $('panel-placeholder');
 var panelBody = $('panel-body');
+
+// ===== PROGRESS COLOR HELPER =====
+function getPgClass(pct) {
+    if (pct >= 100) return 'pg-100';
+    if (pct >= 75) return 'pg-75';
+    if (pct >= 50) return 'pg-50';
+    if (pct >= 25) return 'pg-25';
+    return 'pg-0';
+}
 
 // ===== BUBBLES =====
 (function(){
@@ -941,11 +990,11 @@ function buildMap(levels) {
 
     levels.forEach(function(lvl, i) {
         var color = lvl.color || '#6366F1';
-        var status = lvl.status || (i === 0 ? 'completed' : 'available');
-        var progress = lvl.progress ?? (status === 'completed' ? 100 : status === 'in-progress' ? 42 : 0);
+        var status = lvl.status || 'locked';
+        var progress = lvl.progress ?? 0;
 
         var isDone = status === 'completed';
-        var isCurrent = status === 'in-progress' || status === 'available';
+        var isCurrent = status === 'in-progress';
         var isLocked = status === 'locked';
         var side = i % 2 === 0 ? 'left' : 'right';
 
@@ -969,7 +1018,7 @@ function buildMap(levels) {
                 '<div class="node-level">Level ' + lvl.id + '</div>' +
                 '<div class="node-title">' + lvl.name + '</div>' +
                 '<div class="node-reward"><span>⭐</span> ' + lvl.reward + ' XP</div>' +
-                '<div class="node-progress"><div class="node-progress-fill" style="width:' + progress + '%"></div></div>' +
+                '<div class="node-progress"><div class="node-progress-fill ' + getPgClass(progress) + '" style="width:' + progress + '%"></div></div>' +
             '</div>';
 
         node.addEventListener('click', function() { selectLevel(lvl); });
@@ -1098,7 +1147,7 @@ function selectLevel(lvl) {
     var color = lvl.color || '#6366F1';
     var status = lvl.status || 'locked';
     var isDone = status === 'completed';
-    var isCurrent = status === 'in-progress' || status === 'available';
+    var isCurrent = status === 'in-progress';
     var isLocked = status === 'locked';
 
     panelPlaceholder.style.display = 'none';
@@ -1106,31 +1155,46 @@ function selectLevel(lvl) {
 
     $('d-icon').textContent = lvl.emoji || lvl.icon || '📘';
     $('d-icon').style.background = 'linear-gradient(135deg,' + color + ',' + color + '88)';
-    $('d-level').textContent = 'Level ' + lvl.id;
+    $('d-level').textContent = isDone ? '✓ Level ' + lvl.id + ' — SELESAI' : (isLocked ? '🔒 Level ' + lvl.id + ' — Terkunci' : '● Level ' + lvl.id);
     $('d-level').className = 'detail-head-level detail-head-level--' + (isDone ? 'done' : isCurrent ? 'current' : 'locked');
     $('d-title').textContent = lvl.name;
 
-    var progress = lvl.progress ?? (isDone ? 100 : isCurrent ? 42 : 0);
+    var progress = lvl.progress ?? 0;
     var circ = 2 * Math.PI * 24;
     var offset = circ - (progress / 100) * circ;
     var ring = $('d-ring');
-    ring.style.stroke = isDone ? '#22C55E' : isCurrent ? '#6366F1' : '#CBD5E1';
+    ring.style.stroke = '';
     ring.style.transition = 'stroke-dashoffset .6s ease';
     ring.style.strokeDashoffset = offset;
+    ring.setAttribute('class', 'bg');
+    var pgClass = 'pg-0';
+    if (progress >= 100) pgClass = 'pg-100';
+    else if (progress >= 75) pgClass = 'pg-75';
+    else if (progress >= 50) pgClass = 'pg-50';
+    else if (progress >= 25) pgClass = 'pg-25';
+    ring.classList.add(pgClass);
     $('d-ring-text').textContent = progress + '%';
-    $('d-ring-text').setAttribute('fill', isLocked ? '#CBD5E1' : '#0F172A');
+    $('d-ring-text').setAttribute('fill', isLocked ? '#CBD5E1' : (progress >= 100 ? '#22C55E' : '#0F172A'));
+    if (progress >= 100) $('d-ring-text').classList.add('pg-glow');
+    else $('d-ring-text').classList.remove('pg-glow');
 
     $('d-xp').textContent = lvl.reward + ' XP';
     $('d-dur').textContent = lvl.durasi || '-';
-    $('d-mat').textContent = lvl.materi || '0';
+    var completedQ = lvl.completed_quests || 0;
+    var totalQ = lvl.materi || 0;
+    $('d-mat').textContent = completedQ + '/' + totalQ;
     $('d-boss').textContent = lvl.boss || '-';
 
     var btn = $('d-btn');
     btn.className = 'detail-btn';
-    if (isDone) {
+    if (isDone || progress >= 100) {
         btn.classList.add('detail-btn--done');
         btn.disabled = false;
-        btn.textContent = '📖 Selesaikan Quest';
+        btn.textContent = '✓ SELESAI';
+    } else if (isLocked) {
+        btn.classList.add('detail-btn--locked');
+        btn.disabled = true;
+        btn.textContent = '🔒 Terkunci';
     } else {
         btn.classList.add('detail-btn--active');
         btn.disabled = false;
@@ -1146,15 +1210,23 @@ function selectLevel(lvl) {
     });
 
     $('d-quests').innerHTML = '';
+    var qd = questDetail[lvl.id] || {};
     (lvl.quests||[]).forEach(function(q, qi) {
+        var qStatus = qd[qi] || 'not_started';
+        var isQDone = qStatus === 'completed';
+        var isQActive = qStatus === 'in_progress';
+        var checkCls = isQDone ? 'done' : (isQActive ? 'active' : 'locked');
+        var checkIcon = isQDone ? '✓' : (isQActive ? '📖' : '🔒');
         var el = document.createElement('div');
         el.className = 'detail-quest';
-        el.style.cursor = 'pointer';
-        el.innerHTML = '<span class="detail-quest-check detail-quest-check--active">📖</span> ' + q.label;
-        el.addEventListener('click', function(e) {
-            e.stopPropagation();
-            window.location.href = 'course-viewer.php?level_id=' + lvl.id + '&quest=' + qi;
-        });
+        el.style.cursor = isQDone ? 'default' : 'pointer';
+        el.innerHTML = '<span class="detail-quest-check detail-quest-check--' + checkCls + '">' + checkIcon + '</span> ' + q.label;
+        if (!isQDone) {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.location.href = 'course-viewer.php?level_id=' + lvl.id + '&quest=' + qi;
+            });
+        }
         $('d-quests').appendChild(el);
     });
 
@@ -1167,9 +1239,9 @@ function selectLevel(lvl) {
 
 $('d-btn').addEventListener('click', function() {
     if (!currentLevel) return;
-    if (currentLevel.status === 'completed') {
-        if (currentLevel.course_id) window.location.href = '../quest.php?course_id=' + currentLevel.course_id;
-        return;
+    var isComplete = (currentLevel.status === 'completed' || (currentLevel.progress || 0) >= 100);
+    if (isComplete) {
+        return Toast.success('Selesai!', 'Level ini sudah 100% selesai 🎉');
     }
     // Redirect to course-viewer (Progate-like flow)
     if (currentLevel.quests && currentLevel.quests.length) {
@@ -1234,7 +1306,9 @@ $('m-go').addEventListener('click', function() {
             '&level=' + encodeURIComponent(currentLevel.name) +
             '&quest=' + encodeURIComponent(q.label) +
             '&skill=' + encodeURIComponent(q.skill || '') +
-            '&xp=' + (currentLevel.reward || 0);
+            '&xp=' + (currentLevel.reward || 0) +
+            '&level_id=' + (currentLevel.id || 0) +
+            '&quest_idx=' + mSlideIdx;
         window.location.href = url;
     }
 });

@@ -17,14 +17,15 @@ $level_id  = (int)($_GET['level_id'] ?? 0);
 $quest_idx = (int)($_GET['quest_idx'] ?? -1);
 $has_next  = ($level_id > 0 && $quest_idx >= 0);
 
+$level_quests = [
+    1 => 8, 2 => 7, 3 => 8, 4 => 7, 5 => 6, 6 => 7, 7 => 6, 8 => 7
+];
+$total_quests = $level_quests[$level_id] ?? 0;
+
 // Check if there are more quests in this level
 $next_quest_url = '';
 if ($has_next) {
-    $level_quests = [
-        1 => 8, 2 => 7, 3 => 8, 4 => 7, 5 => 6, 6 => 7, 7 => 6, 8 => 7
-    ];
-    $total = $level_quests[$level_id] ?? 0;
-    if ($quest_idx + 1 < $total) {
+    if ($quest_idx + 1 < $total_quests) {
         $next_quest_url = 'course-viewer.php?level_id=' . $level_id . '&quest=' . ($quest_idx + 1);
     }
 }
@@ -324,6 +325,9 @@ var questLabel = <?php echo json_encode($quest); ?>;
 var skillName = <?php echo json_encode($skill); ?>;
 var xpReward = <?php echo $xp; ?>;
 var nextQuestUrl = <?php echo json_encode($next_quest_url); ?>;
+var fromLearningPath = <?php echo $has_next ? 'true' : 'false'; ?>;
+var backUrl = fromLearningPath ? 'learning-path.php' : 'courses.php';
+var totalQuests = <?php echo $total_quests; ?>;
 
 // ===== DEFAULT CODE TEMPLATES =====
 var defaults = {
@@ -538,6 +542,24 @@ codeCss.addEventListener('input', function() { validateAll(false); });
 codeJs.addEventListener('input', function() { validateAll(false); });
 
 // ===== SUBMIT =====
+function saveQuestProgress(cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '../api/complete-quest.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (cb) cb(xhr.status === 200 ? JSON.parse(xhr.responseText) : null);
+        }
+    };
+    xhr.send(JSON.stringify({
+        level_id: <?php echo $level_id; ?>,
+        quest_idx: <?php echo $quest_idx; ?>,
+        course_id: <?php echo $course_id ?: 0; ?>,
+        xp: xpReward,
+        total_quests: totalQuests
+    }));
+}
+
 btnSubmit.addEventListener('click', function() {
     if (!validateAll(true)) {
         return;
@@ -545,11 +567,14 @@ btnSubmit.addEventListener('click', function() {
     statusEl.textContent = '✅ Semua syarat terpenuhi!';
     statusEl.style.color = 'var(--suc)';
 
-    // Show success result
-    showResult(true, xpReward);
-    // Auto-save completion
-    localStorage.setItem('pg_done_' + questLabel, '1');
-    localStorage.removeItem('pg_code_' + questLabel);
+    // Save to database
+    saveQuestProgress(function(result) {
+        // Show success result
+        showResult(true, xpReward);
+        // Auto-save completion
+        localStorage.setItem('pg_done_' + questLabel, '1');
+        localStorage.removeItem('pg_code_' + questLabel);
+    });
 });
 
 function showResult(success, xp) {
@@ -577,9 +602,9 @@ function showResult(success, xp) {
                 '</div>' +
                 '<div class="pg-result-actions">' +
                     (success
-                        ? '<button class="pg-btn pg-btn--submit" onclick="window.location.href=\'learning-path.php\'">🚀 Lanjut Belajar</button>' + nextBtn
+                        ? '<button class="pg-btn pg-btn--submit" onclick="window.location.href=\'' + backUrl + '\'">🚀 Lanjut Belajar</button>' + nextBtn
                         : '<button class="pg-btn pg-btn--run" onclick="this.closest(\'.pg-result\').remove()">🔄 Coba Lagi</button>') +
-                    '<button class="pg-btn pg-btn--back" onclick="window.location.href=\'learning-path.php\'">← Kembali ke Peta</button>' +
+                    '<button class="pg-btn pg-btn--back" onclick="window.location.href=\'' + backUrl + '\'">← Kembali</button>' +
                 '</div>' +
             '</div>' +
         '</div>';

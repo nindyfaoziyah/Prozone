@@ -67,6 +67,8 @@ class Lesson {
         $stmt->bindParam(':tipe', $this->tipe);
         $stmt->bindParam(':durasi_menit', $this->durasi_menit);
         $stmt->bindParam(':is_free', $this->is_free);
+        $stmt->bindParam(':hints', $this->hints);
+        $stmt->bindParam(':xp_reward', $this->xp_reward);
 
         if ($stmt->execute()) {
             return true;

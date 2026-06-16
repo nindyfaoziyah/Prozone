@@ -265,6 +265,24 @@ function getSlideContent($level_name, $quest_label, $skill, $slide_num, $total_s
     return ['title' => $quest_label, 'body' => "<p>Materi $quest_label — lanjutkan ke praktik coding.</p>"];
 }
 
+// Mark quest as in_progress when viewed
+$user_id = $_SESSION['user_id'] ?? 0;
+if ($user_id && isset($db)) {
+    try {
+        $stmt = $db->prepare("INSERT INTO user_quest_progress (user_id, level_id, quest_idx, course_id, status, completed_at)
+                              VALUES (:uid, :lid, :qidx, :cid, 'in_progress', NULL)
+                              ON DUPLICATE KEY UPDATE status = IF(status = 'not_started', 'in_progress', status)");
+        $stmt->execute([
+            ':uid' => $user_id,
+            ':lid' => $level_id,
+            ':qidx' => $quest_idx,
+            ':cid' => $level_data['course_id']
+        ]);
+    } catch (Exception $e) {
+        // Silently fail
+    }
+}
+
 $level_name = $level_data['name'];
 $quest_label = $quest['label'];
 $skill = $quest['skill'];

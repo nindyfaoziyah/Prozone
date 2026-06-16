@@ -29,14 +29,14 @@ $lesson->course_id = $course_id;
 $lesson_data = $lesson->readOne();
 
 if (!$course_data || !$lesson_data) {
-    header('Location: courses.php');
+    header('Location: student/courses.php');
     exit();
 }
 
 // Check enrollment
 $is_enrolled = $enrollment->isEnrolled($_SESSION['user_id'], $course_id);
 if (!$is_enrolled) {
-    header('Location: course.php?id=' . $course_id);
+    header('Location: student/course-detail.php?id=' . $course_id);
     exit();
 }
 
@@ -319,7 +319,7 @@ if ($_POST) {
             : 'Progress berhasil disimpan!';
         unset($_SESSION['xp_earned']);
         
-        header('Location: courses.php');
+        header('Location: student/courses.php');
         exit();
     } else {
         $_SESSION['error_message'] = 'Gagal menyimpan progress. Silakan coba lagi.';
@@ -354,10 +354,10 @@ if ($_POST) {
 
             $enrollment->updateProgress($_SESSION['user_id'], $course_id);
             
-            $_SESSION['success_message'] = '?? Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
+            $_SESSION['success_message'] = '🎉 Quiz berhasil diselesaikan! ' . (isset($_SESSION['xp_earned']) ? '+' . $_SESSION['xp_earned'] . ' XP' : '');
             unset($_SESSION['xp_earned']);
             
-            header('Location: courses.php');
+            header('Location: student/playground.php?course_id=' . $course_id . '&level=Praktik&quest=Coding+Challenge&xp=50');
             exit();
         } else {
             $_SESSION['error_message'] = 'Gagal menyimpan progress quiz.';
@@ -4064,95 +4064,74 @@ unset($_SESSION['error_message']);
             background: linear-gradient(180deg, #2DD4BF, #14B8A6);
         }
 
-        /* Quiz Styles - Premium */
+        /* ===== QUIZ MODE ===== */
         .quiz-container {
             background: var(--bg-card);
             padding: 2rem;
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            position: relative;
-            overflow: hidden;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
         }
-
         .quiz-container h2 {
             color: var(--primary-purple);
             font-weight: 700;
-            font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
         }
-
         .quiz-question {
             background: var(--bg-secondary);
             padding: 1.5rem;
-            border-radius: 1rem;
+            border-radius: 0.75rem;
             margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-normal);
+            border: 1px solid transparent;
+            transition: all 0.2s;
         }
-
         .quiz-question:hover {
             border-color: var(--border-glow);
             box-shadow: var(--shadow-sm);
         }
-
         .quiz-question p {
             color: var(--text-primary);
             font-size: 1.05rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 1rem;
         }
-
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
-
         .quiz-options label {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            cursor: pointer;
-            padding: 0.85rem 1rem;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
             background: var(--bg-card);
-            transition: all var(--transition-normal);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--card-border);
         }
-
         .quiz-options label:hover {
             background: rgba(14, 165, 233, 0.04);
             border-color: var(--primary-purple);
-            transform: translateX(4px);
         }
-
         .quiz-options label:has(input:checked) {
             background: rgba(14, 165, 233, 0.06);
             border-color: var(--primary-purple);
-            box-shadow: 0 0 0 1px var(--primary-purple);
         }
-
         .quiz-options input[type="radio"] {
             appearance: none;
             width: 20px;
             height: 20px;
             border: 2px solid var(--text-muted);
             border-radius: 50%;
-            background: transparent;
-            cursor: pointer;
-            transition: all var(--transition-fast);
             position: relative;
+            cursor: pointer;
             flex-shrink: 0;
         }
-
         .quiz-options input[type="radio"]:checked {
             border-color: var(--primary-purple);
             background: var(--primary-purple);
         }
-
         .quiz-options input[type="radio"]:checked::after {
             content: '';
             position: absolute;
@@ -4164,39 +4143,26 @@ unset($_SESSION['error_message']);
             background: white;
             border-radius: 50%;
         }
-
         .quiz-result {
             background: var(--bg-secondary);
             padding: 2rem;
-            border-radius: 1.25rem;
-            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
             text-align: center;
-            margin-top: 2rem;
         }
-
         .quiz-score-display {
             font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
-
         .quiz-score-message {
             font-size: 1.15rem;
             margin-bottom: 1.5rem;
         }
-
         .btn-quiz-submit {
             width: 100%;
             padding: 1rem;
             font-size: 1.1rem;
-        }
-        }
-
-        #scoreDisplay.fail {
-            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 700;
         }
 
         /* Loading Spinner - Premium */
@@ -4400,7 +4366,7 @@ unset($_SESSION['error_message']);
                     <?php endif; ?>
                     <h1><?php echo htmlspecialchars($lesson_data['judul_lesson']); ?></h1>
                 </div>
-                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> � Lesson <?php echo $lesson_data['urutan']; ?></p>
+                <p><?php echo htmlspecialchars($course_data['judul_course']); ?> → Lesson <?php echo $lesson_data['urutan']; ?></p>
             </div>
             
             
@@ -4408,37 +4374,36 @@ unset($_SESSION['error_message']);
                 <?php if ($prev_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $prev_lesson['id']; ?>" 
                        class="nav-btn">
-                        ? Sebelumnya
+                        ← Sebelumnya
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>? Sebelumnya</button>
+                    <button class="nav-btn" disabled>← Sebelumnya</button>
                 <?php endif; ?>
                 
                 <?php if ($next_lesson): ?>
                     <a href="lesson.php?course_id=<?php echo $course_id; ?>&lesson_id=<?php echo $next_lesson['id']; ?>" 
                        class="nav-btn">
-                        Selanjutnya ?
+                        Selanjutnya →
                     </a>
                 <?php else: ?>
-                    <button class="nav-btn" disabled>Selanjutnya ?</button>
+                    <button class="nav-btn" disabled>Selanjutnya →</button>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 
     <?php if ($lesson_type === 'quiz'): ?>
-        <!-- Quiz Mode -->
+        <?php
+        $quiz_data = json_decode($lesson_data['konten'] ?? '[]', true);
+        if (empty($quiz_data)) {
+            echo '<div class="alert alert-warning">Data kuis tidak valid atau kosong.</div>';
+        } else {
+        ?>
         <div class="lesson-wrapper mode-theory">
             <div class="slide-container">
-                <?php
-                $quiz_data = json_decode($lesson_data['konten'] ?? '[]', true);
-                if (empty($quiz_data)) {
-                    echo '<div class="alert alert-warning">Data kuis tidak valid atau kosong.</div>';
-                } else {
-                ?>
                 <div class="quiz-container">
                     <h2>Kuis: <?php echo htmlspecialchars($lesson_data['judul_lesson']); ?></h2>
-                    
+
                     <form id="quizForm" onsubmit="submitQuiz(event)">
                         <?php foreach ($quiz_data as $index => $q): ?>
                             <div class="quiz-question">
@@ -4453,7 +4418,7 @@ unset($_SESSION['error_message']);
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        
+
                         <button type="submit" class="btn-run btn-quiz-submit">Kirim Jawaban</button>
                     </form>
 
@@ -4470,31 +4435,31 @@ unset($_SESSION['error_message']);
 
                 <script>
                     const quizData = <?php echo json_encode($quiz_data); ?>;
-                    
+
                     function submitQuiz(e) {
                         e.preventDefault();
                         let score = 0;
                         let total = quizData.length;
-                        
+
                         quizData.forEach((q, index) => {
                             const selected = document.querySelector(`input[name="q${index}"]:checked`);
                             if (selected && parseInt(selected.value) === q.correct) {
                                 score++;
                             }
                         });
-                        
+
                         const percentage = Math.round((score / total) * 100);
                         const resultDiv = document.getElementById('quizResult');
                         const scoreDisplay = document.getElementById('scoreDisplay');
                         const scoreMessage = document.getElementById('scoreMessage');
                         const quizForm = document.getElementById('quizForm');
-                        
+
                         quizForm.style.display = 'none';
                         resultDiv.style.display = 'block';
-                        
+
                         scoreDisplay.textContent = `${score} / ${total}`;
                         scoreDisplay.style.color = percentage >= 70 ? '#10b981' : '#ef4444';
-                        
+
                         if (percentage >= 70) {
                             scoreMessage.textContent = "Selamat! Anda lulus kuis ini.";
                             scoreMessage.style.color = '#10b981';
@@ -4502,8 +4467,7 @@ unset($_SESSION['error_message']);
                             scoreMessage.textContent = "Maaf, nilai Anda belum mencukupi. Silakan coba lagi.";
                             scoreMessage.style.color = '#ef4444';
                             document.getElementById('completeQuizForm').style.display = 'none';
-                            
-                            // Add retry button
+
                             const retryBtn = document.createElement('button');
                             retryBtn.textContent = "Coba Lagi";
                             retryBtn.className = "btn-run";
@@ -4513,9 +4477,9 @@ unset($_SESSION['error_message']);
                         }
                     }
                 </script>
-                <?php } ?>
             </div>
         </div>
+        <?php } ?>
 
     <?php elseif ($lesson_type === 'theory'): ?>
         <!-- Theory Mode: Interactive Slide-Based Material -->
@@ -4566,13 +4530,13 @@ unset($_SESSION['error_message']);
                 <!-- Slide Navigation -->
                 <div class="slide-navigation">
                     <button class="slide-nav-btn prev-btn" onclick="previousSlide()" id="prevBtn">
-                        ? Sebelumnya
+                        ← Sebelumnya
                     </button>
                     <div class="slide-indicator">
                         <span id="currentSlide">1</span> / <span id="totalSlides"><?php echo count($slides); ?></span>
                     </div>
                     <button class="slide-nav-btn next-btn" onclick="nextSlide()" id="nextBtn">
-                        Selanjutnya ?
+                        Selanjutnya →
                     </button>
                 </div>
                 
@@ -4737,8 +4701,8 @@ margin: 10px 20px;
             </div>
             
             <div class="theory-navigation">
-                <a href="courses.php" class="theory-nav-btn secondary">
-                    ? Kembali ke Course
+                <a href="student/courses.php" class="theory-nav-btn secondary">
+                    ← Kembali ke Course
                 </a>
             </div>
         </div>
@@ -5332,7 +5296,7 @@ margin: 10px 20px;
                 </div>
 
                 <div class="instructions-footer">
-                    <button class="back-to-slide-btn" onclick="window.location.href='course.php?id=<?php echo $course_id; ?>'">
+                    <button class="back-to-slide-btn" onclick="window.location.href='student/course-detail.php?id=<?php echo $course_id; ?>'">
                         ? Kembali ke Course
                     </button>
                 </div>
@@ -5582,7 +5546,7 @@ margin: 10px 20px;
         }
 
         function redirectNext() {
-            window.location.href = "courses.php";
+            window.location.href = "student/course-detail.php?id=<?php echo $course_id; ?>";
         }
 
         function nextSlide() {
@@ -6125,7 +6089,7 @@ margin: 10px 20px;
                 xpToast.classList.add('xp-hide');
                 setTimeout(() => {
                     xpToast.remove();
-                    window.location.href = 'courses.php';
+                    window.location.href = 'student/course-detail.php?id=<?php echo $course_id; ?>';
                 }, 500);
             }, 2000);
         }
@@ -6564,7 +6528,7 @@ margin: 10px 20px;
                 window.nextLessonUrl = data.next_lesson 
                     ? `lesson.php?course_id=${courseId}&lesson_id=${data.next_lesson.id}` 
                     : '';
-                window.courseUrl = `course.php?id=${courseId}`;
+                window.courseUrl = `student/course-detail.php?id=${courseId}`;
 
                 // Update solution code if available
                 if (data.lesson.kode_solusi) {
@@ -6637,54 +6601,8 @@ margin: 10px 20px;
 
             // Update quiz data
             function updateQuizData(konten, lessonTitle) {
-                try {
-                    const quizData = JSON.parse(konten);
-                    if (!Array.isArray(quizData)) return;
-
-                    // Update quiz title
-                    const quizTitle = document.querySelector('.quiz-container h2');
-                    if (quizTitle) {
-                        quizTitle.textContent = `Kuis: ${lessonTitle}`;
-                    }
-
-                    // Update quiz form if exists
-                    const quizForm = document.getElementById('quizForm');
-                    if (quizForm && window.quizData) {
-                        window.quizData = quizData;
-                        // Rebuild quiz form
-                        rebuildQuizForm(quizData);
-                    }
-                } catch (e) {
-                    console.error('Error parsing quiz data:', e);
-                }
-            }
-
-            // Rebuild quiz form
-            function rebuildQuizForm(quizData) {
-                const quizForm = document.getElementById('quizForm');
-                if (!quizForm) return;
-
-                let html = '';
-                quizData.forEach((q, index) => {
-                    html += `
-                        <div class="quiz-question" style="margin-bottom: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 0.5rem;">
-                            <h3 style="margin-bottom: 1rem; color: var(--text-primary);">${index + 1}. ${escapeHtml(q.question || '')}</h3>
-                            <div class="quiz-options" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    `;
-                    (q.options || []).forEach((opt, optIndex) => {
-                        html += `
-                            <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--bg-card); border-radius: 0.375rem; cursor: pointer; transition: all 0.2s;">
-                                <input type="radio" name="q${index}" value="${optIndex}" required>
-                                <span>${escapeHtml(opt)}</span>
-                            </label>
-                        `;
-                    });
-                    html += `</div></div>`;
-                });
-
-                const submitBtn = quizForm.querySelector('button[type="submit"]');
-                const oldHTML = submitBtn ? submitBtn.outerHTML : '';
-                quizForm.innerHTML = html + oldHTML;
+                // For the game-ified quiz, just reload the page
+                location.reload();
             }
 
             // Update starter code in editor
