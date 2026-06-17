@@ -440,7 +440,7 @@ INSERT INTO `course_categories` (`nama_kategori`, `slug`, `deskripsi`, `icon`) V
 -- 6. SEED DATA - COURSES
 -- =====================================================
 INSERT INTO `courses`
-  (`kode_course`, `judul_course`, `slug`, `kategori_id`, `instructor_id`, `deskripsi`, `level`, `durasi_jam`, `is_free`, `is_published`, `total_lessons`, `xp_reward`)
+  (`kode_course`, `judul_course`, `slug`, `kategori_id`, `admin_id`, `deskripsi`, `level`, `durasi_jam`, `is_free`, `is_published`, `total_lessons`, `xp_reward`)
 VALUES
 -- Course 1: HTML & CSS Fundamentals
 ('HTML001', 'HTML & CSS Fundamentals', 'html-css-fundamentals', 1, 2,

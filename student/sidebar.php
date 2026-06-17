@@ -52,7 +52,7 @@ $menu_items = [
     <div class="sidebar-island-panel">
         <div class="sidebar-logo">
             <a href="dashboard.php" class="logo-box">
-                <img src="../assets/img/Prozone Logo.png" alt="Prozone">
+                <span class="sidebar-brand-text">Prozone</span>
             </a>
         </div>
 

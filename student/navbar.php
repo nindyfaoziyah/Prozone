@@ -71,7 +71,7 @@ if (isset($db)) {
                     <div class="online-indicator"></div>
                 </div>
             </div>
-            <a href="../logout.php" class="header-btn" title="Logout" style="color:#EF4444;border-color:#FEE2E2;">
+            <a href="../logout.php" class="header-btn logout-btn" title="Logout">
                 <?php icon('log-out', 18); ?>
             </a>
         </div>

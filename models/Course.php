@@ -36,7 +36,7 @@ class Course {
     public function create() {
         $query = "INSERT INTO " . $this->table_name . "
                   SET kode_course=:kode_course, judul_course=:judul_course, slug=:slug,
-                      kategori_id=:kategori_id, instructor_id=:instructor_id, deskripsi=:deskripsi,
+                      kategori_id=:kategori_id, admin_id=:admin_id, deskripsi=:deskripsi,
                       thumbnail=:thumbnail, level=:level, durasi_jam=:durasi_jam, harga=:harga,
                       is_free=:is_free, is_published=:is_published, xp_reward=:xp_reward";
 
@@ -64,7 +64,7 @@ class Course {
         $stmt->bindParam(':judul_course', $this->judul_course);
         $stmt->bindParam(':slug', $this->slug);
         $stmt->bindParam(':kategori_id', $this->kategori_id);
-        $stmt->bindParam(':instructor_id', $this->admin_id);
+        $stmt->bindParam(':admin_id', $this->admin_id);
         $stmt->bindParam(':deskripsi', $this->deskripsi);
         $stmt->bindParam(':thumbnail', $this->thumbnail);
         $stmt->bindParam(':level', $this->level);
@@ -131,7 +131,7 @@ class Course {
     public function update() {
         $query = "UPDATE " . $this->table_name . "
                   SET kode_course=:kode_course, judul_course=:judul_course, slug=:slug, kategori_id=:kategori_id,
-                      instructor_id=:instructor_id, deskripsi=:deskripsi, thumbnail=:thumbnail,
+                      admin_id=:admin_id, deskripsi=:deskripsi, thumbnail=:thumbnail,
                       level=:level, durasi_jam=:durasi_jam, harga=:harga, is_free=:is_free,
                       is_published=:is_published, xp_reward=:xp_reward
                   WHERE id=:id";
@@ -161,7 +161,7 @@ class Course {
         $stmt->bindParam(':judul_course', $this->judul_course);
         $stmt->bindParam(':slug', $this->slug);
         $stmt->bindParam(':kategori_id', $this->kategori_id);
-        $stmt->bindParam(':instructor_id', $this->admin_id);
+        $stmt->bindParam(':admin_id', $this->admin_id);
         $stmt->bindParam(':deskripsi', $this->deskripsi);
         $stmt->bindParam(':thumbnail', $this->thumbnail);
         $stmt->bindParam(':level', $this->level);
